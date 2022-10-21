@@ -1,0 +1,7 @@
+{
+  "name": "appRendoProfesor",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
