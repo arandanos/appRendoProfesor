@@ -1,15 +1,12 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import './Tasks.css';
+import Header from '../components/Header';
 
 const Tasks: React.FC = () => {
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Tareas</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <Header title="Tareas" />
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>

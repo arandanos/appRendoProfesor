@@ -1,15 +1,12 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import './Create_task.css';
+import Header from '../components/Header';
 
 const Create_task: React.FC = () => {
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Crear tarea</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <Header title="Crear tarea" />
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>

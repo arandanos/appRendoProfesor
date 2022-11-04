@@ -5,8 +5,7 @@ import {
     IonToolbar,
     IonTitle,
     IonButtons,
-    IonBackButton,
-    IonFabButton
+    IonBackButton
   } from '@ionic/react';
 
 import './Header.css'
