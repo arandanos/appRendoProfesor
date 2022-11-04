@@ -16,6 +16,7 @@ import Tasks from './pages/Tasks';
 import Create_task from './pages/Create_task';
 import My_classes from './pages/My_classes';
 import Profile from './pages/Profile';
+import Admin_settings from './pages/Admin_settings';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -58,6 +59,9 @@ const App: React.FC = () => (
           </Route>
           <Route path="/profile">
             <Profile />
+          </Route>
+          <Route path="/admin_settings">
+            <Admin_settings />
           </Route>
           <Route exact path="/">
             <Redirect to="/home" />

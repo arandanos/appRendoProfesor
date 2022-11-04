@@ -5,8 +5,12 @@ import {
     IonToolbar,
     IonTitle,
     IonButtons,
-    IonBackButton
+    IonBackButton,
+    IonFabButton,
+    IonIcon,
   } from '@ionic/react';
+
+  import { settingsOutline } from 'ionicons/icons';
 
 import './Header.css'
 
@@ -18,6 +22,9 @@ const Header: React.FC<{ title: string; }> = (props: { title: string }) => {
             <IonBackButton />
           </IonButtons>
           <IonTitle>{props.title}</IonTitle>
+            <IonFabButton slot="end" size="small" href="/admin_settings">
+              <IonIcon icon={settingsOutline} />
+            </IonFabButton>
         </IonToolbar>
       </IonHeader>
     );
