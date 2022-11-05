@@ -1,9 +1,16 @@
 ion-nav-link {
     width: 100%;
     display: flex;
-    justify-content: center;
+    min-height: 20%;
+    max-height: 20%;
 }
 
 ion-button{
-    width: 90%;
+    min-width: 90%;
+    max-width: 90%;
+    margin: auto;
+}
+
+ion-grid {
+    height: 100%;
 }
