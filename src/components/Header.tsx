@@ -4,7 +4,6 @@ import {
     IonHeader,
     IonToolbar,
     IonTitle,
-    IonButtons,
     IonBackButton,
     IonFabButton,
     IonIcon,
@@ -14,17 +13,37 @@ import {
 
 import './Header.css'
 
-const Header: React.FC<{ title: string; }> = (props: { title: string }) => {
+const Header: React.FC<{ title: string; back: boolean; settings: boolean }> = (props: { title: string; back: boolean; settings: boolean }) => {
+    var BackButton = () => {
+      if(props.back){
+        return (
+          <IonFabButton slot="start" size="small">
+            <IonBackButton/>
+          </IonFabButton>
+        )
+      }
+
+      return <></>
+    }
+
+    var SettingsButton = () => {
+      if(props.settings){
+        return (
+          <IonFabButton slot="end" size="small" href="/AdminSettings" class='margin-right-settings'>
+            <IonIcon icon={settingsOutline} />
+          </IonFabButton>
+        ) 
+      }
+
+      return <></>
+    }
+  
     return (
       <IonHeader>
         <IonToolbar>
-          <IonButtons slot="start">
-            <IonBackButton />
-          </IonButtons>
+          <BackButton/>
           <IonTitle>{props.title}</IonTitle>
-            <IonFabButton slot="end" size="small" href="/admin_settings">
-              <IonIcon icon={settingsOutline} />
-            </IonFabButton>
+          <SettingsButton/>
         </IonToolbar>
       </IonHeader>
     );

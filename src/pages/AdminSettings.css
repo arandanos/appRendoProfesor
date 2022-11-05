@@ -1,0 +1,9 @@
+ion-nav-link {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+ion-button{
+    width: 90%;
+}

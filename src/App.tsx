@@ -13,10 +13,10 @@ import { IonReactRouter } from '@ionic/react-router';
 import { homeOutline, clipboardOutline, addCircleOutline, briefcaseOutline, personOutline } from 'ionicons/icons';
 import Home from './pages/Home';
 import Tasks from './pages/Tasks';
-import Create_task from './pages/Create_task';
-import My_classes from './pages/My_classes';
+import CreateTask from './pages/CreateTask';
+import MyClasses from './pages/MyClasses';
 import Profile from './pages/Profile';
-import Admin_settings from './pages/Admin_settings';
+import AdminSettings from './pages/AdminSettings';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -52,16 +52,16 @@ const App: React.FC = () => (
             <Tasks />
           </Route>
           <Route path="/create_task">
-            <Create_task />
+            <CreateTask />
           </Route>
           <Route path="/my_classes">
-            <My_classes />
+            <MyClasses />
           </Route>
           <Route path="/profile">
             <Profile />
           </Route>
-          <Route path="/admin_settings">
-            <Admin_settings />
+          <Route path="/adminSettings">
+            <AdminSettings />
           </Route>
           <Route exact path="/">
             <Redirect to="/home" />
@@ -76,11 +76,11 @@ const App: React.FC = () => (
             <IonIcon icon={clipboardOutline} />
             <IonLabel>Tareas</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="Create_task" href="/create_task">
+          <IonTabButton tab="CreateTask" href="/create_task">
             <IonIcon icon={addCircleOutline} />
             <IonLabel>Tarea</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="My_classes" href="/my_classes">
+          <IonTabButton tab="MyClasses" href="/my_classes">
             <IonIcon icon={briefcaseOutline} />
             <IonLabel>Clases</IonLabel>
           </IonTabButton>
