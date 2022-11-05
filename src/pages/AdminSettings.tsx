@@ -20,11 +20,11 @@ const AdminSettings: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <IonGrid>
-          <SettingsLink position='top' label="Tipos de menús y postres" route={MenusDesserts}/>
-          <SettingsLink position='middle' label="Gestión de alumnado" route={StudentManagement}/>
-          <SettingsLink position='middle' label="Gestión de profesorado" route={TeachersManagement}/>
-          <SettingsLink position='middle' label="Gestión de clases" route={ClassroomsManagement}/>
-          <SettingsLink position='buttom' label="Materiales del almacén" route={Materials}/>
+          <SettingsLink label="Tipos de menús y postres" route={MenusDesserts}/>
+          <SettingsLink label="Gestión de alumnado" route={StudentManagement}/>
+          <SettingsLink label="Gestión de profesorado" route={TeachersManagement}/>
+          <SettingsLink label="Gestión de clases" route={ClassroomsManagement}/>
+          <SettingsLink label="Materiales del almacén" route={Materials}/>
         </IonGrid>
       </IonContent>
     </IonPage>

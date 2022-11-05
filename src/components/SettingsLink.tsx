@@ -5,24 +5,10 @@ import {
 
 import './SettingsLink.css'
 
-const SettingsLink: React.FC<{ label: string; route: React.FC; position: string; }> = (props: { label: string; route: React.FC; position: string; }) => {
-
-  var classCSS = "";
-
-  switch(props.position){
-    case "top":
-      classCSS = "top-button";
-      break;
-    case "bottom":
-      classCSS = "bottom-button";
-      break;
-    default:
-      classCSS = "middle-button";
-      break;
-  }
+const SettingsLink: React.FC<{ label: string; route: React.FC; }> = (props: { label: string; route: React.FC; }) => {
 
   return (
-      <IonNavLink class={classCSS} routerDirection="forward" component={props.route}>
+      <IonNavLink routerDirection="forward" component={props.route}>
         <IonButton color="primary" shape='round' fill='outline'>{props.label}</IonButton>
       </IonNavLink>
   );
