@@ -14,11 +14,6 @@ const AdminSettings: React.FC = () => {
       <IonPage>
       <Header title="Administración" back={false} settings={false}/>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Admin Tools</IonTitle>
-          </IonToolbar>
-        </IonHeader>
         <IonGrid>
           <SettingsLink label="Tipos de menús y postres" route={MenusDesserts}/>
           <SettingsLink label="Gestión de alumnado" route={StudentManagement}/>

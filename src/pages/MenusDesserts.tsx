@@ -7,11 +7,6 @@ const MenusDesserts: React.FC = () => {
     <>
       <Header title="Menús y postres" back settings={false}/>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Menús y postres</IonTitle>
-          </IonToolbar>
-        </IonHeader>
       </IonContent>
     </>
   );

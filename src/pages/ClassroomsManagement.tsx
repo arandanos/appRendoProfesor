@@ -7,11 +7,6 @@ const ClassroomsManagement: React.FC = () => {
     <>
       <Header title="Clases" back settings={false}/>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Clases</IonTitle>
-          </IonToolbar>
-        </IonHeader>
       </IonContent>
     </>
   );

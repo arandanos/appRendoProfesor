@@ -7,11 +7,6 @@ const MyClasses: React.FC = () => {
     <IonPage>
       <Header title="Mis clases" settings back={false}/>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Mis clases</IonTitle>
-          </IonToolbar>
-        </IonHeader>
       </IonContent>
     </IonPage>
   );

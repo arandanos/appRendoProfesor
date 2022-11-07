@@ -7,11 +7,6 @@ const StudentManagement: React.FC = () => {
     <>
       <Header title="Alumnado" back settings={false}/>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Alumnado</IonTitle>
-          </IonToolbar>
-        </IonHeader>
       </IonContent>
     </>
   );

@@ -7,11 +7,6 @@ const Materials: React.FC = () => {
     <>
       <Header title="Materiales" back settings={false}/>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Materiales</IonTitle>
-          </IonToolbar>
-        </IonHeader>
       </IonContent>
     </>
   );

@@ -7,11 +7,6 @@ const Profile: React.FC = () => {
     <IonPage>
       <Header title="Mi perfil" settings back={false}/>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Perfil</IonTitle>
-          </IonToolbar>
-        </IonHeader>
       </IonContent>
     </IonPage>
   );

@@ -7,11 +7,6 @@ const CreateTask: React.FC = () => {
     <IonPage>
       <Header title="Crear tarea" settings back={false}/>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Crear tarea</IonTitle>
-          </IonToolbar>
-        </IonHeader>
       </IonContent>
     </IonPage>
   );

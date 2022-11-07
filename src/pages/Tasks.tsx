@@ -7,11 +7,6 @@ const Tasks: React.FC = () => {
     <IonPage>
       <Header title="Tareas" settings back={false}/>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Tareas</IonTitle>
-          </IonToolbar>
-        </IonHeader>
       </IonContent>
     </IonPage>
   );
