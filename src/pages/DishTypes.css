@@ -1,0 +1,25 @@
+.btn-title{
+    display: flex;
+    margin: 0;
+}
+
+.tab-list{
+    margin: 5%;
+    
+    max-width: fit-content;
+}
+
+
+
+.add-button{
+    text-transform: none;
+}
+
+.pictogram-header{
+    display: flex;
+    width: 10%;
+}
+
+ion-content{
+    display: block;
+}
