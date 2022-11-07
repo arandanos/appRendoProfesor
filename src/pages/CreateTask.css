@@ -1,0 +1,6 @@
+.ion-nav-link-four {
+    width: 100%;
+    display: flex;
+    min-height: 25%;
+    max-height: 25%;
+}

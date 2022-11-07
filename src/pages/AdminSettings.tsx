@@ -6,7 +6,7 @@ import StudentManagement from './StudentManagement';
 import ClassroomsManagement from './ClassroomsManagement';
 import TeachersManagement from './TeachersManagement';
 import Materials from './Materials';
-import SettingsLink from '../components/SettingsLink';
+import ButtonForward from '../components/ButtonForward';
 
 const AdminSettings: React.FC = () => {
   return (
@@ -15,11 +15,11 @@ const AdminSettings: React.FC = () => {
       <Header title="Administración" back={false} settings={false}/>
       <IonContent fullscreen>
         <IonGrid>
-          <SettingsLink label="Tipos de menús y postres" route={MenusDesserts}/>
-          <SettingsLink label="Gestión de alumnado" route={StudentManagement}/>
-          <SettingsLink label="Gestión de profesorado" route={TeachersManagement}/>
-          <SettingsLink label="Gestión de clases" route={ClassroomsManagement}/>
-          <SettingsLink label="Materiales del almacén" route={Materials}/>
+          <ButtonForward class="ion-nav-link-five" label="Tipos de menús y postres" route={MenusDesserts}/>
+          <ButtonForward class="ion-nav-link-five" label="Gestión de alumnado" route={StudentManagement}/>
+          <ButtonForward class="ion-nav-link-five" label="Gestión de profesorado" route={TeachersManagement}/>
+          <ButtonForward class="ion-nav-link-five" label="Gestión de clases" route={ClassroomsManagement}/>
+          <ButtonForward class="ion-nav-link-five" label="Materiales del almacén" route={Materials}/>
         </IonGrid>
       </IonContent>
     </IonPage>
