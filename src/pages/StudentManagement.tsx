@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent } from '@ionic/react';
 import Header from '../components/Header';
 import './StudentManagement.css';
 

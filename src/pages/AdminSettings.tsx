@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonNav, IonGrid} from '@ionic/react';
+import { IonContent, IonPage, IonNav, IonGrid } from '@ionic/react';
 import './AdminSettings.css';
 import Header from '../components/Header';
 import MenusDesserts from './MenusDesserts';

@@ -1,5 +1,3 @@
-import { useParams } from 'react-router';
-import { useLocation } from 'react-router-dom';
 import {
     IonHeader,
     IonToolbar,
