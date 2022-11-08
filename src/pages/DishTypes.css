@@ -9,10 +9,9 @@
     max-width: fit-content;
 }
 
-
-
 .add-button{
     text-transform: none;
+    justify-content: flex-end;
 }
 
 .pictogram-header{
