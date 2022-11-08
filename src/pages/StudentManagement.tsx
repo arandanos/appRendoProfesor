@@ -1,6 +1,6 @@
 import { IonContent } from '@ionic/react';
 import Header from '../components/Header';
-import './StudentManagement.css';
+import './Pages.css';
 
 const StudentManagement: React.FC = () => {
   return (

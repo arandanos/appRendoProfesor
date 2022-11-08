@@ -1,5 +1,5 @@
 import { IonContent, IonPage, IonNav, IonGrid } from '@ionic/react';
-import './AdminSettings.css';
+import './Pages.css';
 import Header from '../components/Header';
 import MenusDesserts from './MenusDesserts';
 import StudentManagement from './StudentManagement';

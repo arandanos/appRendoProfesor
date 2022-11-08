@@ -1,7 +1,7 @@
 import { IonContent, IonPage, IonGrid, IonNav } from '@ionic/react';
 import Header from '../components/Header';
 import ButtonForward from '../components/ButtonForward';
-import './CreateTask.css';
+import './Pages.css';
 import KitchenOrderTask from './KitchenOrderTask';
 import LaminatorTask from './LaminatorTask';
 import MaterialTask from './MaterialTask';
