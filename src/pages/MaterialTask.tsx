@@ -4,7 +4,7 @@ import Header from '../components/Header';
 const MaterialTask: React.FC = () => {
   return (
     <>
-      <Header title="Petición de material" back settings={false}/>
+      <Header title="Material" back settings={false}/>
       <IonContent fullscreen>
       </IonContent>
     </>
