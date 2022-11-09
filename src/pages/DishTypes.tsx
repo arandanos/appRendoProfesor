@@ -1,8 +1,8 @@
-import { IonContent, IonList, IonGrid, IonSegment, IonSegmentButton, IonTabBar, IonLabel, IonIcon, IonTabButton, IonItem, IonButton, IonImg, IonRow } from '@ionic/react';
+import { IonContent, IonList, IonGrid, IonSegment, IonSegmentButton, IonTabBar, IonLabel, IonText, IonIcon, IonTabButton, IonItem, IonButton, IonImg, IonRow } from '@ionic/react';
 import Header from '../components/Header';
 import './DishTypes.css';
 import { useState, useEffect } from "react";
-import { star, addCircleOutline, checkmarkOutline, body, menu } from 'ionicons/icons';
+import { star, addCircleOutline, checkmarkOutline, body, menu, trashBinOutline, trashOutline } from 'ionicons/icons';
 import axios from 'axios';
 import { API_URL } from '../variables';
 {/** Para obtener datos de la API: 
@@ -27,9 +27,18 @@ const DishTypes: React.FC = () => {
 
   {/** Queremos que obtenga los menús y postres de la base de datos, y que cree nuevos 
 con el boton de Añadir */}
-  const sendGetRequest = () => {
+  const sendGetMenusRequest = () => {
     return axios({
-      url: API_URL + "dishtypes",
+      url: API_URL + "menus",
+      method: 'get'
+    }).then(response => {
+      console.log(response.data);
+      return(response.data);
+    })
+  };
+  const sendGetDesertsRequest = () => {
+    return axios({
+      url: API_URL + "deserts",
       method: 'get'
     }).then(response => {
       console.log(response.data);
@@ -38,11 +47,16 @@ con el boton de Añadir */}
   };
   {/** useEffect Hook para usar el get con Axios y obtener los datos de la url asignada antes*/}
   useEffect(() => {
-    sendGetRequest().then(data => {
+    sendGetMenusRequest().then(data => {
       {/** Aqui habria que obtener los datos de postres y menús, que no sé si 
         están en 2 tablas distintas o estan en la misma y hay que separar los datos */}
       setMenus(data)
       /* setDeserts(data) */
+    })
+    sendGetDesertsRequest().then(data => {
+      {/** Aqui habria que obtener los datos de postres y menús, que no sé si 
+        están en 2 tablas distintas o estan en la misma y hay que separar los datos */}
+      setDeserts(data)
     })
   }, [])
 
@@ -85,28 +99,28 @@ con el boton de Añadir */}
            */}
           {menusActive ? (
             <>
-              {/* <IonGrid>
+            {/** Si hago un IonGrid no muestra el boton de Añadir menu */}
+              <IonList>
                 {
                   menus.map(menu => {
                     return (
                       <IonRow class='ion-justify-content-left'>
-                        Podemos crear una clase/tipo de boton para esto mejor que el por defecto
+                        {/* Podemos crear una clase/tipo de boton para esto mejor que el por defecto */}
                         <IonButton expand="full" class="tab-list" href='#'>
-                          <IonImg slot='start' class="pictogram-header" src={menu['_accessible_element']['_image']}></IonImg>
-                          {menu['_accesible_element']['_text']}
+                          <IonImg slot='start' class="pictogram-header" src="https://api.arasaac.org/api/pictograms/2398?resolution=500&download=false"></IonImg>
+                          <IonText>{menu['_name']}</IonText>
                         </IonButton>
                       </IonRow>
                     )
                   })
                 }
-              </IonGrid> 
-              */}
-
-              <IonList>
+              </IonList> 
+             
+              {/* <IonList>
                 <IonItem>
                   <IonButton expand="full" class="tab-list">
-                  <IonImg slot='start' class="pictogram-header" src="https://api.arasaac.org/api/pictograms/2398?resolution=500&download=false" ></IonImg>
-                  Menu 1
+                    <IonImg slot='start' class="pictogram-header" src="https://api.arasaac.org/api/pictograms/2398?resolution=500&download=false" ></IonImg>
+                    Menu 1
                   </IonButton>
                 </IonItem>
                 <IonItem>
@@ -115,7 +129,7 @@ con el boton de Añadir */}
                     Menu 2
                   </IonButton>
                 </IonItem>
-              </IonList>
+              </IonList> */}
               
               {/**
                * <IonButton class="add-button" color="blue" fill="outline" shape="round" expand="block" onClick={createPost}>
@@ -129,19 +143,21 @@ con el boton de Añadir */}
           ) : (
             <>
               <IonList>
-                <IonItem>
-                  <IonButton expand="full" class="tab-list">
-                  <IonImg slot='start' class="pictogram-header" src="https://api.arasaac.org/api/pictograms/2398?resolution=500&download=false" ></IonImg>
-                  Postre 1
-                  </IonButton>
-                </IonItem>
-                <IonItem>
-                  <IonButton expand="full" class="tab-list">
-                    <IonIcon slot="start" icon={star}></IonIcon>
-                    Postre 2
-                  </IonButton>
-                </IonItem>
-              </IonList>
+                {
+                  deserts.map(desert => {
+                    return (
+                      <IonRow class='ion-justify-content-left'>
+                        {/* Podemos crear una clase/tipo de boton para esto mejor que el por defecto */}
+                        <IonImg slot='start' class="pictogram-header" src="https://api.arasaac.org/api/pictograms/2398?resolution=500&download=false"></IonImg>
+                        <IonText>{desert['_name']}</IonText>
+                        <IonButton expand='block'>
+                          <IonIcon slot='end' icon={trashOutline}></IonIcon>
+                        </IonButton>
+                      </IonRow>
+                    )
+                  })
+                }
+              </IonList> 
               
               <IonButton class="add-button" color="blue" fill="outline" shape="round" expand="block">
               <IonIcon slot="start" icon={addCircleOutline}></IonIcon>
