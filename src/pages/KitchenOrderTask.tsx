@@ -1,6 +1,7 @@
-import { IonContent, IonList, IonItem, IonLabel, IonInput, IonSelect, IonSelectOption, IonToggle, IonIcon } from '@ionic/react';
-import { calendarClearOutline } from 'ionicons/icons';
+import { IonContent, IonList, IonItem, IonLabel, IonSelect, IonSelectOption } from '@ionic/react';
 import Header from '../components/Header';
+import ToggleSwitch from '../components/ToggleSwitch';
+import CalendarPicker from '../components/CalendarPicker';
 import './Pages.css'
 
 const KitchenOrderTask: React.FC = () => {
@@ -10,13 +11,10 @@ const KitchenOrderTask: React.FC = () => {
       <IonContent fullscreen>
         <IonList>
         <div className="width-90">
-          <IonLabel>Fecha límite</IonLabel>
-          <IonItem fill="outline" shape="round">
-            <IonIcon slot="start" icon={calendarClearOutline} />
-            <IonInput type="date"></IonInput>
-          </IonItem>
+          <CalendarPicker label='Seleccionar fecha límite'/>
 
-          <IonItem shape="round">
+          <IonLabel>Seleccionar alumno</IonLabel>
+          <IonItem shape="round" fill="outline">
             <IonSelect interface="popover" placeholder="Alumno">
               <IonSelectOption value="apples">Manuel García</IonSelectOption>
               <IonSelectOption value="oranges">Franciso Barrios</IonSelectOption>
@@ -24,20 +22,11 @@ const KitchenOrderTask: React.FC = () => {
             </IonSelect>
           </IonItem>
 
-          <IonItem shape="round">
-            <IonLabel class="ion-text-wrap">Cálculo automático de número menús</IonLabel>
-            <IonToggle slot="start"></IonToggle>
-          </IonItem>
+          <ToggleSwitch label='Cálculo automático de número menús' checked={false}/>
 
-          <IonItem shape="round">
-            <IonLabel>Feedback automático</IonLabel>
-            <IonToggle slot="start"></IonToggle>
-          </IonItem>
+          <ToggleSwitch label='Feedback automático' checked={false}/>
 
-          <IonItem shape="round">
-            <IonLabel>Comentarios</IonLabel>
-            <IonToggle slot="start" checked={true}></IonToggle>
-          </IonItem>
+          <ToggleSwitch label='Comentarios' checked/>
 
         </div>
         </IonList>

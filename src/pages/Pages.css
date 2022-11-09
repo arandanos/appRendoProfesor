@@ -32,15 +32,6 @@ ion-grid {
     height: 100%;
 }
 
-ion-toggle {
-    --background: #ddd;
-    --background-checked: var(--ion-color-tertiary);
-    --handle-background-checked: #fff;
-
-    overflow: visible;
-    contain: none;
-}
-
 .width-90 {
     min-width: 90%;
     max-width: 90%;
