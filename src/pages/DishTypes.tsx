@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { star, addCircleOutline, checkmarkOutline, body, menu, trashBinOutline, trashOutline } from 'ionicons/icons';
 import axios from 'axios';
 import { API_URL } from '../variables';
+import DishTypeButton from '../components/DishTypeButton';
 {/** Para obtener datos de la API: 
   *  import { API_URL } from '../variables';
 */}
@@ -92,10 +93,8 @@ con el boton de Añadir */}
             <IonLabel class="btn-title">Postres</IonLabel>
           </IonSegmentButton>
         </IonSegment>
-        <IonContent className="content">
           {/** Contenido de cada pestaña: comprueba si está en menus o postres y muestra la lista de lo
            * correspondiente.
-           * TODO: importar de la API la lista de Menús y Postres y mostrarla como botones
            */}
           {menusActive ? (
             <>
@@ -104,40 +103,15 @@ con el boton de Añadir */}
                 {
                   menus.map(menu => {
                     return (
-                      <IonRow class='ion-justify-content-left'>
-                        {/* Podemos crear una clase/tipo de boton para esto mejor que el por defecto */}
-                        <IonButton expand="full" class="tab-list" href='#'>
-                          <IonImg slot='start' class="pictogram-header" src="https://api.arasaac.org/api/pictograms/2398?resolution=500&download=false"></IonImg>
-                          <IonText>{menu['_name']}</IonText>
-                        </IonButton>
-                      </IonRow>
+                      <DishTypeButton name={menu['_name']}></DishTypeButton>
                     )
                   })
                 }
               </IonList> 
-             
-              {/* <IonList>
-                <IonItem>
-                  <IonButton expand="full" class="tab-list">
-                    <IonImg slot='start' class="pictogram-header" src="https://api.arasaac.org/api/pictograms/2398?resolution=500&download=false" ></IonImg>
-                    Menu 1
-                  </IonButton>
-                </IonItem>
-                <IonItem>
-                  <IonButton expand="full" class="tab-list">
-                    <IonIcon slot="start" icon={star}></IonIcon>
-                    Menu 2
-                  </IonButton>
-                </IonItem>
-              </IonList> */}
-              
-              {/**
-               * <IonButton class="add-button" color="blue" fill="outline" shape="round" expand="block" onClick={createPost}>
-              */}
-              <IonButton class="add-button" color="blue" fill="outline" shape="round" expand="block" >
+
+              <IonButton class="add-button" color="blue" fill="outline" shape="round">
               <IonIcon slot="start" icon={addCircleOutline}></IonIcon>
-                Añadir Menú
-              <IonIcon slot="end" icon={checkmarkOutline}></IonIcon>
+                Añadir Nuevo Menú
               </IonButton>
             </>
           ) : (
@@ -146,27 +120,18 @@ con el boton de Añadir */}
                 {
                   deserts.map(desert => {
                     return (
-                      <IonRow class='ion-justify-content-left'>
-                        {/* Podemos crear una clase/tipo de boton para esto mejor que el por defecto */}
-                        <IonImg slot='start' class="pictogram-header" src="https://api.arasaac.org/api/pictograms/2398?resolution=500&download=false"></IonImg>
-                        <IonText>{desert['_name']}</IonText>
-                        <IonButton expand='block'>
-                          <IonIcon slot='end' icon={trashOutline}></IonIcon>
-                        </IonButton>
-                      </IonRow>
+                      <DishTypeButton name={desert['_name']}></DishTypeButton>
                     )
                   })
                 }
               </IonList> 
               
-              <IonButton class="add-button" color="blue" fill="outline" shape="round" expand="block">
+              <IonButton class="add-button" color="blue" fill="outline" shape="round">
               <IonIcon slot="start" icon={addCircleOutline}></IonIcon>
-                Añadir Postre
-              <IonIcon slot="end" icon={checkmarkOutline}></IonIcon>
+                Añadir Nuevo Postre
               </IonButton>
             </>
           )}
-        </IonContent>
 
       </IonContent>
     </>
