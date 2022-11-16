@@ -6,31 +6,32 @@ import { star, addCircleOutline, checkmarkOutline, body, menu, trashBinOutline, 
 import axios from 'axios';
 import { API_URL } from '../variables';
 import DishTypeButton from '../components/DishTypeButton';
-{/** Para obtener datos de la API: 
+/** Para obtener datos de la API: 
   *  import { API_URL } from '../variables';
-*/}
+*/
 
-{/** Que es axios? --> Axios is an HTTP client library that allows you 
-to make requests to a given endpoint */}
+/** Que es axios? --> Axios is an HTTP client library that allows you 
+to make requests to a given endpoint */
 
-{/** DATA: no puedes poner imports debajo de uno de estos comentarios ya que 
-lo reconoce como parte del body del código, no de la parte de los imports */}
+/** DATA: no puedes poner imports debajo de uno de estos comentarios ya que 
+lo reconoce como parte del body del código, no de la parte de los imports */
 
 const DishTypes: React.FC = () => {
 
-  {/** Comprueba si está en menú (si no, entonces está en postres) */}
+  /** Comprueba si está en menú (si no, entonces está en postres) */
   const [menusActive, setMenusActive] = useState<boolean>(true);
-  {/** Para los datos de menus y postres */}
+  /** Para los datos de menus y postres */
   const [menus, setMenus] = useState([]);
   const [deserts, setDeserts] = useState([]);
   const [postMenu, setPostMenu] = useState(null);
   const [postDesert, setPostDesert] = useState(null); 
 
-  {/** Queremos que obtenga los menús y postres de la base de datos, y que cree nuevos 
-con el boton de Añadir */}
+  /** Queremos que obtenga los menús y postres de la base de datos, y que cree nuevos 
+con el boton de Añadir */
   const sendGetMenusRequest = () => {
     return axios({
-      url: API_URL + "menus",
+      url: API_URL + "dish",
+      // url: API_URL + "menus",
       method: 'get'
     }).then(response => {
       console.log(response.data);
