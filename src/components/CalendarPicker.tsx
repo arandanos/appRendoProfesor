@@ -2,11 +2,21 @@ import {
     IonItem,
     IonLabel,
     IonIcon,
-    IonInput
+    IonDatetime,
+    IonModal,
+    IonDatetimeButton,
   } from '@ionic/react';
-import { calendarClearOutline, createOutline } from 'ionicons/icons';
+import { calendarOutline, createOutline } from 'ionicons/icons';
+import './CalendarPicker.css'
+
+interface CalendarPickerProps{
+  label: string;
+  disabled: boolean; 
+  editButton: boolean, 
+  value?: string
+}
   
-  const CalendarPicker: React.FC<{ label: string; disabled: boolean; editButton: boolean, value: string }> = (props: { label: string; disabled: boolean; editButton: boolean, value: string }) => {
+  const CalendarPicker: React.FC<CalendarPickerProps> = (props: CalendarPickerProps) => {
 
     var Label = () => {
       if(props.label){
@@ -28,12 +38,26 @@ import { calendarClearOutline, createOutline } from 'ionicons/icons';
       return <></>
     }
 
+    var DateTime = () => {
+      if(props.value){
+        return <IonDatetime id="datetime" presentation="date" locale="es-ES" value={props.value}></IonDatetime>
+      } else {
+        return <IonDatetime id="datetime" presentation="date" locale="es-ES"></IonDatetime>
+      }
+    }
+
     return (
         <>
           <Label/>
-          <IonItem fill="outline" shape="round">
-            <IonIcon slot="start" icon={calendarClearOutline} />
-            <IonInput type="date" disabled={props.disabled} ></IonInput>
+          <IonItem shape="round"  class="item-remove-animate" lines='none'>
+            <IonIcon slot="start" icon={calendarOutline} />
+            {/* <IonInput type="date" disabled={props.disabled} ></IonInput> */}
+            
+            <IonDatetimeButton datetime="datetime" disabled={props.disabled} ></IonDatetimeButton>
+        
+            <IonModal keepContentsMounted={true}>
+                <DateTime/>
+            </IonModal>
             <EditIcon/>
           </IonItem>
         </>

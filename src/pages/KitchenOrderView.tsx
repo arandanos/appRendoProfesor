@@ -35,8 +35,6 @@ const KitchenOrderView: React.FC = () => {
 	if(data!['_status'])
 		estado = "Completada"
 
-
-
 	return (
 		<IonPage>
 			<Header title="Comanda" settings back={false} />
@@ -50,7 +48,7 @@ const KitchenOrderView: React.FC = () => {
 							<IonIcon slot='end' icon={createOutline} />
 						</IonItem>
 
-						<CalendarPicker label='Fecha límite de realización' disabled editButton value={"08/12/2030"}/>
+						<CalendarPicker label='Fecha límite de realización' disabled editButton value="2030-12-08"/>
 
 						<IonLabel>Estado</IonLabel>
 						<IonItem shape='round' fill='outline'>
