@@ -6,7 +6,7 @@ import {
   } from '@ionic/react';
 import { calendarClearOutline, createOutline } from 'ionicons/icons';
   
-  const CalendarPicker: React.FC<{ label: string; disabled: boolean; editable: boolean }> = (props: { label: string; disabled: boolean; editable: boolean }) => {
+  const CalendarPicker: React.FC<{ label: string; disabled: boolean; editButton: boolean, value: string }> = (props: { label: string; disabled: boolean; editButton: boolean, value: string }) => {
 
     var Label = () => {
       if(props.label){
@@ -19,7 +19,7 @@ import { calendarClearOutline, createOutline } from 'ionicons/icons';
     }
 
     var EditIcon = () => {
-      if(props.editable){
+      if(props.editButton){
         return (
           <IonIcon slot='end' icon={createOutline}/>
         )
@@ -27,13 +27,13 @@ import { calendarClearOutline, createOutline } from 'ionicons/icons';
 
       return <></>
     }
-  
+
     return (
         <>
           <Label/>
           <IonItem fill="outline" shape="round">
             <IonIcon slot="start" icon={calendarClearOutline} />
-            <IonInput type="date" disabled={props.disabled}></IonInput>
+            <IonInput type="date" disabled={props.disabled} ></IonInput>
             <EditIcon/>
           </IonItem>
         </>

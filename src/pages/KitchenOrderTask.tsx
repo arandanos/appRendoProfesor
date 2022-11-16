@@ -11,7 +11,7 @@ const KitchenOrderTask: React.FC = () => {
       <IonContent fullscreen>
         <IonList>
           <div className="width-90">
-            <CalendarPicker label='Seleccionar fecha límite' disabled={false} editable={false}/>
+            <CalendarPicker label='Seleccionar fecha límite' disabled={false} editButton={false} value=''/>
 
             <IonLabel>Seleccionar alumno</IonLabel>
             <IonItem shape="round" fill="outline">
