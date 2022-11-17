@@ -1,8 +1,8 @@
-import { IonContent, IonPage, IonGrid, IonItem, IonLabel, IonIcon, IonRow } from '@ionic/react';
+import { IonContent, IonPage, IonGrid, IonItem, IonLabel, IonIcon, IonRow, IonSearchbar, IonTabBar, IonTabButton } from '@ionic/react';
 import './Tasks.css';
 import Header from '../components/Header';
 import { API_URL } from '../variables';
-import { settingsOutline } from 'ionicons/icons';
+import { readerOutline, settingsOutline } from 'ionicons/icons';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { JSXElementConstructor, ReactElement, ReactFragment, ReactPortal} from 'react';
@@ -38,6 +38,15 @@ const Tasks: React.FC = () => {
       <Header title="Tareas" settings back={false}/>
       <IonContent fullscreen>
       <IonGrid>
+          <IonTabBar>
+            <IonTabButton>
+              <IonIcon icon={readerOutline} />
+              <IonLabel>=Por nombre</IonLabel>
+            </IonTabButton>
+
+          </IonTabBar>
+          <IonSearchbar showClearButton="focus" value="Buscar tarea..."></IonSearchbar>
+
         {tasks.map(element => {
               return (
                   <TaskList text={element['_accessible_element']['_text']} pictogram={element['_accessible_element']['_pictogram']}/>
