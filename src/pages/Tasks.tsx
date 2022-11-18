@@ -1,4 +1,4 @@
-import { IonContent, IonPage, IonGrid, IonItem, IonLabel, IonIcon, IonRow, IonSearchbar, IonTabBar, IonTabButton } from '@ionic/react';
+import { IonContent, IonPage, IonGrid, IonItem, IonNav, IonLabel, IonIcon, IonRow, IonSearchbar, IonTabBar, IonTabButton } from '@ionic/react';
 import './Tasks.css';
 import Header from '../components/Header';
 import { API_URL } from '../variables';
@@ -34,28 +34,28 @@ const Tasks: React.FC = () => {
   console.log(tasks[1])
 
   return (
-    <IonPage>
-      <Header title="Tareas" settings back={false}/>
-      <IonContent fullscreen>
-      <IonGrid>
-          <IonTabBar>
-            <IonTabButton>
-              <IonIcon icon={readerOutline} />
-              <IonLabel>=Por nombre</IonLabel>
-            </IonTabButton>
+    <IonNav root={() =>
+      <IonPage>
+        <Header title="Tareas" settings back={false}/>
+        <IonContent fullscreen>
+        <IonGrid>
 
-          </IonTabBar>
-          <IonSearchbar showClearButton="focus" value="Buscar tarea..."></IonSearchbar>
+            <IonSearchbar showClearButton="focus" placeholder="Buscar tarea..."></IonSearchbar>
 
-        {tasks.map(element => {
-              return (
-                  <TaskList text={element['_accessible_element']['_text']} pictogram={element['_accessible_element']['_pictogram']}/>
-              );
-          })}
-        </IonGrid>
-      </IonContent>
-    </IonPage>
+          {tasks.map(element => {
+                return (
+                    <TaskList text={element['_accessible_element']['_text']} pictogram={element['_accessible_element']['_pictogram']}/>
+                );
+            })}
+          </IonGrid>
+          
+        </IonContent>
+      </IonPage>
+
+    }></IonNav>
+      
   );
 };
 
 export default Tasks;
+
