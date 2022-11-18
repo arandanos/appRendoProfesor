@@ -1,4 +1,4 @@
-import { IonContent, IonList, IonGrid, IonSegment, IonSegmentButton, IonTabBar, IonLabel, IonText, IonIcon, IonTabButton, IonItem, IonButton, IonImg, IonRow } from '@ionic/react';
+import { IonContent, IonPopover, IonFabButton, IonList, IonGrid, IonSegment, IonSegmentButton, IonTabBar, IonLabel, IonText, IonIcon, IonTabButton, IonItem, IonButton, IonImg, IonRow, IonTextarea } from '@ionic/react';
 import Header from '../components/Header';
 import './DishTypes.css';
 import { useState, useEffect } from "react";
@@ -25,7 +25,7 @@ const DishTypes: React.FC = () => {
   const [menus, setMenus] = useState([]);
   const [deserts, setDeserts] = useState([]);
   const [postMenu, setPostMenu] = useState(null);
-  const [postDesert, setPostDesert] = useState(null); 
+  const [postDesert, setPostDesert] = useState(null);
 
   /** Queremos que obtenga los menús y postres de la base de datos, y que cree nuevos 
 con el boton de Añadir */
@@ -36,7 +36,7 @@ con el boton de Añadir */
       method: 'get'
     }).then(response => {
       console.log(response.data);
-      return(response.data);
+      return (response.data);
     })
   };
   const sendGetDesertsRequest = () => {
@@ -45,10 +45,10 @@ con el boton de Añadir */
       method: 'get'
     }).then(response => {
       console.log(response.data);
-      return(response.data);
+      return (response.data);
     })
   };
-  {/** useEffect Hook para usar el get con Axios y obtener los datos de la url asignada antes*/}
+  {/** useEffect Hook para usar el get con Axios y obtener los datos de la url asignada antes*/ }
   useEffect(() => {
     sendGetMenusRequest().then(data => {
       {/** Aqui habria que obtener los datos de postres y menús, que no sé si 
@@ -63,12 +63,12 @@ con el boton de Añadir */
     })
   }, [])
 
-  {/** Para hacer POST de un nuevo menu o postre */}
+  {/** Para hacer POST de un nuevo menu o postre */ }
   useEffect(() => {
     axios.get(API_URL).then((respone) => {
       setPostMenu(respone.data);
     })
-  }, []); {/** El [] es para indicar los valores que se aplica el efecto*/}
+  }, []); {/** El [] es para indicar los valores que se aplica el efecto*/ }
 
   const createPost = () => {
     axios.post(API_URL, {
@@ -80,8 +80,8 @@ con el boton de Añadir */
   };
 
   /** Declaro los arrays, de los nombres de los tabs y de elementos */
-  var dishTypes : Array<string> = [];
-  var arrayElementos : Array<JSX.Element> = [];
+  var dishTypes: Array<string> = [];
+  var arrayElementos: Array<JSX.Element> = [];
 
   dishTypes = ["Menús", "Postres"];
 
@@ -97,35 +97,57 @@ con el boton de Añadir */
         }
       </IonList>
 
-      <IonButton class="add-button" color="blue" fill="outline" shape="round">
+      <IonButton id="trigger-menu-button" class="add-button" color="blue" fill="outline" shape="round">
         <IonIcon slot="start" icon={addCircleOutline}></IonIcon>
         Añadir Nuevo Menú
+      </IonButton>
+      <IonPopover class="popup-create-dish" trigger="trigger-menu-button" reference='trigger' side='top' alignment='center'>
+        <IonLabel className="ion-padding">Crear Nuevo Menú</IonLabel>
+        <IonTextarea placeholder="Tipo/Nombre del menú"></IonTextarea>
+        <IonButton class="add-pictogram-button" fill="outline" shape="round">
+          <IonIcon icon={addCircleOutline} />
+          Subir Pictograma
         </IonButton>
-      </>,
-      <>
-        <IonList>
-          {
-            deserts.map(desert => {
-              return (
-                <DishTypeButton name={desert['_name']}></DishTypeButton>
-              )
-            })
-          }
-        </IonList> 
-        
-        <IonButton class="add-button" color="blue" fill="outline" shape="round">
+        <IonFabButton slot="end" size="small" href="/dish_types">
+          <IonIcon icon={checkmarkOutline} />
+        </IonFabButton>
+      </IonPopover>
+    </>,
+    <>
+      <IonList>
+        {
+          deserts.map(desert => {
+            return (
+              <DishTypeButton name={desert['_name']}></DishTypeButton>
+            )
+          })
+        }
+      </IonList>
+
+      <IonButton id="trigger-desert-button" class="add-button" color="blue" fill="outline" shape="round">
         <IonIcon slot="start" icon={addCircleOutline}></IonIcon>
-          Añadir Nuevo Postre
+        Añadir Nuevo Postre
+      </IonButton>
+      <IonPopover class="popup-create-dish" trigger="trigger-desert-button" reference='trigger' side='top' alignment='center'>
+        <IonLabel className="ion-padding">Crear Nuevo Postre</IonLabel>
+        <IonTextarea placeholder="Tipo/Nombre del postre"></IonTextarea>
+        <IonButton class="add-pictogram-button" fill="outline" shape="round">
+          <IonIcon icon={addCircleOutline} />
+          Subir Pictograma
         </IonButton>
-      </>
-    ]
+        <IonFabButton slot="end" size="small" href="/dish_types">
+          <IonIcon icon={checkmarkOutline} color="green"/>
+        </IonFabButton>
+      </IonPopover>
+    </>
+  ]
 
   return (
     <>
-      <Header title="Tipos de platos" settings back={false}/>
+      <Header title="Tipos de platos" settings back={false} />
 
       <TabSwitch tabsNames={dishTypes} tabsComponents={arrayElementos}></TabSwitch>
-      
+
     </>
   );
 };

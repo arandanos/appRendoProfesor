@@ -23,3 +23,18 @@ ion-content{
     display: flex;
     align-self: flex-end;
 }
+
+.popup-create-dish{
+    --backdrop-opacity: 0.6;
+    --box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.6);
+    --color: white;
+    --width: 300px;
+}
+
+.popup-create-dish ion-label {
+    --background: rgba(40, 173, 218, 1);
+}
+
+.popup-create-dish::part(::backdrop){
+    background-color: rgb(6, 14, 106);
+}
