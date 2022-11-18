@@ -31,36 +31,43 @@ const DishTypes: React.FC = () => {
 con el boton de Añadir */
   const sendGetMenusRequest = () => {
     return axios({
-      //url: API_URL + "dish",
-      url: API_URL + "menus",
+      url: API_URL + "dish",
+      //url: API_URL + "menus",
       method: 'get'
     }).then(response => {
       console.log(response.data);
       return (response.data);
     })
   };
-  const sendGetDesertsRequest = () => {
+  /* const sendGetDesertsRequest = () => {
     return axios({
-      url: API_URL + "deserts",
+      url: API_URL + "dish",
+      //url: API_URL + "deserts",
       method: 'get'
     }).then(response => {
       console.log(response.data);
       return (response.data);
     })
+  }; */
+
+  /** Metodo para separar en menus y postres */
+  const separateDishes = () => {
+    
   };
+
   {/** useEffect Hook para usar el get con Axios y obtener los datos de la url asignada antes*/ }
   useEffect(() => {
     sendGetMenusRequest().then(data => {
-      {/** Aqui habria que obtener los datos de postres y menús, que no sé si 
-        están en 2 tablas distintas o estan en la misma y hay que separar los datos */}
       setMenus(data)
-      /* setDeserts(data) */
-    })
-    sendGetDesertsRequest().then(data => {
-      {/** Aqui habria que obtener los datos de postres y menús, que no sé si 
-        están en 2 tablas distintas o estan en la misma y hay que separar los datos */}
       setDeserts(data)
+      /* if(data['_type_id'] == "MENU")
+        setMenus(data)
+      else if(data['_type_id'] == "POSTRE")
+        setDeserts(data) */
     })
+    /* sendGetDesertsRequest().then(data => {
+      setDeserts(data)
+    }) */
   }, [])
 
   {/** Para hacer POST de un nuevo menu o postre */ }
@@ -91,7 +98,7 @@ con el boton de Añadir */
         {
           menus.map(menu => {
             return (
-              <DishTypeButton name={menu['_name']}></DishTypeButton>
+              <DishTypeButton name={menu['_accessible_element']['_text']}></DishTypeButton>
             )
           })
         }
@@ -107,7 +114,7 @@ con el boton de Añadir */
         {
           deserts.map(desert => {
             return (
-              <DishTypeButton name={desert['_name']}></DishTypeButton>
+              <DishTypeButton name={desert['_accessible_element']['_text']}></DishTypeButton>
             )
           })
         }
