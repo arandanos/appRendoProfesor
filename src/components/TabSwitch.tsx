@@ -2,20 +2,17 @@
  * Componente para el tab switch
  * @param tabsNames array con los nombres
  * @param tabsComponents array con los elementos de los tabs
- * @returns 
+ * @returns content con los tabs y el contenido pasado como argumentos
  */
 
 import { IonContent, IonLabel, IonSegment, IonSegmentButton } from "@ionic/react";
 import React, { useEffect, useState } from "react";
 
 
-
 interface TabSwitchProps{
     tabsNames: Array<string>,
     tabsComponents: Array<JSX.Element>
 };
-
-
 
 const TabSwitch: React.FC<TabSwitchProps> = (tabsProps: TabSwitchProps) => {
     const [tabActive, setTabActive] = useState<number>(0);
@@ -43,8 +40,7 @@ const TabSwitch: React.FC<TabSwitchProps> = (tabsProps: TabSwitchProps) => {
                                 <IonLabel class="btn-title">{tab}</IonLabel>
                             </IonSegmentButton>
                         );
-                    })}     
-                                   
+                    })}                  
                 </IonSegment>
                 {content}
             </IonContent>

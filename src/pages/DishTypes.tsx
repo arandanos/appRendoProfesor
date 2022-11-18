@@ -31,8 +31,8 @@ const DishTypes: React.FC = () => {
 con el boton de Añadir */
   const sendGetMenusRequest = () => {
     return axios({
-      url: API_URL + "dish",
-      // url: API_URL + "menus",
+      //url: API_URL + "dish",
+      url: API_URL + "menus",
       method: 'get'
     }).then(response => {
       console.log(response.data);
@@ -122,10 +122,10 @@ con el boton de Añadir */
 
   return (
     <>
-      <Header title="Tipos de Platos" back settings={false}/>
+      <Header title="Tipos de platos" settings back={false}/>
 
       <TabSwitch tabsNames={dishTypes} tabsComponents={arrayElementos}></TabSwitch>
-    
+      
     </>
   );
 };
