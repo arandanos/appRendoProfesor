@@ -1,6 +1,7 @@
-import { IonContent, IonPage, IonGrid, IonItem, IonNav, IonLabel, IonIcon, IonRow, IonSearchbar, IonTabBar, IonTabButton } from '@ionic/react';
+import { IonContent, IonPage, IonGrid, IonItem, IonNav, IonLabel, IonIcon, IonRow, IonSearchbar, IonTabBar, IonTabButton, IonToolbar } from '@ionic/react';
 import './Tasks.css';
 import Header from '../components/Header';
+import ToggleSwitch from '../components/ToggleSwitch';
 
 import { API_URL } from '../variables';
 import { readerOutline, settingsOutline } from 'ionicons/icons';
@@ -41,15 +42,17 @@ const Tasks: React.FC = () => {
         <Header title="Tareas" settings back={false}/>
         <IonContent fullscreen>
         <IonGrid>
-
-          <IonSearchbar showClearButton="focus" placeholder="Buscar tarea..."></IonSearchbar>
-
-          {tasks.map(element => {
-                return (
-                    <TaskList text={element['_accessible_element']['_text']} pictogram={element['_accessible_element']['_pictogram']}/>
-                );
-            })}
           
+        <div id="searchBaryTaskList">
+            <IonSearchbar showClearButton="focus" placeholder="Buscar tarea..."></IonSearchbar>
+
+            {tasks.map(element => {
+                  return (
+                      <TaskList text={element['_accessible_element']['_text']} pictogram={element['_accessible_element']['_pictogram']}/>
+                  );
+              })}
+          </div>
+            <ToggleSwitch label='Mostrar sólo las Tareas encargadas por mí' checked={false}/>
 
           </IonGrid>
         </IonContent>
