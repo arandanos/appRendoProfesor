@@ -1,4 +1,4 @@
-import { IonContent, IonPopover, IonFabButton, IonList, IonGrid, IonSegment, IonSegmentButton, IonTabBar, IonLabel, IonText, IonIcon, IonTabButton, IonItem, IonButton, IonImg, IonRow, IonTextarea } from '@ionic/react';
+import { IonContent, IonFabButton, IonList, IonGrid, IonSegment, IonSegmentButton, IonTabBar, IonLabel, IonText, IonIcon, IonTabButton, IonItem, IonButton, IonImg, IonRow, IonTextarea } from '@ionic/react';
 import Header from '../components/Header';
 import './DishTypes.css';
 import { useState, useEffect } from "react";
@@ -101,17 +101,6 @@ con el boton de Añadir */
         <IonIcon slot="start" icon={addCircleOutline}></IonIcon>
         Añadir Nuevo Menú
       </IonButton>
-      <IonPopover class="popup-create-dish" trigger="trigger-menu-button" reference='trigger' side='top' alignment='center'>
-        <IonLabel className="ion-padding">Crear Nuevo Menú</IonLabel>
-        <IonTextarea placeholder="Tipo/Nombre del menú"></IonTextarea>
-        <IonButton class="add-pictogram-button" fill="outline" shape="round">
-          <IonIcon icon={addCircleOutline} />
-          Subir Pictograma
-        </IonButton>
-        <IonFabButton slot="end" size="small" href="/dish_types">
-          <IonIcon icon={checkmarkOutline} />
-        </IonFabButton>
-      </IonPopover>
     </>,
     <>
       <IonList>
@@ -128,17 +117,6 @@ con el boton de Añadir */
         <IonIcon slot="start" icon={addCircleOutline}></IonIcon>
         Añadir Nuevo Postre
       </IonButton>
-      <IonPopover class="popup-create-dish" trigger="trigger-desert-button" reference='trigger' side='top' alignment='center'>
-        <IonLabel className="ion-padding">Crear Nuevo Postre</IonLabel>
-        <IonTextarea placeholder="Tipo/Nombre del postre"></IonTextarea>
-        <IonButton class="add-pictogram-button" fill="outline" shape="round">
-          <IonIcon icon={addCircleOutline} />
-          Subir Pictograma
-        </IonButton>
-        <IonFabButton slot="end" size="small" href="/dish_types">
-          <IonIcon icon={checkmarkOutline} color="green"/>
-        </IonFabButton>
-      </IonPopover>
     </>
   ]
 
