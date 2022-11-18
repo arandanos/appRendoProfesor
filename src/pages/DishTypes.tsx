@@ -6,6 +6,7 @@ import { star, addCircleOutline, checkmarkOutline, body, menu, trashBinOutline, 
 import axios from 'axios';
 import { API_URL } from '../variables';
 import DishTypeButton from '../components/DishTypeButton';
+import TabSwitch from '../components/TabSwitch';
 /** Para obtener datos de la API: 
   *  import { API_URL } from '../variables';
 */
@@ -78,63 +79,53 @@ con el boton de Añadir */
     })
   };
 
+  /** Declaro los arrays, de los nombres de los tabs y de elementos */
+  var dishTypes : Array<string> = [];
+  var arrayElementos : Array<JSX.Element> = [];
+
+  dishTypes = ["Menús", "Postres"];
+
+  arrayElementos = [
+    <>
+      <IonList>
+        {
+          menus.map(menu => {
+            return (
+              <DishTypeButton name={menu['_name']}></DishTypeButton>
+            )
+          })
+        }
+      </IonList>
+
+      <IonButton class="add-button" color="blue" fill="outline" shape="round">
+        <IonIcon slot="start" icon={addCircleOutline}></IonIcon>
+        Añadir Nuevo Menú
+        </IonButton>
+      </>,
+      <>
+        <IonList>
+          {
+            deserts.map(desert => {
+              return (
+                <DishTypeButton name={desert['_name']}></DishTypeButton>
+              )
+            })
+          }
+        </IonList> 
+        
+        <IonButton class="add-button" color="blue" fill="outline" shape="round">
+        <IonIcon slot="start" icon={addCircleOutline}></IonIcon>
+          Añadir Nuevo Postre
+        </IonButton>
+      </>
+    ]
+
   return (
     <>
       <Header title="Tipos de Platos" back settings={false}/>
-      <IonContent fullscreen>
-        <IonSegment>
-          <IonSegmentButton value="menus" onClick={() => {
-                  setMenusActive(true);
-                }}>
-            <IonLabel class="btn-title">Menús</IonLabel>
-          </IonSegmentButton>
-          <IonSegmentButton value="postres" onClick={() => {
-                  setMenusActive(false);
-                }}>
-            <IonLabel class="btn-title">Postres</IonLabel>
-          </IonSegmentButton>
-        </IonSegment>
-          {/** Contenido de cada pestaña: comprueba si está en menus o postres y muestra la lista de lo
-           * correspondiente.
-           */}
-          {menusActive ? (
-            <>
-            {/** Si hago un IonGrid no muestra el boton de Añadir menu */}
-              <IonList>
-                {
-                  menus.map(menu => {
-                    return (
-                      <DishTypeButton name={menu['_name']}></DishTypeButton>
-                    )
-                  })
-                }
-              </IonList> 
 
-              <IonButton class="add-button" color="blue" fill="outline" shape="round">
-              <IonIcon slot="start" icon={addCircleOutline}></IonIcon>
-                Añadir Nuevo Menú
-              </IonButton>
-            </>
-          ) : (
-            <>
-              <IonList>
-                {
-                  deserts.map(desert => {
-                    return (
-                      <DishTypeButton name={desert['_name']}></DishTypeButton>
-                    )
-                  })
-                }
-              </IonList> 
-              
-              <IonButton class="add-button" color="blue" fill="outline" shape="round">
-              <IonIcon slot="start" icon={addCircleOutline}></IonIcon>
-                Añadir Nuevo Postre
-              </IonButton>
-            </>
-          )}
-
-      </IonContent>
+      <TabSwitch tabsNames={dishTypes} tabsComponents={arrayElementos}></TabSwitch>
+    
     </>
   );
 };
