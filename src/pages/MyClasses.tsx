@@ -1,5 +1,4 @@
 import { IonContent, IonPage, IonGrid, IonButton, IonIcon } from '@ionic/react';
-import './MyClasses.css';
 import Header from '../components/Header';
 import { API_URL } from '../variables';
 import axios from 'axios';
