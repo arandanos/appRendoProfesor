@@ -15,7 +15,6 @@ const DishTypeButton: React.FC<{name: string}> = (dish: {name: string}) => {
             <IonButton expand="full" class="tab-list" href='#'>
                 <IonImg slot='start' class="pictogram-header" src="https://api.arasaac.org/api/pictograms/2398?resolution=500&download=false"></IonImg>
                 <IonText>{dish.name}</IonText>
-                <IonIcon slot='end' icon={trashOutline}></IonIcon>
             </IonButton>
         </IonRow>
     );

@@ -24,6 +24,7 @@ const DishTypes: React.FC = () => {
   /** Para los datos de menus y postres */
   const [menus, setMenus] = useState([]);
   const [deserts, setDeserts] = useState([]);
+  const [dishes, setDishes] = useState([]);
   const [postMenu, setPostMenu] = useState(null);
   const [postDesert, setPostDesert] = useState(null);
 
@@ -52,14 +53,20 @@ con el boton de Añadir */
 
   /** Metodo para separar en menus y postres */
   const separateDishes = () => {
-    
+    dishes.map(dish => {
+      if (dish['_type'] === "MENU") {
+        setMenus(dish)
+      } else {
+        setDeserts(dish)
+      }
+    });
   };
 
   {/** useEffect Hook para usar el get con Axios y obtener los datos de la url asignada antes*/ }
   useEffect(() => {
     sendGetMenusRequest().then(data => {
-      setMenus(data)
-      setDeserts(data)
+      setDishes(data)
+      //separateDishes()
       /* if(data['_type_id'] == "MENU")
         setMenus(data)
       else if(data['_type_id'] == "POSTRE")
@@ -96,11 +103,20 @@ con el boton de Añadir */
     <>
       <IonList>
         {
-          menus.map(menu => {
+          dishes.map(menu => {
+            if (menu['_type'] === "MENU") {
+              return (
+                <DishTypeButton name={menu['_accessible_element']['_text']}></DishTypeButton>
+              )
+            } else {
+              return null
+            }
+          })
+          /* menus.map(menu => {
             return (
               <DishTypeButton name={menu['_accessible_element']['_text']}></DishTypeButton>
             )
-          })
+          }) */
         }
       </IonList>
 
@@ -112,10 +128,14 @@ con el boton de Añadir */
     <>
       <IonList>
         {
-          deserts.map(desert => {
-            return (
-              <DishTypeButton name={desert['_accessible_element']['_text']}></DishTypeButton>
-            )
+          dishes.map(postre => {
+            if (postre['_type'] === "POSTRE") {
+              return (
+                <DishTypeButton name={postre['_accessible_element']['_text']}></DishTypeButton>
+              )
+            } else {
+              return null
+            }
           })
         }
       </IonList>
