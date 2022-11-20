@@ -82,6 +82,7 @@ http://ionicframework.com/docs/theming/ */
   --large-square-button-width: 120px;
   --large-button-width: 200px;
   --large-button-height: 120px;
+  --pop-up-bckgrnd: #363636;
 }
 
 @media screen and (min-width: 268px){
@@ -91,7 +92,7 @@ http://ionicframework.com/docs/theming/ */
     }
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   /*
    * Dark Colors
    * -------------------------------------------
