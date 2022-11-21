@@ -9,6 +9,8 @@ import { useEffect, useState } from 'react';
 import { JSXElementConstructor, ReactElement, ReactFragment, ReactPortal} from 'react';
 import TaskList from '../components/TasksList';
 import ButtonForward from '../components/ButtonForward';
+import MaterialTaskView from './MaterialTaskView';
+import KitchenOrderView from './KitchenOrderView';
 
 const Tasks: React.FC = () => {
 

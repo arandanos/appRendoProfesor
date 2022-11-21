@@ -14,6 +14,7 @@ import { homeOutline, clipboardOutline, addCircleOutline, briefcaseOutline, pers
 import Home from './pages/Home';
 import Tasks from './pages/Tasks';
 import CreateTask from './pages/CreateTask';
+import MaterialTaskView from './pages/MaterialTaskView';
 import MyClasses from './pages/MyClasses';
 import Profile from './pages/Profile';
 import AdminSettings from './pages/AdminSettings';
@@ -37,6 +38,8 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import './App.css';
+import MaterialTask from './pages/MaterialTask';
+import KitchenOrderView from './pages/KitchenOrderView';
 
 setupIonicReact();
 
@@ -65,6 +68,12 @@ const App: React.FC = () => (
           </Route>
           <Route exact path="/">
             <Redirect to="/home" />
+          </Route>
+          <Route exact path="/tasks/MaterialTask">
+            <MaterialTaskView />
+          </Route>
+          <Route exact path="/tasks/KitchenOrderView">
+            <KitchenOrderView />
           </Route>
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
