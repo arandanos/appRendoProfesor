@@ -36,4 +36,10 @@ ion-grid {
     min-width: 90%;
     max-width: 90%;
     margin: 5% auto;
+   
+}
+
+
+.ButtonSuccess{
+    padding-left: 40%;
 }
