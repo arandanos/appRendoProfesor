@@ -23,17 +23,17 @@ ion-label {
     border-bottom: 0px;
 }
 
+.width-90 {
+    min-width: 90%;
+    max-width: 90%;
+    margin: 5% auto;
+}
+
+/** CLASE PARA GRIDS QUE CONTIENEN UNA LISTA DE ITEMS */
 .list-container {
-    /* display: block; */
     overflow-y: auto;
     overflow-x: hidden;
     margin-bottom: 10px;
     max-height: calc(100% - 56px);
     min-height: calc(100% - 56px);
-}
-
-.width-90 {
-    min-width: 90%;
-    max-width: 90%;
-    margin: 5% auto;
 }
