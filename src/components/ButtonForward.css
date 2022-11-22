@@ -4,3 +4,8 @@ ion-button{
     max-width: 90%;
     margin: auto;
 }
+
+.ion-nav-link {
+    width: 100%;
+    display: flex;
+}
