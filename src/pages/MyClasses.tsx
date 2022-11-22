@@ -49,17 +49,14 @@ const MyClasses: React.FC = () => {
     <IonPage>
       <Header title="Mis clases" settings back={false}/>
       <IonContent fullscreen>
-      <IonGrid>
+      <IonGrid class='list-container'>
         {classes.map((element: { [x: string]: { [x: string]: string; }; }) => {
               return (
                   <MyClassesList text={element['_accessible_element']['_text']} pictogram={element['_accessible_element']['_pictogram']}/>
               );
           })}
-
-          <PopUp label='Añadir Clase' title='Añadir Nueva Clase' popUpContent={content}></PopUp>
-       
       </IonGrid>
-
+      <PopUp label='Añadir Clase' title='Añadir Nueva Clase' popUpContent={content}></PopUp>
       </IonContent>
     </IonPage>
   );

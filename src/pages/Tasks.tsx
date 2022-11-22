@@ -1,5 +1,4 @@
 import { IonContent, IonPage, IonGrid, IonItem, IonNav, IonLabel, IonIcon, IonRow, IonSearchbar, IonTabBar, IonTabButton } from '@ionic/react';
-import './Tasks.css';
 import Header from '../components/Header';
 
 import { API_URL } from '../variables';
