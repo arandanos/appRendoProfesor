@@ -20,7 +20,7 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-secondary-tint: #50c8ff;
 
   /** tertiary **/
-  --ion-color-tertiary: #5260ff;
+  --ion-color-tertiary: #c48ad8;
   --ion-color-tertiary-rgb: 82, 96, 255;
   --ion-color-tertiary-contrast: #ffffff;
   --ion-color-tertiary-contrast-rgb: 255, 255, 255;
@@ -82,6 +82,7 @@ http://ionicframework.com/docs/theming/ */
   --large-square-button-width: 120px;
   --large-button-width: 200px;
   --large-button-height: 120px;
+  --pop-up-bckgrnd: #363636;
 }
 
 @media screen and (min-width: 268px){

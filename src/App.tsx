@@ -72,23 +72,23 @@ const App: React.FC = () => (
         <IonTabBar slot="bottom">
           <IonTabButton tab="Home" href="/home">
             <IonIcon icon={homeOutline} />
-            <IonLabel>Home</IonLabel>
+            <IonLabel class='hide'>Home</IonLabel>
           </IonTabButton>
           <IonTabButton tab="tareas" href="/tasks">
             <IonIcon icon={clipboardOutline} />
-            <IonLabel>Tareas</IonLabel>
+            <IonLabel class='hide'>Tareas</IonLabel>
           </IonTabButton>
           <IonTabButton tab="CreateTask" href="/create_task">
             <IonIcon icon={addCircleOutline} />
-            <IonLabel>Tarea</IonLabel>
+            <IonLabel class='hide'>Tarea</IonLabel>
           </IonTabButton>
           <IonTabButton tab="MyClasses" href="/my_classes">
             <IonIcon icon={briefcaseOutline} />
-            <IonLabel>Clases</IonLabel>
+            <IonLabel class='hide'>Clases</IonLabel>
           </IonTabButton>
           <IonTabButton tab="Profile" href="/dish_types">
             <IonIcon icon={personOutline} />
-            <IonLabel>Perfil</IonLabel>
+            <IonLabel class='hide'>Perfil</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>

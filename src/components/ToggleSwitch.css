@@ -1,0 +1,8 @@
+ion-toggle {
+    --background: #ddd;
+    --background-checked: var(--ion-color-tertiary);
+    --handle-background-checked: #fff;
+
+    overflow: visible;
+    contain: none;
+}

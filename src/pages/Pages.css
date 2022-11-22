@@ -1,0 +1,33 @@
+/** CLASE DE ION GRID PARA MENÚS DE BOTONES */
+.button-grid {
+    min-height: 100%;
+    max-height: 100%;
+    display: grid;
+    align-content: space-evenly;
+}
+
+ion-select {
+    border-radius: 20px;
+}
+ion-list {
+    height: 100%;
+}
+
+ion-label {
+    border-bottom: 0px;
+}
+
+.width-90 {
+    min-width: 90%;
+    max-width: 90%;
+    margin: 5% auto;
+}
+
+/** CLASE PARA GRIDS QUE CONTIENEN UNA LISTA DE ITEMS */
+.list-container {
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-bottom: 10px;
+    max-height: calc(100% - 56px);
+    min-height: calc(100% - 56px);
+}

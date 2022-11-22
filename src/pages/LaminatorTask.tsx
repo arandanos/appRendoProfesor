@@ -2,14 +2,14 @@ import { IonContent } from '@ionic/react';
 import Header from '../components/Header';
 import './Pages.css'
 
-const ClassroomsManagement: React.FC = () => {
+const LaminatorTask: React.FC = () => {
   return (
     <>
-      <Header title="Clases" back settings={false}/>
+      <Header title="Plastificadora" back settings={false}/>
       <IonContent fullscreen>
       </IonContent>
     </>
   );
 };
 
-export default ClassroomsManagement;
+export default LaminatorTask;

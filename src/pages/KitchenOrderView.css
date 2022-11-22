@@ -1,0 +1,21 @@
+.edit-button ion-button{
+  max-width: fit-content;
+  background-color: transparent;
+}
+
+.wrap-kitchen-order-buttons {
+  display: flex;
+  max-width: 100%;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.wrap-kitchen-order-button {
+  display: flex;
+  height: 100%;
+  width: 50%;
+}
+
+.wrap-kitchen-order-button ion-fab-button {
+  margin: auto;
+}
