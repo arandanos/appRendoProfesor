@@ -11,11 +11,11 @@ ion-icon {
     padding: 5%;
 }
 
-ion-button{ color: inherit; 
-    
-
-} 
-
-ion-fab-button{
-    --background: ;
-}
+/* 
+.styled-button {
+    position: fixed;
+    left: 0;
+    bottom: 10px;
+    right: 0;
+    z-index: 10;
+} */

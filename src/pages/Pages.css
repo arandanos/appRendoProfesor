@@ -29,36 +29,12 @@ ion-label {
 }
 
 ion-grid {
-    /* height: calc(100% - 56px) */
     max-height: calc(100% - 56px);
     min-height: calc(100% - 56px);
 }
-/* 
-ion-content::part(::scroll){
-    max-height: calc(100% - 56px);
-    min-height: calc(100% - 56px);
-} */
 
 .width-90 {
     min-width: 90%;
     max-width: 90%;
     margin: 5% auto;
-}
-
-/* * POP UP */
-.pop-up-modal {
-    --height: 50%;
-    --width: 90%;
-    --border-radius: 16px;
-    --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-}
-
-.pop-up-modal::part(backdrop) {
-    background: var(--pop-up-bckgrnd);
-    opacity: 1;
-}
-
-.pop-up-modal ion-toolbar {
-    --background: var(--ion-color-primary);
-    --color: white;
 }

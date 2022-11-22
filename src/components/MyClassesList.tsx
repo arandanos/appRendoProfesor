@@ -1,4 +1,3 @@
-import './MyClassesList.css';
 import { trashOutline } from 'ionicons/icons';
 import {IonItem, IonImg, IonLabel, IonIcon, IonFabButton, IonButton} from '@ionic/react'
 import { restaurantOutline } from 'ionicons/icons';
