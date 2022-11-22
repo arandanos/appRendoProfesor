@@ -81,14 +81,17 @@ con el boton de Añadir */
       setPost(response.data);
     });
   }, []);
-
+  //No le paso parametros a createPost aun (post manual)
   const createPost = () => {
     axios.post(API_URL+"dish", {
       _type: "MENU",
       _name: "11",
     })
     .then((response) => {
+      //setDishes([...dishes, dish])
       setPost(response.data);
+      //Recargo la pagina para que actualice la lista --> Cambiar para que lo haga sin tener que recargar
+      window.location.reload();
     });
   };
 
@@ -175,8 +178,8 @@ con el boton de Añadir */
           })
         }
       </IonList>
-
-      <IonButton id="trigger-desert-button" class="add-button" color="blue" fill="outline" shape="round">
+        
+      <IonButton onClick={createPost} id="trigger-desert-button" class="add-button" color="blue" fill="outline" shape="round">
         <IonIcon slot="start" icon={addCircleOutline}></IonIcon>
         Añadir Nuevo Postre
       </IonButton>

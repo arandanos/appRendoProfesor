@@ -34,7 +34,7 @@ const DishTypeButton: React.FC<DishTypeButtonProps> = (props: DishTypeButtonProp
         .then(response => {
             alert("Dish with id: " + props.id + " has been deleted!");
             setPost(response.status);
-            
+            window.location.reload();
         });
     };
  
