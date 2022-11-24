@@ -29,14 +29,16 @@ ion-label {
   border-bottom: 0px;
 }
 
-ion-grid {
+.grid{
   height: auto;
+  background-color: #E0EAFF;
+
 }
 
 .width-90 {
   min-width: 90%;
   max-width: 90%;
-  margin: 5% auto;
+  margin: 5% ;
  
 }
 
@@ -44,3 +46,4 @@ ion-grid {
 .ButtonSuccess{
   padding-left: 40%;
 }
+

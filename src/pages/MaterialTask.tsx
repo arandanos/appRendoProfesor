@@ -72,7 +72,20 @@ const DeleteMaterialTaskRow = (id: number) => {
   if(rows.length != 1 && rows.length != 0){
     const newRow = rows.filter((row) => row.id !== id);
     setRows(newRow);
-  }  
+  }else{
+    setRows([]);
+
+    setTimeout(() => {
+      const newRow = {
+        id: 0,
+        count: 0,
+        material: '',
+        color: ''
+      }        
+      setRows([newRow])
+   }, 0,1);
+
+  }
 }
 
 {/*-----------------Cambiar el tipo de material-----------------*/}
@@ -89,14 +102,16 @@ const ChangingColor = (value: string, id: number) => {
 const ChangingCount = (value: number,id: number) => {
   rows[id].count = value;
 }
-  
+
+
 
 
 
   return (
     <IonPage>
       <Header title="Material" back settings={false}/>
-      <IonContent fullscreen >      
+      <IonContent fullscreen > 
+      <div className="width-90">  
       <IonList>
           <div>
 
@@ -106,7 +121,7 @@ const ChangingCount = (value: number,id: number) => {
             
             <IonLabel>Seleccionar alumno</IonLabel>
             <IonItem shape="round" fill="outline">
-              <IonSelect onIonChange={(e) => ChangingName(e.detail.value)} interface="popover" placeholder="Alumno">
+              <IonSelect  onIonChange={(e) => ChangingName(e.detail.value)} interface="popover" placeholder="Alumno">
                 <IonSelectOption value="Manuel Garc√≠a">Manuel Garc√≠a</IonSelectOption>
                 <IonSelectOption value="Franciso Barrios">Franciso Barrios</IonSelectOption>
                 <IonSelectOption value="Antonio Su√°rez">Antonio Su√°rez</IonSelectOption>
@@ -116,7 +131,7 @@ const ChangingCount = (value: number,id: number) => {
       </IonList>     
 {/*Para hacer el tema de la cantidad, material ..etc he hecho un grid en donde cada fila sea pues los 3 inputs, y dentro de cada fila 2 filas para ir poniendo las cosas, en los select he hecho que en cuanto se haga un cambio
 se cambien automaticamente en el array con todas las cosas, para la visualizaci√≥n hago que se a√±ada una fila por cada elemento del array, con el .map*/}
-            <IonGrid>              
+            <IonGrid className="grid">              
               {rows.map(row => (
                 <IonRow>
                 <IonGrid>
@@ -125,7 +140,7 @@ se cambien automaticamente en el array con todas las cosas, para la visualizaci√
                       <IonLabel>Cantidad</IonLabel>
                         <IonItem shape="round" fill="outline">                          
                           <IonIcon slot="start" icon={addCircleOutline}></IonIcon>           
-                          <IonSelect onIonChange={(e) => ChangingCount(e.detail.value, row.id)} interface="popover" placeholder="0">
+                          <IonSelect name="Select1" onIonChange={(e) => ChangingCount(e.detail.value, row.id)} interface="popover" placeholder="0">
                             <IonSelectOption value="1">1</IonSelectOption>
                             <IonSelectOption value="2">2</IonSelectOption>
                             <IonSelectOption value="3">3</IonSelectOption>
@@ -148,18 +163,23 @@ se cambien automaticamente en el array con todas las cosas, para la visualizaci√
                   </IonRow>
 
                   <IonRow>
+                    <IonCol size="5">
                       <IonLabel>Color</IonLabel>
                       <IonItem shape="round" fill="outline">
-                        <IonSelect onIonChange={(e) => ChangingColor(e.detail.value, row.id)} interface="popover" placeholder="Color">
+                        <IonSelect className="Color" onIonChange={(e) => ChangingColor(e.detail.value, row.id)} interface="popover" placeholder="Color">
                             <IonSelectOption>Rojo</IonSelectOption>
                             <IonSelectOption>Amarillo</IonSelectOption>
                             <IonSelectOption>Verde</IonSelectOption>
-                          </IonSelect>
+                        </IonSelect>
                       </IonItem>
+                    </IonCol>
 
+                    <IonCol offset="3">
                       <IonFabButton color="danger" size='small'>
                         <IonIcon icon={trash} onClick={() => DeleteMaterialTaskRow(row.id)}></IonIcon> 
-                      </IonFabButton>           
+                      </IonFabButton>  
+                    </IonCol>    
+
                   </IonRow>
 
                 </IonGrid>
@@ -176,7 +196,7 @@ se cambien automaticamente en el array con todas las cosas, para la visualizaci√
                           <IonIcon icon={add}></IonIcon>
                   </IonFabButton>
                 </IonCol>                
-              </IonRow>   
+              </IonRow>                
 
                        
 
@@ -192,7 +212,7 @@ se cambien automaticamente en el array con todas las cosas, para la visualizaci√
             <ToggleSwitch label='Comentarios' checked/>
           </div>
         </IonList> 
-
+        </div>   
       </IonContent>
     </IonPage>
   );
