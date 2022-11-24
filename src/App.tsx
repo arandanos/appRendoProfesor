@@ -69,7 +69,7 @@ const App: React.FC = () => (
           <Route exact path="/">
             <Redirect to="/home" />
           </Route>
-          <Route exact path="/tasks/MaterialTask">
+          <Route exact path="/tasks/MaterialTaskView">
             <MaterialTaskView />
           </Route>
           <Route exact path="/tasks/KitchenOrderView">

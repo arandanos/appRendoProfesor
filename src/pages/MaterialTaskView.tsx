@@ -1,4 +1,4 @@
-import { IonContent, IonItem, IonPage, IonLabel, IonInput, IonIcon, IonButton, IonTextarea, IonRow, IonCol, IonGrid, IonNav } from '@ionic/react';
+import { IonContent, IonItem, IonPage, IonLabel, IonInput, IonIcon, IonButton, IonTextarea, IonRow, IonCol, IonGrid, IonNav, IonNavLink } from '@ionic/react';
 import './Pages.css';
 import Header from '../components/Header';
 import CalendarPicker from '../components/CalendarPicker';
@@ -6,6 +6,7 @@ import { cameraOutline, chatbubbleOutline, checkmarkCircleOutline, clipboardOutl
 import './MaterialTaskView.css'
 import React from 'react';
 import axios from "axios";
+import KitchenOrderView from './KitchenOrderView';
 const baseURL = "http://localhost:8000/api/task/2";
 
 
@@ -50,10 +51,12 @@ const MaterialTaskView: React.FC = () => {
                                 </IonButton>
                             </div>
                             <div className='b2'>
-                            <IonButton shape='round' size='default' class='botonUno'>
-                                <IonIcon icon={eyeOutline} />
-                                Materiales
-                            </IonButton>
+                                <IonNavLink class="ion-nav-link-four" routerDirection="forward" >
+                                    <IonButton color="primary" shape='round' fill='solid'>
+                                        <IonIcon icon={eyeOutline} />
+                                        Materiales
+                                    </IonButton>
+                                </IonNavLink>
                             </div>
                             <div className='b3'>
                             <IonButton shape='round' size='small' >

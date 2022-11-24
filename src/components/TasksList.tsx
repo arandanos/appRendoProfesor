@@ -6,13 +6,13 @@ interface TaskList {
 
 const TaskList: React.FC<{ text: string; pictogram: string;}> = (props: { text: string; pictogram: string;}) => {
   
-  var referencia = '/tasks/MaterialTask'
+  var referencia = '/tasks/MaterialTaskView'
 
   if (props.text=='La Comanda'){
     referencia='/tasks/KitchenOrderView'
   }
   if (props.text=='Petición Material'){
-    referencia='/tasks/MaterialTask'
+    referencia='/tasks/MaterialTaskView'
   }
     return (       
         <IonItem href={referencia}>
