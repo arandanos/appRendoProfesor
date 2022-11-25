@@ -1,0 +1,41 @@
+.ion-nav-link-five {
+    width: 100%;
+    display: flex;
+    min-height: 20%;
+    max-height: 20%;
+}
+
+.ion-nav-link-four {
+    width: 100%;
+    display: flex;
+    min-height: 25%;
+    max-height: 25%;
+}
+
+ion-select {
+    border-radius: 20px;
+}
+
+ion-list {
+    height: 100%;
+}
+
+
+ion-label {    
+    border-bottom: 0px;
+}
+
+.list-container {
+    /* display: block; */
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-bottom: 10px;
+    max-height: calc(100% - 56px);
+    min-height: calc(100% - 56px);
+}
+
+.width-90 {
+    min-width: 90%;
+    max-width: 90%;
+    margin: 5% auto;
+}
