@@ -1,8 +1,10 @@
 import Header from '../components/Header';
-import { IonContent, IonList, IonItem, IonLabel, IonSelect, IonSelectOption, IonGrid, IonRow, IonCol } from '@ionic/react';
+import { IonContent, IonList, IonItem, IonLabel, IonSelect, IonSelectOption, IonGrid, IonRow, IonCol, IonIcon } from '@ionic/react';
 import ToggleSwitch from '../components/ToggleSwitch';
 import CalendarPicker from '../components/CalendarPicker';
 import './PrinterTask.css'
+
+import { personOutline } from 'ionicons/icons';
 
 const LaminatorTask: React.FC = () => {
   return (
@@ -16,6 +18,7 @@ const LaminatorTask: React.FC = () => {
 
               <IonLabel>Introduce el nombre del alumno</IonLabel>
               <IonItem shape="round" fill="outline">
+              <IonIcon slot='start' icon={personOutline}/>
                 <IonSelect interface="popover" placeholder="Alumno">
                   <IonSelectOption value="Manuel García">Manuel García</IonSelectOption>
                   <IonSelectOption value="Franciso Barrios">Franciso Barrios</IonSelectOption>
@@ -25,6 +28,7 @@ const LaminatorTask: React.FC = () => {
 
               <IonLabel>Introduce donde está el documento</IonLabel>
               <IonItem shape="round" fill="outline">
+              <IonIcon slot='start' icon={personOutline}/>
                 <IonSelect interface="popover" placeholder="Lugar">
                   <IonSelectOption value="Lugar1">Lugar 1</IonSelectOption>
                   <IonSelectOption value="Lugar2">Lugar 2</IonSelectOption>
