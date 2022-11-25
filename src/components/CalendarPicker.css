@@ -4,6 +4,10 @@
     --background-activated-opacity:transparent;
     --background-focused: transparent;
     --background-focused-opacity:transparent;
-    --background-hover  : transparent;
+    --background-hover: transparent;
     --background-hover-opacity  :transparent;
+}
+
+ion-datetime{
+    border-radius: 16px;
 }

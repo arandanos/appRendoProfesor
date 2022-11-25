@@ -7,6 +7,7 @@ import {
     IonDatetimeButton,
   } from '@ionic/react';
 import { calendarOutline, createOutline } from 'ionicons/icons';
+import { useRef } from 'react';
 import './CalendarPicker.css'
 
 interface CalendarPickerProps{
@@ -14,6 +15,7 @@ interface CalendarPickerProps{
   disabled: boolean; 
   editButton: boolean, 
   value?: string
+  onIonChange?: any,
 }
   
   const CalendarPicker: React.FC<CalendarPickerProps> = (props: CalendarPickerProps) => {
@@ -38,11 +40,19 @@ interface CalendarPickerProps{
       return <></>
     }
 
+    const datetime = useRef<null | HTMLIonDatetimeElement>(null);
+
     var DateTime = () => {
       if(props.value){
-        return <IonDatetime id="datetime" presentation="date" locale="es-ES" value={props.value}></IonDatetime>
+        return <IonDatetime id="datetime" presentation="date" locale="es-ES" value={props.value} ref={datetime} showDefaultButtons onIonChange={(e) => { 
+          sessionStorage.setItem("fecha", e.target.value!.toString()?.split("T")[0])
+        } }>
+        </IonDatetime>
       } else {
-        return <IonDatetime id="datetime" presentation="date" locale="es-ES"></IonDatetime>
+        return <IonDatetime id="datetime" presentation="date" locale="es-ES" ref={datetime} showDefaultButtons onIonChange={(e) => { 
+          sessionStorage.setItem("fecha", e.target.value!.toString()?.split("T")[0])
+        } }>
+        </IonDatetime>
       }
     }
 

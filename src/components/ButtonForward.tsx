@@ -9,7 +9,7 @@ const ButtonForward: React.FC<{ label: string; route: React.FC; }> = (props: { l
 
   return (
       <IonNavLink class="ion-nav-link" routerDirection="forward" component={props.route}>
-        <IonButton color="primary" shape='round' fill='outline'>{props.label}</IonButton>
+        <IonButton class="fullscreen-btn" color="primary" shape='round' fill='outline'>{props.label}</IonButton>
       </IonNavLink>
   );
 

@@ -39,8 +39,8 @@ const KitchenOrderView: React.FC = () => {
 		<IonPage>
 			<Header title="Comanda" settings back={false} />
 			<IonContent fullscreen>
-				<IonList>
-					<div className="width-90">
+				<IonList class="width-90">
+					{/* <div className="width-90"> */}
 						<IonLabel>Alumno asignado</IonLabel>
 						<IonItem shape='round' fill='outline'>
 							<IonIcon slot='start' icon={personOutline} />
@@ -73,7 +73,7 @@ const KitchenOrderView: React.FC = () => {
 								</IonFabButton>
 							</div>
 						</div>
-					</div>
+					{/* </div> */}
 				</IonList>
 			</IonContent>
 		</IonPage>
