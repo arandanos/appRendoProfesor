@@ -1,5 +1,5 @@
 import Header from '../components/Header';
-import { IonContent, IonList, IonItem, IonLabel, IonSelect, IonSelectOption, IonGrid, IonRow, IonCol } from '@ionic/react';
+import { IonContent, IonList, IonItem, IonLabel, IonSelect, IonSelectOption, IonGrid, IonRow, IonCol, IonButton } from '@ionic/react';
 import ToggleSwitch from '../components/ToggleSwitch';
 import CalendarPicker from '../components/CalendarPicker';
 import './PrinterTask.css'
@@ -11,11 +11,11 @@ const PrinterTask: React.FC = () => {
       <Header title="Impresora" back settings={false}/>
 
       <IonContent fullscreen>
-        <IonList>
+        
             <div className="width-90">
 
               <CalendarPicker label='Introduce fecha de la tarea' disabled={false} editButton={false} value=''/>
-
+              
               <IonLabel>Introduce el nombre del alumno</IonLabel>
               <IonItem shape="round" fill="outline">
                 <IonSelect interface="popover" placeholder="Alumno">
@@ -77,7 +77,7 @@ const PrinterTask: React.FC = () => {
               </IonItem>
 
             </div>
-          </IonList> 
+          
               
            
 
