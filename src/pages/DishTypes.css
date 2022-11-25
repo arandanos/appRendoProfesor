@@ -9,10 +9,7 @@ ion-content{
     align-items: center;
 }
 
-.tab-list{
-    margin: 5%;
-    max-width: fit-content;
-}
+
 
 .pictogram-header{
     display: flex;

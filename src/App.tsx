@@ -17,6 +17,7 @@ import CreateTask from './pages/CreateTask';
 import MyClasses from './pages/MyClasses';
 import Profile from './pages/Profile';
 import AdminSettings from './pages/AdminSettings';
+import DishTypes from './pages/DishTypes';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -37,7 +38,7 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import './App.css';
-import DishTypes from './pages/DishTypes';
+
 
 setupIonicReact();
 
@@ -46,7 +47,9 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          <Route exact path="/dish_types" component={DishTypes}></Route>
+          <Route exact path="/dish_types">
+            <DishTypes/>
+          </Route>
           <Route exact path="/home">
             <Home />
           </Route>

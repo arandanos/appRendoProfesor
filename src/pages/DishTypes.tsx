@@ -1,12 +1,15 @@
-import { IonContent, IonFabButton, IonList, IonGrid, IonSegment, IonSegmentButton, IonTabBar, IonLabel, IonText, IonIcon, IonTabButton, IonItem, IonButton, IonImg, IonRow, IonTextarea } from '@ionic/react';
+import { IonContent, IonFabButton, IonList, IonGrid, IonSegment, IonSegmentButton, IonTabBar, IonLabel, IonText, IonIcon, IonTabButton, IonItem, IonButton, IonImg, IonRow, IonTextarea, IonInput } from '@ionic/react';
 import Header from '../components/Header';
 import './DishTypes.css';
 import { useState, useEffect } from "react";
-import { star, addCircleOutline, checkmarkOutline, body, menu, trashBinOutline, trashOutline } from 'ionicons/icons';
+import { cafeOutline } from 'ionicons/icons';
 import axios from 'axios';
 import { API_URL } from '../variables';
 import DishTypeButton from '../components/DishTypeButton';
 import TabSwitch from '../components/TabSwitch';
+import StyledButton from '../components/StyledButton';
+import TaskList from '../components/TasksList';
+import PopUp from '../components/PopUp';
 
 /** Para obtener datos de la API: 
   *  import { API_URL } from '../variables';
@@ -135,54 +138,69 @@ con el boton de Añadir */
 
   dishTypes = ["Menús", "Postres"];
 
+  const contentMenu = (
+    <IonList class='width-90' >
+      <IonItem fill="outline" shape="round">
+        <IonIcon slot="start" icon={cafeOutline} />
+        <IonInput type="text" placeholder='Nombre del Menú' ></IonInput>
+      </IonItem>
+
+    </IonList>
+  )
+  const contentDesert = (
+    <IonList class='width-90' >
+      <IonItem fill="outline" shape="round">
+        <IonIcon slot="start" icon={cafeOutline} />
+        <IonInput type="text" placeholder='Nombre del Postre' ></IonInput>
+      </IonItem>
+
+    </IonList>
+  )
+
   arrayElementos = [
     <>
-      <IonList>
+      <IonGrid class='list-container'>
         { 
           dishes.map(menu => {
             if (menu['_type'] === "MENU") {
               return (
-                <DishTypeButton id={menu['_id']} name={menu['_accessible_element']['_text']}></DishTypeButton>
+                <TaskList text={menu['_accessible_element']['_text']} pictogram={menu['_accessible_element']['_pictogram']}></TaskList>
               )
             } else {
               return null
             }
           })
-          /* menus.map(menu => {
-            return (
-              <DishTypeButton name={menu['_accessible_element']['_text']}></DishTypeButton>
-            )
-          }) */
         }
-      </IonList>
-
+      </IonGrid>
+      <PopUp label='Añadir Menú' title='Añadir Nuevo Menú' popUpContent={contentMenu} ></PopUp>
       {/* {idNuevo = 15}
       {dataAccessible = {id: idNuevo, text:  "Menu nuevo", pictogram: "https://api.arasaac.org/api/pictograms/6961?resolution=500&download=false" }}
       {dataDish = {id: 4, type: "MENU", accessible_element: dataAccessible}} */}
-      <IonButton onClick={createPost} id="trigger-menu-button" class="add-button" color="blue" fill="outline" shape="round">
+      {/* <IonButton onClick={createPost} id="trigger-menu-button" class="add-button" color="blue" fill="outline" shape="round">
         <IonIcon slot="start" icon={addCircleOutline}></IonIcon>
         Añadir Nuevo Menú
-      </IonButton>
+      </IonButton> */}
     </>,
     <>
-      <IonList>
+      <IonGrid class='list-container'>
         {
           dishes.map(postre => {
             if (postre['_type'] === "POSTRE") {
               return (
-                <DishTypeButton id={postre['_id']} name={postre['_accessible_element']['_text']}></DishTypeButton>
+                <TaskList text={postre['_accessible_element']['_text']} pictogram={postre['_accessible_element']['_pictogram']}></TaskList>
               )
             } else {
               return null
             }
           })
         }
-      </IonList>
+      </IonGrid>
         
-      <IonButton onClick={createPost} id="trigger-desert-button" class="add-button" color="blue" fill="outline" shape="round">
+      <PopUp label='Añadir Postre' title='Añadir Nuevo Postre' popUpContent={contentDesert} ></PopUp>
+      {/* <IonButton onClick={createPost} id="trigger-desert-button" class="add-button" color="blue" fill="outline" shape="round">
         <IonIcon slot="start" icon={addCircleOutline}></IonIcon>
         Añadir Nuevo Postre
-      </IonButton>
+      </IonButton> */}
     </>
   ]
 
@@ -191,7 +209,6 @@ con el boton de Añadir */
       <Header title="Tipos de platos" settings back={false} />
 
       <TabSwitch tabsNames={dishTypes} tabsComponents={arrayElementos}></TabSwitch>
-
     </>
   );
 };
