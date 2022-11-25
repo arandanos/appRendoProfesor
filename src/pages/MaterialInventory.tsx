@@ -29,18 +29,27 @@ const MaterialInventory: React.FC = () => {
     },[])
     
 */
+    var nombreMat = "Cartulina"
+
 	return (
         <IonNav root={() =>
             <IonPage>
                 <Header title="Almacén" back settings={false}  />
                 <IonContent fullscreen>
                 <IonGrid class='list-container'>
+                    
+                    
                     <IonSearchbar showClearButton="focus" placeholder="Buscar material..."></IonSearchbar>
                 {/*  {materials.map((element : any) => {
+                        nombreMat = {element['_accessible_element']['_text']}
+                        var = {"/MaterialInventoryDisponibility/" + nombreMat }
                             return (
-                                <ListItem text={element['_accessible_element']['_text']} pictogram={element['_accessible_element']['_pictogram']}/>
+                               <ListItem text={element['_accessible_element']['_text']} pictogram={element['_accessible_element']['_pictogram']} href=var/>
                             );
-                        })}*/}
+                        })}
+                       
+                        */}
+                        <ListItem text="Nombre del material" pictogram='' href={'MaterialInventoryDisponibility/' + nombreMat }/>
                     </IonGrid>
                 </IonContent>
             </IonPage>
