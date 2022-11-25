@@ -14,12 +14,12 @@ const AdminSettings: React.FC = () => {
       <IonPage>
       <Header title="Administración" back={false} settings={false}/>
       <IonContent fullscreen>
-        <IonGrid>
-          <ButtonForward class="ion-nav-link-five" label="Tipos de menús y postres" route={MenusDesserts}/>
-          <ButtonForward class="ion-nav-link-five" label="Gestión de alumnado" route={StudentManagement}/>
-          <ButtonForward class="ion-nav-link-five" label="Gestión de profesorado" route={TeachersManagement}/>
-          <ButtonForward class="ion-nav-link-five" label="Gestión de clases" route={ClassroomsManagement}/>
-          <ButtonForward class="ion-nav-link-five" label="Materiales del almacén" route={Materials}/>
+        <IonGrid class='button-grid'>
+          <ButtonForward label="Tipos de menús y postres" route={MenusDesserts}/>
+          <ButtonForward label="Gestión de alumnado" route={StudentManagement}/>
+          <ButtonForward label="Gestión de profesorado" route={TeachersManagement}/>
+          <ButtonForward label="Gestión de clases" route={ClassroomsManagement}/>
+          <ButtonForward label="Materiales del almacén" route={Materials}/>
         </IonGrid>
       </IonContent>
     </IonPage>

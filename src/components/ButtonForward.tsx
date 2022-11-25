@@ -5,10 +5,10 @@ import {
 
 import './ButtonForward.css'
 
-const ButtonForward: React.FC<{ class: string; label: string; route: React.FC; }> = (props: { class: string; label: string; route: React.FC; }) => {
+const ButtonForward: React.FC<{ label: string; route: React.FC; }> = (props: { label: string; route: React.FC; }) => {
 
   return (
-      <IonNavLink class={props.class} routerDirection="forward" component={props.route}>
+      <IonNavLink class="ion-nav-link" routerDirection="forward" component={props.route}>
         <IonButton color="primary" shape='round' fill='outline'>{props.label}</IonButton>
       </IonNavLink>
   );

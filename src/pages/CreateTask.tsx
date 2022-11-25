@@ -13,11 +13,11 @@ const CreateTask: React.FC = () => {
       <IonPage>
         <Header title="Crear tarea" settings back={false}/>
         <IonContent fullscreen>
-          <IonGrid>
-              <ButtonForward class="ion-nav-link-four" label="Comanda de cocina" route={KitchenOrderTask}/>
-              <ButtonForward class="ion-nav-link-four" label="Petición de material" route={MaterialTask}/>
-              <ButtonForward class="ion-nav-link-four" label="Impresora" route={PrinterTask}/>
-              <ButtonForward class="ion-nav-link-four" label="Plastificadora" route={LaminatorTask}/>
+          <IonGrid class='button-grid'>
+              <ButtonForward label="Comanda de cocina" route={KitchenOrderTask}/>
+              <ButtonForward label="Petición de material" route={MaterialTask}/>
+              <ButtonForward label="Impresora" route={PrinterTask}/>
+              <ButtonForward label="Plastificadora" route={LaminatorTask}/>
             </IonGrid>
         </IonContent>
       </IonPage>
