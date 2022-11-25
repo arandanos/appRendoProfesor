@@ -51,12 +51,10 @@ const MaterialTaskView: React.FC = () => {
                                 </IonButton>
                             </div>
                             <div className='b2'>
-                                <IonNavLink class="ion-nav-link-four" routerDirection="forward" >
-                                    <IonButton color="primary" shape='round' fill='solid'>
-                                        <IonIcon icon={eyeOutline} />
-                                        Materiales
-                                    </IonButton>
-                                </IonNavLink>
+                                <IonButton shape='round' size='default' >
+                                    <IonIcon icon={eyeOutline} slot='icon-only' />
+                                    Materiales
+                                </IonButton>
                             </div>
                             <div className='b3'>
                             <IonButton shape='round' size='small' >
