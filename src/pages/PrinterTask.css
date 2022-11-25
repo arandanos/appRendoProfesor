@@ -29,10 +29,8 @@
     border-bottom: 0px;
   }
   
-  .grid{
-    height: auto;
-    background-color: #E0EAFF;
-  
+  .PrinterTask{    
+    height: auto;    
   }
   
   .width-90 {
