@@ -42,7 +42,7 @@ const TabSwitch: React.FC<TabSwitchProps> = (tabsProps: TabSwitchProps) => {
                         );
                     })}                  
                 </IonSegment>
-                {content}
+                <IonLabel>{tabsProps.tabsComponents.at(tabActive)}</IonLabel>
             </IonContent>
         </>
     );

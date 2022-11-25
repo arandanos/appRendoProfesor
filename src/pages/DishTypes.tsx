@@ -1,4 +1,4 @@
-import { IonContent, IonFabButton, IonList, IonGrid, IonSegment, IonSegmentButton, IonTabBar, IonLabel, IonText, IonIcon, IonTabButton, IonItem, IonButton, IonImg, IonRow, IonTextarea, IonInput } from '@ionic/react';
+import { IonLoading, IonList, IonGrid, IonSegment, IonSegmentButton, IonTabBar, IonLabel, IonText, IonIcon, IonTabButton, IonItem, IonButton, IonImg, IonRow, IonTextarea, IonInput } from '@ionic/react';
 import Header from '../components/Header';
 import './DishTypes.css';
 import { useState, useEffect } from "react";
@@ -24,54 +24,29 @@ lo reconoce como parte del body del código, no de la parte de los imports */
 const DishTypes: React.FC = () => {
 
   /** Para los datos de menus y postres */
-  const [menus, setMenus] = useState([]);
-  const [deserts, setDeserts] = useState([]);
   const [dishes, setDishes] = useState([]);
   const [post, setPost] = useState(null);
+  const [showLoading, setShowLoading] = useState(true);
 
   /** Queremos que obtenga los menús y postres de la base de datos, y que cree nuevos 
 con el boton de Añadir */
   const sendGetMenusRequest = () => {
     return axios({
       url: API_URL + "dish",
-      //url: API_URL + "menus",
       method: 'get'
     }).then(response => {
       console.log(response.data);
       return (response.data);
     })
-  };
-  /* const sendGetDesertsRequest = () => {
-    return axios({
-      url: API_URL + "dish",
-      //url: API_URL + "deserts",
-      method: 'get'
-    }).then(response => {
-      console.log(response.data);
-      return (response.data);
-    })
-  }; */
-
-  /** Metodo para separar en menus y postres */
-  const separateDishes = () => {
-    dishes.map(dish => {
-      if (dish['_type'] === "MENU") {
-        setMenus(dish)
-      } else {
-        setDeserts(dish)
-      }
-    });
   };
 
   {/** useEffect Hook para usar el get con Axios y obtener los datos de la url asignada antes*/ }
   useEffect(() => {
     sendGetMenusRequest().then(data => {
       setDishes(data)
+      setShowLoading(false)
       //separateDishes()
     })
-    /* sendGetDesertsRequest().then(data => {
-      setDeserts(data)
-    }) */
   }, [])
 
   /** POST de un menú 
@@ -204,10 +179,20 @@ con el boton de Añadir */
     </>
   ]
 
+  //Pantalla de carga:
+  setTimeout(() => {
+    setShowLoading(false);
+  }, 2000);
+
   return (
     <>
       <Header title="Tipos de platos" settings back={false} />
-
+      <IonLoading 
+        isOpen={showLoading} 
+        onDidPresent={() => setShowLoading(true)}
+        message={'Cargando...'}
+        duration={3000}
+      />
       <TabSwitch tabsNames={dishTypes} tabsComponents={arrayElementos}></TabSwitch>
     </>
   );
