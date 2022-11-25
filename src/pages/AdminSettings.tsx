@@ -5,8 +5,8 @@ import MenusDesserts from './MenusDesserts';
 import StudentManagement from './StudentManagement';
 import ClassroomsManagement from './ClassroomsManagement';
 import TeachersManagement from './TeachersManagement';
-import Materials from './Materials';
 import ButtonForward from '../components/ButtonForward';
+import MaterialInventory from './MaterialInventory';
 
 const AdminSettings: React.FC = () => {
   return (
@@ -19,7 +19,7 @@ const AdminSettings: React.FC = () => {
           <ButtonForward label="Gestión de alumnado" route={StudentManagement}/>
           <ButtonForward label="Gestión de profesorado" route={TeachersManagement}/>
           <ButtonForward label="Gestión de clases" route={ClassroomsManagement}/>
-          <ButtonForward label="Materiales del almacén" route={Materials}/>
+          <ButtonForward label="Materiales del almacén" route={MaterialInventory}/>
         </IonGrid>
       </IonContent>
     </IonPage>

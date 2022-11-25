@@ -17,6 +17,7 @@ import CreateTask from './pages/CreateTask';
 import MyClasses from './pages/MyClasses';
 import Profile from './pages/Profile';
 import AdminSettings from './pages/AdminSettings';
+import MaterialInventory from './pages/MaterialInventory';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -62,6 +63,9 @@ const App: React.FC = () => (
           </Route>
           <Route path="/adminSettings">
             <AdminSettings />
+          </Route>
+          <Route path="/MaterialInventory">
+            <MaterialInventory />
           </Route>
           <Route exact path="/">
             <Redirect to="/home" />

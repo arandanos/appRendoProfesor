@@ -1,4 +1,4 @@
-import { IonContent, IonGrid, IonPage, IonSearchbar } from '@ionic/react';
+import { IonContent, IonGrid, IonNav, IonPage, IonSearchbar } from '@ionic/react';
 import './Pages.css';
 import Header from '../components/Header';
 import './KitchenOrderView.css'
@@ -11,7 +11,7 @@ const baseURL = "http://localhost:8000/api/task/2";
 
 const MaterialInventory: React.FC = () => {
     
-    const [materials, setMaterials] = useState([]);
+   /* const [materials, setMaterials] = useState([]);
     
     const sendGetRequest =  () => {
         return axios({
@@ -28,21 +28,23 @@ const MaterialInventory: React.FC = () => {
         })
     },[])
     
-
+*/
 	return (
-		<IonPage>
-			<Header title="Almacén" settings={false} back={true} />
-			<IonContent fullscreen>
-            <IonGrid class='list-container'>
-                <IonSearchbar showClearButton="focus" placeholder="Buscar material..."></IonSearchbar>
-                {materials.map((element : any) => {
-                        return (
-                            <ListItem text={element['_accessible_element']['_text']} pictogram={element['_accessible_element']['_pictogram']}/>
-                        );
-                    })}
-                </IonGrid>
-			</IonContent>
-		</IonPage>
+        <IonNav root={() =>
+            <IonPage>
+                <Header title="Almacén" back settings={false}  />
+                <IonContent fullscreen>
+                <IonGrid class='list-container'>
+                    <IonSearchbar showClearButton="focus" placeholder="Buscar material..."></IonSearchbar>
+                {/*  {materials.map((element : any) => {
+                            return (
+                                <ListItem text={element['_accessible_element']['_text']} pictogram={element['_accessible_element']['_pictogram']}/>
+                            );
+                        })}*/}
+                    </IonGrid>
+                </IonContent>
+            </IonPage>
+        }></IonNav>
 	);
 };
 
