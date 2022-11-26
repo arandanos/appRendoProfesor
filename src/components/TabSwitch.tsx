@@ -5,7 +5,7 @@
  * @returns content con los tabs y el contenido pasado como argumentos
  */
 
-import { IonContent, IonLabel, IonSegment, IonSegmentButton } from "@ionic/react";
+import { IonContent, IonLabel, IonSegment, IonSegmentButton, CreateAnimation, Animation } from "@ionic/react";
 import React, { useEffect, useState } from "react";
 
 
@@ -30,13 +30,20 @@ const TabSwitch: React.FC<TabSwitchProps> = (tabsProps: TabSwitchProps) => {
         }
     };
 
+
+    <CreateAnimation duration={1000}
+        fromTo={[
+            {property:'transform', fromValue:'translate(0px)', toValue:'translateX(-100px)'}
+        ]}
+    ></CreateAnimation>
+
     return(
         <>
             <IonContent fullscreen>
                 <IonSegment>
                     {tabsProps.tabsNames.map(tab => {
                         return(
-                            <IonSegmentButton value={tab} onClick={handleClick} id={String(tabsProps.tabsNames.indexOf(tab))}>
+                            <IonSegmentButton value={tab}  onClick={handleClick} id={String(tabsProps.tabsNames.indexOf(tab))}>
                                 <IonLabel class="btn-title">{tab}</IonLabel>
                             </IonSegmentButton>
                         );

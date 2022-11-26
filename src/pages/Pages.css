@@ -28,6 +28,6 @@ ion-label {
     overflow-y: auto;
     overflow-x: hidden;
     margin-bottom: 10px;
-    max-height: calc(100% - 200px);
-    min-height: calc(100% - 200px);
+    max-height: calc(100% - 56px);
+    min-height: calc(100% - 56px);
 }

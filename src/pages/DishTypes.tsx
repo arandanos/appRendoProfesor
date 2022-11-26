@@ -1,13 +1,11 @@
-import { IonLoading, IonList, IonGrid, IonSegment, IonSegmentButton, IonTabBar, IonLabel, IonText, IonIcon, IonTabButton, IonItem, IonButton, IonImg, IonRow, IonTextarea, IonInput } from '@ionic/react';
+import { IonLoading, IonList, IonGrid, IonIcon, IonItem, IonInput, IonButton} from '@ionic/react';
 import Header from '../components/Header';
 import './DishTypes.css';
 import { useState, useEffect } from "react";
-import { cafeOutline } from 'ionicons/icons';
+import { addCircleOutline, cafeOutline } from 'ionicons/icons';
 import axios from 'axios';
 import { API_URL } from '../variables';
-import DishTypeButton from '../components/DishTypeButton';
 import TabSwitch from '../components/TabSwitch';
-import StyledButton from '../components/StyledButton';
 import TaskList from '../components/TasksList';
 import PopUp from '../components/PopUp';
 
@@ -44,6 +42,7 @@ con el boton de Añadir */
   useEffect(() => {
     sendGetMenusRequest().then(data => {
       setDishes(data)
+      setIsLoading(false)
       setShowLoading(false)
       //separateDishes()
     })
@@ -69,7 +68,7 @@ con el boton de Añadir */
       //setDishes([...dishes, dish])
       setPost(response.data);
       //Recargo la pagina para que actualice la lista --> Cambiar para que lo haga sin tener que recargar
-      window.location.reload();
+      //window.location.reload();
     });
   };
 
@@ -119,7 +118,10 @@ con el boton de Añadir */
         <IonIcon slot="start" icon={cafeOutline} />
         <IonInput type="text" placeholder='Nombre del Menú' ></IonInput>
       </IonItem>
-
+      <IonItem fill="outline" shape="round">
+        <IonIcon slot="start" icon={addCircleOutline} />
+        <IonInput type="text" placeholder='Pictograma' ></IonInput>
+      </IonItem>
     </IonList>
   )
   const contentDesert = (
@@ -128,13 +130,16 @@ con el boton de Añadir */
         <IonIcon slot="start" icon={cafeOutline} />
         <IonInput type="text" placeholder='Nombre del Postre' ></IonInput>
       </IonItem>
-
+      <IonItem fill="outline" shape="round">
+        <IonIcon slot="start" icon={addCircleOutline} />
+        <IonInput type="text" placeholder='Pictograma' ></IonInput>
+      </IonItem>
     </IonList>
   )
 
   arrayElementos = [
     <>
-      <IonGrid class='list-container'>
+      <IonGrid class='list-container-dishes'>
         { 
           dishes.map(menu => {
             if (menu['_type'] === "MENU") {
@@ -147,7 +152,7 @@ con el boton de Añadir */
           })
         }
       </IonGrid>
-      <PopUp label='Añadir Menú' title='Añadir Nuevo Menú' popUpContent={contentMenu} ></PopUp>
+      <PopUp label='Añadir Menú' title='Nuevo Menú' popUpContent={contentMenu}></PopUp>
       {/* {idNuevo = 15}
       {dataAccessible = {id: idNuevo, text:  "Menu nuevo", pictogram: "https://api.arasaac.org/api/pictograms/6961?resolution=500&download=false" }}
       {dataDish = {id: 4, type: "MENU", accessible_element: dataAccessible}} */}
@@ -157,7 +162,7 @@ con el boton de Añadir */
       </IonButton> */}
     </>,
     <>
-      <IonGrid class='list-container'>
+      <IonGrid class='list-container-dishes'>
         {
           dishes.map(postre => {
             if (postre['_type'] === "POSTRE") {
@@ -170,29 +175,39 @@ con el boton de Añadir */
           })
         }
       </IonGrid>
-        
-      <PopUp label='Añadir Postre' title='Añadir Nuevo Postre' popUpContent={contentDesert} ></PopUp>
-      {/* <IonButton onClick={createPost} id="trigger-desert-button" class="add-button" color="blue" fill="outline" shape="round">
-        <IonIcon slot="start" icon={addCircleOutline}></IonIcon>
-        Añadir Nuevo Postre
-      </IonButton> */}
+      
+      {/* TODO Post en el popUp de los datos que reciban los inputs */}
+      {/* ? haria el post el componente al cual se le pasa la ruta a la que debe hacerlo? */}
+      <PopUp label='Añadir Postre' title='Nuevo Postre' popUpContent={contentDesert} ></PopUp>
+      
     </>
   ]
 
   //Pantalla de carga:
-  setTimeout(() => {
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  if(isLoading){
+    return(
+      <div className='App'>
+        <IonLoading 
+          isOpen={showLoading} 
+          onDidPresent={() => setShowLoading(true)}
+          message={'Cargando...'}
+          duration={1000}
+        />
+      </div>
+    );
+  }
+
+  /* setTimeout(() => {
     setShowLoading(false);
-  }, 2000);
+  }, 2000); */
 
   return (
     <>
       <Header title="Tipos de platos" settings back={false} />
-      <IonLoading 
-        isOpen={showLoading} 
-        onDidPresent={() => setShowLoading(true)}
-        message={'Cargando...'}
-        duration={3000}
-      />
+  
       <TabSwitch tabsNames={dishTypes} tabsComponents={arrayElementos}></TabSwitch>
     </>
   );
