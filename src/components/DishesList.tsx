@@ -5,17 +5,17 @@ interface DishesList {
   name: string;
 }
 
-const DishesList: React.FC<{ text: string; pictogram: string; }> = (props: { text: string; pictogram: string;}) => {
+const DishesList: React.FC<{ text: string; pictogram: string; }> = (props: { text: string; pictogram: string; }) => {
 
-    return (       
-        <IonItem href='#'>
-          <IonImg class="pictogram-on-button" src={props.pictogram} />
-          <IonLabel>
-           {props.text}
-          </IonLabel>
-          <IonIcon icon={trashOutline}></IonIcon>
-      </IonItem>
-    )
-  }
+  return (
+    <IonItem href='#'>
+      <IonImg class="pictogram-on-button" src={props.pictogram} />
+      <IonLabel>
+        {props.text}
+      </IonLabel>
+      <IonIcon icon={trashOutline}></IonIcon>
+    </IonItem>
+  )
+}
 
 export default DishesList;

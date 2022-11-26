@@ -9,8 +9,6 @@ ion-content{
     align-items: center;
 }
 
-
-
 .pictogram-header{
     display: flex;
     width: 10%;
@@ -29,3 +27,11 @@ ion-content{
     min-height: calc(100% - 184px);
 }
 
+.item-list{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.list-md{
+    background: none;
+}

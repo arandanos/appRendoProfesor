@@ -1,24 +1,14 @@
-import { IonLoading, IonList, IonGrid, IonIcon, IonItem, IonInput, IonButton} from '@ionic/react';
+import { NavComponentWithProps, IonLoading, IonList, IonGrid, IonIcon, IonItem, IonInput, IonButton, IonFab, IonFabButton} from '@ionic/react';
 import Header from '../components/Header';
 import './DishTypes.css';
 import { useState, useEffect } from "react";
-import { addCircleOutline, cafeOutline } from 'ionicons/icons';
+import { addCircleOutline, cafeOutline, checkmark } from 'ionicons/icons';
 import axios from 'axios';
 import { API_URL } from '../variables';
 import TabSwitch from '../components/TabSwitch';
-import TaskList from '../components/TasksList';
 import PopUp from '../components/PopUp';
 import DishesList from '../components/DishesList';
 
-/** Para obtener datos de la API: 
-  *  import { API_URL } from '../variables';
-*/
-
-/** Que es axios? --> Axios is an HTTP client library that allows you 
-to make requests to a given endpoint */
-
-/** DATA: no puedes poner imports debajo de uno de estos comentarios ya que 
-lo reconoce como parte del body del código, no de la parte de los imports */
 
 const DishTypes: React.FC = () => {
 
@@ -26,6 +16,8 @@ const DishTypes: React.FC = () => {
   const [dishes, setDishes] = useState([]);
   const [post, setPost] = useState(null);
   const [showLoading, setShowLoading] = useState(true);
+  const [nameInput, setNameInput] = useState("Nuevo");
+  const [pictoInput, setPictoInput] = useState("https://api.arasaac.org/api/pictograms/29839?resolution=500&download=false");
 
   /** Queremos que obtenga los menús y postres de la base de datos, y que cree nuevos 
 con el boton de Añadir */
@@ -113,27 +105,39 @@ con el boton de Añadir */
 
   dishTypes = ["Menús", "Postres"];
 
+  const handleNameInput = (e: any) => {
+    setNameInput(e.target.value)
+  };
+  const handlePictoInput = (e: any) => {
+    setPictoInput(e.target.value)
+  };
+  const logValue = () => {
+    console.log("Nombre: "+nameInput);
+    console.log("Pictograma: "+pictoInput);
+  };
+
   const contentMenu = (
-    <IonList class='width-90' >
-      <IonItem fill="outline" shape="round">
+    <IonList class='width-90'>
+      <IonItem class='item-list' fill="outline" shape="round" counter={true}>
         <IonIcon slot="start" icon={cafeOutline} />
-        <IonInput type="text" placeholder='Nombre del Menú' ></IonInput>
+        <IonInput type="text" placeholder='Nombre del Menú' maxlength={20} onIonChange={handleNameInput}></IonInput>
       </IonItem>
       <IonItem fill="outline" shape="round">
         <IonIcon slot="start" icon={addCircleOutline} />
-        <IonInput type="text" placeholder='Pictograma' ></IonInput>
+        <IonInput type="text" placeholder='Pictograma' onIonChange={handlePictoInput}></IonInput>
       </IonItem>
     </IonList>
   )
   const contentDesert = (
-    <IonList class='width-90' >
-      <IonItem fill="outline" shape="round">
+    <IonList class='width-90'>
+      <IonItem class='item-list' fill="outline" shape="round" counter={true}>
         <IonIcon slot="start" icon={cafeOutline} />
-        <IonInput type="text" placeholder='Nombre del Postre' ></IonInput>
+        <IonInput type="text" placeholder='Nombre del Postre' maxlength={20} onIonChange={handleNameInput}></IonInput>
+        <IonButton onClick={logValue}></IonButton>
       </IonItem>
       <IonItem fill="outline" shape="round">
         <IonIcon slot="start" icon={addCircleOutline} />
-        <IonInput type="text" placeholder='Pictograma' ></IonInput>
+        <IonInput type="text" placeholder='Pictograma' onIonChange={handlePictoInput}></IonInput>
       </IonItem>
     </IonList>
   )
