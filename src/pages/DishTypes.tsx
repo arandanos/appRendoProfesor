@@ -8,6 +8,7 @@ import { API_URL } from '../variables';
 import TabSwitch from '../components/TabSwitch';
 import TaskList from '../components/TasksList';
 import PopUp from '../components/PopUp';
+import DishesList from '../components/DishesList';
 
 /** Para obtener datos de la API: 
   *  import { API_URL } from '../variables';
@@ -144,7 +145,7 @@ con el boton de Añadir */
           dishes.map(menu => {
             if (menu['_type'] === "MENU") {
               return (
-                <TaskList text={menu['_accessible_element']['_text']} pictogram={menu['_accessible_element']['_pictogram']}></TaskList>
+                <DishesList text={menu['_accessible_element']['_text']} pictogram={menu['_accessible_element']['_pictogram']}></DishesList>
               )
             } else {
               return null
@@ -167,7 +168,7 @@ con el boton de Añadir */
           dishes.map(postre => {
             if (postre['_type'] === "POSTRE") {
               return (
-                <TaskList text={postre['_accessible_element']['_text']} pictogram={postre['_accessible_element']['_pictogram']}></TaskList>
+                <DishesList text={postre['_accessible_element']['_text']} pictogram={postre['_accessible_element']['_pictogram']}></DishesList>
               )
             } else {
               return null
