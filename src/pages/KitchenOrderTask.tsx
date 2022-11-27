@@ -92,6 +92,7 @@ const KitchenOrderTask: React.FC = () => {
 
   var classrooms: [];
   var dishes: [];
+  
   const handleButtonClick = () => {
     sendGetRequestClassroom().then(data => {
       classrooms = data;

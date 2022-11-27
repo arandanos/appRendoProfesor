@@ -49,9 +49,14 @@ interface CalendarPickerProps{
 
     var DateTime = () => {
       if(props.value){
+        // * Inicializamos la fecha a la pasada compo parametro
+        sessionStorage.setItem("fecha", props.value)
         return <IonDatetime id="datetime" presentation="date" locale="es-ES" value={props.value} ref={datetime} showDefaultButtons onIonChange={handleDateChange}>
         </IonDatetime>
       } else {
+         // * Inicializamos la fecha a la fecha de hoy
+        const today = new Date().toISOString();       
+        sessionStorage.setItem("fecha", today?.split("T")[0]);
         return <IonDatetime id="datetime" presentation="date" locale="es-ES" ref={datetime} showDefaultButtons onIonChange={handleDateChange}>
         </IonDatetime>
       }
