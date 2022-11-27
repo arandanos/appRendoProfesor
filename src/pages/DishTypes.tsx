@@ -107,9 +107,11 @@ con el boton de Añadir */
   dishTypes = ["Menús", "Postres"];
 
   const handleNameInput = (e: any) => {
+    sessionStorage.setItem("name", e.target.value)
     setNameInput(e.target.value)
   };
   const handlePictoInput = (e: any) => {
+    sessionStorage.setItem("pictogram", e.target.value)
     setPictoInput(e.target.value)
   };
   /**
@@ -123,6 +125,8 @@ con el boton de Añadir */
     
     setNameInput("");
     setPictoInput("");
+    sessionStorage.setItem("name", "");
+    sessionStorage.setItem("pictogram", "");
   };
   /**
    * Funcion llamada desde el boton de papelera de cada item

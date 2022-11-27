@@ -1,4 +1,4 @@
-import { IonContent, IonButton, IonIcon, IonFabButton, IonButtons, IonModal, IonTitle, IonToolbar, IonFab } from '@ionic/react';
+import { IonContent, useIonAlert, IonButton, IonIcon, IonFabButton, IonButtons, IonModal, IonTitle, IonToolbar, IonFab } from '@ionic/react';
 import { useRef } from 'react';
 import './PopUp.css'
 import { checkmark, closeOutline, addCircleOutline } from 'ionicons/icons';
@@ -16,6 +16,7 @@ interface PopUpProps {
 const CreateDishPopUp: React.FC<PopUpProps> = (props: PopUpProps) => {
 
     const modal = useRef<HTMLIonModalElement>(null);
+    const [presentAlert] = useIonAlert();
 
     function dismiss() {
         modal.current?.dismiss();
@@ -23,9 +24,19 @@ const CreateDishPopUp: React.FC<PopUpProps> = (props: PopUpProps) => {
     
     //Funcion que llama al padre y cierra el popup
     function newDish() {
-        //Podria comprobar con sessions que los campos estén vacíos o no
-        props.newDish(props.type);
-        dismiss();
+        //Comprobamos que los campos no estén vacíos
+        if((sessionStorage.getItem("name") == "") || (sessionStorage.getItem("pictogram") == "")){
+            presentAlert({
+                header: 'Atención',
+                subHeader: 'Faltan campos por completar',
+                message: 'Por favor, rellene todos los campos',
+                buttons: ['OK']
+            })
+        } else {
+            console.log(sessionStorage.getItem("name"));
+            props.newDish(props.type);
+            dismiss();
+        }
     }
 
     return(
