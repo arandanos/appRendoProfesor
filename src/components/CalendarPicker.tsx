@@ -5,6 +5,7 @@ import {
     IonDatetime,
     IonModal,
     IonDatetimeButton,
+    DatetimeChangeEventDetail,
   } from '@ionic/react';
 import { calendarOutline, createOutline } from 'ionicons/icons';
 import { useRef } from 'react';
@@ -42,16 +43,16 @@ interface CalendarPickerProps{
 
     const datetime = useRef<null | HTMLIonDatetimeElement>(null);
 
+    const handleDateChange = (e: any) => { 
+      sessionStorage.setItem("fecha", e.target.value!.toString()?.split("T")[0])
+    }
+
     var DateTime = () => {
       if(props.value){
-        return <IonDatetime id="datetime" presentation="date" locale="es-ES" value={props.value} ref={datetime} showDefaultButtons onIonChange={(e) => { 
-          sessionStorage.setItem("fecha", e.target.value!.toString()?.split("T")[0])
-        } }>
+        return <IonDatetime id="datetime" presentation="date" locale="es-ES" value={props.value} ref={datetime} showDefaultButtons onIonChange={handleDateChange}>
         </IonDatetime>
       } else {
-        return <IonDatetime id="datetime" presentation="date" locale="es-ES" ref={datetime} showDefaultButtons onIonChange={(e) => { 
-          sessionStorage.setItem("fecha", e.target.value!.toString()?.split("T")[0])
-        } }>
+        return <IonDatetime id="datetime" presentation="date" locale="es-ES" ref={datetime} showDefaultButtons onIonChange={handleDateChange}>
         </IonDatetime>
       }
     }
