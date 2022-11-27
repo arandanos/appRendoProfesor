@@ -8,6 +8,7 @@ import { API_URL } from '../variables';
 import TabSwitch from '../components/TabSwitch';
 import PopUp from '../components/PopUp';
 import DishesList from '../components/DishesList';
+import CreateDishPopUp from '../components/CreateDishPopUp';
 
 
 const DishTypes: React.FC = () => {
@@ -111,9 +112,17 @@ con el boton de Añadir */
   const handlePictoInput = (e: any) => {
     setPictoInput(e.target.value)
   };
-  const logValue = () => {
-    console.log("Nombre: "+nameInput);
-    console.log("Pictograma: "+pictoInput);
+  /**
+   * Funcion llamada desde el popup que hace post del plato con los inputs introducidos
+   */
+  function newDish(type: string) {
+    console.log("Nuevo "+ type +" creado: " + nameInput);
+    console.log("Pictograma: " + pictoInput);
+    
+    //POST
+    
+    setNameInput("");
+    setPictoInput("");
   };
 
   const contentMenu = (
@@ -133,7 +142,6 @@ con el boton de Añadir */
       <IonItem class='item-list' fill="outline" shape="round" counter={true}>
         <IonIcon slot="start" icon={cafeOutline} />
         <IonInput type="text" placeholder='Nombre del Postre' maxlength={20} onIonChange={handleNameInput}></IonInput>
-        <IonButton onClick={logValue}></IonButton>
       </IonItem>
       <IonItem fill="outline" shape="round">
         <IonIcon slot="start" icon={addCircleOutline} />
@@ -149,7 +157,7 @@ con el boton de Añadir */
           dishes.map(menu => {
             if (menu['_type'] === "MENU") {
               return (
-                <DishesList text={menu['_accessible_element']['_text']} pictogram={menu['_accessible_element']['_pictogram']}></DishesList>
+                <DishesList key={menu['_id']} text={menu['_accessible_element']['_text']} pictogram={menu['_accessible_element']['_pictogram']}></DishesList>
               )
             } else {
               return null
@@ -157,7 +165,8 @@ con el boton de Añadir */
           })
         }
       </IonGrid>
-      <PopUp label='Añadir Menú' title='Nuevo Menú' popUpContent={contentMenu}></PopUp>
+      <CreateDishPopUp label='Añadir Menú' title='Nuevo Menú' popUpContent={contentMenu} type='MENU' newDish={newDish}></CreateDishPopUp>
+      {/* <PopUp label='Añadir Menú' title='Nuevo Menú' popUpContent={contentMenu}></PopUp> */}
       {/* {idNuevo = 15}
       {dataAccessible = {id: idNuevo, text:  "Menu nuevo", pictogram: "https://api.arasaac.org/api/pictograms/6961?resolution=500&download=false" }}
       {dataDish = {id: 4, type: "MENU", accessible_element: dataAccessible}} */}
@@ -172,7 +181,7 @@ con el boton de Añadir */
           dishes.map(postre => {
             if (postre['_type'] === "POSTRE") {
               return (
-                <DishesList text={postre['_accessible_element']['_text']} pictogram={postre['_accessible_element']['_pictogram']}></DishesList>
+                <DishesList key={postre['_id']} text={postre['_accessible_element']['_text']} pictogram={postre['_accessible_element']['_pictogram']}></DishesList>
               )
             } else {
               return null
@@ -183,8 +192,7 @@ con el boton de Añadir */
       
       {/* TODO Post en el popUp de los datos que reciban los inputs */}
       {/* ? haria el post el componente al cual se le pasa la ruta a la que debe hacerlo? */}
-      <PopUp label='Añadir Postre' title='Nuevo Postre' popUpContent={contentDesert} ></PopUp>
-      
+      <CreateDishPopUp label='Añadir Postre' title='Nuevo Postre' popUpContent={contentDesert} type='POSTRE' newDish={newDish}></CreateDishPopUp>      
     </>
   ]
 

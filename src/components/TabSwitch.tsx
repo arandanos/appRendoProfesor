@@ -43,7 +43,7 @@ const TabSwitch: React.FC<TabSwitchProps> = (tabsProps: TabSwitchProps) => {
                 <IonSegment>
                     {tabsProps.tabsNames.map(tab => {
                         return(
-                            <IonSegmentButton value={tab}  onClick={handleClick} id={String(tabsProps.tabsNames.indexOf(tab))}>
+                            <IonSegmentButton value={tab}  onClick={handleClick} id={String(tabsProps.tabsNames.indexOf(tab))} key={String(tabsProps.tabsNames.indexOf(tab))}>
                                 <IonLabel class="btn-title">{tab}</IonLabel>
                             </IonSegmentButton>
                         );
