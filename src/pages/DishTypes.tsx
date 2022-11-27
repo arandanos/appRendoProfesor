@@ -124,6 +124,12 @@ con el boton de Añadir */
     setNameInput("");
     setPictoInput("");
   };
+  /**
+   * Funcion llamada desde el boton de papelera de cada item
+   */
+  function deleteDish(id: string){
+    console.log("Plato: " + id + " borrado.");
+  }
 
   const contentMenu = (
     <IonList class='width-90'>
@@ -157,7 +163,7 @@ con el boton de Añadir */
           dishes.map(menu => {
             if (menu['_type'] === "MENU") {
               return (
-                <DishesList key={menu['_id']} text={menu['_accessible_element']['_text']} pictogram={menu['_accessible_element']['_pictogram']}></DishesList>
+                <DishesList key={menu['_id']} text={menu['_accessible_element']['_text']} pictogram={menu['_accessible_element']['_pictogram']} id={menu['_id']} deleteDish={deleteDish}></DishesList>
               )
             } else {
               return null
@@ -181,7 +187,7 @@ con el boton de Añadir */
           dishes.map(postre => {
             if (postre['_type'] === "POSTRE") {
               return (
-                <DishesList key={postre['_id']} text={postre['_accessible_element']['_text']} pictogram={postre['_accessible_element']['_pictogram']}></DishesList>
+                <DishesList key={postre['_id']} text={postre['_accessible_element']['_text']} pictogram={postre['_accessible_element']['_pictogram']} id={postre['_id']} deleteDish={deleteDish}></DishesList>
               )
             } else {
               return null

@@ -4,7 +4,6 @@ import './PopUp.css'
 import { checkmark, closeOutline, addCircleOutline } from 'ionicons/icons';
 import StyledButton from './StyledButton';
 import '../pages/DishTypes.tsx';
-import DishTypes from '../pages/DishTypes';
 
 interface PopUpProps {
     label: string;

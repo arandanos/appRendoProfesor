@@ -6,17 +6,18 @@ import { useState } from 'react';
 interface DishesList {
   text: string;
   pictogram: string;
-  value?: boolean;
+  id: string;
+  deleteDish: any;
 }
 
-const DishesList: React.FC<{ text: string; pictogram: string; }> = (props: { text: string; pictogram: string; }) => {
+const DishesList: React.FC<DishesList> = (props: DishesList) => {
 
-  const logValue = () => {
-    console.log("DELETE " + props.text);
+  function deleteDish() {
+    props.deleteDish(props.id);
   }
 
   return (
-    <IonItem href='#'>
+    <IonItem>
       <IonImg class="pictogram-on-button" src={props.pictogram} />
       <IonLabel>
         {props.text}
@@ -25,7 +26,7 @@ const DishesList: React.FC<{ text: string; pictogram: string; }> = (props: { tex
         class='delete-button' 
         icon-only item-end 
         fill='clear'
-        onClick={logValue}
+        onClick={deleteDish}
         >
         <IonIcon icon={trashOutline}></IonIcon>
       </IonButton>
