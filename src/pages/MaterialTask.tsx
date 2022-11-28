@@ -9,7 +9,7 @@ import { useState } from "react";
 
 const MaterialTask: React.FC = () => {
   
-{/*Fila por defecto pal grid*/}
+  /*Fila por defecto pal grid*/
   const Primero = {
     id: 0,
     count: 0,
