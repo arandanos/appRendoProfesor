@@ -1,4 +1,4 @@
-import './TaskList.css';
+// import './TaskList.css';
 import './DishesList.css';
 import { IonContent, IonPage, IonGrid, IonItem, IonLabel, IonIcon, IonRow, IonNavLink, IonButton, IonImg } from '@ionic/react';
 import { trashOutline } from 'ionicons/icons';
