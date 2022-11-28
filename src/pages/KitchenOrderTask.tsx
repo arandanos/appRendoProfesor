@@ -92,6 +92,13 @@ const KitchenOrderTask: React.FC = () => {
 
   var classrooms: [];
   var dishes: [];
+
+  const clearSessions = () => {
+    sessionStorage.removeItem("fecha");
+    sessionStorage.removeItem("auto_feedback");
+    sessionStorage.removeItem("auto_calc_menu");
+    sessionStorage.removeItem("allow_comments");
+  }
   
   const handleButtonClick = () => {
     sendGetRequestClassroom().then(data => {
@@ -102,11 +109,9 @@ const KitchenOrderTask: React.FC = () => {
     });
     sendPostRequestTask(sessionStorage.getItem("fecha"), sessionStorage.getItem("auto_feedback"))
       .then(response => {
-        sessionStorage.removeItem("fecha");
-        sessionStorage.removeItem("auto_feedback");
+        
         sendPostRequestKitchenOrder(response['_id'], sessionStorage.getItem("auto_calc_menu")).then(response =>{
-          sessionStorage.removeItem("auto_calc_menu");
-          sessionStorage.removeItem("allow_comments");
+          clearSessions();
           classrooms.map( classroom => {
             dishes.map( dish => {
               sendPostRequestKitchenOrderDetail(classroom['_id'], dish['_id'], response['_id'])
