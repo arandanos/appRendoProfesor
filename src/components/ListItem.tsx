@@ -7,6 +7,9 @@ interface ListItemProps{
   text: string; 
   pictogram: string;
   href?: string;
+  id?: string;
+  editItem?: any;
+  deleteItem?: any;
 }
 
 const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
@@ -15,13 +18,25 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
   if (props.href)
     href = props.href;
 
+  //Llama al edit<item> de la página padre
+  function editItem(){
+    props.editItem(props.id);
+  }
+  //Llama al delete<item> de la página padre
+  function deleteItem(){
+    props.deleteItem(props.id);
+  }
   
   return (       
-    <IonItem class="remove-padding" href={href}>
+    <IonItem key={props.id} class="remove-padding" href={href}>
       <IonImg class="pictogram-on-button" src={props.pictogram} />
       <IonLabel> {props.text} </IonLabel>
-      <IonIcon class="ion-margin-start" icon={createOutline} />     
-      <IonIcon class="ion-margin-start" icon={trashOutline} />
+      <IonButton class='icon-button' icon-only item-end fill='clear' onClick={editItem}>
+        <IonIcon icon={createOutline}></IonIcon>
+      </IonButton>    
+      <IonButton class='icon-button' icon-only item-end fill='clear' onClick={deleteItem}>
+        <IonIcon icon={trashOutline}></IonIcon>
+      </IonButton>
     </IonItem>
   )
 }

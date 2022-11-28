@@ -6,8 +6,8 @@ import { addCircleOutline, cafeOutline, checkmark } from 'ionicons/icons';
 import axios from 'axios';
 import { API_URL } from '../variables';
 import TabSwitch from '../components/TabSwitch';
-import DishesList from '../components/DishesList';
 import CreateDishPopUp from '../components/CreateDishPopUp';
+import ListItem from '../components/ListItem';
 
 
 const DishTypes: React.FC = () => {
@@ -163,7 +163,7 @@ con el boton de Añadir */
           dishes.map(menu => {
             if (menu['_type'] === "MENU") {
               return (
-                <DishesList key={menu['_id']} text={menu['_name']['_text']} pictogram={menu['_name']['_pictogram']} id={menu['_id']} deleteDish={deleteDish}></DishesList>
+                <ListItem key={menu['_id']} href="dish_types" text={menu['_name']['_text']} pictogram={menu['_name']['_pictogram']} id={menu['_id']} editItem={null} deleteItem={deleteDish}></ListItem>
               )
             } else {
               return null
@@ -187,7 +187,7 @@ con el boton de Añadir */
           dishes.map(postre => {
             if (postre['_type'] === "POSTRE") {
               return (
-                <DishesList key={postre['_id']} text={postre['_name']['_text']} pictogram={postre['_name']['_pictogram']} id={postre['_id']} deleteDish={deleteDish}></DishesList>
+                <ListItem key={postre['_id']} href="dish_types" text={postre['_name']['_text']} pictogram={postre['_name']['_pictogram']} id={postre['_id']} editItem={null} deleteItem={deleteDish}></ListItem>
               )
             } else {
               return null

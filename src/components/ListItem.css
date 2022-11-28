@@ -10,3 +10,9 @@
     margin-bottom: 5px;
     margin-top: 5px;
 }
+
+.icon-button{
+    min-width: 30px;
+    max-width: 40px;
+    margin: 0;
+}
