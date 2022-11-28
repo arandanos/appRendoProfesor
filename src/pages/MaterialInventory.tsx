@@ -8,6 +8,7 @@ import axios from "axios";
 import { API_URL } from '../variables';
 import ListItem from '../components/ListItem';
 import MaterialList from '../components/MaterialList';
+import MaterialInventoryDisponibility from './MaterialInventoryDisponibility';
 
 const MaterialInventory: React.FC = () => {
     
@@ -35,8 +36,6 @@ const MaterialInventory: React.FC = () => {
     
     var arrayElementos: Array<JSX.Element> = [];
     const [isLoading, setIsLoading] = useState(true)
-    var dishTypes: Array<string> = [];  
-    dishTypes = ["Menús", "Postres"];
 
 
     arrayElementos = [
@@ -45,7 +44,7 @@ const MaterialInventory: React.FC = () => {
                 {
                     materials.map(material => {
                         return (
-                            <ListItem text={material['_type']['_item']['_text']} pictogram={material['_type']['_item']['_pictogram']} href={''}></ListItem>
+                            <ListItem text={material['_type']['_item']['_text']} pictogram={material['_type']['_item']['_pictogram']} href={"/MaterialInventoryDisponibility/"+ material['_type']['_id']}></ListItem>
                         )
                         })
                 }

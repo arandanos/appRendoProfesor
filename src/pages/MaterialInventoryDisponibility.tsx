@@ -64,6 +64,7 @@ const MaterialInventoryDisponibility: React.FC = () => {
                     materialesF.map(material => {
                         return (
                             <DisponibilityList text={material['_color']['_text']} pictogram={material['_color']['_pictogram']} quantity={material['_quantity']}></DisponibilityList>
+
                         )
                         })
                 }
@@ -78,9 +79,7 @@ const MaterialInventoryDisponibility: React.FC = () => {
                 <IonPage>
                     <Header title= {"Almacén: " + nombreMaterial}  back settings={false}  />
                     <IonContent fullscreen>
-                    <IonGrid class='list-container'>
                         <MaterialList tabsComponents={arrayElementos}></MaterialList>
-                        </IonGrid>
                     </IonContent>
                 </IonPage>
             }></IonNav>
