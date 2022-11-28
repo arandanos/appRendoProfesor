@@ -1,35 +1,19 @@
-import { IonContent, IonPage, IonGrid, IonButton, IonIcon, IonFabButton, IonLabel, IonPopover, IonTextarea, IonButtons, IonHeader, IonInput, IonItem, IonModal, IonTitle, IonToolbar, IonCard, IonAvatar, IonImg, IonList, IonFab } from '@ionic/react';
+import { IonContent, IonPage, IonGrid, IonIcon, IonInput, IonItem, IonList } from '@ionic/react';
 import Header from '../components/Header';
-import { API_URL } from '../variables';
+import { sendGetAllRequest } from '../ApiMethods';
 import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import ListItem from '../components/ListItem';
 import PopUp from '../components/PopUp';
 import './Pages.css'
-import { briefcaseOutline, checkmark } from 'ionicons/icons';
-
+import { briefcaseOutline } from 'ionicons/icons';
 
 const MyClasses: React.FC = () => {
 
   const [ classes, setClasses ] = useState<any>([]);
 
-
-  const sendGetRequest = () => {
-
-    return axios({
-      url: API_URL + "classroom",
-      method: 'get'
-    }).then(response => {
-
-      //console.log(response.data);
-      return response.data;
-    })
-  };
-
-  //sendGetRequest();
-
   useEffect(() =>{
-    sendGetRequest().then(data => {
+    sendGetAllRequest("classroom").then(data => {
       setClasses(data)
     })
 
@@ -41,7 +25,6 @@ const MyClasses: React.FC = () => {
         <IonIcon slot="start" icon={briefcaseOutline} />
         <IonInput type="text" placeholder='Nombre de la Clase' ></IonInput>
       </IonItem>
-
     </IonList>
   )
   
@@ -50,9 +33,9 @@ const MyClasses: React.FC = () => {
       <Header title="Mis clases" settings back={false}/>
       <IonContent fullscreen>
         <IonGrid class='list-container'>
-          {classes.map((element : any) => {
+          {classes.map((classroom : any) => {
                 return (
-                    <ListItem text={element['_accessible_element']['_text']} pictogram={element['_accessible_element']['_pictogram']}/>
+                    <ListItem text={classroom['_class_code']['_text']} pictogram={classroom['_class_code']['_pictogram']}/>
                 );
             })}
         </IonGrid>

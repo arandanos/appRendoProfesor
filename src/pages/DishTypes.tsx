@@ -4,7 +4,7 @@ import './DishTypes.css';
 import { useState, useEffect } from "react";
 import { addCircleOutline, cafeOutline, checkmark } from 'ionicons/icons';
 import axios from 'axios';
-import { API_URL } from '../variables';
+import { API_URL } from '../ApiMethods';
 import TabSwitch from '../components/TabSwitch';
 import CreateDishPopUp from '../components/CreateDishPopUp';
 import ListItem from '../components/ListItem';

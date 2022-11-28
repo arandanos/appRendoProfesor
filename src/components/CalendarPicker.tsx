@@ -5,7 +5,6 @@ import {
     IonDatetime,
     IonModal,
     IonDatetimeButton,
-    DatetimeChangeEventDetail,
   } from '@ionic/react';
 import { calendarOutline, createOutline } from 'ionicons/icons';
 import { useRef } from 'react';
