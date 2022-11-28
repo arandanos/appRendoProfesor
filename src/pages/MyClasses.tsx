@@ -8,11 +8,9 @@ import PopUp from '../components/PopUp';
 import './Pages.css'
 import { briefcaseOutline, checkmark } from 'ionicons/icons';
 
-
 const MyClasses: React.FC = () => {
 
   const [ classes, setClasses ] = useState<any>([]);
-
 
   const sendGetRequest = () => {
 
@@ -21,12 +19,10 @@ const MyClasses: React.FC = () => {
       method: 'get'
     }).then(response => {
 
-      //console.log(response.data);
+      console.log(response.data);
       return response.data;
     })
   };
-
-  //sendGetRequest();
 
   useEffect(() =>{
     sendGetRequest().then(data => {
@@ -50,9 +46,9 @@ const MyClasses: React.FC = () => {
       <Header title="Mis clases" settings back={false}/>
       <IonContent fullscreen>
         <IonGrid class='list-container'>
-          {classes.map((element : any) => {
+          {classes.map((classroom : any) => {
                 return (
-                    <ListItem text={element['_accessible_element']['_text']} pictogram={element['_accessible_element']['_pictogram']}/>
+                    <ListItem text={classroom['_class_code']['_text']} pictogram={classroom['_class_code']['_pictogram']}/>
                 );
             })}
         </IonGrid>

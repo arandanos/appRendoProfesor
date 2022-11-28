@@ -75,7 +75,7 @@ const App: React.FC = () => (
             <IonIcon icon={homeOutline} />
             <IonLabel class='hide'>Home</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tareas" href="/kitchen_order">
+          <IonTabButton tab="tareas" href="/tasks">
             <IonIcon icon={clipboardOutline} />
             <IonLabel class='hide'>Tareas</IonLabel>
           </IonTabButton>

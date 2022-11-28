@@ -44,9 +44,9 @@ const Tasks: React.FC = () => {
           <IonGrid class="list-container">
 
             <IonSearchbar showClearButton="focus" placeholder="Buscar tarea..."></IonSearchbar>
-              {tasks.map(element => {
+              {tasks.map(task => {
                     return (
-                        <ListItem text={element['_accessible_element']['_text']} pictogram={element['_accessible_element']['_pictogram']}/>
+                        <ListItem text={task['_name']['_text']} pictogram={task['_name']['_pictogram']}/>
                     );
                 })}
             
