@@ -9,18 +9,6 @@ import PopUp from '../components/PopUp';
 const Tasks: React.FC = () => {
 
   const [tasks, setTasks] = useState([]);
- 
-
-  // const sendGetRequest = () => {
-  //   return axios({
-  //     url: API_URL + "task",
-  //     method: 'get'
-  //   }).then(response => {       
-  //     console.log(response.data)
-  //     return response.data;
-  //   })
-  // };
-
 
   useEffect(() =>{
     sendGetAllRequest("task").then(data => {

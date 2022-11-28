@@ -12,18 +12,6 @@ const MyClasses: React.FC = () => {
 
   const [ classes, setClasses ] = useState<any>([]);
 
-  // const sendGetRequest = () => {
-
-  //   return axios({
-  //     url: API_URL + "classroom",
-  //     method: 'get'
-  //   }).then(response => {
-
-  //     console.log(response.data);
-  //     return response.data;
-  //   })
-  // };
-
   useEffect(() =>{
     sendGetAllRequest("classroom").then(data => {
       setClasses(data)
@@ -37,7 +25,6 @@ const MyClasses: React.FC = () => {
         <IonIcon slot="start" icon={briefcaseOutline} />
         <IonInput type="text" placeholder='Nombre de la Clase' ></IonInput>
       </IonItem>
-
     </IonList>
   )
   
