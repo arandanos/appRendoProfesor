@@ -6,7 +6,6 @@ import { addCircleOutline, cafeOutline, checkmark } from 'ionicons/icons';
 import axios from 'axios';
 import { API_URL } from '../variables';
 import TabSwitch from '../components/TabSwitch';
-import PopUp from '../components/PopUp';
 import DishesList from '../components/DishesList';
 import CreateDishPopUp from '../components/CreateDishPopUp';
 
@@ -52,57 +51,37 @@ con el boton de Añadir */
       setPost(response.data);
     });
   }, []);
-  //No le paso parametros a createPost aun (post manual)
-  const createPost = () => {
-    axios.post(API_URL+"dish", {
-      _type: "MENU",
-      _name: "11",
-    })
-    .then((response) => {
-      //setDishes([...dishes, dish])
-      setPost(response.data);
-      //Recargo la pagina para que actualice la lista --> Cambiar para que lo haga sin tener que recargar
-      //window.location.reload();
-    });
-  };
 
-  /* const sendPostAccessibleElement = (data : {}) => {
-    return axios({
+  const sendPostRequest = async (name: string, pictogram: string, type: string) => {
+    //Crea la entrada en la tabla accessible_element
+    const response = await axios({
       url: API_URL + "accessible_element",
-      method: 'post',
-      data: data
-    }).then(response => {
-      console.log(response.data);
-      return response.data;
-    })
-  }
-
-  const sendPostDish = (data : {}) => {
-    return axios({
+      method: "post",
+      data: {
+        "_text": name,
+        "_pictogram": pictogram,
+      }
+    });
+    console.log(response.data);
+    //Crea la entrada en la tabla dish
+    const response_1 = await axios({
       url: API_URL + "dish",
-      method: 'post',
-      data: data
-    }).then(response => {
-      console.log(response.data);
-      return response.data;
-    })
+      method: "post",
+      data: {
+        "_name": response.data['_id'],
+        "_type": type,
+      }
+    });
+    console.log(response_1.data);
+    return (response_1.data);
   }
-
-  const sendPost = (dataAccessible: {}, dataDish : {}) => {
-    sendPostAccessibleElement(dataAccessible);
-    sendPostDish(dataDish);
-  }
-
-  const createPost = () => {
-    sendPost(dataAccessible, dataDish);
-  } */
 
   /** Declaro los arrays, de los nombres de los tabs y de elementos */
   var dishTypes: Array<string> = [];
   var arrayElementos: Array<JSX.Element> = [];
-  /* var dataAccessible = {id: 15, text:  "Menu nuevo", pictogram: "https://api.arasaac.org/api/pictograms/6961?resolution=500&download=false" };
-  var dataDish =  {id: 4, type: "MENU", accessible_element: dataAccessible};
-  var idNuevo: number; */
+  /* var dataAccessible = {id: 15, text:  "Menu nuevo", 
+  pictogram: "https://api.arasaac.org/api/pictograms/25111?resolution=500&download=false" };
+  */
 
   dishTypes = ["Menús", "Postres"];
 
@@ -122,11 +101,15 @@ con el boton de Añadir */
     console.log("Pictograma: " + pictoInput);
     
     //POST
-    
+    //createPost(nameInput, pictoInput, type);
+    sendPostRequest(nameInput, pictoInput, type);
+
     setNameInput("");
     setPictoInput("");
     sessionStorage.setItem("name", "");
     sessionStorage.setItem("pictogram", "");
+    //Recarga la pagina
+    window.location.reload();
   };
   /**
    * Funcion llamada desde el boton de papelera de cada item
@@ -167,7 +150,7 @@ con el boton de Añadir */
           dishes.map(menu => {
             if (menu['_type'] === "MENU") {
               return (
-                <DishesList key={menu['_id']} text={menu['_accessible_element']['_text']} pictogram={menu['_accessible_element']['_pictogram']} id={menu['_id']} deleteDish={deleteDish}></DishesList>
+                <DishesList key={menu['_id']} text={menu['_name']['_text']} pictogram={menu['_name']['_pictogram']} id={menu['_id']} deleteDish={deleteDish}></DishesList>
               )
             } else {
               return null
@@ -191,7 +174,7 @@ con el boton de Añadir */
           dishes.map(postre => {
             if (postre['_type'] === "POSTRE") {
               return (
-                <DishesList key={postre['_id']} text={postre['_accessible_element']['_text']} pictogram={postre['_accessible_element']['_pictogram']} id={postre['_id']} deleteDish={deleteDish}></DishesList>
+                <DishesList key={postre['_id']} text={postre['_name']['_text']} pictogram={postre['_name']['_pictogram']} id={postre['_id']} deleteDish={deleteDish}></DishesList>
               )
             } else {
               return null
