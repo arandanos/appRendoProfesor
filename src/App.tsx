@@ -38,6 +38,8 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import './App.css';
+import KitchenOrderView from './pages/KitchenOrderView';
+import Pruebas from './pages/Pruebas';
 
 
 setupIonicReact();
@@ -50,6 +52,7 @@ const App: React.FC = () => (
           <Route exact path="/dish_types">
             <DishTypes/>
           </Route>
+          <Route exact path="/kitchen_order" component={KitchenOrderView}/>
           <Route exact path="/home">
             <Home />
           </Route>
@@ -77,7 +80,7 @@ const App: React.FC = () => (
             <IonIcon icon={homeOutline} />
             <IonLabel class='hide'>Home</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tareas" href="/tasks">
+          <IonTabButton tab="tareas" href="/kitchen_order">
             <IonIcon icon={clipboardOutline} />
             <IonLabel class='hide'>Tareas</IonLabel>
           </IonTabButton>

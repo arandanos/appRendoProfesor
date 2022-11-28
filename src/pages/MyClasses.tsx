@@ -3,7 +3,7 @@ import Header from '../components/Header';
 import { API_URL } from '../variables';
 import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
-import MyClassesList from '../components/MyClassesList';
+import ListItem from '../components/ListItem';
 import PopUp from '../components/PopUp';
 import './Pages.css'
 import { briefcaseOutline, checkmark } from 'ionicons/icons';
@@ -49,14 +49,14 @@ const MyClasses: React.FC = () => {
     <IonPage>
       <Header title="Mis clases" settings back={false}/>
       <IonContent fullscreen>
-      <IonGrid class='list-container'>
-        {classes.map((element: { [x: string]: { [x: string]: string; }; }) => {
-              return (
-                  <MyClassesList text={element['_accessible_element']['_text']} pictogram={element['_accessible_element']['_pictogram']}/>
-              );
-          })}
-      </IonGrid>
-      <PopUp label='Añadir Clase' title='Añadir Nueva Clase' popUpContent={content}></PopUp>
+        <IonGrid class='list-container'>
+          {classes.map((element : any) => {
+                return (
+                    <ListItem text={element['_accessible_element']['_text']} pictogram={element['_accessible_element']['_pictogram']}/>
+                );
+            })}
+        </IonGrid>
+        <PopUp label='Añadir Clase' title='Nueva Clase' popUpContent={content}></PopUp>
       </IonContent>
     </IonPage>
   );

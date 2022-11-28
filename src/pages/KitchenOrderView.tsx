@@ -35,14 +35,12 @@ const KitchenOrderView: React.FC = () => {
 	if(data!['_status'])
 		estado = "Completada"
 
-
-
 	return (
 		<IonPage>
 			<Header title="Comanda" settings back={false} />
 			<IonContent fullscreen>
-				<IonList>
-					<div className="width-90">
+				<IonList class="width-90">
+					{/* <div className="width-90"> */}
 						<IonLabel>Alumno asignado</IonLabel>
 						<IonItem shape='round' fill='outline'>
 							<IonIcon slot='start' icon={personOutline} />
@@ -50,7 +48,7 @@ const KitchenOrderView: React.FC = () => {
 							<IonIcon slot='end' icon={createOutline} />
 						</IonItem>
 
-						<CalendarPicker label='Fecha límite de realización' disabled editButton value={"08/12/2030"}/>
+						<CalendarPicker label='Fecha límite de realización' disabled editButton value="2030-12-08"/>
 
 						<IonLabel>Estado</IonLabel>
 						<IonItem shape='round' fill='outline'>
@@ -75,7 +73,7 @@ const KitchenOrderView: React.FC = () => {
 								</IonFabButton>
 							</div>
 						</div>
-					</div>
+					{/* </div> */}
 				</IonList>
 			</IonContent>
 		</IonPage>

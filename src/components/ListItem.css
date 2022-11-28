@@ -1,10 +1,12 @@
-ion-img {
-    padding-right: 5%;
+.remove-padding {
+    --padding-start: 0px;
 }
 
 .pictogram-on-button{
     max-width: var(--pictogram-large-width);
     margin: auto;
+    padding-right: 5%;
+    padding-left: 10px;
     margin-bottom: 5px;
     margin-top: 5px;
 }

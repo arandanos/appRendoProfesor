@@ -22,12 +22,7 @@ const DishesList: React.FC<DishesList> = (props: DishesList) => {
       <IonLabel>
         {props.text}
       </IonLabel>
-      <IonButton 
-        class='delete-button' 
-        icon-only item-end 
-        fill='clear'
-        onClick={deleteDish}
-        >
+      <IonButton class='delete-button' icon-only item-end fill='clear' onClick={deleteDish}>
         <IonIcon icon={trashOutline}></IonIcon>
       </IonButton>
     </IonItem>
