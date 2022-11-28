@@ -52,6 +52,7 @@ con el boton de Añadir */
     });
   }, []);
 
+  //POST
   const sendPostRequest = async (name: string, pictogram: string, type: string) => {
     //Crea la entrada en la tabla accessible_element
     const response = await axios({
@@ -74,6 +75,16 @@ con el boton de Añadir */
     });
     console.log(response_1.data);
     return (response_1.data);
+  }
+  //DELETE
+  const sendDeleteRequest = (id: string) => {
+    return axios({
+      url: API_URL+"dish/"+id,
+      method: "delete",
+    }).then(response => {
+      console.log(response.data);
+      return(response.data);
+    })
   }
 
   /** Declaro los arrays, de los nombres de los tabs y de elementos */
@@ -115,7 +126,9 @@ con el boton de Añadir */
    * Funcion llamada desde el boton de papelera de cada item
    */
   function deleteDish(id: string){
-    console.log("Plato: " + id + " borrado.");
+    sendDeleteRequest(id);
+    //Recarga la pagina
+    window.location.reload();
   }
 
   const contentMenu = (
