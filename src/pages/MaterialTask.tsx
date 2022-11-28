@@ -5,42 +5,89 @@ import { add, trash, addCircleOutline } from 'ionicons/icons';
 import ToggleSwitch from '../components/ToggleSwitch';
 import CalendarPicker from '../components/CalendarPicker';
 import './MaterialTask.css'
-import { useState } from "react";
+import { API_URL } from '../variables';
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const MaterialTask: React.FC = () => {
+
+/*Obtener toda la tabla de materiales*/
+  const [materials, setMaterials] = useState([]);
+
+  const sendGetRequest = () => {
+
+    return axios({
+      url: API_URL + "material",
+      method: 'get'
+    }).then(response => {       
+     // console.log(response.data)
+      return response.data;
+    })
+  };
+
+
+  useEffect(() =>{
+    sendGetRequest().then(data => {
+      setMaterials(data)      
+    })    
+  }, []) 
   
-{/*Fila por defecto pal grid*/}
+  
+/*Variable para los materiales en si*/ 
+const [material, setMaterial] = useState([]);
+
+const AddMaterial = () =>{
+
+  
+
+  materials.map(mat => {
+
+      if(!material.includes(mat["_type"]["_item"]["_text"])){
+        material.push(mat["_type"]["_item"]["_text"])
+      }
+  
+  });
+  
+}
+
+AddMaterial()
+
+
+  
+/*Fila por defecto pal grid*/
   const Primero = {
     id: 0,
     count: 0,
     material: '',
-    color: ''
+    color: ''    
   }
 
-{/*variables del nombre del alumno y el array con todos los materiales*/}
+/*variables del nombre del alumno y el array con todos los materiales*/
   const [name, setName] = useState("");  
   const [rows, setRows] = useState([Primero]);
+  const [date, setDate] = useState("");
+  
   
 
-{/*-----------------Cambiar nombre alumno-----------------*/}
+/*-----------------Cambiar nombre alumno-----------------*/
   const ChangingName = (name: string) => {
 
     setName(name)
   }
 
-  {/*Añadir una nueva fila al grid, lo voy haciendo con ids, y para que no se repita ningun id para el tema de eliminar y demás hago ahi un poco de tratamiento refachero*/}
+  /*Añadir una nueva fila al grid, lo voy haciendo con ids, y para que no se repita ningun id para el tema de eliminar y demás hago ahi un poco de tratamiento refachero*/
   const addMaterialTaskRow = () => {  
 
     var contador = 0;
     var encontrado = false;
 
     var numbers = [];
-{/*veo todos los ids que estan en uso*/}
+/*veo todos los ids que estan en uso*/
     for(let i = 0; i<rows.length; i++){
       numbers.push(rows[i].id)
     }   
     
-{/*encuentro el primero que no este en uso y es el que pillo para hacer la nueva fila*/}
+/*encuentro el primero que no este en uso y es el que pillo para hacer la nueva fila*/
     while(!encontrado){
       
       var aux = numbers.indexOf(contador);
@@ -67,7 +114,7 @@ const MaterialTask: React.FC = () => {
     
   }
 
-{/*-----------------Eliminar una fila del grid mediante id-----------------*/}
+/*-----------------Eliminar una fila del grid mediante id-----------------*/
 const DeleteMaterialTaskRow = (id: number) => {
   if(rows.length != 1 && rows.length != 0){
     const newRow = rows.filter((row) => row.id !== id);
@@ -88,17 +135,17 @@ const DeleteMaterialTaskRow = (id: number) => {
   }
 }
 
-{/*-----------------Cambiar el tipo de material-----------------*/}
+/*-----------------Cambiar el tipo de material-----------------*/
 const ChangingMaterial = (value: string, id: number) => {
   rows[id].material = value;
 }
 
-{/*-----------------Cambiar el color-----------------*/}
+/*-----------------Cambiar el color-----------------*/
 const ChangingColor = (value: string, id: number) => {
   rows[id].color = value;
 }
 
-{/*-----------------Cambiar la cantidad-----------------*/}
+/*-----------------Cambiar la cantidad-----------------*/
 const ChangingCount = (value: number,id: number) => {
   rows[id].count = value;
 }
