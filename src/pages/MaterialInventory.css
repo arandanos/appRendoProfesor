@@ -1,0 +1,7 @@
+.list-container-materials{
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-bottom: 10px;
+    max-height: calc(100% - 184px);
+    min-height: calc(100% - 184px);
+}

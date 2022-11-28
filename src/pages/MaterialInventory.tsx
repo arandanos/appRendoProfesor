@@ -1,18 +1,21 @@
-import { IonContent, IonGrid, IonNav, IonPage, IonSearchbar } from '@ionic/react';
+import { IonGrid, IonSearchbar } from '@ionic/react';
 import './Pages.css';
 import Header from '../components/Header';
-import './KitchenOrderView.css'
+import './MaterialInventory.css'
 
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { API_URL } from '../variables';
 import ListItem from '../components/ListItem';
-const baseURL = "http://localhost:8000/api/task/2";
+import MaterialList from '../components/MaterialList';
 
 const MaterialInventory: React.FC = () => {
     
-   /* const [materials, setMaterials] = useState([]);
+    /*para los datos de materiales*/
+    const [materials, setMaterials] = useState([]);
+    const [showLoading, setShowLoading] = useState(true);
     
+    /*Queremos que obtenga los materiales de la base de datos) */
     const sendGetRequest =  () => {
         return axios({
             url: API_URL + "material",
@@ -25,27 +28,40 @@ const MaterialInventory: React.FC = () => {
     useEffect(()=>{
         sendGetRequest().then(data => {
             setMaterials(data)
+            setIsLoading(false)
+            setShowLoading(false)
         })
     },[])
     
-*/
-	return (
-        <IonNav root={() =>
-            <IonPage>
-                <Header title="Almacén" back settings={false}  />
-                <IonContent fullscreen>
-                <IonGrid class='list-container'>
-                    <IonSearchbar showClearButton="focus" placeholder="Buscar material..."></IonSearchbar>
-                {/*  {materials.map((element : any) => {
-                            return (
-                                <ListItem text={element['_accessible_element']['_text']} pictogram={element['_accessible_element']['_pictogram']}/>
-                            );
-                        })}*/}
-                    </IonGrid>
-                </IonContent>
-            </IonPage>
-        }></IonNav>
-	);
+    var arrayElementos: Array<JSX.Element> = [];
+    const [isLoading, setIsLoading] = useState(true)
+    var dishTypes: Array<string> = [];  
+    dishTypes = ["Menús", "Postres"];
+
+
+    arrayElementos = [
+        <>
+            <IonGrid class="list-container-materials">
+                {
+                    materials.map(material => {
+                        return (
+                            <ListItem text={material['_type']['_item']['_text']} pictogram={material['_type']['_item']['_pictogram']} href={''}></ListItem>
+                        )
+                        })
+                }
+            </IonGrid>
+        </>
+    ]
+
+    return (
+        <>
+            <Header title="Almacén" back settings={false}  />
+          {/*  <IonSearchbar showClearButton="focus" placeholder="Buscar material...">
+            </IonSearchbar> */}
+            <MaterialList tabsComponents={arrayElementos}></MaterialList>
+        </>
+    );
+
 };
 
 export default MaterialInventory;
