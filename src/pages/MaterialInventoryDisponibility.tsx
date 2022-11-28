@@ -47,15 +47,19 @@ const MaterialInventoryDisponibility: React.FC = () => {
     
     var arrayElementos: Array<JSX.Element> = [];
     const [isLoading, setIsLoading] = useState(true)
-    var nombreMaterial = "aA"
     function findMaterials(materials: any[]) {
         let materialesFiltrados = materials.filter(  material => material['_type']['_id'] == id_material )
-       /* var copia = materials.flat(0)
-        nombreMaterial = copia['_type']['_item']['_text'] */
         return materialesFiltrados
     }
 
+    /*PODRIA PONERSE MEJOR PERO NO ENCUENTRO LA FORMA*/
+    var nombreMaterial = ""
+    function findName(materials: any[]){
+        materials.forEach(material => nombreMaterial = material['_type']['_item']['_text'])
+    }
+
     var materialesF = findMaterials(materials) 
+    findName(materialesF)
 
     arrayElementos = [
         <>
