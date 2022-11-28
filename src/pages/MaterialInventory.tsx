@@ -37,12 +37,27 @@ const MaterialInventory: React.FC = () => {
     var arrayElementos: Array<JSX.Element> = [];
     const [isLoading, setIsLoading] = useState(true)
 
+    function findMaterials(materials: any[]) {
+        var tipos: any[] = []
+        var materialesFiltrados : any[] = []
+        materials.map( material =>{
+            var tipo = material['_type']['_id']
+            if (tipos.find(element => element == tipo) == undefined){
+                tipos.push(tipo)
+                materialesFiltrados.push(material)
+            }
+        }   
+        )
+        return materialesFiltrados
+    }
+    var materialesF = findMaterials(materials) 
+
 
     arrayElementos = [
         <>
             <IonGrid class="list-container-materials">
                 {
-                    materials.map(material => {
+                    materialesF.map(material => {
                         return (
                             <ListItem text={material['_type']['_item']['_text']} pictogram={material['_type']['_item']['_pictogram']} href={"/MaterialInventoryDisponibility/"+ material['_type']['_id']}></ListItem>
                         )
