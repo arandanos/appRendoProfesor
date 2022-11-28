@@ -4,7 +4,7 @@ import ToggleSwitch from '../components/ToggleSwitch';
 import CalendarPicker from '../components/CalendarPicker';
 import './Pages.css'
 import StyledButton from '../components/StyledButton';
-import { checkmarkCircleOutline, shield } from 'ionicons/icons';
+import { checkmarkCircleOutline } from 'ionicons/icons';
 import axios from 'axios';
 import { API_URL } from '../variables';
 import { useEffect, useState } from 'react';

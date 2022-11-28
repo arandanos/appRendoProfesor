@@ -1,4 +1,4 @@
-import { IonContent, IonPage, IonGrid, IonItem, IonNav, IonLabel, IonIcon, IonRow, IonSearchbar, IonTabBar, IonTabButton, IonInput, IonList } from '@ionic/react';
+import { IonContent, IonPage, IonGrid, IonNav, IonSearchbar } from '@ionic/react';
 import Header from '../components/Header';
 
 import { API_URL } from '../variables';
@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react';
 import ListItem from '../components/ListItem';
 import './Pages.css'
 import PopUp from '../components/PopUp';
-import { briefcaseOutline } from 'ionicons/icons';
 
 const Tasks: React.FC = () => {
 
@@ -15,7 +14,6 @@ const Tasks: React.FC = () => {
  
 
   const sendGetRequest = () => {
-
     return axios({
       url: API_URL + "task",
       method: 'get'
@@ -37,12 +35,10 @@ const Tasks: React.FC = () => {
   )
 
   return (
-    <IonNav root={() =>
       <IonPage>
         <Header title="Tareas" settings back={false}/>
         <IonContent fullscreen>
           <IonGrid class="list-container">
-
             <IonSearchbar showClearButton="focus" placeholder="Buscar tarea..."></IonSearchbar>
               {tasks.map(task => {
                     return (
@@ -51,12 +47,10 @@ const Tasks: React.FC = () => {
                 })}
             
             </IonGrid>
+
             <PopUp label='Añadir Tarea' title='Nueva Tarea' popUpContent={content}></PopUp>
         </IonContent>
-      </IonPage>
-
-    }></IonNav>
-      
+      </IonPage>  
   );
 };
 

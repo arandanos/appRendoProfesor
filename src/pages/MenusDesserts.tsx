@@ -5,7 +5,7 @@ import './Pages.css';
 const MenusDesserts: React.FC = () => {
   return (
     <>
-      <Header title="Menús y postres" back settings={false}/>
+      <Header title="Tipos de Platos" back settings={false}/>
       <IonContent fullscreen>
       </IonContent>
     </>

@@ -1,5 +1,5 @@
 import { trashOutline } from 'ionicons/icons';
-import {IonItem, IonImg, IonLabel, IonIcon, IonFabButton, IonButton} from '@ionic/react'
+import { IonItem, IonImg, IonLabel, IonIcon } from '@ionic/react'
 import { createOutline } from 'ionicons/icons';
 import './ListItem.css'
 

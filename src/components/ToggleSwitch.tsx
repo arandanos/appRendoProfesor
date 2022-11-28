@@ -3,7 +3,6 @@ import {
     IonLabel,
     IonToggle
   } from '@ionic/react';
-import { checkmarkDone } from 'ionicons/icons';
   
   import './ToggleSwitch.css'
 

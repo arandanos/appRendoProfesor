@@ -1,4 +1,4 @@
-import { IonContent, IonPage, IonGrid, IonButton, IonIcon, IonFabButton, IonLabel, IonPopover, IonTextarea, IonButtons, IonHeader, IonInput, IonItem, IonModal, IonTitle, IonToolbar, IonCard, IonAvatar, IonImg, IonList, IonFab } from '@ionic/react';
+import { IonContent, IonPage, IonGrid, IonIcon, IonInput, IonItem, IonList } from '@ionic/react';
 import Header from '../components/Header';
 import { API_URL } from '../variables';
 import axios from 'axios';
@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import ListItem from '../components/ListItem';
 import PopUp from '../components/PopUp';
 import './Pages.css'
-import { briefcaseOutline, checkmark } from 'ionicons/icons';
+import { briefcaseOutline } from 'ionicons/icons';
 
 const MyClasses: React.FC = () => {
 
