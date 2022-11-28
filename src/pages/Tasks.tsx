@@ -1,8 +1,6 @@
 import { IonContent, IonPage, IonGrid, IonNav, IonSearchbar } from '@ionic/react';
 import Header from '../components/Header';
-
-import { API_URL } from '../variables';
-import axios from 'axios';
+import {sendGetAllRequest} from '../ApiMethods'
 import { useEffect, useState } from 'react';
 import ListItem from '../components/ListItem';
 import './Pages.css'
@@ -13,19 +11,19 @@ const Tasks: React.FC = () => {
   const [tasks, setTasks] = useState([]);
  
 
-  const sendGetRequest = () => {
-    return axios({
-      url: API_URL + "task",
-      method: 'get'
-    }).then(response => {       
-      console.log(response.data)
-      return response.data;
-    })
-  };
+  // const sendGetRequest = () => {
+  //   return axios({
+  //     url: API_URL + "task",
+  //     method: 'get'
+  //   }).then(response => {       
+  //     console.log(response.data)
+  //     return response.data;
+  //   })
+  // };
 
 
   useEffect(() =>{
-    sendGetRequest().then(data => {
+    sendGetAllRequest("task").then(data => {
       setTasks(data)      
     })    
   }, []) 

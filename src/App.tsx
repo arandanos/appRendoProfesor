@@ -73,7 +73,6 @@ const App: React.FC = () => (
           </Route>
 
           {/* RUTAS RESTO DE COMPONENTES */}
-
           <Route exact path="/admin_settings" component={AdminSettings}/>
             <Route path="/dish_types" component={MenusDesserts}/>
             <Route path="/students" component={StudentManagement}/>

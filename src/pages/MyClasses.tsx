@@ -1,6 +1,6 @@
 import { IonContent, IonPage, IonGrid, IonIcon, IonInput, IonItem, IonList } from '@ionic/react';
 import Header from '../components/Header';
-import { API_URL } from '../variables';
+import { sendGetAllRequest } from '../ApiMethods';
 import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import ListItem from '../components/ListItem';
@@ -12,20 +12,20 @@ const MyClasses: React.FC = () => {
 
   const [ classes, setClasses ] = useState<any>([]);
 
-  const sendGetRequest = () => {
+  // const sendGetRequest = () => {
 
-    return axios({
-      url: API_URL + "classroom",
-      method: 'get'
-    }).then(response => {
+  //   return axios({
+  //     url: API_URL + "classroom",
+  //     method: 'get'
+  //   }).then(response => {
 
-      console.log(response.data);
-      return response.data;
-    })
-  };
+  //     console.log(response.data);
+  //     return response.data;
+  //   })
+  // };
 
   useEffect(() =>{
-    sendGetRequest().then(data => {
+    sendGetAllRequest("classroom").then(data => {
       setClasses(data)
     })
 
