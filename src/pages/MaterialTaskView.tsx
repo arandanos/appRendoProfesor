@@ -18,32 +18,32 @@ const MaterialTaskView: React.FC = () => {
             <IonPage>
                 <Header title='Material' back settings={false}/>
                 <IonContent >
-                    <IonGrid >
-                        <div className='width-90'>
+                    <IonGrid class='width-90'>
+                        {/* <div className='width-90'> */}
                             <IonLabel>Alumno asignado</IonLabel>
                             <IonItem shape='round' fill='outline'>
                                 <IonIcon slot='start' icon={personOutline} />
                                 <IonInput value="Nombre alumno" disabled />
                                 <IonIcon slot='end' icon={createOutline} />
                             </IonItem>
-                        </div>
-                        <div className='width-90'>
+                        {/* </div> */}
+                        {/* <div className='width-90'> */}
                             <CalendarPicker label='Fecha límite de realización' disabled editButton value={"08/12/2030"}/>
-                        </div>
-                        <div className='width-90'>
+                        {/* </div> */}
+                        {/* <div className='width-90'> */}
                             <IonLabel>Estado</IonLabel>
                             <IonItem shape='round' fill='outline'>
                                 <IonIcon slot='start' icon={clipboardOutline} />
                                 <IonInput value={estado} disabled />
                             </IonItem>
-                        </div>
-                        <div className='width-90'>
+                        {/* </div> */}
+                        {/* <div className='width-90'> */}
                             <IonLabel>Dar feedback</IonLabel>
                             <IonItem shape='round' fill='outline'>
                                 <IonTextarea placeholder='Escribir feedback...'></IonTextarea>
                                 <IonIcon slot='end' icon={cameraOutline} />
                             </IonItem>
-                        </div>
+                        {/* </div> */}
                         <div className="box">
                             <div className='b1'>
                                 <IonButton shape='round' size='small' >

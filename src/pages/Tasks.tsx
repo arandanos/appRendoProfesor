@@ -23,7 +23,7 @@ const Tasks: React.FC = () => {
       url: API_URL + "task",
       method: 'get'
     }).then(response => {       
-     // console.log(response.data)
+     console.log(response.data)
       return response.data;
     })
   };

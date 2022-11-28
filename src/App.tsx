@@ -63,25 +63,24 @@ const App: React.FC = () => (
           <Route path="/profile">
             <Profile />
           </Route>
-          <Route path="/adminSettings">
+          <Route path="/admin_settings">
             <AdminSettings />
           </Route>
           <Route exact path="/">
             <Redirect to="/home" />
           </Route>
-          <Route exact path="/tasks/MaterialTaskView">
-            <MaterialTaskView />
-          </Route>
-          <Route exact path="/tasks/KitchenOrderView">
+          <Route exact path="/tasks/material_task_view" component={MaterialTaskView}></Route>
+          <Route exact path="/tasks/kitchen_order_view">
             <KitchenOrderView />
           </Route>
         </IonRouterOutlet>
+        {/**  TABS BARRA NAVEGACION INFERIOR */}
         <IonTabBar slot="bottom">
           <IonTabButton tab="Home" href="/home">
             <IonIcon icon={homeOutline} />
             <IonLabel class='hide'>Home</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tareas" href="/tasks">
+          <IonTabButton tab="Tasks" href="/tasks">
             <IonIcon icon={clipboardOutline} />
             <IonLabel class='hide'>Tareas</IonLabel>
           </IonTabButton>
