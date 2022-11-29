@@ -1,10 +1,12 @@
-import { IonContent, IonPage, IonGrid, IonNav, IonSearchbar } from '@ionic/react';
+import { IonContent, IonPage, IonGrid, IonNav, IonSearchbar, IonInput, IonItem, InputChangeEventDetail, IonList, IonImg, IonPopover } from '@ionic/react';
 import Header from '../components/Header';
-import {sendGetAllRequest} from '../ApiMethods'
-import { useEffect, useState } from 'react';
+import {sendGetAllRequest, sendGetARASAACRequest} from '../ApiMethods'
+import { ChangeEventHandler, useEffect, useState } from 'react';
 import ListItem from '../components/ListItem';
 import './Pages.css'
 import PopUp from '../components/PopUp';
+import axios from 'axios';
+import { returnUpBack } from 'ionicons/icons';
 
 const Tasks: React.FC = () => {
 
@@ -16,9 +18,37 @@ const Tasks: React.FC = () => {
     })    
   }, []) 
 
+  const [data, setData] = useState([]);
+  // let [results, setResults] = useState([...data]);
+
+  const handleChange = (ev: Event) => {
+    let query = "";
+    const target = ev.target as HTMLIonSearchbarElement;
+    if (target) query = target.value!.toLowerCase();
+
+    sendGetARASAACRequest(query).then( (resp) => {
+      setData(resp);
+    })
+  }
+
   const content = ( 
-    <></>
+    <>
+     <IonSearchbar onIonChange={(ev) => handleChange(ev)}></IonSearchbar>
+      <IonList>
+      { data.map(pic => (
+        <ListItem text={pic['keywords'][0]['keyword']} pictogram={'https://api.arasaac.org/api/pictograms/' + pic["_id"] + '?resolution=500&download=false'}/>
+        // <IonItem><IonImg class="pictogram-on-button" slot="start" src={'https://api.arasaac.org/api/pictograms/' + pic["_id"] + '?resolution=500&download=false'}></IonImg></IonItem>
+      ))}
+    </IonList>
+    </>
   )
+
+
+  const handleDoneClick = () => {
+   
+  }
+
+
 
   return (
       <IonPage>
@@ -34,7 +64,7 @@ const Tasks: React.FC = () => {
             
             </IonGrid>
 
-            <PopUp label='Añadir Tarea' title='Nueva Tarea' popUpContent={content}></PopUp>
+            <PopUp label='Añadir Tarea' title='Nueva Tarea' popUpContent={content} doneAction={handleDoneClick}></PopUp>
         </IonContent>
       </IonPage>  
   );

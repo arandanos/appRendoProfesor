@@ -8,6 +8,7 @@ interface PopUpProps {
     label: string;
     title: string;
     popUpContent: JSX.Element;
+    doneAction?: any
 }
 
 const PopUp: React.FC<PopUpProps> = (props: PopUpProps) => {
@@ -37,7 +38,7 @@ const PopUp: React.FC<PopUpProps> = (props: PopUpProps) => {
                     {props.popUpContent}
 
                     <IonFab vertical="bottom" horizontal='center'>
-                        <IonFabButton color="success" >
+                        <IonFabButton color="success" onClick={props.doneAction} >
                             <IonIcon icon={checkmark}></IonIcon>
                         </IonFabButton>
                     </IonFab>
