@@ -35,7 +35,7 @@ const MyClasses: React.FC = () => {
         <IonGrid class='list-container'>
           {classes.map((classroom : any) => {
                 return (
-                    <ListItem text={classroom['_class_code']['_text']} pictogram={classroom['_class_code']['_pictogram']}/>
+                    <ListItem text={classroom['_name']['_text']} pictogram={classroom['_name']['_pictogram']}/>
                 );
             })}
         </IonGrid>
