@@ -1,0 +1,1 @@
+const SuperviseKitchenOrder: React.FC = () =>{return(<></>)}
