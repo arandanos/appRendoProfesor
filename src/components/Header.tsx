@@ -15,8 +15,8 @@ const Header: React.FC<{ title: string; back: boolean; settings: boolean }> = (p
     var BackButton = () => {
       if(props.back){
         return (
-          <IonFabButton slot="start" size="small">
-            <IonBackButton/>
+          <IonFabButton slot="start" size="small" >
+            <IonBackButton defaultHref="/"/>
           </IonFabButton>
         )
       }
@@ -27,7 +27,7 @@ const Header: React.FC<{ title: string; back: boolean; settings: boolean }> = (p
     var SettingsButton = () => {
       if(props.settings){
         return (
-          <IonFabButton slot="end" size="small" href="/AdminSettings" class='margin-right-settings'>
+          <IonFabButton slot="end" size="small" href="/admin_settings" class='margin-right-settings'>
             <IonIcon icon={settingsOutline} />
           </IonFabButton>
         ) 

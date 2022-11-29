@@ -5,8 +5,8 @@ import './MaterialInventory.css'
 
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
-import { API_URL } from '../variables';
 import ListItem from '../components/ListItem';
+const API_URL = ("http://localhost:8000/api/");
 
 
 const MaterialInventory: React.FC = () => {
@@ -65,8 +65,8 @@ const MaterialInventory: React.FC = () => {
     return (
         <>
             <Header title="Almacén" back settings={false}  />
-          {/*  <IonSearchbar showClearButton="focus" placeholder="Buscar material...">
-            </IonSearchbar> */}
+            <IonSearchbar showClearButton="focus" placeholder="Buscar material...">
+            </IonSearchbar> 
 
             <IonContent fullscreen>
                  <IonLabel>{arrayElementos}</IonLabel>

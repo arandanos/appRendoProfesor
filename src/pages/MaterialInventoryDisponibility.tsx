@@ -6,12 +6,11 @@ import './KitchenOrderView.css'
 
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
-import { API_URL } from '../variables';
-import ListItem from '../components/ListItem';
 import { useParams } from 'react-router';
 import DisponibilityList from '../components/DisponibilityList';
 import { url } from 'inspector';
 const baseURL = "http://localhost:8000/api/task/2";
+const API_URL = ("http://localhost:8000/api/");
 
 const MaterialInventoryDisponibility: React.FC = () => {
     
