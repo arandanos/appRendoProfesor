@@ -67,8 +67,7 @@ const MaterialInventoryDisponibility: React.FC = () => {
                 {
                     materialesF.map(material => {
                         return (
-                            <DisponibilityList text={material['_color']['_text']} pictogram={material['_color']['_pictogram']} quantity={material['_quantity']}></DisponibilityList>
-
+                            <DisponibilityList text={material['_color']['_text']} pictogram={material['_color']['_pictogram']} quantity={material['_quantity']} edit={false}></DisponibilityList>
                         )
                         })
                 }

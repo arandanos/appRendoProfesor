@@ -3,13 +3,14 @@ import {IonItem, IonImg, IonLabel, IonIcon, IonFabButton, IonButton} from '@ioni
 import { createOutline } from 'ionicons/icons';
 import './ListItem.css'
 
-interface ListItemProps{
+interface DisponibilityListProps{
   text: string; 
   pictogram: string;
   quantity: string;
+  edit: boolean
 }
 
-const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
+const DisponibilityList: React.FC<DisponibilityListProps> = (props: DisponibilityListProps) => {
     
  
   
@@ -23,4 +24,4 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
   )
 }
 
-export default ListItem;
+export default DisponibilityList;

@@ -23,12 +23,6 @@
  
  
  
-     <CreateAnimation duration={1000}
-         fromTo={[
-             {property:'transform', fromValue:'translate(0px)', toValue:'translateX(-100px)'}
-         ]}
-     ></CreateAnimation>
- 
      return(
          <>
              <IonContent fullscreen>
