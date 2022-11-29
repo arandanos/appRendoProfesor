@@ -1,10 +1,9 @@
-import { NavComponentWithProps, IonLoading, IonList, IonGrid, IonIcon, IonItem, IonInput, IonButton, IonFab, IonFabButton} from '@ionic/react';
+import { IonLoading, IonList, IonGrid, IonIcon, IonItem, IonInput} from '@ionic/react';
 import Header from '../components/Header';
 import './DishTypes.css';
 import { useState, useEffect } from "react";
 import { addCircleOutline, cafeOutline, checkmark } from 'ionicons/icons';
-import axios from 'axios';
-import { API_URL } from '../ApiMethods';
+import { sendGetAllRequest, sendPostRequest, sendDeleteIDRequest } from '../ApiMethods';
 import TabSwitch from '../components/TabSwitch';
 import CreateDishPopUp from '../components/CreateDishPopUp';
 import ListItem from '../components/ListItem';
@@ -14,78 +13,19 @@ const DishTypes: React.FC = () => {
 
   /** Para los datos de menus y postres */
   const [dishes, setDishes] = useState([]);
-  const [post, setPost] = useState(null);
   const [showLoading, setShowLoading] = useState(true);
   const [nameInput, setNameInput] = useState("Nuevo");
   const [pictoInput, setPictoInput] = useState("https://api.arasaac.org/api/pictograms/29839?resolution=500&download=false");
 
-  /** Queremos que obtenga los menús y postres de la base de datos, y que cree nuevos 
-con el boton de Añadir */
-  const sendGetMenusRequest = () => {
-    return axios({
-      url: API_URL + "dish",
-      method: 'get'
-    }).then(response => {
-      console.log(response.data);
-      return (response.data);
-    })
-  };
 
   {/** useEffect Hook para usar el get con Axios y obtener los datos de la url asignada antes*/ }
   useEffect(() => {
-    sendGetMenusRequest().then(data => {
+    sendGetAllRequest("dish").then(data => {
       setDishes(data)
       setIsLoading(false)
       setShowLoading(false)
-      //separateDishes()
     })
   }, [])
-
-  /** POST de un menú 
-   * Cuando queramos crear un nuevo menú, primero hay que crear una nueva entrada en la tabla Accessible element
-   * y luego la entrada en la tabla Dish
-   * Formato de post: axios.post(url[, data[, config]])
-  */
-  useEffect(() => {
-    axios.get(API_URL+"dish").then((response) => {
-      setPost(response.data);
-    });
-  }, []);
-
-  //POST
-  const sendPostRequest = async (name: string, pictogram: string, type: string) => {
-    //Crea la entrada en la tabla accessible_element
-    const response = await axios({
-      url: API_URL + "accessible_element",
-      method: "post",
-      data: {
-        "_text": name,
-        "_pictogram": pictogram,
-      }
-    });
-    console.log(response.data);
-    //Crea la entrada en la tabla dish
-    const response_1 = await axios({
-      url: API_URL + "dish",
-      method: "post",
-      data: {
-        "_name": response.data['_id'],
-        "_type": type,
-      }
-    });
-    console.log(response_1.data);
-    return (response_1.data);
-  }
-  //DELETE
-  const sendDeleteRequest = (id: string) => {
-    return axios({
-      url: API_URL+"dish/"+id,
-      method: "delete",
-    }).then(response => {
-      console.log(response.data);
-      return(response.data);
-    })
-  }
 
   /** Declaro los arrays, de los nombres de los tabs y de elementos */
   var dishTypes: Array<string> = [];
@@ -112,8 +52,17 @@ con el boton de Añadir */
     console.log("Pictograma: " + pictoInput);
     
     //POST
-    //createPost(nameInput, pictoInput, type);
-    sendPostRequest(nameInput, pictoInput, type);
+    sendPostRequest("accessible_element", {
+      "_text": nameInput,
+      "_pictogram": pictoInput,
+    }).then(response => {
+      sendPostRequest("dish", {
+        "_name": response["_id"],
+        "_type": type,
+      }).then(response_1=> {
+        console.log(response_1);
+      })
+    })
 
     setNameInput("");
     setPictoInput("");
@@ -126,7 +75,7 @@ con el boton de Añadir */
    * Funcion llamada desde el boton de papelera de cada item
    */
   function deleteDish(id: string){
-    sendDeleteRequest(id);
+    sendDeleteIDRequest("dish", id);
     //Recarga la pagina
     window.location.reload();
   }
@@ -172,14 +121,6 @@ con el boton de Añadir */
         }
       </IonGrid>
       <CreateDishPopUp label='Añadir Menú' title='Nuevo Menú' popUpContent={contentMenu} type='MENU' newDish={newDish}></CreateDishPopUp>
-      {/* <PopUp label='Añadir Menú' title='Nuevo Menú' popUpContent={contentMenu}></PopUp> */}
-      {/* {idNuevo = 15}
-      {dataAccessible = {id: idNuevo, text:  "Menu nuevo", pictogram: "https://api.arasaac.org/api/pictograms/6961?resolution=500&download=false" }}
-      {dataDish = {id: 4, type: "MENU", accessible_element: dataAccessible}} */}
-      {/* <IonButton onClick={createPost} id="trigger-menu-button" class="add-button" color="blue" fill="outline" shape="round">
-        <IonIcon slot="start" icon={addCircleOutline}></IonIcon>
-        Añadir Nuevo Menú
-      </IonButton> */}
     </>,
     <>
       <IonGrid class='list-container-dishes'>
@@ -195,15 +136,11 @@ con el boton de Añadir */
           })
         }
       </IonGrid>
-      
-      {/* TODO Post en el popUp de los datos que reciban los inputs */}
-      {/* ? haria el post el componente al cual se le pasa la ruta a la que debe hacerlo? */}
       <CreateDishPopUp label='Añadir Postre' title='Nuevo Postre' popUpContent={contentDesert} type='POSTRE' newDish={newDish}></CreateDishPopUp>      
     </>
   ]
 
   //Pantalla de carga:
-
   const [isLoading, setIsLoading] = useState(true);
 
   if(isLoading){
