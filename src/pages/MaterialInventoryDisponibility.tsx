@@ -24,7 +24,6 @@ const MaterialInventoryDisponibility: React.FC = () => {
 
     /*para los datos de materiales*/
     const [materials, setMaterials] = useState([]);
-    const [showLoading, setShowLoading] = useState(true);
     
     /*Queremos que obtenga los materiales de la base de datos) */
     const sendGetRequest =  () => {
@@ -39,13 +38,11 @@ const MaterialInventoryDisponibility: React.FC = () => {
     useEffect(()=>{
         sendGetRequest().then(data => {
             setMaterials(data)
-            setIsLoading(false)
-            setShowLoading(false)
+
         })
     },[])
     
     var arrayElementos: Array<JSX.Element> = [];
-    const [isLoading, setIsLoading] = useState(true)
     function findMaterials(materials: any[]) {
         let materialesFiltrados = materials.filter(  material => material['_type']['_id'] == id_material )
         return materialesFiltrados
