@@ -67,7 +67,7 @@ AddMaterial()
   const [name, setName] = useState("");  
   const [rows, setRows] = useState([Primero]);
   const [date, setDate] = useState("");
-  
+ 
   
 
 /*-----------------Cambiar nombre alumno-----------------*/
@@ -112,6 +112,9 @@ AddMaterial()
     }  
     
     setRows([...rows, newRow]) 
+
+    setQuantity([])
+    SetColor([])
     
   }
 
@@ -133,31 +136,55 @@ const DeleteMaterialTaskRow = (id: number) => {
       setRows([newRow])
    }, 0,1);
 
+    setQuantity([])
+    SetColor([])
+
   }
 }
 
 /*-----------------Cambiar el tipo de material-----------------*/
-const [colors, SetColor] = useState([]);
+const [colors, SetColor] = useState(['']);
 const ChangingMaterial = (value: string, id: number) => {
   rows[id].material = value;
 
-  
+  var aux = ['-- Elige un color --']
 
   materials.map(mat => {
   if(mat["_type"]["_item"]["_text"] == value)
-      if(!colors.includes(mat["_color"]["_text"])){
-        SetColor(mat["_color"]["_text"])
+      if(!aux.includes(mat["_color"]["_text"])){
+        aux.push(mat["_color"]["_text"])
       }
 
   });
 
-  console.log(colors)
+  SetColor(aux) 
 
 }
 
 /*-----------------Cambiar el color-----------------*/
+const [quantity, setQuantity] = useState(['']);
 const ChangingColor = (value: string, id: number) => {
   rows[id].color = value;
+
+
+  var number = 0  
+  var aux = ['-- Elige una cantidad --']
+
+  materials.map(mat => {
+    if(mat["_type"]["_item"]["_text"] == rows[id].material && mat["_color"]["_text"] == value){
+      number = mat["_quantity"]
+    }   
+  });
+
+  
+
+  for(let i=1; i< number+1; i++){
+    var string = String(i)
+    aux.push(string)    
+  }
+
+  setQuantity(aux)
+  
 }
 
 /*-----------------Cambiar la cantidad-----------------*/
@@ -196,7 +223,7 @@ const ChangingCount = (value: number,id: number) => {
 se cambien automaticamente en el array con todas las cosas, para la visualización hago que se añada una fila por cada elemento del array, con el .map*/}
             <IonGrid className="grid">              
               {rows.map(row => (
-                <MaterialRow row={row} material={material} colors={colors} ChangingCount= {ChangingCount} DeleteMaterialTaskRow={DeleteMaterialTaskRow} ChangingMaterial={ChangingMaterial} ChangingColor={ChangingColor} />       
+                <MaterialRow row={row} quantity={quantity} material={material} colors={colors} ChangingCount= {ChangingCount} DeleteMaterialTaskRow={DeleteMaterialTaskRow} ChangingMaterial={ChangingMaterial} ChangingColor={ChangingColor} />       
                ))}
               
             
@@ -208,8 +235,9 @@ se cambien automaticamente en el array con todas las cosas, para la visualizaci�
                           <IonIcon icon={add}></IonIcon>
                   </IonFabButton>
                 </IonCol>                
-              </IonRow>                
+              </IonRow>             
 
+             
                        
 
             </IonGrid>

@@ -13,7 +13,7 @@ interface rows{
 
 
 
-const MaterialRow: React.FC<{row: rows, material: never[], colors: never[], ChangingCount: Function, DeleteMaterialTaskRow: Function, ChangingMaterial: Function, ChangingColor: Function  }> = (props: {row: rows, material: never[], colors: never[], ChangingCount: Function, DeleteMaterialTaskRow: Function, ChangingMaterial: Function, ChangingColor: Function }) => {  
+const MaterialRow: React.FC<{row: rows, quantity: string[], material: never[], colors: string[], ChangingCount: Function, DeleteMaterialTaskRow: Function, ChangingMaterial: Function, ChangingColor: Function  }> = (props: {row: rows, quantity: string[], material: never[], colors: string[], ChangingCount: Function, DeleteMaterialTaskRow: Function, ChangingMaterial: Function, ChangingColor: Function }) => {  
     
 
      
@@ -26,11 +26,9 @@ const MaterialRow: React.FC<{row: rows, material: never[], colors: never[], Chan
                         <IonItem shape="round" fill="outline">                          
                           <IonIcon slot="start" icon={addCircleOutline}></IonIcon>           
                           <IonSelect name="Select1" onIonChange={(e) => props.ChangingCount(e.detail.value, props.row.id)} interface="popover" placeholder="0">
-                            <IonSelectOption value="1">1</IonSelectOption>
-                            <IonSelectOption value="2">2</IonSelectOption>
-                            <IonSelectOption value="3">3</IonSelectOption>
-                            <IonSelectOption value="4">4</IonSelectOption>
-                            <IonSelectOption value="5">5</IonSelectOption>
+                            {props.quantity.map( quan  => (
+                              <IonSelectOption>{quan}</IonSelectOption>
+                            ))}
                           </IonSelect>
                         </IonItem>
                       </IonCol>                     
