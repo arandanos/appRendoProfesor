@@ -49,7 +49,6 @@ const Tasks: React.FC = () => {
   }
 
 
-
   return (
       <IonPage>
         <Header title="Tareas" settings back={false}/>
