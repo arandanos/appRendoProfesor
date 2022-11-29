@@ -1,5 +1,6 @@
 .remove-padding {
     --padding-start: 0px;
+    --padding-end: 0px;
 }
 
 .pictogram-on-button{

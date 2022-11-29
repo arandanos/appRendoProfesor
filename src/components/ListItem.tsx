@@ -1,5 +1,5 @@
 import { trashOutline } from 'ionicons/icons';
-import { IonItem, IonImg, IonLabel, IonIcon, IonButton, useIonAlert } from '@ionic/react'
+import { IonItem, IonImg, IonLabel, IonIcon, IonButton, IonFabButton, useIonAlert, IonCol, IonRow } from '@ionic/react'
 import { createOutline } from 'ionicons/icons';
 import './ListItem.css'
 
@@ -26,7 +26,7 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
   }
   //Llama al delete<item> de la página padre
   function deleteItem(){
-    /* presentAlert({
+    presentAlert({
       header: "¿Desea borrar: "+ props.text +"?",
       buttons: [
         {
@@ -39,20 +39,23 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
           handler: () => {props.deleteItem(props.id)}
         }
       ],
-    }) */
-    props.deleteItem(props.id);
+    })
   }
   
-  return (       
-    <IonItem key={props.id} class="remove-padding" href={href}>
-      <IonImg class="pictogram-on-button" src={props.pictogram}/>
-      <IonLabel> {props.text} </IonLabel>
-      <IonButton class='icon-button' icon-only item-end fill='clear' onClick={editItem}>
-        <IonIcon icon={createOutline}></IonIcon>
-      </IonButton>    
-      <IonButton class='icon-button' icon-only item-end fill='clear' onClick={deleteItem}>
-        <IonIcon icon={trashOutline}></IonIcon>
-      </IonButton>
+  return (     
+    <IonItem key={props.id} class="remove-padding" >
+      <IonItem lines="none" class="remove-padding" href={href}>
+        <IonImg class="pictogram-on-button" src={props.pictogram} />
+        <IonLabel> {props.text} </IonLabel>
+      </IonItem>
+      <IonItem lines='none' slot='end' class='remove-padding'>
+        <IonButton class='icon-button' icon-only item-end fill='clear' onClick={editItem}>
+          <IonIcon icon={createOutline}></IonIcon>
+        </IonButton>    
+        <IonButton class='icon-button' icon-only item-end fill='clear' onClick={deleteItem}>
+          <IonIcon icon={trashOutline}></IonIcon>
+        </IonButton>
+      </IonItem>
     </IonItem>
   )
 }
