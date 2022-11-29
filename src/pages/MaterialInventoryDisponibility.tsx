@@ -1,4 +1,4 @@
-import { IonContent, IonGrid, IonNav, IonPage, IonSearchbar } from '@ionic/react';
+import { IonContent, IonGrid, IonLabel, IonNav, IonPage, IonSearchbar } from '@ionic/react';
 import './Pages.css';
 import Header from '../components/Header';
 import './KitchenOrderView.css'
@@ -10,7 +10,6 @@ import { API_URL } from '../variables';
 import ListItem from '../components/ListItem';
 import { useParams } from 'react-router';
 import DisponibilityList from '../components/DisponibilityList';
-import MaterialList from '../components/MaterialList';
 import { url } from 'inspector';
 const baseURL = "http://localhost:8000/api/task/2";
 
@@ -67,7 +66,7 @@ const MaterialInventoryDisponibility: React.FC = () => {
                 {
                     materialesF.map(material => {
                         return (
-                            <DisponibilityList text={material['_color']['_text']} pictogram={material['_color']['_pictogram']} quantity={material['_quantity']} edit={false}></DisponibilityList>
+                            <DisponibilityList text={material['_color']['_text']} pictogram={material['_color']['_pictogram']} quantity={material['_quantity']}></DisponibilityList>
                         )
                         })
                 }
@@ -82,7 +81,7 @@ const MaterialInventoryDisponibility: React.FC = () => {
                 <IonPage>
                     <Header title= {"Almacén: " + nombreMaterial}  back settings={false}  />
                     <IonContent fullscreen>
-                        <MaterialList tabsComponents={arrayElementos}></MaterialList>
+                        <IonLabel>{arrayElementos}</IonLabel>
                     </IonContent>
                 </IonPage>
             }></IonNav>

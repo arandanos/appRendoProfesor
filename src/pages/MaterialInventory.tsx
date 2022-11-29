@@ -1,4 +1,4 @@
-import { IonGrid, IonSearchbar } from '@ionic/react';
+import { IonContent, IonGrid, IonLabel, IonSearchbar } from '@ionic/react';
 import './Pages.css';
 import Header from '../components/Header';
 import './MaterialInventory.css'
@@ -7,8 +7,7 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { API_URL } from '../variables';
 import ListItem from '../components/ListItem';
-import MaterialList from '../components/MaterialList';
-import MaterialInventoryDisponibility from './MaterialInventoryDisponibility';
+
 
 const MaterialInventory: React.FC = () => {
     
@@ -72,7 +71,10 @@ const MaterialInventory: React.FC = () => {
             <Header title="Almacén" back settings={false}  />
           {/*  <IonSearchbar showClearButton="focus" placeholder="Buscar material...">
             </IonSearchbar> */}
-            <MaterialList tabsComponents={arrayElementos}></MaterialList>
+
+            <IonContent fullscreen>
+                 <IonLabel>{arrayElementos}</IonLabel>
+             </IonContent>
         </>
     );
 

@@ -7,19 +7,22 @@ interface DisponibilityListProps{
   text: string; 
   pictogram: string;
   quantity: string;
-  edit: boolean
+  href?: string;
 }
 
 const DisponibilityList: React.FC<DisponibilityListProps> = (props: DisponibilityListProps) => {
     
- 
+  var href = "#"
+  if (props.href)
+    href = props.href;
   
-  return (       
+  return (
     <IonItem class="remove-padding">
       <IonImg class="pictogram-on-button" src={props.pictogram} />
       <IonLabel> {props.text} </IonLabel>
       <IonLabel> {props.quantity} </IonLabel>
-      <IonIcon class="ion-margin-start" icon={createOutline} />     
+      <IonIcon class="ion-margin-start" icon={createOutline} />
+      <IonIcon class="ion-margin-start" icon={trashOutline} />
     </IonItem>
   )
 }
