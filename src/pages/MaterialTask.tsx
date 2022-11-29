@@ -8,6 +8,7 @@ import './MaterialTask.css'
 import { API_URL } from '../variables';
 import { useState, useEffect } from "react";
 import axios from "axios";
+import MaterialRow from "../components/MaterialRow";
 
 const MaterialTask: React.FC = () => {
 
@@ -136,8 +137,22 @@ const DeleteMaterialTaskRow = (id: number) => {
 }
 
 /*-----------------Cambiar el tipo de material-----------------*/
+const [colors, SetColor] = useState([]);
 const ChangingMaterial = (value: string, id: number) => {
   rows[id].material = value;
+
+  
+
+  materials.map(mat => {
+  if(mat["_type"]["_item"]["_text"] == value)
+      if(!colors.includes(mat["_color"]["_text"])){
+        SetColor(mat["_color"]["_text"])
+      }
+
+  });
+
+  console.log(colors)
+
 }
 
 /*-----------------Cambiar el color-----------------*/
@@ -175,64 +190,14 @@ const ChangingCount = (value: number,id: number) => {
               </IonSelect>
             </IonItem>
             </div>
-      </IonList>     
+      </IonList>    
+      
 {/*Para hacer el tema de la cantidad, material ..etc he hecho un grid en donde cada fila sea pues los 3 inputs, y dentro de cada fila 2 filas para ir poniendo las cosas, en los select he hecho que en cuanto se haga un cambio
 se cambien automaticamente en el array con todas las cosas, para la visualización hago que se añada una fila por cada elemento del array, con el .map*/}
             <IonGrid className="grid">              
               {rows.map(row => (
-                <IonRow>
-                <IonGrid>
-                  <IonRow>
-                      <IonCol>
-                      <IonLabel>Cantidad</IonLabel>
-                        <IonItem shape="round" fill="outline">                          
-                          <IonIcon slot="start" icon={addCircleOutline}></IonIcon>           
-                          <IonSelect name="Select1" onIonChange={(e) => ChangingCount(e.detail.value, row.id)} interface="popover" placeholder="0">
-                            <IonSelectOption value="1">1</IonSelectOption>
-                            <IonSelectOption value="2">2</IonSelectOption>
-                            <IonSelectOption value="3">3</IonSelectOption>
-                            <IonSelectOption value="4">4</IonSelectOption>
-                            <IonSelectOption value="5">5</IonSelectOption>
-                          </IonSelect>
-                        </IonItem>
-                      </IonCol>                     
-
-                      <IonCol>
-                      <IonLabel>Material</IonLabel>
-                      <IonItem shape="round" fill="outline">
-                      <IonSelect onIonChange={(e) => ChangingMaterial(e.detail.value, row.id)} interface="popover" placeholder="0">
-                            <IonSelectOption value="Lapiz">Lápiz</IonSelectOption>
-                            <IonSelectOption value="Cartulina">Cartulina</IonSelectOption>
-                            <IonSelectOption value="Sacapuntas">Sacapuntas</IonSelectOption>
-                      </IonSelect>
-                      </IonItem>
-                      </IonCol>
-                  </IonRow>
-
-                  <IonRow>
-                    <IonCol size="5">
-                      <IonLabel>Color</IonLabel>
-                      <IonItem shape="round" fill="outline">
-                        <IonSelect className="Color" onIonChange={(e) => ChangingColor(e.detail.value, row.id)} interface="popover" placeholder="Color">
-                            <IonSelectOption>Rojo</IonSelectOption>
-                            <IonSelectOption>Amarillo</IonSelectOption>
-                            <IonSelectOption>Verde</IonSelectOption>
-                        </IonSelect>
-                      </IonItem>
-                    </IonCol>
-
-                    <IonCol offset="3">
-                      <IonFabButton color="danger" size='small'>
-                        <IonIcon icon={trash} onClick={() => DeleteMaterialTaskRow(row.id)}></IonIcon> 
-                      </IonFabButton>  
-                    </IonCol>    
-
-                  </IonRow>
-
-                </IonGrid>
-
-              </IonRow>
-              ))}
+                <MaterialRow row={row} material={material} colors={colors} ChangingCount= {ChangingCount} DeleteMaterialTaskRow={DeleteMaterialTaskRow} ChangingMaterial={ChangingMaterial} ChangingColor={ChangingColor} />       
+               ))}
               
             
 

@@ -17,7 +17,7 @@ import CreateTask from './pages/CreateTask';
 import MyClasses from './pages/MyClasses';
 import Profile from './pages/Profile';
 import AdminSettings from './pages/AdminSettings';
-
+import MaterialTask from './pages/MaterialTask';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -47,6 +47,9 @@ const App: React.FC = () => (
         <IonRouterOutlet>
           <Route exact path="/home">
             <Home />
+          </Route>
+          <Route exact path="/material">
+            <MaterialTask />
           </Route>
           <Route exact path="/tasks">
             <Tasks />
