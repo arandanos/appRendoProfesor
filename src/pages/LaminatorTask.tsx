@@ -1,58 +1,22 @@
 import Header from '../components/Header';
-import { IonContent, IonList, IonItem, IonLabel, IonSelect, IonSelectOption, IonGrid, IonRow, IonCol, IonIcon } from '@ionic/react';
-import ToggleSwitch from '../components/ToggleSwitch';
-import CalendarPicker from '../components/CalendarPicker';
-import './PrinterTask.css'
+import { IonContent} from '@ionic/react';
+import './LaminatorTask.css'
+import PrinterLaminator from '../components/PrinterLaminator';
+import { useState } from 'react';
 
-import { personOutline } from 'ionicons/icons';
+
 
 const LaminatorTask: React.FC = () => {
+
+
+
   return (
     <>
       <Header title="Plastificadora" back settings={false}/>
       <IonContent fullscreen>
-      <IonList>
-            <div className="width-90">
-
-              <CalendarPicker label='Introduce fecha de la tarea' disabled={false} editButton={false} value=''/>
-
-              <IonLabel>Introduce el nombre del alumno</IonLabel>
-              <IonItem shape="round" fill="outline">
-              <IonIcon slot='start' icon={personOutline}/>
-                <IonSelect interface="popover" placeholder="Alumno">
-                  <IonSelectOption value="Manuel García">Manuel García</IonSelectOption>
-                  <IonSelectOption value="Franciso Barrios">Franciso Barrios</IonSelectOption>
-                  <IonSelectOption value="Antonio Suárez">Antonio Suárez</IonSelectOption>
-                </IonSelect>
-              </IonItem>
-
-              <IonLabel>Introduce donde está el documento</IonLabel>
-              <IonItem shape="round" fill="outline">
-              <IonIcon slot='start' icon={personOutline}/>
-                <IonSelect interface="popover" placeholder="Lugar">
-                  <IonSelectOption value="Lugar1">Lugar 1</IonSelectOption>
-                  <IonSelectOption value="Lugar2">Lugar 2</IonSelectOption>
-                  <IonSelectOption value="Lugar3">Lugar 3</IonSelectOption>
-                </IonSelect>
-              </IonItem>            
-
-
-              
-                <ToggleSwitch label='Activar cálculo automático del resumen del total de menús' checked={false}/>
-              
-
-              
-                <ToggleSwitch label='Activar feedback automático' checked={false}/>
-              
-
-              
-               <ToggleSwitch label='Activar comentarios' checked={false}/>   
-              
-
-            </div>
-          </IonList> 
-              
+        <PrinterLaminator printer={false}/>              
       </IonContent>
+
     </>
   );
 };
