@@ -48,6 +48,7 @@ import KitchenOrderTask from './pages/KitchenOrderTask';
 import MaterialTask from './pages/MaterialTask';
 import PrinterTask from './pages/PrinterTask';
 import LaminatorTask from './pages/LaminatorTask';
+import SuperviseKitchenOrder from './pages/SuperviseKitchenOrder';
 
 
 setupIonicReact();
@@ -95,6 +96,11 @@ const App: React.FC = () => (
 
             {/* PLATOS */}
             <Route exact path="/dish_types" component={DishTypes}/>
+
+            {/* COMANDA CLASE */}
+            <Route path={"/supervise_kitchen_order/:class_name"}>
+              <SuperviseKitchenOrder></SuperviseKitchenOrder>
+            </Route>
 
           <Route exact path="/">
             <Redirect to="/home" />
