@@ -2,10 +2,11 @@ import { IonContent, IonGrid, IonLabel, IonSearchbar } from '@ionic/react';
 import './Pages.css';
 import Header from '../components/Header';
 import './MaterialInventory.css'
-
+import '../ApiMethods'
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import ListItem from '../components/ListItem';
+import { sendGetAllRequest } from '../ApiMethods';
 const API_URL = ("http://localhost:8000/api/");
 
 
@@ -15,17 +16,10 @@ const MaterialInventory: React.FC = () => {
     const [materials, setMaterials] = useState([]);
     
     /*Queremos que obtenga los materiales de la base de datos) */
-    const sendGetRequest =  () => {
-        return axios({
-            url: API_URL + "material",
-            method: 'get'
-        }).then(response => {
-            return response.data;
-        })
-    };
+    
 
     useEffect(()=>{
-        sendGetRequest().then(data => {
+        sendGetAllRequest("material").then(data => {
             setMaterials(data)
         })
     },[])

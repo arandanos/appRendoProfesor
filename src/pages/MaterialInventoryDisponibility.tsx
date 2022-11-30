@@ -2,6 +2,7 @@ import { IonContent, IonGrid, IonLabel, IonNav, IonPage, IonSearchbar } from '@i
 import './Pages.css';
 import Header from '../components/Header';
 import './KitchenOrderView.css'
+import '../ApiMethods'
 
 
 import React, { useEffect, useState } from 'react';
@@ -9,6 +10,7 @@ import axios from "axios";
 import { useParams } from 'react-router';
 import DisponibilityList from '../components/DisponibilityList';
 import { url } from 'inspector';
+import { sendGetAllRequest } from '../ApiMethods';
 const baseURL = "http://localhost:8000/api/task/2";
 const API_URL = ("http://localhost:8000/api/");
 
@@ -25,17 +27,10 @@ const MaterialInventoryDisponibility: React.FC = () => {
     const [materials, setMaterials] = useState([]);
     
     /*Queremos que obtenga los materiales de la base de datos) */
-    const sendGetRequest =  () => {
-        return axios({
-            url: API_URL + "material",
-            method: 'get'
-        }).then(response => {
-            return response.data;
-        })
-    };
+
 
     useEffect(()=>{
-        sendGetRequest().then(data => {
+        sendGetAllRequest("material").then(data => {
             setMaterials(data)
 
         })
