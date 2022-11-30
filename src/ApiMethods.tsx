@@ -42,3 +42,9 @@ export const sendDeleteIDRequest = (url: string, id: string) => {
         return(response.data);
       })
 };
+
+export const getPictogram = (pictogram : string) => {
+    if (!pictogram.startsWith("http"))
+        pictogram = API_URL + "image/" + pictogram;
+    return pictogram;
+}
