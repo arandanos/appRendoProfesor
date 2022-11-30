@@ -62,8 +62,7 @@ console.log(materials)
   
 
 /*-----------------Cambiar nombre alumno-----------------*/
-  const ChangingName = (name: string) => {
-
+  const handleNameChange = (name: string) => {
     setName(name)
   }
 
@@ -194,33 +193,25 @@ const senPost = () => {
     <IonPage>
       <Header title="Material" back settings={false}/>
       <IonContent fullscreen > 
-      <div className="width-90">  
-      <IonList>
-          <div>
-
-            <IonItem>
+      
+        <IonGrid class="width-90 grid-with-button">
             <CalendarPicker label='Selecciona fecha de la tarea' disabled={false} editButton={false} value=''/>
-            </IonItem>
-            
+
             <IonLabel>Seleccionar alumno</IonLabel>
             <IonItem shape="round" fill="outline">
-              <IonSelect  onIonChange={(e) => ChangingName(e.detail.value)} interface="popover" placeholder="Alumno">
+              <IonSelect onIonChange={(e) => handleNameChange(e.detail.value)} interface="popover" placeholder="Alumno">
                 <IonSelectOption value="Manuel García">Manuel García</IonSelectOption>
                 <IonSelectOption value="Franciso Barrios">Franciso Barrios</IonSelectOption>
                 <IonSelectOption value="Antonio Suárez">Antonio Suárez</IonSelectOption>
               </IonSelect>
             </IonItem>
-            </div>
-      </IonList>    
-      
-{/*Para hacer el tema de la cantidad, material ..etc he hecho un grid en donde cada fila sea pues los 3 inputs, y dentro de cada fila 2 filas para ir poniendo las cosas, en los select he hecho que en cuanto se haga un cambio
-se cambien automaticamente en el array con todas las cosas, para la visualización hago que se añada una fila por cada elemento del array, con el .map*/}
-            <IonGrid className="grid">              
+
+            {/*Para hacer el tema de la cantidad, material ..etc he hecho un grid en donde cada fila sea pues los 3 inputs, y dentro de cada fila 2 filas para ir poniendo las cosas, en los select he hecho que en cuanto se haga un cambio
+            se cambien automaticamente en el array con todas las cosas, para la visualización hago que se añada una fila por cada elemento del array, con el .map*/}
+            <IonGrid>              
               {rows.map(row => (
                 <MaterialRow row={row} quantity={quantity} material={material} colors={colors} ChangingCount= {ChangingCount} DeleteMaterialTaskRow={DeleteMaterialTaskRow} ChangingMaterial={ChangingMaterial} ChangingColor={ChangingColor} />       
                ))}
-              
-            
 
               {/*-----------------Boton Success-----------------*/}
               <IonRow text-center>
@@ -248,7 +239,7 @@ se cambien automaticamente en el array con todas las cosas, para la visualizaci�
             <ToggleSwitch id='2' label='Comentarios' checked/>
           </div>
         </IonList> 
-        </div>   
+        </IonGrid>   
       </IonContent>
     </IonPage>
   );

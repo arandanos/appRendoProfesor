@@ -26,9 +26,24 @@ ion-label {
     min-width: 90%;
     max-width: 90%;
     margin: 5% auto;
-   
 }
 
+/** CLASE PARA GRIDS QUE CONTIENEN UNA LISTA DE ITEMS */
+.list-container {
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-bottom: 10px;
+    max-height: calc(100% - 56px);
+    min-height: calc(100% - 56px);
+}
+
+/** CLASE PARA LOS BOTONES QUE OCUPAN TODA LA PANTALLA */
+.fullscreen-btn{
+    text-transform: none;
+    min-width: 90%;
+    max-width: 90%;
+    margin: auto;
+}
 
 .ButtonSuccess{
     padding-left: 40%;

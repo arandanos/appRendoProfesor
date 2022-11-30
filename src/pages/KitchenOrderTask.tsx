@@ -9,13 +9,6 @@ import { sendPostRequest, sendGetAllRequest } from '../ApiMethods';
 import { useEffect, useState } from 'react';
 
 const KitchenOrderTask: React.FC = () => {
-  // const [fecha, setFecha] = useState<any>("");
-
-
-  var valor : any;
-  // useEffect(() =>{  
-    // setFecha(valor);
-  // }, [valor])
 
   var classrooms: [];
   var dishes: [];

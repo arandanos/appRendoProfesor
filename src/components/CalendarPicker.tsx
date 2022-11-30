@@ -66,7 +66,6 @@ interface CalendarPickerProps{
           <Label/>
           <IonItem shape="round"  class="item-remove-animate" lines='none'>
             <IonIcon slot="start" icon={calendarOutline} />
-            {/* <IonInput type="date" disabled={props.disabled} ></IonInput> */}
             
             <IonDatetimeButton datetime="datetime" disabled={props.disabled} ></IonDatetimeButton>
         
