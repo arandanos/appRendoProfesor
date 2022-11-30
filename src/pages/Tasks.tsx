@@ -1,64 +1,42 @@
-import { IonContent, IonPage, IonGrid, IonItem, IonNav, IonLabel, IonIcon, IonRow, IonSearchbar, IonTabBar, IonTabButton } from '@ionic/react';
-import './Tasks.css';
+import { IonContent, IonPage, IonGrid, IonNav, IonSearchbar } from '@ionic/react';
 import Header from '../components/Header';
-
-import { API_URL } from '../variables';
-import { readerOutline, settingsOutline } from 'ionicons/icons';
-import axios from 'axios';
+import {sendGetAllRequest} from '../ApiMethods'
 import { useEffect, useState } from 'react';
-import { JSXElementConstructor, ReactElement, ReactFragment, ReactPortal} from 'react';
-import TaskList from '../components/TasksList';
-import ButtonForward from '../components/ButtonForward';
-import MaterialTaskView from './MaterialTaskView';
-import KitchenOrderView from './KitchenOrderView';
+import ListItem from '../components/ListItem';
+import './Pages.css'
+import PopUp from '../components/PopUp';
 
 const Tasks: React.FC = () => {
 
   const [tasks, setTasks] = useState([]);
- 
-
-  const sendGetRequest = () => {
-
-    return axios({
-      url: API_URL + "task",
-      method: 'get'
-    }).then(response => {       
-     console.log(response.data)
-      return response.data;
-    })
-  };
-
 
   useEffect(() =>{
-    sendGetRequest().then(data => {
+    sendGetAllRequest("task").then(data => {
       setTasks(data)      
     })    
   }, []) 
-  
-  console.log(tasks[1])
+
+  const content = ( 
+    <></>
+  )
 
   return (
-    <IonNav root={() =>
       <IonPage>
         <Header title="Tareas" settings back={false}/>
         <IonContent fullscreen>
-        <IonGrid>
+          <IonGrid class="list-container">
+            <IonSearchbar showClearButton="focus" placeholder="Buscar tarea..."></IonSearchbar>
+              {tasks.map(task => {
+                    return (
+                        <ListItem text={task['_name']['_text']} pictogram={task['_name']['_pictogram']}/>
+                    );
+                })}
+            
+            </IonGrid>
 
-          <IonSearchbar showClearButton="focus" placeholder="Buscar tarea..."></IonSearchbar>
-
-          {tasks.map(element => {
-                return (
-                    <TaskList text={element['_accessible_element']['_text']} pictogram={element['_accessible_element']['_pictogram']}/>
-                );
-            })}
-          
-
-          </IonGrid>
+            <PopUp label='Añadir Tarea' title='Nueva Tarea' popUpContent={content}></PopUp>
         </IonContent>
-      </IonPage>
-
-    }></IonNav>
-      
+      </IonPage>  
   );
 };
 

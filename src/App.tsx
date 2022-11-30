@@ -18,6 +18,7 @@ import MaterialTaskView from './pages/MaterialTaskView';
 import MyClasses from './pages/MyClasses';
 import Profile from './pages/Profile';
 import AdminSettings from './pages/AdminSettings';
+import DishTypes from './pages/DishTypes';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -38,8 +39,17 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import './App.css';
-import MaterialTask from './pages/MaterialTask';
 import KitchenOrderView from './pages/KitchenOrderView';
+import MenusDesserts from './pages/MenusDesserts';
+import StudentManagement from './pages/StudentManagement';
+import TeachersManagement from './pages/TeachersManagement';
+import ClassroomsManagement from './pages/ClassroomsManagement';
+import Materials from './pages/Materials';
+import KitchenOrderTask from './pages/KitchenOrderTask';
+import MaterialTask from './pages/MaterialTask';
+import PrinterTask from './pages/PrinterTask';
+import LaminatorTask from './pages/LaminatorTask';
+
 
 setupIonicReact();
 
@@ -48,33 +58,54 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
+         
+          {/* RUTAS PARA LAS TABS */}
           <Route exact path="/home">
             <Home />
           </Route>
           <Route exact path="/tasks">
             <Tasks />
           </Route>
-          <Route path="/create_task">
+          <Route exact path="/create_task">
             <CreateTask />
           </Route>
-          <Route path="/my_classes">
+          <Route exact path="/my_classes">
             <MyClasses />
           </Route>
-          <Route path="/profile">
+          <Route exact path="/profile">
             <Profile />
           </Route>
-          <Route path="/admin_settings">
-            <AdminSettings />
-          </Route>
+
+          {/* RUTAS RESTO DE COMPONENTES */}
+          <Route exact path="/admin_settings" component={AdminSettings}/>
+            <Route path="/dish_types" component={MenusDesserts}/>
+            <Route path="/students" component={StudentManagement}/>
+            <Route path="/teachers" component={TeachersManagement}/>
+            <Route path="/classrooms" component={ClassroomsManagement}/>
+            <Route path="/storage" component={Materials}/>
+
+            {/* TAREAS */}
+            <Route exact path="/kitchen_order" component={KitchenOrderView}/>
+            <Route exact path="/tasks/material_task_view" component={MaterialTaskView}></Route>
+
+            {/* Rutas Crear Tarea */}
+            <Route path="/task/new/kitchen_order" component={KitchenOrderTask}/>
+            <Route path="/task/new/material_request" component={MaterialTask}/>
+            <Route path="/task/new/printer_task" component={PrinterTask}/>
+            <Route path="/task/new/laminator_task" component={LaminatorTask}/>
+            {/* <Route path="/task/new/steps_task" component={}/> */}
+
+            {/* PLATOS */}
+            <Route exact path="/dish_types" component={DishTypes}/>
+
           <Route exact path="/">
             <Redirect to="/home" />
           </Route>
-          <Route exact path="/tasks/material_task_view" component={MaterialTaskView}></Route>
-          <Route exact path="/tasks/kitchen_order_view">
-            <KitchenOrderView />
-          </Route>
+
+
         </IonRouterOutlet>
-        {/**  TABS BARRA NAVEGACION INFERIOR */}
+
+        {/* TABS */}
         <IonTabBar slot="bottom">
           <IonTabButton tab="Home" href="/home">
             <IonIcon icon={homeOutline} />
