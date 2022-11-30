@@ -1,4 +1,4 @@
-import { IonContent, IonGrid, IonItem, IonLabel, IonList, IonSearchbar } from '@ionic/react';
+import { IonContent, IonGrid, IonItem, IonLabel, IonList, IonSearchbar, SearchbarChangeEventDetail } from '@ionic/react';
 import './Pages.css';
 import Header from '../components/Header';
 import './MaterialInventory.css'
@@ -12,15 +12,18 @@ const MaterialInventory: React.FC = () => {
     
     /*para los datos de materiales*/
     const [materials, setMaterials] = useState([]);
+  
     
     useEffect(()=>{
+
         sendGetAllRequest("material").then(data => {
             setMaterials(data)
         })
     },[])
-    
-    var arrayAuxiliarNombres: Array<string> = [];
+
+
     let [prueba, setPrueba] = useState(Array<any>)
+    var arrayAuxiliarNombres: Array<string> = [];
 
 
     function findMaterials(materials: any[]) {
@@ -35,7 +38,6 @@ const MaterialInventory: React.FC = () => {
             }
         }
         )
- /*       prueba = materialesFiltrados*/
         return materialesFiltrados
     }
 
@@ -43,7 +45,6 @@ const MaterialInventory: React.FC = () => {
     
     
     function searchBarMaterials(materials: any[], arrayAuxiliarNombres: any[]) {
-        console.log(materials)
         var arrayElementosBarraBuscadora: Array<JSX.Element> = [];
         materials.map( material =>{
             if(arrayAuxiliarNombres.find(nombre => nombre == material['_type']['_item']['_text'])!=undefined){
