@@ -8,7 +8,9 @@ interface rows{
       id: number,
       count: number,
       material: string,
-      color: string
+      color: string,
+      id_material: string,  
+      max_quantity: string
 }
 
 
@@ -20,8 +22,8 @@ const MaterialRow: React.FC<{row: rows, quantity: string[], material: never[], c
     return (
         <IonRow>
                 <IonGrid>
-                  <IonRow>
-                      <IonCol>
+                  <IonRow >
+                      <IonCol size='6'>
                       <IonLabel>Cantidad</IonLabel>
                         <IonItem shape="round" fill="outline">                          
                           <IonIcon slot="start" icon={addCircleOutline}></IonIcon>           
@@ -29,10 +31,10 @@ const MaterialRow: React.FC<{row: rows, quantity: string[], material: never[], c
                         </IonItem>
                       </IonCol>                     
 
-                      <IonCol>
+                      <IonCol size='6'>
                       <IonLabel>Material</IonLabel>
                       <IonItem shape="round" fill="outline">
-                      <IonSelect onIonChange={(e) => props.ChangingMaterial(e.detail.value, props.row.id)} interface="popover" placeholder="0">
+                      <IonSelect onIonChange={(e) => props.ChangingMaterial(e.detail.value, props.row.id)} interface="popover" placeholder="Material">
                             {props.material.map( mat  => (
                               <IonSelectOption>{mat}</IonSelectOption>
                             ))}
@@ -42,7 +44,7 @@ const MaterialRow: React.FC<{row: rows, quantity: string[], material: never[], c
                   </IonRow>
 
                   <IonRow>
-                    <IonCol size="5">
+                    <IonCol size="6">
                       <IonLabel>Color</IonLabel>
                       <IonItem shape="round" fill="outline">
                         <IonSelect className="Color" onIonChange={(e) => props.ChangingColor(e.detail.value, props.row.id)}  interface="popover" placeholder="Color">

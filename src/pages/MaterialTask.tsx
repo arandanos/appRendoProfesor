@@ -1,34 +1,23 @@
 import React from "react";
-import { useIonAlert , IonPage, IonIcon, IonFabButton, IonContent, IonList, IonItem, IonLabel, IonSelect, IonSelectOption, IonGrid, IonRow, IonCol } from '@ionic/react';
+import { IonPage, IonIcon, IonFabButton, IonContent, IonList, IonItem, IonLabel, IonSelect, IonSelectOption, IonGrid, IonRow, IonCol } from '@ionic/react';
 import Header from '../components/Header';
 import { add } from 'ionicons/icons';
 import ToggleSwitch from '../components/ToggleSwitch';
 import CalendarPicker from '../components/CalendarPicker';
 import './MaterialTask.css'
-import { API_URL } from '../variables';
 import { useState, useEffect } from "react";
-import axios from "axios";
 import MaterialRow from "../components/MaterialRow";
+import { sendGetAllRequest, sendPostRequest } from "../ApiMethods";
 
 const MaterialTask: React.FC = () => {
 
 /*Obtener toda la tabla de materiales*/
   const [materials, setMaterials] = useState([]);
+ 
 
-  const sendGetRequest = () => {
-
-    return axios({
-      url: API_URL + "material",
-      method: 'get'
-    }).then(response => {       
-     // console.log(response.data)
-      return response.data;
-    })
-  };
-
-
+const url = "material"
   useEffect(() =>{
-    sendGetRequest().then(data => {
+    sendGetAllRequest(url).then(data => {
       setMaterials(data)      
     })    
   }, []) 
@@ -42,7 +31,7 @@ const AddMaterial = () =>{
   
 
   materials.map(mat => {
-
+    
       if(!material.includes(mat["_type"]["_item"]["_text"])){
         material.push(mat["_type"]["_item"]["_text"])
       }
@@ -53,14 +42,16 @@ const AddMaterial = () =>{
 
 AddMaterial()
 
-
+console.log(materials)
   
 /*Fila por defecto pal grid*/
   const Primero = {
     id: 0,
     count: 0,
     material: '',
-    color: ''    
+    color: '',
+    id_material:'',  
+    max_quantity:''  
   }
 
 /*variables del nombre del alumno y el array con todos los materiales*/
@@ -108,7 +99,9 @@ AddMaterial()
       id: new_id,
       count: 0,
       material: '',
-      color: ''
+      color: '',
+      id_material:'',  
+      max_quantity:''  
     }  
     
     setRows([...rows, newRow]) 
@@ -131,7 +124,9 @@ const DeleteMaterialTaskRow = (id: number) => {
         id: 0,
         count: 0,
         material: '',
-        color: ''
+        color: '',
+        id_material:'',  
+        max_quantity:''  
       }        
       setRows([newRow])
    }, 0,1);
@@ -161,11 +156,20 @@ const ChangingMaterial = (value: string, id: number) => {
 
 }
 
-/*-----------------Cambiar el color-----------------*/
+/*-----------------Cambiar el color y asignar valores para API-----------------*/
 const [quantity, setQuantity] = useState(['']);
 const ChangingColor = (value: string, id: number) => {
   rows[id].color = value;
   
+  materials.map(mat => {
+    if(mat["_type"]["_item"]["_text"] == rows[id].material && mat["_color"]["_text"] == rows[id].color){
+      rows[id].id_material = mat['_id']
+      rows[id].max_quantity = mat['_quantity']
+      console.log("La cantidad maxima es: " + mat['_quantity'])
+    }
+          
+    });
+
 }
 
 /*-----------------Cambiar la cantidad-----------------*/
@@ -176,6 +180,15 @@ const ChangingCount = (value: number,id: number) => {
 
 
 
+//Enviar POST  a la API//
+const senPost = () => {
+  //crear Task
+
+  //crear MaterialTask
+
+  //crear MaerialTaskDetail
+
+}
 
   return (
     <IonPage>
@@ -216,7 +229,15 @@ se cambien automaticamente en el array con todas las cosas, para la visualizaci√
                           <IonIcon icon={add}></IonIcon>
                   </IonFabButton>
                 </IonCol>                
-              </IonRow>             
+              </IonRow>      
+
+              <IonRow text-center>
+                <IonCol className='ButtonSuccess'>
+                  <IonFabButton  size='small' onClick={() => console.log(rows)}>
+                          <IonIcon icon={add}></IonIcon>
+                  </IonFabButton>
+                </IonCol>                
+              </IonRow>        
 
              
                        
@@ -229,8 +250,8 @@ se cambien automaticamente en el array con todas las cosas, para la visualizaci√
           {/*-----------------Los toggles -----------------*/}
         <IonList>
           <div>
-            <ToggleSwitch label='Feedback autom√°tico' checked={false}/>
-            <ToggleSwitch label='Comentarios' checked/>
+            <ToggleSwitch id='1' label='Feedback autom√°tico' checked={false}/>
+            <ToggleSwitch id='2' label='Comentarios' checked/>
           </div>
         </IonList> 
         </div>   
