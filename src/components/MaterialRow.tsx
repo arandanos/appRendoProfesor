@@ -1,8 +1,8 @@
 import React from "react";
-import { IonIcon, IonFabButton, IonItem, IonLabel, IonSelect, IonSelectOption, IonGrid, IonRow, IonCol } from '@ionic/react';
+import { IonInput, IonIcon, IonFabButton, IonItem, IonLabel, IonSelect, IonSelectOption, IonGrid, IonRow, IonCol } from '@ionic/react';
 import { trash, addCircleOutline } from 'ionicons/icons';
 import { useState, useEffect } from "react";
-
+import './MaterialRow.css'
 
 interface rows{
       id: number,
@@ -25,11 +25,7 @@ const MaterialRow: React.FC<{row: rows, quantity: string[], material: never[], c
                       <IonLabel>Cantidad</IonLabel>
                         <IonItem shape="round" fill="outline">                          
                           <IonIcon slot="start" icon={addCircleOutline}></IonIcon>           
-                          <IonSelect name="Select1" onIonChange={(e) => props.ChangingCount(e.detail.value, props.row.id)} interface="popover" placeholder="0">
-                            {props.quantity.map( quan  => (
-                              <IonSelectOption>{quan}</IonSelectOption>
-                            ))}
-                          </IonSelect>
+                          <IonInput type="number" onIonChange={(e) => props.ChangingCount(e.detail.value, props.row.id)} maxlength={4} placeholder="0"></IonInput>
                         </IonItem>
                       </IonCol>                     
 

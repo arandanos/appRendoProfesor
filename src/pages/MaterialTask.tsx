@@ -1,7 +1,7 @@
 import React from "react";
-import { IonPage, IonIcon, IonFabButton, IonContent, IonList, IonItem, IonLabel, IonSelect, IonSelectOption, IonGrid, IonRow, IonCol } from '@ionic/react';
+import { useIonAlert , IonPage, IonIcon, IonFabButton, IonContent, IonList, IonItem, IonLabel, IonSelect, IonSelectOption, IonGrid, IonRow, IonCol } from '@ionic/react';
 import Header from '../components/Header';
-import { add, trash, addCircleOutline } from 'ionicons/icons';
+import { add } from 'ionicons/icons';
 import ToggleSwitch from '../components/ToggleSwitch';
 import CalendarPicker from '../components/CalendarPicker';
 import './MaterialTask.css'
@@ -165,31 +165,12 @@ const ChangingMaterial = (value: string, id: number) => {
 const [quantity, setQuantity] = useState(['']);
 const ChangingColor = (value: string, id: number) => {
   rows[id].color = value;
-
-
-  var number = 0  
-  var aux = ['-- Elige una cantidad --']
-
-  materials.map(mat => {
-    if(mat["_type"]["_item"]["_text"] == rows[id].material && mat["_color"]["_text"] == value){
-      number = mat["_quantity"]
-    }   
-  });
-
-  
-
-  for(let i=1; i< number+1; i++){
-    var string = String(i)
-    aux.push(string)    
-  }
-
-  setQuantity(aux)
   
 }
 
 /*-----------------Cambiar la cantidad-----------------*/
 const ChangingCount = (value: number,id: number) => {
-  rows[id].count = value;
+  rows[id].count = value;  
 }
 
 
