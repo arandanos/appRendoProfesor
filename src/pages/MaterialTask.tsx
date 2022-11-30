@@ -229,15 +229,9 @@ se cambien automaticamente en el array con todas las cosas, para la visualizaci√
                           <IonIcon icon={add}></IonIcon>
                   </IonFabButton>
                 </IonCol>                
-              </IonRow>      
+              </IonRow> 
 
-              <IonRow text-center>
-                <IonCol className='ButtonSuccess'>
-                  <IonFabButton  size='small' onClick={() => console.log(rows)}>
-                          <IonIcon icon={add}></IonIcon>
-                  </IonFabButton>
-                </IonCol>                
-              </IonRow>        
+                    
 
              
                        
