@@ -15,7 +15,7 @@
                     <IonLabel>Número de copias</IonLabel>
                     <IonItem shape="round" fill="outline">
                     <IonIcon slot='start' icon={printOutline}/>
-                    <IonInput type='text' maxlength={20}></IonInput>
+                    <IonInput type='number'></IonInput>
                     </IonItem>
                 </IonCol>
 
@@ -25,9 +25,9 @@
                     <IonItem shape="round" fill="outline">
                     <IonIcon slot='start' icon={brushOutline}/>
                         <IonSelect interface="popover" placeholder="Tipo">                          
-                        <IonSelectOption value="Lugar1">Lugar 1</IonSelectOption>
-                        <IonSelectOption value="Lugar2">Lugar 2</IonSelectOption>
-                        <IonSelectOption value="Lugar3">Lugar 3</IonSelectOption>
+                        <IonSelectOption value="Tinta1">Tinta 1</IonSelectOption>
+                        <IonSelectOption value="Tinta2">Tinta 2</IonSelectOption>
+                        <IonSelectOption value="Tinta3">Tinta 3</IonSelectOption>
                         </IonSelect>
                     </IonItem>                    
                 </IonCol>
@@ -58,11 +58,7 @@
           <IonLabel>Introduce donde está el documento</IonLabel>
           <IonItem shape="round" fill="outline">
           <IonIcon slot='start' icon={compassOutline}/>
-            <IonSelect interface="popover" placeholder="Lugar">
-              <IonSelectOption value="Lugar1">Lugar 1</IonSelectOption>
-              <IonSelectOption value="Lugar2">Lugar 2</IonSelectOption>
-              <IonSelectOption value="Lugar3">Lugar 3</IonSelectOption>
-            </IonSelect>
+          <IonInput  type='text' maxlength={20}></IonInput>
           </IonItem>
 
 
