@@ -1,5 +1,6 @@
 import { IonContent, IonPage, IonGrid, IonNav, IonSearchbar } from '@ionic/react';
 import Header from '../components/Header';
+import SearchBar from '../components/SearchBar';
 import {sendGetAllRequest} from '../ApiMethods'
 import { useEffect, useState } from 'react';
 import ListItem from '../components/ListItem';
@@ -8,9 +9,9 @@ import PopUp from '../components/PopUp';
 
 const Tasks: React.FC = () => {
 
-  const [tasks, setTasks] = useState([]);
+  const [ tasks, setTasks ] = useState([]);
   const [ isLoading, setIsLoading ] = useState(true);
-  const [results, setResults] = useState<any>([]);
+  const [ results, setResults ] = useState<any>([]);
 
   useEffect(() =>{
     sendGetAllRequest("task").then(data => {
@@ -24,26 +25,11 @@ const Tasks: React.FC = () => {
     <></>
   )
 
-   //** Código para el buscador */
-
-   const resultsFilter = (tasks: any[], query : string) => {
-      var results : any = [];
-      tasks.map( task => {
-        if (task['_name']['_text'].toLowerCase().includes(query.toLowerCase())){
-          results.push(task);
-        }
-      })
-      return results;
-   }
-
-   const handleSearchChange = (e: Event) => {
-    let query = "";
-    const target = e.target as HTMLIonSearchbarElement;
-    if (target) query = target.value!.toLowerCase();
-    setResults(resultsFilter(tasks, query))
+   //** Funcion para el buscador */
+   const updateResults = (results:any)=>{
+      setResults(results);
    }
   
-   //********/
 
   if(isLoading) {
     // * AQUI IRA EL SPLASH DE CARGA
@@ -54,13 +40,12 @@ const Tasks: React.FC = () => {
     );
   } 
 
-
   return (
       <IonPage>
         <Header title="Tareas" settings back={false}/>
         <IonContent fullscreen>
           <IonGrid class="list-container">
-            <IonSearchbar showClearButton="focus" placeholder="Buscar tarea..." onIonChange={(e)=>handleSearchChange(e)}></IonSearchbar>
+            <SearchBar elements={tasks} updateResults={updateResults}></SearchBar>
               {results.map((task:any) => {
                     return (
                         <ListItem text={task['_name']['_text']} pictogram={task['_name']['_pictogram']}/>
