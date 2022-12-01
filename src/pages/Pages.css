@@ -14,10 +14,6 @@ ion-list {
     height: 100%;
 }
 
-ion-label {
-    border-bottom: 0px;
-}
-
 .grid-with-button{
     height: calc(100% - 72px);
 }
@@ -26,6 +22,16 @@ ion-label {
     min-width: 90%;
     max-width: 90%;
     margin: 5% auto;
+}
+
+.center {
+    margin: auto;
+}
+
+.center-content {
+    display: flex;
+    justify-content: center;
+    align-content: center;
 }
 
 /** CLASE PARA GRIDS QUE CONTIENEN UNA LISTA DE ITEMS */
@@ -43,4 +49,19 @@ ion-label {
     min-width: 90%;
     max-width: 90%;
     margin: auto;
+}
+
+.botton-success{
+    margin: auto;
+}
+
+/** CLASE PARA SCROLL SIN MOSTRAR LA BARRA */
+.scroll {
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none; 
+}
+
+.scroll::-webkit-scrollbar {
+    display: none;
 }
