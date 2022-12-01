@@ -7,7 +7,7 @@ export const sendGetAllRequest = ( url : string) => {
         url: API_URL + url,
         method: 'get'
     }).then(response => {       
-        console.log(response.data)
+        // console.log(response.data)
         return response.data;
     })
 };
@@ -17,7 +17,7 @@ export const sendGetByIDRequest = ( url : string, id : string) => {
         url: API_URL + url + "/" + id,
         method: 'get'
     }).then(response => {       
-        console.log(response.data)
+        // console.log(response.data)
         return response.data;
     })
 };
@@ -28,7 +28,7 @@ export const sendPostRequest = ( url : string, data : any) => {
         method: 'post',
         data: data
     }).then(response => {       
-        console.log(response.data)
+        // console.log(response.data)
         return response.data;
     })
 };
@@ -38,7 +38,7 @@ export const sendDeleteIDRequest = (url: string, id: string) => {
         url: API_URL+url+"/"+id,
         method: "delete",
       }).then(response => {
-        console.log(response.data);
+        // console.log(response.data);
         return(response.data);
       })
 };
