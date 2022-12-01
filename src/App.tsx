@@ -18,6 +18,7 @@ import MyClasses from './pages/MyClasses';
 import Profile from './pages/Profile';
 import AdminSettings from './pages/AdminSettings';
 import DishTypes from './pages/DishTypes';
+import MaterialInventory from './pages/MaterialInventory';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -48,7 +49,7 @@ import KitchenOrderTask from './pages/KitchenOrderTask';
 import MaterialTask from './pages/MaterialTask';
 import PrinterTask from './pages/PrinterTask';
 import LaminatorTask from './pages/LaminatorTask';
-
+import MaterialInventoryDisponibility from './pages/MaterialInventoryDisponibility';
 
 setupIonicReact();
 
@@ -96,6 +97,13 @@ const App: React.FC = () => (
             {/* PLATOS */}
             <Route exact path="/dish_types" component={DishTypes}/>
 
+          {/* MATERIAL INVENTORY */}
+          <Route path="/storage">
+            <MaterialInventory />
+          </Route>
+          <Route path="/material_inventory_disponibility/:id_material">
+            <MaterialInventoryDisponibility />
+          </Route>
           <Route exact path="/">
             <Redirect to="/home" />
           </Route>
