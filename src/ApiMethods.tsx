@@ -7,7 +7,7 @@ export const sendGetAllRequest = ( url : string) => {
         url: API_URL + url,
         method: 'get'
     }).then(response => {       
-        console.log(response.data)
+        console.log(response.data) 
         return response.data;
     })
 };
@@ -43,8 +43,7 @@ export const sendDeleteIDRequest = (url: string, id: string) => {
       })
 };
 
-/*
-No sé si está bien
+
 export const sendPutRequest = ( url : string, data : any) => {
     return axios({
         url: API_URL + url,
@@ -55,5 +54,3 @@ export const sendPutRequest = ( url : string, data : any) => {
         return response.data;
     })
 };
-
-*/

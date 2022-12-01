@@ -26,37 +26,41 @@ const MaterialTaskView: React.FC = () => {
         sendGetAllRequest("task").then(data => {
             setmaterialTask(data)
         })
+
     },[])
      
     function findTask(materialTasks: any[]) {
         let tarea = materialTasks.filter(materialTask => materialTask['_id'] == id_material_task )
+        console.log(tarea)
         return tarea 
     }
 
     var tipo = ""
     var fechaLimite
-    var numeroFeedback = 1
+    var feedbackEntero
+    var numeroFeedback = 0
+    var numeroAccessibleElement=0
+    
     var tarea = findTask(materialTask)
     tarea.map(task => {
             tipo = task['_type']
             fechaLimite = task['_due_date']
-            numeroFeedback = (task['_feedback']['_id'])
+            feedbackEntero = task['_feedback']
+            numeroFeedback = feedbackEntero['_feedback']['_id']
     })
 
 
+    var feedbackSaved = ""
+    function saveFeedback(e:any){
+        feedbackSaved = e.target.value
+    }
 
-    /*no se que estoy haciendo */
-   /* function getFeedback(e: any){
-        sessionStorage.setItem("feedback", e.target.value)
-        setFeedbackInput(e.target.value)
-        
-        sendPutRequest("feedback/" + numeroFeedback , {
-            "_text": feedbackInput
+    function getFeedback(e: any){
+        sendPutRequest("accessible_element/" + numeroFeedback , {
+            "_text": feedbackSaved
         }
         )
     };
-
-    */
 
 
     return (
@@ -83,11 +87,11 @@ const MaterialTaskView: React.FC = () => {
                         
                         <IonLabel>Dar feedback</IonLabel>
                         <IonItem shape='round' fill='outline'>
-                            <IonTextarea placeholder='Escribir feedback...' autoGrow={true} ></IonTextarea>
+                            <IonTextarea placeholder='Escribir feedback...' autoGrow={true} onIonChange={saveFeedback}></IonTextarea>
                             {/* debounce={1000} onIonChange={getFeedback}*/}
                             <IonIcon slot='end' icon={cameraOutline} />
                         </IonItem>
-                        <IonButton class='sendFeedback-button' fill="outline" shape="round">Enviar feedback</IonButton>
+                        <IonButton class='sendFeedback-button' fill="outline" shape="round" onClick={getFeedback}>Enviar feedback</IonButton>
 
                         </IonList>  
       
