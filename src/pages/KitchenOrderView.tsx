@@ -53,7 +53,7 @@ const KitchenOrderView: React.FC<KitchenOrderViewProps> = ({match}) => {
 						<IonIcon slot='end' icon={createOutline} />
 					</IonItem>
 
-					<CalendarPicker label='Fecha límite de realización' disabled editButton value="2030-12-08"/>
+					<CalendarPicker label='Fecha límite de realización' disabled editButton value={data!['_due_date']}/>
 
 					<IonLabel>Estado</IonLabel>
 					<IonItem shape='round' fill='outline'>
