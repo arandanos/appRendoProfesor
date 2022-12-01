@@ -1,4 +1,4 @@
-import { IonContent, IonItem, IonPage, IonList, IonLabel, IonInput, IonIcon, IonTextarea, IonFabButton } from '@ionic/react';
+import { IonContent, IonItem, IonPage, IonList, IonLabel, IonInput, IonIcon, IonTextarea, IonFabButton, IonGrid } from '@ionic/react';
 import './Pages.css';
 import Header from '../components/Header';
 import CalendarPicker from '../components/CalendarPicker';
@@ -8,6 +8,7 @@ import './KitchenOrderView.css'
 import { useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { sendGetByIDRequest } from '../ApiMethods';
+import StyledButton from '../components/StyledButton';
 
 interface KitchenOrderViewProps extends RouteComponentProps<{
 	id_task: string;
@@ -60,11 +61,14 @@ const KitchenOrderView: React.FC<KitchenOrderViewProps> = ({match}) => {
 						<IonInput value={estado} disabled />
 					</IonItem>
 
+					{/* <StyledButton label='Supervisar Comanda'></StyledButton> */}
+
 					<IonLabel>Dar feedback</IonLabel>
 					<IonItem shape='round' fill='outline'>
 						<IonTextarea placeholder='Escribir feedback...'></IonTextarea>
 						<IonIcon slot='end' icon={cameraOutline} />
 					</IonItem>
+
 					<div className='wrap-kitchen-order-buttons'>
 						<div className='wrap-kitchen-order-button'>
 							<IonFabButton>

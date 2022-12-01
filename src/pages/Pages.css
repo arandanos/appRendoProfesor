@@ -10,10 +10,6 @@ ion-select {
     border-radius: 20px;
 }
 
-ion-list {
-    height: 100%;
-}
-
 .grid-with-button{
     height: calc(100% - 72px);
 }
