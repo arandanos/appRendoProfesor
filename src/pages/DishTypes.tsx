@@ -54,13 +54,13 @@ const DishTypes: React.FC = () => {
     //POST
     sendPostRequest("accessible_element", {
       "_text": nameInput,
-      "_pictogram": pictoInput,
+      "_pictogram": pictoInput
     }).then(response => {
       sendPostRequest("dish", {
         "_name": response["_id"],
-        "_type": type,
+        "_type": type
       })
-    })
+    }).catch(error => console.log(error));
 
     setNameInput("");
     setPictoInput("");

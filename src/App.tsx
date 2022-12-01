@@ -75,16 +75,13 @@ const App: React.FC = () => (
           <Route exact path="/my_classes">
             <MyClasses />
           </Route>
-          <Route exact path="/my_classes">
-            <MyClasses />
-          </Route>
           <Route exact path="/profile">
             <Profile />
           </Route>
 
           {/* RUTAS RESTO DE COMPONENTES */}
           <Route exact path="/admin_settings" component={AdminSettings}/>
-            <Route path="/dish_types" component={MenusDesserts}/>
+            <Route path="/dish_types" component={DishTypes}/>
             <Route path="/students" component={StudentManagement}/>
             <Route path="/teachers" component={TeachersManagement}/>
             <Route path="/classrooms" component={ClassroomsManagement}/>
@@ -102,7 +99,7 @@ const App: React.FC = () => (
             {/* <Route path="/task/new/steps_task" component={}/> */}
 
             {/* PLATOS */}
-            <Route exact path="/dish_types" component={DishTypes}/>
+            {/* <Route exact path="/dish_types" component={DishTypes}/> */}
 
             {/* COMANDA CLASE */}
             <Route path={"/supervise_kitchen_order/:class_name"}>
