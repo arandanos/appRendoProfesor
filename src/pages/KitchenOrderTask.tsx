@@ -1,4 +1,4 @@
-import { IonContent, IonList, IonItem, IonLabel, IonSelect, IonSelectOption, IonGrid, IonPage } from '@ionic/react';
+import { IonContent, IonItem, IonLabel, IonSelect, IonSelectOption, IonGrid, IonPage } from '@ionic/react';
 import Header from '../components/Header';
 import ToggleSwitch from '../components/ToggleSwitch';
 import CalendarPicker from '../components/CalendarPicker';
@@ -6,7 +6,6 @@ import './Pages.css'
 import StyledButton from '../components/StyledButton';
 import { checkmarkCircleOutline } from 'ionicons/icons';
 import { sendPostRequest, sendGetAllRequest } from '../ApiMethods';
-import { useEffect, useState } from 'react';
 
 const KitchenOrderTask: React.FC = () => {
 
@@ -64,11 +63,10 @@ const KitchenOrderTask: React.FC = () => {
     <IonPage>
       <Header title="Comanda" back settings={false}/>
       <IonContent fullscreen>
-
           <IonGrid class="width-90 grid-with-button">
             <CalendarPicker label='Seleccionar fecha límite' disabled={false} editButton={false} value=''/>
 
-            <IonLabel>Seleccionar alumno</IonLabel>
+            <IonLabel>Encargado de la tarea</IonLabel>
             <IonItem shape="round" fill="outline">
               <IonSelect interface="popover" placeholder="Alumno">
                 <IonSelectOption>Manuel García</IonSelectOption>
@@ -78,14 +76,10 @@ const KitchenOrderTask: React.FC = () => {
             </IonItem>
 
             <ToggleSwitch label='Cálculo automático de número menús' checked={false} id="auto_calc_menu"/>
-
             <ToggleSwitch label='Feedback automático' checked={false} id="auto_feedback"/>
-
             <ToggleSwitch label='Comentarios' checked id="allow_comments"/>
-
           </IonGrid>
-            <StyledButton label="Crear Comanda" icon={checkmarkCircleOutline} id="confirm-order" onClick={handleButtonClick}/>
-
+          <StyledButton label="Crear Comanda" icon={checkmarkCircleOutline} id="confirm-order" onClick={handleButtonClick}/>
       </IonContent>
     </IonPage>
   );

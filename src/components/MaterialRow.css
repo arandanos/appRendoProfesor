@@ -4,5 +4,6 @@ ion-item::part(native){
 
 .material-row{
     background-color: var(--ion-color-secondary);
-    margin-bottom: 2px;
+    margin-bottom: 2%;
+    border-radius: 10px;
 }

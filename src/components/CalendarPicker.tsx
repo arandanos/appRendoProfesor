@@ -56,7 +56,7 @@ interface CalendarPickerProps{
          // * Inicializamos la fecha a la fecha de hoy
         const today = new Date().toISOString();       
         sessionStorage.setItem("fecha", today?.split("T")[0]);
-        return <IonDatetime id="datetime" presentation="date" locale="es-ES" ref={datetime} showDefaultButtons onIonChange={handleDateChange}>
+        return <IonDatetime id="datetime" presentation="date" locale="es-ES" cancelText='Cancelar' doneText='Confirmar' ref={datetime} showDefaultButtons onIonChange={handleDateChange}>
         </IonDatetime>
       }
     }
