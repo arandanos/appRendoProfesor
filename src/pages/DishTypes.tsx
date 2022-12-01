@@ -18,7 +18,7 @@ const DishTypes: React.FC = () => {
   const [pictoInput, setPictoInput] = useState("https://api.arasaac.org/api/pictograms/29839?resolution=500&download=false");
 
 
-  {/** useEffect Hook para usar el get con Axios y obtener los datos de la url asignada antes*/ }
+  /** useEffect Hook para usar el get con Axios y obtener los datos de la url asignada antes*/ 
   useEffect(() => {
     sendGetAllRequest("dish").then(data => {
       setDishes(data)
@@ -59,8 +59,6 @@ const DishTypes: React.FC = () => {
       sendPostRequest("dish", {
         "_name": response["_id"],
         "_type": type,
-      }).then(response_1=> {
-        console.log(response_1);
       })
     })
 
