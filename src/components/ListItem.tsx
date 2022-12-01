@@ -2,6 +2,7 @@ import { trashOutline } from 'ionicons/icons';
 import { IonItem, IonImg, IonLabel, IonIcon, IonButton, useIonAlert } from '@ionic/react'
 import { createOutline } from 'ionicons/icons';
 import './ListItem.css'
+import { getPictogram } from '../ApiMethods';
 
 interface ListItemProps{
   text: string; 
@@ -43,10 +44,12 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
     })
   }
   
+  var pictogram = getPictogram(props.pictogram);
+
   return (     
     <IonItem key={props.id} class="remove-padding custom-padding" >
       <IonItem lines="none" class="remove-padding full-width" href={href}>
-        <IonImg class="pictogram-on-button" src={props.pictogram} />
+        <IonImg class="pictogram-on-button" src={pictogram} />
         <IonLabel> {props.text} {props.number}</IonLabel>
       </IonItem>
       <IonItem lines='none' slot='end' class='remove-padding fit-width'>

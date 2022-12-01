@@ -63,6 +63,9 @@ const App: React.FC = () => (
           <Route exact path="/home">
             <Home />
           </Route>
+          <Route exact path="/material">
+            <MaterialTask />
+          </Route>
           <Route exact path="/tasks">
             <Tasks />
           </Route>
