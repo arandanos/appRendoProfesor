@@ -15,7 +15,6 @@ const MaterialInventory: React.FC = () => {
   
     
     useEffect(()=>{
-
         sendGetAllRequest("material").then(data => {
             setMaterials(data)
         })

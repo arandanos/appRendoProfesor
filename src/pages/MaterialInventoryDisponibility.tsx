@@ -10,7 +10,6 @@ import { sendGetAllRequest } from '../ApiMethods';
 
 const MaterialInventoryDisponibility: React.FC = () => {
     
-
     type params = {
         id_material: string;
     }
@@ -38,6 +37,9 @@ const MaterialInventoryDisponibility: React.FC = () => {
         materials.forEach(material => nombreMaterial = material['_type']['_item']['_text'])
     }
 
+    // * Hook para los resultados de la Busqueda
+    const [results, setResults] = useState([...materials]);
+    
     var materialesF = findMaterials(materials) 
     findName(materialesF)
 
@@ -45,7 +47,7 @@ const MaterialInventoryDisponibility: React.FC = () => {
         <>
             <IonGrid class="list-container-materials">
                 {
-                    materialesF.map(material => {
+                    results.map(material => {
                         return (
                             <DisponibilityList text={material['_color']['_text']} pictogram={material['_color']['_pictogram']} quantity={material['_quantity']}></DisponibilityList>
                         )
@@ -58,14 +60,12 @@ const MaterialInventoryDisponibility: React.FC = () => {
 
     
     return (
-            <IonNav root={() =>
-                <IonPage>
-                    <Header title= {"Almacén: " + nombreMaterial}  back settings={false}  />
-                    <IonContent fullscreen>
-                        <IonLabel>{arrayElementos}</IonLabel>
-                    </IonContent>
-                </IonPage>
-            }></IonNav>
+            <IonPage>
+                <Header title= {"Almacén: " + nombreMaterial}  back settings={false}  />
+                <IonContent fullscreen>
+                    <IonLabel>{arrayElementos}</IonLabel>
+                </IonContent>
+            </IonPage>
         );
     };
 
