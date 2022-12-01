@@ -14,6 +14,7 @@ import { homeOutline, clipboardOutline, addCircleOutline, briefcaseOutline, pers
 import Home from './pages/Home';
 import Tasks from './pages/Tasks';
 import CreateTask from './pages/CreateTask';
+import MaterialTaskView from './pages/MaterialTaskView';
 import MyClasses from './pages/MyClasses';
 import Profile from './pages/Profile';
 import AdminSettings from './pages/AdminSettings';
@@ -93,6 +94,7 @@ const App: React.FC = () => (
             {/* TAREAS */}
             <Route path="/kitchen_order/:id_task" component={KitchenOrderView}/>
             {/* <Route exact path="/my_classes/:id_task" component={MyClasses}/> */}
+            <Route exact path="/tasks/material_task_view/:id_material_task" component={MaterialTaskView}></Route>
 
             {/* Rutas Crear Tarea */}
             <Route path="/task/new/kitchen_order" component={KitchenOrderTask}/>
@@ -118,6 +120,7 @@ const App: React.FC = () => (
           <Route exact path="/">
             <Redirect to="/home" />
           </Route>
+
 
         </IonRouterOutlet>
 

@@ -64,7 +64,8 @@ const Tasks: React.FC = () => {
                         <ListItem text={task['_name']['_text']} pictogram={task['_name']['_pictogram']} href={generateHref(task)}/>
                     );
                 })}
-            
+                {/*   <ListItem text={task['_name']['_text']} pictogram={task['_name']['_pictogram']} href={"/tasks/material_task_view/" + task['_id']}/>*/}
+
             </IonGrid>
 
             <StyledButton label='Añadir Tarea' icon={addCircleOutline} href="/create_task"></StyledButton>

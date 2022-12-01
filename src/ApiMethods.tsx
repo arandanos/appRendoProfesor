@@ -48,3 +48,14 @@ export const getPictogram = (pictogram : string) => {
         pictogram = API_URL + "image/" + pictogram;
     return pictogram;
 }
+
+export const sendPutRequest = ( url : string, data : any) => {
+    return axios({
+        url: API_URL + url,
+        method: 'put',
+        data: data
+    }).then(response => {       
+        console.log(response.data)
+        return response.data;
+    })
+};
