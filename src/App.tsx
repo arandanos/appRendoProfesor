@@ -94,7 +94,7 @@ const App: React.FC = () => (
             {/* TAREAS */}
             <Route path="/kitchen_order/:id_task" component={KitchenOrderView}/>
             {/* <Route exact path="/my_classes/:id_task" component={MyClasses}/> */}
-            <Route exact path="/tasks/material_task_view/:id_material_task" component={MaterialTaskView}></Route>
+            <Route exact path="/material_task_view/:id_material_task" component={MaterialTaskView}></Route>
 
             {/* Rutas Crear Tarea */}
             <Route path="/task/new/kitchen_order" component={KitchenOrderTask}/>

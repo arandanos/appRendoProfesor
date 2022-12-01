@@ -39,7 +39,9 @@ const Tasks: React.FC = () => {
     if(task["_type"] == "COMANDA"){
       href = "/kitchen_order/" + task["_id"]
     }
-
+    if(task["_type"] == "MATERIAL"){
+      href = "/material_task_view/" + task["_id"]
+    }
     return href
   }
   
