@@ -29,6 +29,17 @@ const Tasks: React.FC = () => {
    const updateResults = (results:any)=>{
       setResults(results);
    }
+
+  // * Funcion para generar el link a la tarea en funcion del tipo de tarea
+   var generateHref = (task : any) => {
+    let href= "#"
+
+    if(task["_type"] == "COMANDA"){
+      href = "/kitchen_order/" + task["_id"]
+    }
+
+    return href
+  }
   
 
   if(isLoading) {
@@ -48,7 +59,7 @@ const Tasks: React.FC = () => {
             <SearchBar elements={tasks} updateResults={updateResults}></SearchBar>
               {results.map((task:any) => {
                     return (
-                        <ListItem text={task['_name']['_text']} pictogram={task['_name']['_pictogram']}/>
+                        <ListItem text={task['_name']['_text']} pictogram={task['_name']['_pictogram']} href={generateHref(task)}/>
                     );
                 })}
             

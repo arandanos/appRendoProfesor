@@ -75,6 +75,9 @@ const App: React.FC = () => (
           <Route exact path="/my_classes">
             <MyClasses />
           </Route>
+          <Route exact path="/my_classes">
+            <MyClasses />
+          </Route>
           <Route exact path="/profile">
             <Profile />
           </Route>
@@ -88,7 +91,8 @@ const App: React.FC = () => (
             <Route path="/storage" component={Materials}/>
 
             {/* TAREAS */}
-            <Route exact path="/kitchen_order/:id_task" component={KitchenOrderView}/>
+            <Route path="/kitchen_order/:id_task" component={KitchenOrderView}/>
+            {/* <Route exact path="/my_classes/:id_task" component={MyClasses}/> */}
 
             {/* Rutas Crear Tarea */}
             <Route path="/task/new/kitchen_order" component={KitchenOrderTask}/>

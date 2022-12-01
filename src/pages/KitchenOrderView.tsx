@@ -5,23 +5,21 @@ import CalendarPicker from '../components/CalendarPicker';
 import { cameraOutline, chatbubbleOutline, checkmarkOutline, clipboardOutline, createOutline, personOutline } from 'ionicons/icons';
 import './KitchenOrderView.css'
 
-import React from 'react';
-import axios from "axios";
+import { useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
-import { sendGetAllRequest, sendGetByIDRequest } from '../ApiMethods';
-const baseURL = "http://localhost:8000/api/task/2";
+import { sendGetByIDRequest } from '../ApiMethods';
 
 interface KitchenOrderViewProps extends RouteComponentProps<{
-	id_class: string;
+	id_task: string;
 }> {}
 
 const KitchenOrderView: React.FC<KitchenOrderViewProps> = ({match}) => {
 
-	const [data, setData] = React.useState();
-	const [isLoading, setIsLoading] = React.useState(true);
+	const [data, setData] = useState();
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
-		sendGetByIDRequest("task", match.params.id_class).then( data => {
+		sendGetByIDRequest("task", match.params.id_task).then( data => {
 			setData(data);
 			setIsLoading(false);
 		})
@@ -86,7 +84,3 @@ const KitchenOrderView: React.FC<KitchenOrderViewProps> = ({match}) => {
 };
 
 export default KitchenOrderView;
-
-function useEffect(arg0: () => void, arg1: never[]) {
-	throw new Error('Function not implemented.');
-}

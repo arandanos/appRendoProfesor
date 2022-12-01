@@ -1,21 +1,32 @@
 import { IonContent, IonPage, IonGrid, IonIcon, IonInput, IonItem, IonList } from '@ionic/react';
 import Header from '../components/Header';
-import { sendGetAllRequest } from '../ApiMethods';
-import axios from 'axios';
-import { useEffect, useRef, useState } from 'react';
+import { sendGetAllRequest, sendGetByIDRequest } from '../ApiMethods';
+import { useEffect, useState } from 'react';
 import ListItem from '../components/ListItem';
 import PopUp from '../components/PopUp';
 import './Pages.css'
 import { briefcaseOutline } from 'ionicons/icons';
 
-const MyClasses: React.FC = () => {
+interface KitchenOrderViewProps {
+	id_task?: string;
+}
+
+const MyClasses: React.FC<KitchenOrderViewProps> = (props : KitchenOrderViewProps) => {
 
   const [ classes, setClasses ] = useState<any>([]);
+  const [ task, setTask ] = useState<any>([])
 
   useEffect(() =>{
+    if(props.id_task){
+      sendGetByIDRequest("task", props.id_task).then(data => {
+        setTask(data)
+      })
+    } 
     sendGetAllRequest("classroom").then(data => {
       setClasses(data)
     })
+    
+ 
 
   }, [])
 

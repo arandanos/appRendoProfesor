@@ -50,7 +50,6 @@ const SuperviseKitchenOrder: React.FC = () =>{
 
   function findKitchenOrders(orders: []) {
     let classOrders = orders.filter(order => order['_classroom']['_name']['_text'] === class_name);
-    console.log("Class orders: " + classOrders);
     return classOrders;
   }
 
