@@ -7,25 +7,32 @@ import './KitchenOrderView.css'
 
 import React from 'react';
 import axios from "axios";
+import { RouteComponentProps } from 'react-router';
+import { sendGetAllRequest, sendGetByIDRequest } from '../ApiMethods';
 const baseURL = "http://localhost:8000/api/task/2";
 
-const KitchenOrderView: React.FC = () => {
+interface KitchenOrderViewProps extends RouteComponentProps<{
+	id_class: string;
+}> {}
+
+const KitchenOrderView: React.FC<KitchenOrderViewProps> = ({match}) => {
 
 	const [data, setData] = React.useState();
 	const [isLoading, setIsLoading] = React.useState(true);
 
-	React.useEffect(() => {
-		axios.get(baseURL).then((response) => {
-			setData(response.data);
+	useEffect(() => {
+		sendGetByIDRequest("task", match.params.id_class).then( data => {
+			setData(data);
 			setIsLoading(false);
-		});
+		})
 	}, []);
 
 
 	if(isLoading){
+		// * AQUI IRA EL SPLASH DE CARGA
 		return (
 			<div>
-				<h1>Loading...</h1>
+				<h1>Cargando...</h1>
 			</div>
 		);
 	}
@@ -79,3 +86,7 @@ const KitchenOrderView: React.FC = () => {
 };
 
 export default KitchenOrderView;
+
+function useEffect(arg0: () => void, arg1: never[]) {
+	throw new Error('Function not implemented.');
+}

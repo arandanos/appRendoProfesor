@@ -85,7 +85,7 @@ const App: React.FC = () => (
             <Route path="/storage" component={Materials}/>
 
             {/* TAREAS */}
-            <Route exact path="/kitchen_order" component={KitchenOrderView}/>
+            <Route exact path="/kitchen_order/:id_task" component={KitchenOrderView}/>
 
             {/* Rutas Crear Tarea */}
             <Route path="/task/new/kitchen_order" component={KitchenOrderTask}/>
