@@ -4,13 +4,42 @@ import Header from '../components/Header';
 import CalendarPicker from '../components/CalendarPicker';
 import { cameraOutline, chatbubbleOutline, checkmarkCircleOutline, checkmarkOutline, clipboardOutline, createOutline, eyeOutline, gridOutline, personOutline } from 'ionicons/icons';
 import './MaterialTaskView.css'
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import KitchenOrderView from './KitchenOrderView';
+import { useParams } from 'react-router';
+import { sendGetAllRequest } from '../ApiMethods';
 const baseURL = "http://localhost:8000/api/task/2";
 
 
 const MaterialTaskView: React.FC = () => {
+
+    type params = {
+        id_material_task: string;
+    }
+    const {id_material_task} = useParams<params>();
+
+    const [materialTask, setmaterialTask] = useState([]);
+     
+ 
+    useEffect(()=>{
+        sendGetAllRequest("task").then(data => {
+            setmaterialTask(data)
+
+        })
+    },[])
+     
+    function findTask(materialTasks: any[]) {
+        let tarea = materialTasks.filter(materialTask => materialTask['_id'] == id_material_task )
+        return tarea 
+    }
+    var tipo = ""
+    var fechaLimite
+    var tarea = findTask(materialTask)
+    tarea.map(task => {
+            tipo = task['_type']
+            fechaLimite = task['_due_date']
+    })
 
     return (
             <IonPage>
@@ -20,7 +49,8 @@ const MaterialTaskView: React.FC = () => {
                         <IonLabel>Tipo</IonLabel>
                         <IonItem shape='round' fill='outline'>
                             <IonIcon slot='start' icon={gridOutline} />
-                            <IonInput value="Tipo tarea" disabled />
+                            <IonInput disabled value = {tipo} />
+                            
                             <IonIcon slot='end' icon={createOutline} />
                         </IonItem>
 
@@ -31,7 +61,8 @@ const MaterialTaskView: React.FC = () => {
                             <IonIcon slot='end' icon={createOutline} />
                         </IonItem>
 
-                        <CalendarPicker label='Fecha límite de realización' disabled editButton value="2030-12-08"/>
+                        <CalendarPicker label='Fecha límite de realización' disabled editButton value={fechaLimite}/>
+                        
                         <IonLabel>Dar feedback</IonLabel>
                         <IonItem shape='round' fill='outline'>
                             <IonTextarea placeholder='Escribir feedback...'></IonTextarea>
