@@ -17,6 +17,7 @@ import CreateTask from './pages/CreateTask';
 import MyClasses from './pages/MyClasses';
 import Profile from './pages/Profile';
 import AdminSettings from './pages/AdminSettings';
+import MaterialInventory from './pages/MaterialInventory';
 import DishTypes from './pages/DishTypes';
 
 /* Core CSS required for Ionic components to work properly */
@@ -48,6 +49,8 @@ import KitchenOrderTask from './pages/KitchenOrderTask';
 import MaterialTask from './pages/MaterialTask';
 import PrinterTask from './pages/PrinterTask';
 import LaminatorTask from './pages/LaminatorTask';
+import MaterialInventoryDisponibility from './pages/MaterialInventoryDisponibility';
+
 import SuperviseKitchenOrder from './pages/SuperviseKitchenOrder';
 
 
@@ -98,6 +101,12 @@ const App: React.FC = () => (
             <Route path="/task/new/laminator_task" component={LaminatorTask}/>
             {/* <Route path="/task/new/steps_task" component={}/> */}
 
+            <Route path="/MaterialInventory">
+            <MaterialInventory />
+          </Route>
+          <Route path="/MaterialInventoryDisponibility/:id_material">
+            <MaterialInventoryDisponibility />
+          </Route>
             {/* PLATOS */}
             {/* <Route exact path="/dish_types" component={DishTypes}/> */}
 
