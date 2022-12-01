@@ -88,7 +88,7 @@ const App: React.FC = () => (
             <Route path="/students" component={StudentManagement}/>
             <Route path="/teachers" component={TeachersManagement}/>
             <Route path="/classrooms" component={ClassroomsManagement}/>
-            <Route path="/storage" component={Materials}/>
+            <Route path="/storage" component={MaterialInventory}/>
 
             {/* TAREAS */}
             <Route path="/kitchen_order/:id_task" component={KitchenOrderView}/>
