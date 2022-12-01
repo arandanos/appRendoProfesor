@@ -28,7 +28,7 @@ const Tasks: React.FC = () => {
             <IonSearchbar showClearButton="focus" placeholder="Buscar tarea..."></IonSearchbar>
               {tasks.map(task => {
                     return (
-                        <ListItem text={task['_name']['_text']} pictogram={task['_name']['_pictogram']}/>
+                        <ListItem text={task['_name']['_text']} pictogram={task['_name']['_pictogram']} href={"/tasks/material_task_view/" + task['_id']}/>
                     );
                 })}
             

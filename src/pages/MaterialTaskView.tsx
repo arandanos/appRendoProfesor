@@ -8,7 +8,7 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import KitchenOrderView from './KitchenOrderView';
 import { useParams } from 'react-router';
-import { sendGetAllRequest } from '../ApiMethods';
+import { sendGetAllRequest, sendPutRequest } from '../ApiMethods';
 const baseURL = "http://localhost:8000/api/task/2";
 
 
@@ -20,12 +20,11 @@ const MaterialTaskView: React.FC = () => {
     const {id_material_task} = useParams<params>();
 
     const [materialTask, setmaterialTask] = useState([]);
-     
+    const [feedbackInput, setFeedbackInput] = useState("")
  
     useEffect(()=>{
         sendGetAllRequest("task").then(data => {
             setmaterialTask(data)
-
         })
     },[])
      
@@ -33,13 +32,32 @@ const MaterialTaskView: React.FC = () => {
         let tarea = materialTasks.filter(materialTask => materialTask['_id'] == id_material_task )
         return tarea 
     }
+
     var tipo = ""
     var fechaLimite
+    var numeroFeedback = 1
     var tarea = findTask(materialTask)
     tarea.map(task => {
             tipo = task['_type']
             fechaLimite = task['_due_date']
+            numeroFeedback = (task['_feedback']['_id'])
     })
+
+
+
+    /*no se que estoy haciendo */
+   /* function getFeedback(e: any){
+        sessionStorage.setItem("feedback", e.target.value)
+        setFeedbackInput(e.target.value)
+        
+        sendPutRequest("feedback/" + numeroFeedback , {
+            "_text": feedbackInput
+        }
+        )
+    };
+
+    */
+
 
     return (
             <IonPage>
@@ -65,7 +83,8 @@ const MaterialTaskView: React.FC = () => {
                         
                         <IonLabel>Dar feedback</IonLabel>
                         <IonItem shape='round' fill='outline'>
-                            <IonTextarea placeholder='Escribir feedback...'></IonTextarea>
+                            <IonTextarea placeholder='Escribir feedback...' autoGrow={true} ></IonTextarea>
+                            {/* debounce={1000} onIonChange={getFeedback}*/}
                             <IonIcon slot='end' icon={cameraOutline} />
                         </IonItem>
                         <IonButton class='sendFeedback-button' fill="outline" shape="round">Enviar feedback</IonButton>

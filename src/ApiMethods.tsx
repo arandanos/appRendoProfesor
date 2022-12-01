@@ -42,3 +42,18 @@ export const sendDeleteIDRequest = (url: string, id: string) => {
         return(response.data);
       })
 };
+
+/*
+No sé si está bien
+export const sendPutRequest = ( url : string, data : any) => {
+    return axios({
+        url: API_URL + url,
+        method: 'put',
+        data: data
+    }).then(response => {       
+        console.log(response.data)
+        return response.data;
+    })
+};
+
+*/
