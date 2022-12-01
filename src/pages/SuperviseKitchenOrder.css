@@ -1,4 +1,10 @@
 .total-label{
+  position: relative;
+  display: flex;
   text-align: center;
   align-items: center;
+}
+
+.list-container-dishes{
+  margin-bottom: 0px;
 }
