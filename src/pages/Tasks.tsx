@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react';
 import ListItem from '../components/ListItem';
 import './Pages.css'
 import PopUp from '../components/PopUp';
+import StyledButton from '../components/StyledButton';
+import { addCircleOutline } from 'ionicons/icons';
 
 const Tasks: React.FC = () => {
 
@@ -65,7 +67,8 @@ const Tasks: React.FC = () => {
             
             </IonGrid>
 
-            <PopUp label='Añadir Tarea' title='Nueva Tarea' popUpContent={popUpContent}></PopUp>
+            <StyledButton label='Añadir Tarea' icon={addCircleOutline} href="/create_task"></StyledButton>
+            {/* <PopUp label='Añadir Tarea' title='Nueva Tarea' popUpContent={popUpContent}></PopUp> */}
         </IonContent>
       </IonPage>  
   );
