@@ -31,10 +31,10 @@ const Tasks: React.FC = () => {
     })
   }
 
-  const content = ( 
+  const popUpContent = ( 
     <>
      <IonSearchbar onIonChange={(ev) => handleChange(ev)}></IonSearchbar>
-      <IonList>
+      <IonList class="scroll">
       { data.map(pic => (
         <ListItem text={pic['keywords'][0]['keyword']} pictogram={'https://api.arasaac.org/api/pictograms/' + pic["_id"] + '?resolution=500&download=false'}/>
         // <IonItem><IonImg class="pictogram-on-button" slot="start" src={'https://api.arasaac.org/api/pictograms/' + pic["_id"] + '?resolution=500&download=false'}></IonImg></IonItem>
@@ -63,7 +63,7 @@ const Tasks: React.FC = () => {
             
             </IonGrid>
 
-            <PopUp label='Añadir Tarea' title='Nueva Tarea' popUpContent={content} doneAction={handleDoneClick}></PopUp>
+            <PopUp label='Añadir Tarea' title='Nueva Tarea' popUpContent={popUpContent} doneAction={handleDoneClick} hasSearchBar></PopUp>
         </IonContent>
       </IonPage>  
   );

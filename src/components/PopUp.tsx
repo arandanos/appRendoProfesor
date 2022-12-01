@@ -8,7 +8,8 @@ interface PopUpProps {
     label: string;
     title: string;
     popUpContent: JSX.Element;
-    doneAction?: any
+    doneAction?: any;
+    hasSearchBar?: boolean;
 }
 
 const PopUp: React.FC<PopUpProps> = (props: PopUpProps) => {
@@ -19,11 +20,15 @@ const PopUp: React.FC<PopUpProps> = (props: PopUpProps) => {
         modal.current?.dismiss();
     }
 
+    const cssClass = () => {
+        return "pop-up-modal " + (props.hasSearchBar? "pop-up-search" : "")
+    };
+
     return(
         <>
             <StyledButton label={props.label} id="open-modal" icon={addCircleOutline}></StyledButton>
 
-            <IonModal class="pop-up-modal" ref={modal} trigger="open-modal">
+            <IonModal class={cssClass()} ref={modal} trigger="open-modal">
                 <IonContent scrollY={false}>
 
                     <IonToolbar>
