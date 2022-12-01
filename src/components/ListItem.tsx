@@ -47,7 +47,7 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
     <IonItem key={props.id} class="remove-padding custom-padding" >
       <IonItem lines="none" class="remove-padding full-width" href={href}>
         <IonImg class="pictogram-on-button" src={props.pictogram} />
-        <IonLabel> {props.text} - {props.number}</IonLabel>
+        <IonLabel> {props.text} {props.number}</IonLabel>
       </IonItem>
       <IonItem lines='none' slot='end' class='remove-padding fit-width'>
         <IonButton class='icon-button' icon-only item-end fill='clear' onClick={editItem}>
