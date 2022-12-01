@@ -11,7 +11,13 @@ import {
 
 import './Header.css'
 
-const Header: React.FC<{ title: string; back: boolean; settings: boolean }> = (props: { title: string; back: boolean; settings: boolean }) => {
+interface HeaderProps {
+  title: string; 
+  back: boolean; 
+  settings: boolean
+}
+
+const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
     var BackButton = () => {
       if(props.back){
         return (

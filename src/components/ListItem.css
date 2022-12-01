@@ -1,5 +1,12 @@
 .remove-padding {
     --padding-start: 0px;
+    --padding-end: 0px;
+    --inner-padding-end: 0px;
+}
+
+.custom-padding{
+    --padding-start: 5px;
+    --padding-end: 5px;
 }
 
 .pictogram-on-button{
@@ -9,4 +16,19 @@
     padding-left: 10px;
     margin-bottom: 5px;
     margin-top: 5px;
+}
+
+.icon-button{
+    min-width: 30px;
+    max-width: 40px;
+    margin: 0;
+}
+
+.full-width{
+    width: 100%;
+}
+
+.fit-width{
+    width: fit-content;
+    margin: 0;
 }

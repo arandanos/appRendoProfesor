@@ -17,6 +17,7 @@ import CreateTask from './pages/CreateTask';
 import MyClasses from './pages/MyClasses';
 import Profile from './pages/Profile';
 import AdminSettings from './pages/AdminSettings';
+import DishTypes from './pages/DishTypes';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -48,6 +49,7 @@ import MaterialTask from './pages/MaterialTask';
 import PrinterTask from './pages/PrinterTask';
 import LaminatorTask from './pages/LaminatorTask';
 
+
 setupIonicReact();
 
 const App: React.FC = () => (
@@ -55,6 +57,7 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
+         
           {/* RUTAS PARA LAS TABS */}
           <Route exact path="/home">
             <Home />
@@ -89,6 +92,9 @@ const App: React.FC = () => (
             <Route path="/task/new/printer_task" component={PrinterTask}/>
             <Route path="/task/new/laminator_task" component={LaminatorTask}/>
             {/* <Route path="/task/new/steps_task" component={}/> */}
+
+            {/* PLATOS */}
+            <Route exact path="/dish_types" component={DishTypes}/>
 
           <Route exact path="/">
             <Redirect to="/home" />
