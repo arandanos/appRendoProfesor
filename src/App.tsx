@@ -18,7 +18,7 @@ import MaterialTaskView from './pages/MaterialTaskView';
 import MyClasses from './pages/MyClasses';
 import Profile from './pages/Profile';
 import AdminSettings from './pages/AdminSettings';
-import MaterialInventory from './pages/MaterialInventory';
+import Storage from './pages/Storage';
 import DishTypes from './pages/DishTypes';
 
 /* Core CSS required for Ionic components to work properly */
@@ -47,10 +47,10 @@ import TeachersManagement from './pages/TeachersManagement';
 import ClassroomsManagement from './pages/ClassroomsManagement';
 import Materials from './pages/Materials';
 import KitchenOrderTask from './pages/KitchenOrderTask';
-import MaterialTask from './pages/MaterialTask';
+import NewMaterialTask from './pages/NewMaterialTask';
 import PrinterTask from './pages/PrinterTask';
 import LaminatorTask from './pages/LaminatorTask';
-import MaterialInventoryDisponibility from './pages/MaterialInventoryDisponibility';
+import StorageAvailability from './pages/StorageAvailability';
 
 import SuperviseKitchenOrder from './pages/SuperviseKitchenOrder';
 
@@ -68,7 +68,7 @@ const App: React.FC = () => (
             <Home />
           </Route>
           <Route exact path="/material">
-            <MaterialTask />
+            <NewMaterialTask />
           </Route>
           <Route exact path="/tasks">
             <Tasks />
@@ -89,7 +89,8 @@ const App: React.FC = () => (
             <Route path="/students" component={StudentManagement}/>
             <Route path="/teachers" component={TeachersManagement}/>
             <Route path="/classrooms" component={ClassroomsManagement}/>
-            <Route path="/storage" component={MaterialInventory}/>
+            <Route exact path="/storage" component={Storage}/>
+            <Route path="/storage/:id_material" component={StorageAvailability}/>
 
             {/* TAREAS */}
             <Route path="/kitchen_order/:id_task" component={KitchenOrderView}/>
@@ -98,17 +99,12 @@ const App: React.FC = () => (
 
             {/* Rutas Crear Tarea */}
             <Route path="/task/new/kitchen_order" component={KitchenOrderTask}/>
-            <Route path="/task/new/material_request" component={MaterialTask}/>
+            <Route path="/task/new/material_request" component={NewMaterialTask}/>
             <Route path="/task/new/printer_task" component={PrinterTask}/>
             <Route path="/task/new/laminator_task" component={LaminatorTask}/>
             {/* <Route path="/task/new/steps_task" component={}/> */}
 
-            <Route path="/MaterialInventory">
-            <MaterialInventory />
-          </Route>
-          <Route path="/MaterialInventoryDisponibility/:id_material">
-            <MaterialInventoryDisponibility />
-          </Route>
+         
             {/* PLATOS */}
             {/* <Route exact path="/dish_types" component={DishTypes}/> */}
 

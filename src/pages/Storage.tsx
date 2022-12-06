@@ -8,7 +8,7 @@ import ListItem from '../components/ListItem';
 import { sendGetAllRequest } from '../ApiMethods';
 
 
-const MaterialInventory: React.FC = () => {
+const Storage: React.FC = () => {
     
     /*para los datos de materiales*/
     const [materials, setMaterials] = useState([]);
@@ -77,7 +77,7 @@ const MaterialInventory: React.FC = () => {
                     {
                         prueba.map(material => {
                             return (
-                                <ListItem text={material['_type']['_item']['_text']} pictogram={material['_type']['_item']['_pictogram']} href={"/MaterialInventoryDisponibility/"+ material['_type']['_id']}></ListItem>
+                                <ListItem text={material['_type']['_item']['_text']} pictogram={material['_type']['_item']['_pictogram']} href={"/storage/"+ material['_type']['_id']}></ListItem>
                             )
                             })
                     }
@@ -89,4 +89,4 @@ const MaterialInventory: React.FC = () => {
 
 };
 
-export default MaterialInventory;
+export default Storage;

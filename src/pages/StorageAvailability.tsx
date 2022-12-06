@@ -8,14 +8,13 @@ import '../ApiMethods'
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { useParams } from 'react-router';
-// import DisponibilityList from '../components/DisponibilityList';
 import { url } from 'inspector';
 import { sendGetAllRequest } from '../ApiMethods';
 import ListItem from '../components/ListItem';
 const baseURL = "http://localhost:8000/api/task/2";
 const API_URL = ("http://localhost:8000/api/");
 
-const MaterialInventoryDisponibility: React.FC = () => {
+const StorageAvailability: React.FC = () => {
     
 
     type params = {
@@ -83,4 +82,4 @@ const MaterialInventoryDisponibility: React.FC = () => {
         );
     };
 
-export default MaterialInventoryDisponibility;
+export default StorageAvailability;

@@ -9,7 +9,7 @@ import MaterialRow from "../components/MaterialRow";
 import { sendGetAllRequest, sendPostRequest } from "../ApiMethods";
 import StyledButton from "../components/StyledButton";
 
-const MaterialTask: React.FC = () => {
+const NewMaterialTask: React.FC = () => {
   /*Obtener toda la tabla de materiales*/
   const [materials, setMaterials] = useState([]);
   const url = "material"
@@ -208,4 +208,4 @@ const MaterialTask: React.FC = () => {
   );
 };
 
-export default MaterialTask;
+export default NewMaterialTask;
