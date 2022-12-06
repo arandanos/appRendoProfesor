@@ -8,9 +8,10 @@ import '../ApiMethods'
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { useParams } from 'react-router';
-import DisponibilityList from '../components/DisponibilityList';
+// import DisponibilityList from '../components/DisponibilityList';
 import { url } from 'inspector';
 import { sendGetAllRequest } from '../ApiMethods';
+import ListItem from '../components/ListItem';
 const baseURL = "http://localhost:8000/api/task/2";
 const API_URL = ("http://localhost:8000/api/");
 
@@ -32,7 +33,6 @@ const MaterialInventoryDisponibility: React.FC = () => {
     useEffect(()=>{
         sendGetAllRequest("material").then(data => {
             setMaterials(data)
-
         })
     },[])
     
@@ -57,7 +57,11 @@ const MaterialInventoryDisponibility: React.FC = () => {
                 {
                     materialesF.map(material => {
                         return (
-                            <DisponibilityList text={material['_color']['_text']} pictogram={material['_color']['_pictogram']} quantity={material['_quantity']}></DisponibilityList>
+                            <ListItem   quantity={material['_quantity']} 
+                                        text={material['_color']['_text']}  
+                                        pictogram={material['_color']['_pictogram']}
+                                        id={material['_id']} 
+                            ></ListItem>
                         )
                         })
                 }
