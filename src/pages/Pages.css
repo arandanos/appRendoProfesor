@@ -11,6 +11,7 @@ ion-select {
 }
 
 .grid-with-button{
+    /* TODO Calcular la altura de forma dinamica con variables */
     height: calc(100% - 72px);
 }
 
@@ -35,6 +36,7 @@ ion-select {
     overflow-y: auto;
     overflow-x: hidden;
     margin-bottom: 10px;
+    /* TODO Calcular la altura de forma dinamica con variables */
     max-height: calc(100% - 56px);
     min-height: calc(100% - 56px);
 }
@@ -60,4 +62,9 @@ ion-select {
 
 .scroll::-webkit-scrollbar {
     display: none;
+}
+
+/** Clase para quitarle el padding a los grids */
+.no-padding-grid{
+    --ion-grid-padding: 0px;
 }

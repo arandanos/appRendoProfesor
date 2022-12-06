@@ -23,8 +23,9 @@ ion-content{
     overflow-y: auto;
     overflow-x: hidden;
     margin-bottom: 10px;
-    max-height: calc(100% - 184px);
-    min-height: calc(100% - 184px);
+    /* TODO Calcular la altura de forma dinamica con variables */
+    max-height: calc(100% - 210px);
+    min-height: calc(100% - 210px);
 }
 
 .item-list{

@@ -29,6 +29,11 @@
 }
 
 .fit-width{
-    width: fit-content;
+    max-width: fit-content;
     margin: 0;
+}
+
+.quantity{
+    font-size: 20px !important;
+    margin-right: 5px;
 }

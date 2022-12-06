@@ -1,4 +1,4 @@
-import { IonLoading, IonGrid, IonLabel} from '@ionic/react';
+import { IonLoading, IonGrid, IonLabel, IonChip, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle} from '@ionic/react';
 import Header from '../components/Header';
 import './DishTypes.css';
 import './SuperviseKitchenOrder.css';
@@ -62,7 +62,7 @@ const SuperviseKitchenOrder: React.FC = () =>{
             if (menu['_dish']['_type'] === "MENU") {
               numMenus+=menu['_quantity'];
               return (
-                  <ListItem key={menu['_id']} number={menu['_quantity']} text={menu['_dish']['_name']['_text']} pictogram={menu['_dish']['_name']['_pictogram']} id={menu['_id']}></ListItem>
+                  <ListItem key={menu['_id']} quantity={menu['_quantity']} text={menu['_dish']['_name']['_text']} pictogram={menu['_dish']['_name']['_pictogram']} id={menu['_id']}></ListItem>
               )
             } else {
               return null
@@ -70,7 +70,11 @@ const SuperviseKitchenOrder: React.FC = () =>{
           })
         }
       </IonGrid>
-      <IonLabel class="total-label">Total Menús: {numMenus}</IonLabel>
+      <IonGrid class="center-content no-padding-grid">
+        <IonChip color="primary">
+              Total Menús: {numMenus} 
+        </IonChip>
+      </IonGrid>
       <StyledButton icon={checkmarkOutline} label='Correcto'></StyledButton>
     </>,
     <>
@@ -80,7 +84,7 @@ const SuperviseKitchenOrder: React.FC = () =>{
             if (postre['_dish']['_type'] === "POSTRE") {
               numPostres+=postre['_quantity'];
               return (
-                <ListItem key={postre['_id']} number={postre['_quantity']} text={postre['_dish']['_name']['_text']} pictogram={postre['_dish']['_name']['_pictogram']} id={postre['_id']}></ListItem>
+                <ListItem key={postre['_id']} quantity={postre['_quantity']} text={postre['_dish']['_name']['_text']} pictogram={postre['_dish']['_name']['_pictogram']} id={postre['_id']}></ListItem>
               )
             } else {
               return null
@@ -88,7 +92,9 @@ const SuperviseKitchenOrder: React.FC = () =>{
           })
         }
       </IonGrid>
-      <IonLabel class="total-label">Total Postres: {numPostres}</IonLabel>
+      <IonGrid class="center-content no-padding-grid">
+        <IonChip color="primary">Total Postres: {numPostres}</IonChip>
+      </IonGrid>
       <StyledButton icon={checkmarkOutline} label='Correcto'></StyledButton>
     </>
   ]
