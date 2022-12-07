@@ -40,10 +40,9 @@ const Storage: React.FC = () => {
 
     return (
         <IonPage>
-            <Header title="Almacén" back settings={false}  />
+            <Header title="Almacén" back settings={false}/>
 
             <IonContent fullscreen>
-                {/* <IonSearchbar showClearButton="focus" placeholder="Buscar material..." debounce={1000} onIonChange={(ev) => handleChange(ev)}></IonSearchbar> */}
                 <SearchBar elements={materials} updateResults={updateResults}></SearchBar>
                 <IonGrid class="list-container-materials">
                     {
@@ -51,7 +50,7 @@ const Storage: React.FC = () => {
                             return (
                                 <ListItem text={material['_name']['_text']} pictogram={material['_name']['_pictogram']} href={"/storage/"+ material['_id']}></ListItem>
                             )
-                            })
+                        })
                     }
                 </IonGrid>
 

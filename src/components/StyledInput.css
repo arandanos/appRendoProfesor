@@ -1,0 +1,13 @@
+/** Para que cuando el input está disabled, el label se siga viendo y no se superponga con el outline del item */
+ion-label.fix-disabled {
+    opacity: 1 !important;
+}
+
+/** Para arreglar la posicion del value dentro del input cuando el label se coloca arriba */
+ion-input.fix-alignment {
+    transform: translateY(-9px);
+}
+
+ion-item.custom-input{
+    margin-bottom: 10px;
+}

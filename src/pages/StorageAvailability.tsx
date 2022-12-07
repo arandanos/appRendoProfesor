@@ -1,4 +1,4 @@
-import { IonContent, IonGrid, IonLabel, IonNav, IonPage, IonSearchbar } from '@ionic/react';
+import { IonContent, IonGrid, IonLabel, IonNav, IonPage } from '@ionic/react';
 import './Pages.css';
 import Header from '../components/Header';
 import './KitchenOrderView.css'
@@ -6,13 +6,9 @@ import '../ApiMethods'
 
 
 import React, { useEffect, useState } from 'react';
-import axios from "axios";
 import { useParams } from 'react-router';
-import { url } from 'inspector';
-import { sendGetAllRequest } from '../ApiMethods';
+import { sendGetAllRequest, sendGetByIDRequest } from '../ApiMethods';
 import ListItem from '../components/ListItem';
-const baseURL = "http://localhost:8000/api/task/2";
-const API_URL = ("http://localhost:8000/api/");
 
 const StorageAvailability: React.FC = () => {
     
@@ -24,37 +20,37 @@ const StorageAvailability: React.FC = () => {
 
 
     /*para los datos de materiales*/
-    const [materials, setMaterials] = useState([]);
+    const [colors, setColors] = useState([]);
+    const [material, setMaterial] = useState();
+    const [ isLoading, setIsLoading ] = useState(true);
     
-    /*Queremos que obtenga los materiales de la base de datos) */
 
 
     useEffect(()=>{
-        sendGetAllRequest("material").then(data => {
-            setMaterials(data)
+        sendGetAllRequest("material/type/" + id_material).then(data => {
+            setColors(data);
+            sendGetByIDRequest("material_type", id_material).then(data => {
+                setMaterial(data);
+                setIsLoading(false);  
+            })
         })
     },[])
+
+    if(isLoading) {
+        // * AQUI IRA EL SPLASH DE CARGA
+        return(
+          <IonPage>
+            <h1>Cargando...</h1>
+          </IonPage>
+        );
+    } 
+
     
-    var arrayElementos: Array<JSX.Element> = [];
-    function findMaterials(materials: any[]) {
-        let materialesFiltrados = materials.filter(  material => material['_type']['_id'] == id_material )
-        return materialesFiltrados
-    }
-
-    /*PODRIA PONERSE MEJOR PERO NO ENCUENTRO LA FORMA*/
-    var nombreMaterial = ""
-    function findName(materials: any[]){
-        materials.forEach(material => nombreMaterial = material['_type']['_item']['_text'])
-    }
-
-    var materialesF = findMaterials(materials) 
-    findName(materialesF)
-
-    arrayElementos = [
+    var arrayElementos: Array<JSX.Element> = [
         <>
             <IonGrid class="list-container-materials">
                 {
-                    materialesF.map(material => {
+                    colors.map(material => {
                         return (
                             <ListItem   quantity={material['_quantity']} 
                                         text={material['_color']['_text']}  
@@ -73,9 +69,9 @@ const StorageAvailability: React.FC = () => {
     return (
             <IonNav root={() =>
                 <IonPage>
-                    <Header title= {"Almacén: " + nombreMaterial}  back settings={false}  />
+                    <Header title= {"Almacén: " + material!['_name']['_text']} back settings={false}  />
                     <IonContent fullscreen>
-                        <IonLabel>{arrayElementos}</IonLabel>
+                        {arrayElementos}
                     </IonContent>
                 </IonPage>
             }></IonNav>

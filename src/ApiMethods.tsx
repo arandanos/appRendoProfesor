@@ -49,9 +49,9 @@ export const getPictogram = (pictogram : string) => {
     return pictogram;
 }
 
-export const sendPutRequest = ( url : string, data : any) => {
+export const sendPutRequest = ( url : string,  id: string, data : any) => {
     return axios({
-        url: API_URL + url,
+        url: API_URL + url + '/' + id,
         method: 'put',
         data: data
     }).then(response => {       
