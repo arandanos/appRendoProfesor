@@ -41,15 +41,14 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import './App.css';
 import KitchenOrderView from './pages/KitchenOrderView';
-import MenusDesserts from './pages/MenusDesserts';
 import StudentManagement from './pages/StudentManagement';
 import TeachersManagement from './pages/TeachersManagement';
 import ClassroomsManagement from './pages/ClassroomsManagement';
-import Materials from './pages/Materials';
-import KitchenOrderTask from './pages/KitchenOrderTask';
+// import Materials from './pages/Materials';
+import NewKitchenOrder from './pages/NewKitchenOrder';
 import NewMaterialTask from './pages/NewMaterialTask';
-import PrinterTask from './pages/PrinterTask';
-import LaminatorTask from './pages/LaminatorTask';
+import NewPrinterTask from './pages/NewPrinterTask';
+import NewLaminatorTask from './pages/NewLaminatorTask';
 import StorageAvailability from './pages/StorageAvailability';
 
 import SuperviseKitchenOrder from './pages/SuperviseKitchenOrder';
@@ -98,19 +97,18 @@ const App: React.FC = () => (
             <Route exact path="/material_task_view/:id_task" component={MaterialTaskView}></Route>
 
             {/* Rutas Crear Tarea */}
-            <Route path="/task/new/kitchen_order" component={KitchenOrderTask}/>
+            <Route path="/task/new/kitchen_order" component={NewKitchenOrder}/>
             <Route path="/task/new/material_request" component={NewMaterialTask}/>
-            <Route path="/task/new/printer_task" component={PrinterTask}/>
-            <Route path="/task/new/laminator_task" component={LaminatorTask}/>
+            <Route path="/task/new/printer_task" component={NewPrinterTask}/>
+            <Route path="/task/new/laminator_task" component={NewLaminatorTask}/>
             {/* <Route path="/task/new/steps_task" component={}/> */}
 
-         
             {/* PLATOS */}
             {/* <Route exact path="/dish_types" component={DishTypes}/> */}
 
             {/* COMANDA CLASE */}
             <Route path={"/supervise_kitchen_order/:class_name"}>
-              <SuperviseKitchenOrder></SuperviseKitchenOrder>
+              <SuperviseKitchenOrder/>
             </Route>
 
           <Route exact path="/">

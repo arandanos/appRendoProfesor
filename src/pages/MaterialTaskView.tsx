@@ -60,24 +60,11 @@ const MaterialTaskView: React.FC<MaterialTaskViewProps> = ({match}) => {
             <IonPage>
                 <Header title='Material' back settings={false}/>
                 <IonContent >
-                    <IonGrid class='width-90'>
-                        <StyledInput label='Tipo' disabled iconStart={gridOutline} iconEnd={createOutline} value = {materialTask['_type']}></StyledInput>
-                        {/* <IonItem shape='round' fill='outline'>
-                            <IonLabel>Tipo</IonLabel>
-                            <IonIcon slot='start' icon={gridOutline} />
-                            <IonInput disabled value = {materialTask['_type']} />
-                            
-                            <IonIcon slot='end' icon={createOutline} />
-                        </IonItem> */}
+                    <IonList class='width-90'>
+                        {/** REALMENTE NO ES NECESARIO MOSTRAR EL TIPO DE TAREA, YA QUE EL NOMBRE LO INDICA */}
+                        {/* <StyledInput label='Tipo' disabled iconStart={gridOutline} iconEnd={createOutline} value = {materialTask['_type']}></StyledInput> */}
 
                         <StyledInput disabled label='Alumno Asignado' iconStart={personOutline} iconEnd={createOutline} value="Nombre Alumno"></StyledInput>
-
-                        {/* <IonLabel >Alumno asignado</IonLabel>
-                        <IonItem shape='round' fill='outline'>
-                            <IonIcon slot='start' icon={personOutline} />
-                            <IonInput value="Nombre alumno" disabled />
-                            <IonIcon slot='end' icon={createOutline} />
-                        </IonItem> */}
 
                         <CalendarPicker label='Fecha límite de realización' disabled editButton value={materialTask['_due_date']}/>
                         
@@ -88,7 +75,7 @@ const MaterialTaskView: React.FC<MaterialTaskViewProps> = ({match}) => {
                         </IonItem>
                         {/* <IonButton class='sendFeedback-button' fill="outline" shape="round" onClick={handleFeedbackSend}>Enviar feedback</IonButton> */}
                         <StyledButton label='Enviar Feedback' onClick={handleFeedbackSend}></StyledButton>
-                        </IonGrid>  
+                        </IonList>  
       
                         <div className='wrap-material-order-buttons'>
                             {/* <div className='wrap-material-order-button'>

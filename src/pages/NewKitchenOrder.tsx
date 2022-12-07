@@ -6,8 +6,9 @@ import './Pages.css'
 import StyledButton from '../components/StyledButton';
 import { checkmarkCircleOutline } from 'ionicons/icons';
 import { sendPostRequest, sendGetAllRequest } from '../ApiMethods';
+import StyledTextArea from '../components/StyledTextArea';
 
-const KitchenOrderTask: React.FC = () => {
+const NewKitchenOrder: React.FC = () => {
 
   var classrooms: [];
   var dishes: [];
@@ -85,4 +86,4 @@ const KitchenOrderTask: React.FC = () => {
   );
 };
 
-export default KitchenOrderTask;
+export default NewKitchenOrder;

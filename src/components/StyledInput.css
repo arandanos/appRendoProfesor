@@ -8,6 +8,7 @@ ion-input.fix-alignment {
     transform: translateY(-9px);
 }
 
+/** Para separar los inputs entre sí. */
 ion-item.custom-input{
     margin-bottom: 10px;
 }

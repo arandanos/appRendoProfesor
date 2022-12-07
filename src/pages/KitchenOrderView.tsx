@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { sendGetByIDRequest } from '../ApiMethods';
 import StyledButton from '../components/StyledButton';
+import StyledInput from '../components/StyledInput';
 
 interface KitchenOrderViewProps extends RouteComponentProps<{
 	id_task: string;
@@ -46,22 +47,14 @@ const KitchenOrderView: React.FC<KitchenOrderViewProps> = ({match}) => {
 			<Header title="Comanda" settings back={false} />
 			<IonContent fullscreen>
 				<IonList class="width-90">
-					<IonLabel>Alumno asignado</IonLabel>
-					<IonItem shape='round' fill='outline'>
-						<IonIcon slot='start' icon={personOutline} />
-						<IonInput value="Nombre alumno" disabled />
-						<IonIcon slot='end' icon={createOutline} />
-					</IonItem>
+
+					<StyledInput label='Alumno Asignado' iconStart={personOutline} iconEnd={createOutline} disabled value='Nombre Alumno'></StyledInput>
 
 					<CalendarPicker label='Fecha límite de realización' disabled editButton value={data!['_due_date']}/>
 
-					<IonLabel>Estado</IonLabel>
-					<IonItem shape='round' fill='outline'>
-						<IonIcon slot='start' icon={clipboardOutline} />
-						<IonInput value={estado} disabled />
-					</IonItem>
+					<StyledInput label='Estado' iconStart={clipboardOutline} disabled value={estado}></StyledInput>
 
-					{/* <StyledButton label='Supervisar Comanda'></StyledButton> */}
+					<StyledButton label='Ir a Supervisar Comanda'></StyledButton>
 
 					<IonLabel>Dar feedback</IonLabel>
 					<IonItem shape='round' fill='outline'>
@@ -70,16 +63,17 @@ const KitchenOrderView: React.FC<KitchenOrderViewProps> = ({match}) => {
 					</IonItem>
 
 					<div className='wrap-kitchen-order-buttons'>
-						<div className='wrap-kitchen-order-button'>
+						{/* <div className='wrap-kitchen-order-button'>
 							<IonFabButton>
 								<IonIcon icon={chatbubbleOutline} />
 							</IonFabButton>
-						</div>
-						<div className='wrap-kitchen-order-button'>
+						</div> */}
+						<StyledButton label='Tarea Correcta' icon={checkmarkOutline}></StyledButton>
+						{/* <div className='wrap-kitchen-order-button'>
 							<IonFabButton>
 								<IonIcon icon={checkmarkOutline} />
 							</IonFabButton>
-						</div>
+						</div> */}
 					</div>
 				</IonList>
 			</IonContent>

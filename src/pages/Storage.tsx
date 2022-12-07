@@ -1,7 +1,7 @@
 import { IonContent, IonGrid, IonPage, IonSearchbar } from '@ionic/react';
 import './Pages.css';
 import Header from '../components/Header';
-import './MaterialInventory.css'
+import './Storage.css'
 import '../ApiMethods'
 import React, { useEffect, useState } from 'react';
 import ListItem from '../components/ListItem';
