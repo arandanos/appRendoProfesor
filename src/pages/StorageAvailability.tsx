@@ -17,15 +17,11 @@ const StorageAvailability: React.FC = () => {
         id_material: string;
     }
     const {id_material} = useParams<params>();
-
-
-    /*para los datos de materiales*/
+    
     const [colors, setColors] = useState([]);
     const [material, setMaterial] = useState();
     const [ isLoading, setIsLoading ] = useState(true);
     
-
-
     useEffect(()=>{
         sendGetAllRequest("material/type/" + id_material).then(data => {
             setColors(data);
@@ -45,37 +41,27 @@ const StorageAvailability: React.FC = () => {
         );
     } 
 
-    
     var arrayElementos: Array<JSX.Element> = [
-        <>
-            <IonGrid class="list-container-materials">
-                {
-                    colors.map(material => {
-                        return (
-                            <ListItem   quantity={material['_quantity']} 
-                                        text={material['_color']['_text']}  
-                                        pictogram={material['_color']['_pictogram']}
-                                        id={material['_id']} 
-                            ></ListItem>
-                        )
-                        })
-                }
-            </IonGrid>
-        </>
+        <IonGrid class="list-container-materials">
+            {colors.map(material => {
+                return (
+                    <ListItem quantity={material['_quantity']}
+                        text={material['_color']['_text']}
+                        pictogram={material['_color']['_pictogram']}
+                        id={material['_id']}
+                    ></ListItem>
+                )
+            })}
+        </IonGrid>
     ]
-
-
-    
+   
     return (
-            <IonNav root={() =>
-                <IonPage>
-                    <Header title= {"Almacén: " + material!['_name']['_text']} back settings={false}  />
-                    <IonContent fullscreen>
-                        {arrayElementos}
-                    </IonContent>
-                </IonPage>
-            }></IonNav>
-        );
+        <IonPage>
+            <Header title= {"Almacén: " + material!['_name']['_text']} back settings={false}  />
+            <IonContent fullscreen>
+                {arrayElementos}
+            </IonContent>
+        </IonPage>);
     };
 
 export default StorageAvailability;

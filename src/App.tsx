@@ -44,7 +44,6 @@ import KitchenOrderView from './pages/KitchenOrderView';
 import StudentManagement from './pages/StudentManagement';
 import TeachersManagement from './pages/TeachersManagement';
 import ClassroomsManagement from './pages/ClassroomsManagement';
-// import Materials from './pages/Materials';
 import NewKitchenOrder from './pages/NewKitchenOrder';
 import NewMaterialTask from './pages/NewMaterialTask';
 import NewPrinterTask from './pages/NewPrinterTask';

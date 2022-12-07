@@ -154,10 +154,6 @@ const DishTypes: React.FC = () => {
     );
   }
 
-  /* setTimeout(() => {
-    setShowLoading(false);
-  }, 2000); */
-
   return (
     <>
       <Header title="Tipos de platos" settings back={false} />
