@@ -11,9 +11,9 @@ import { useRef } from 'react';
 import './CalendarPicker.css'
 
 interface CalendarPickerProps{
-  label: string;
-  disabled: boolean; 
-  editButton: boolean;
+  label: string; 
+  disabled?: boolean; 
+  editButton?: boolean;
   value?: string;
   onIonChange?: any;
 }

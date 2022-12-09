@@ -14,7 +14,7 @@ import './Header.css'
 interface HeaderProps {
   title: string; 
   back: boolean; 
-  settings: boolean
+  settings: boolean;
 }
 
 const Header: React.FC<HeaderProps> = (props: HeaderProps) => {

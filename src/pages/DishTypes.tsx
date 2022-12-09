@@ -110,7 +110,7 @@ const DishTypes: React.FC = () => {
           dishes.map(menu => {
             if (menu['_type'] === "MENU") {
               return (
-                <ListItem key={menu['_id']} href="dish_types" text={menu['_name']['_text']} pictogram={menu['_name']['_pictogram']} id={menu['_id']} editItem={null} deleteItem={deleteDish}></ListItem>
+                <ListItem key={menu['_id']} href="dish_types" text={menu['_name']['_text']} pictogram={menu['_name']['_pictogram']} id={menu['_id']} handleEdit={null} handleDelete={deleteDish}></ListItem>
               )
             } else {
               return null
@@ -126,7 +126,7 @@ const DishTypes: React.FC = () => {
           dishes.map(postre => {
             if (postre['_type'] === "POSTRE") {
               return (
-                <ListItem key={postre['_id']} href="dish_types" text={postre['_name']['_text']} pictogram={postre['_name']['_pictogram']} id={postre['_id']} editItem={null} deleteItem={deleteDish}></ListItem>
+                <ListItem key={postre['_id']} href="dish_types" text={postre['_name']['_text']} pictogram={postre['_name']['_pictogram']} id={postre['_id']} handleEdit={null} handleDelete={deleteDish}></ListItem>
               )
             } else {
               return null

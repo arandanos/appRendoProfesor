@@ -65,7 +65,7 @@ const NewKitchenOrder: React.FC = () => {
       <Header title="Comanda" back settings={false}/>
       <IonContent fullscreen>
           <IonGrid class="width-90 grid-with-button">
-            <CalendarPicker label='Seleccionar fecha límite' disabled={false} editButton={false} value=''/>
+            <CalendarPicker label='Seleccionar fecha límite'/>
 
             <IonLabel>Encargado de la tarea</IonLabel>
             <IonItem shape="round" fill="outline">

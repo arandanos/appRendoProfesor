@@ -9,8 +9,8 @@ interface ListItemProps{
   pictogram: string;
   href?: string;
   id?: string;
-  editItem?: any;
-  deleteItem?: any;
+  handleEdit?: any;
+  handleDelete?: any;
   quantity?: number;
 }
 
@@ -24,7 +24,7 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
 
   //Llama al edit<item> de la página padre
   function editItem(){
-    props.editItem(props.id);
+    props.handleEdit(props.id);
   }
   //Llama al delete<item> de la página padre
   function deleteItem(){
@@ -38,7 +38,7 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
         {
           text: "SI",
           cssClass: "alert-button-confirm",
-          handler: () => {props.deleteItem(props.id)}
+          handler: () => {props.handleDelete(props.id)}
         }
       ],
     })
