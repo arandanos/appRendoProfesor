@@ -1,5 +1,5 @@
 import { IonContent, IonPage } from '@ionic/react';
-import './Home.css';
+import './Pages.css';
 import Header from '../components/Header';
 
 const Home: React.FC = () => {

@@ -1,14 +1,14 @@
-import { IonContent } from '@ionic/react';
+import { IonContent, IonPage } from '@ionic/react';
 import Header from '../components/Header';
-import './TeachersManagement.css';
+import './Pages.css';
 
 const TeachersManagement: React.FC = () => {
   return (
-    <>
+    <IonPage>
       <Header title="Profesorado" back settings={false}/>
       <IonContent fullscreen>
       </IonContent>
-    </>
+    </IonPage>
   );
 };
 

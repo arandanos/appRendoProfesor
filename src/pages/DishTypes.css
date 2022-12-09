@@ -1,0 +1,38 @@
+.btn-title{
+    display: flex;
+    margin: 0;
+}
+
+ion-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pictogram-header{
+    display: flex;
+    width: 10%;
+}
+
+.add-button{
+    display: flex;
+    align-self: flex-end;
+}
+
+.list-container-dishes{
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-bottom: 10px;
+    /* TODO Calcular la altura de forma dinamica con variables */
+    max-height: calc(100% - 210px);
+    min-height: calc(100% - 210px);
+}
+
+.item-list{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.list-md{
+    background: none;
+}
