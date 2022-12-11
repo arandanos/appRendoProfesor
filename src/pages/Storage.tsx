@@ -52,29 +52,6 @@ const Storage: React.FC = () => {
         setPictoInput(e.target.value)
     };
 
-    function newMaterial(type: string) {
-        console.log("Nuevo "+ type +" creado: " + nameInput);
-        console.log("Pictograma: " + pictoInput);
-        
-        //POST
-        sendPostRequest("accessible_element", {
-          "_text": nameInput,
-          "_pictogram": pictoInput
-        }).then(response => {
-          sendPostRequest("dish", {
-            "_name": response["_id"],
-            "_type": type
-          })
-        }).catch(error => console.log(error));
-    
-        setNameInput("");
-        setPictoInput("");
-        sessionStorage.setItem("name", "");
-        sessionStorage.setItem("pictogram", "");
-        //Recarga la pagina
-        window.location.reload();
-      };
-
     const contentMaterial = (
     <IonList class='width-90'>
       <IonItem class='item-list' fill="outline" shape="round" counter={true}>
