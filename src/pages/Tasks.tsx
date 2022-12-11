@@ -71,7 +71,7 @@ const Tasks: React.FC = () => {
             </IonGrid>
 
             <StyledButton label='Añadir Tarea' icon={addCircleOutline} href="/create_task"></StyledButton>
-            {/* <PopUp label='Añadir Tarea' title='Nueva Tarea' popUpContent={popUpContent}></PopUp> */}
+         {/* <PopUp label='Añadir Tarea' title='Nueva Tarea' popUpContent={popUpContent}></PopUp> */}
         </IonContent>
       </IonPage>  
   );
