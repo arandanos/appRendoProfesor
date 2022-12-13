@@ -6,6 +6,7 @@ import ListItem from '../components/ListItem';
 import PopUp from '../components/PopUp';
 import './Pages.css'
 import { briefcaseOutline } from 'ionicons/icons';
+import { useParams } from 'react-router';
 
 interface KitchenOrderViewProps {
 	id_task?: string;
@@ -14,7 +15,14 @@ interface KitchenOrderViewProps {
 const MyClasses: React.FC<KitchenOrderViewProps> = (props : KitchenOrderViewProps) => {
 
   const [ classes, setClasses ] = useState<any>([]);
-  const [ task, setTask ] = useState<any>([])
+  const [ task, setTask ] = useState<any>([]);
+  const [title, setTitle] = useState<string>("");
+
+  type params = {
+    type_task?: string;
+  }
+
+  const {type_task} = useParams<params>();
 
   useEffect(() =>{
     if(props.id_task){
@@ -25,9 +33,11 @@ const MyClasses: React.FC<KitchenOrderViewProps> = (props : KitchenOrderViewProp
     sendGetAllRequest("classroom").then(data => {
       setClasses(data)
     })
-    
- 
-
+    if(type_task != undefined){
+      setTitle("Elige una clase");
+    } else {
+      setTitle("Mis Clases");
+    }
   }, [])
 
   const content = ( 
@@ -41,13 +51,26 @@ const MyClasses: React.FC<KitchenOrderViewProps> = (props : KitchenOrderViewProp
   
   return (
     <IonPage>
-      <Header title="Mis clases" settings back={false}/>
+      <Header title={title} settings back={false}/>
       <IonContent fullscreen>
         <IonGrid class='list-container'>
           {classes.map((classroom : any) => {
-                return (
-                    <ListItem href={"/supervise_kitchen_order/"+classroom['_name']['_text']} text={classroom['_name']['_text']} pictogram={classroom['_name']['_pictogram']}/>
-                );
+            console.log("ILLO "+type_task);
+            if (type_task != undefined)
+              return (
+                /** Inicialmente solo supervisa la comanda de cocina. Si queremos que supervise 
+                 * cualquier tipo, dependiendo de la lista de Tareas, es necesario pasarle como
+                 * argumento la direccion --> /my_classes/<tipo_tarea>  
+                 * para que sepa que tipo de tarea quiere ver de la clase
+                 * <ListItem href={type+classroom['_name']['_text']} text={classroom['_name']['_text']} pictogram={classroom['_name']['_pictogram']}>
+                 */
+                <ListItem href={type_task + "/" + classroom['_name']['_text']} text={classroom['_name']['_text']} pictogram={classroom['_name']['_pictogram']} />
+              );
+            else {
+              return(
+                <ListItem text={classroom['_name']['_text']} pictogram={classroom['_name']['_pictogram']} />
+              );
+            }
             })}
         </IonGrid>
         <PopUp label='Añadir Clase' title='Nueva Clase' popUpContent={content}></PopUp>

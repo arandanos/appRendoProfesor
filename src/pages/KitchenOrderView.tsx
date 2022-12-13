@@ -54,7 +54,7 @@ const KitchenOrderView: React.FC<KitchenOrderViewProps> = ({match}) => {
 
 					<StyledInput label='Estado' iconStart={clipboardOutline} disabled value={estado}></StyledInput>
 
-					<StyledButton label='Ir a Supervisar Comanda'></StyledButton>
+					<StyledButton label='Ir a Supervisar Comanda' href={"/my_classes/"+"supervise_kitchen_order"}></StyledButton>
 
 					<IonLabel>Dar feedback</IonLabel>
 					<IonItem shape='round' fill='outline'>
