@@ -9,7 +9,6 @@ import TabSwitch from '../components/TabSwitch';
 import ListItem from '../components/ListItem';
 import StyledButton from '../components/StyledButton';
 import { useParams } from 'react-router';
-import {PDFGenerator} from '@awesome-cordova-plugins/pdf-generator';
 
 const SuperviseKitchenOrder: React.FC = () =>{
 
@@ -24,14 +23,7 @@ const SuperviseKitchenOrder: React.FC = () =>{
   const {class_name} = useParams<params>();
 
   function createPDF() {
-    let options = {
-      documentSize: 'A4',
-      type: 'base64',
-      fileName: 'myFile.pdf'
-    }
-    PDFGenerator.fromData('<h1>Hola!</h1>', options)
-      .then((stats)=> console.log('status', stats))
-      .catch((err)=>console.log(err));
+    
   }
 
   useEffect(() => {
