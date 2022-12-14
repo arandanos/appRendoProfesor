@@ -1,15 +1,10 @@
-import { IonContent, IonGrid, IonPage, IonList, IonItem, IonIcon, IonInput, IonLabel, IonSelect, IonSelectOption } from '@ionic/react';
+import { IonContent, IonGrid, IonPage, IonList, IonItem, IonIcon, IonInput, IonLabel, IonSelect, IonSelectOption, IonFab, IonFabButton, IonButton, IonButtons, IonTitle, IonToolbar, IonModal } from '@ionic/react';
 import './Pages.css';
 import Header from '../components/Header';
 import './Storage.css'
-import '../ApiMethods'
-import React, { useEffect, useState } from 'react';
-import { saveOutline } from 'ionicons/icons';
-import { sendGetAllRequest, sendPostRequest, sendDeleteIDRequest } from '../ApiMethods';
-import ListItem from '../components/ListItem';
-import SearchBar from '../components/SearchBar';
-import PopUp from '../components/PopUp';
+import { addCircleOutline, lockClosedOutline, personCircleOutline, personOutline, saveOutline } from 'ionicons/icons';
 import ToggleSwitch from '../components/ToggleSwitch';
+import StyledButton from '../components/StyledButton';
 
 const AddTeacher: React.FC = () => {
 
@@ -33,7 +28,8 @@ const AddTeacher: React.FC = () => {
                 <IonGrid class="width-90">
                     <IonLabel>Introduce el nombre del profesor</IonLabel>
                     <IonItem shape="round" fill="outline">
-                        <IonSelect interface="popover" placeholder="Alumno">
+                    <IonIcon slot="start" icon={personCircleOutline}/>
+                        <IonSelect interface="popover" placeholder="Profesor">
                             <IonSelectOption>Manuel García</IonSelectOption>
                             <IonSelectOption>Franciso Barrios</IonSelectOption>
                             <IonSelectOption>Antonio Suárez</IonSelectOption>
@@ -41,9 +37,10 @@ const AddTeacher: React.FC = () => {
                     </IonItem>
                 </IonGrid>
 
-                <IonGrid class="width-90">
-                    <IonLabel class="padding-top">Introduce un nombre de un alumno</IonLabel>
+                <IonGrid class="width-90-2">
+                    <IonLabel class="padding-top">Introduce un nombre de usuario</IonLabel>
                     <IonItem shape="round" fill="outline">
+                    <IonIcon slot="start" icon={personOutline}/>
                         <IonSelect interface="popover" placeholder="Alumno">
                             <IonSelectOption>Manuel García</IonSelectOption>
                             <IonSelectOption>Franciso Barrios</IonSelectOption>
@@ -53,25 +50,26 @@ const AddTeacher: React.FC = () => {
                 </IonGrid>
                     
 
-                <IonGrid class="width-90">
+                <IonGrid class="width-90-2">
                     <IonLabel>Introduce contraseña</IonLabel>
-                    <IonItem shape="round" fill="outline">Contraseña</IonItem>
+                    <IonItem shape="round" fill="outline"><IonIcon slot="start" icon={lockClosedOutline}/>Contraseña</IonItem>
                 </IonGrid>
 
-                <IonGrid class="width-90">
+                <IonGrid class="width-90-2">
                     <IonLabel>Vuelve a introducir la contraseña</IonLabel>
-                    <IonItem shape="round" fill="outline">Contraseña</IonItem>
+                    <IonItem shape="round" fill="outline"><IonIcon slot="start" icon={lockClosedOutline}/>Contraseña</IonItem>
                 </IonGrid>
                     
-                <IonGrid class="width-90">
-                    <IonLabel>Introduce una imagen o pictograma</IonLabel>
-                    <IonItem shape="round" fill="outline">Nuevo pictograma</IonItem>
+                <IonGrid class="width-90-2">
+                    <IonLabel>Añade una imagen o pictograma</IonLabel>
+                    <IonItem shape="round" fill="outline"><IonIcon slot="start" icon={addCircleOutline}/>Nuevo pictograma</IonItem>
                 </IonGrid>
 
                 <ToggleSwitch label='Permisos de administrador' checked id="admin_permissions"/>
 
-                <PopUp label='Guardar' title='Guardar<ion-icon name="save-outline"></ion-icon>' popUpContent={content}></PopUp>
-
+                <IonGrid class="button-save">
+                    <StyledButton label="Guardar" id="open-modal" icon={saveOutline} href="#"></StyledButton>
+                </IonGrid>
             </IonContent>
         </IonPage>
     )

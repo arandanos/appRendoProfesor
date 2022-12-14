@@ -21,6 +21,20 @@ ion-select {
     margin: 5% auto;
 }
 
+/** Para la página addTeacher, que necesita menos margin top */
+.width-90-2 {
+    min-width: 90%;
+    max-width: 90%;
+    margin: 3% auto;
+}
+
+/** Para la página addStudent, que necesita mas margin bottom y width al 100% */
+.width-100 {
+    min-width: 100%;
+    max-width: 100%;
+    margin: 5% auto 10%;
+}
+
 .center {
     margin: auto;
 }
@@ -75,8 +89,7 @@ ion-select {
 }
 
 /** Clase para los botones de guardar  */
-.button-save{
-    min-width: 40%;
-    max-width: 40%;
-    margin: auto auto auto 30%;
+.button-save {
+    min-width: 80%;
+    max-width: 80%;
 }

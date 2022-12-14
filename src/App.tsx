@@ -50,10 +50,9 @@ import NewPrinterTask from './pages/NewPrinterTask';
 import NewLaminatorTask from './pages/NewLaminatorTask';
 import StorageAvailability from './pages/StorageAvailability';
 import AddTeacher from './pages/AddTeacher';
-import Addstudent from './pages/AddStudent';
+import AddStudent from './pages/AddStudent';
 
 import SuperviseKitchenOrder from './pages/SuperviseKitchenOrder';
-import AddStudent from './pages/AddStudent';
 
 
 setupIonicReact();
