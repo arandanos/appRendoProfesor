@@ -51,6 +51,7 @@ import NewLaminatorTask from './pages/NewLaminatorTask';
 import StorageAvailability from './pages/StorageAvailability';
 
 import SuperviseKitchenOrder from './pages/SuperviseKitchenOrder';
+import PDFPage from './pages/PDFPage';
 
 
 setupIonicReact();
@@ -97,7 +98,7 @@ const App: React.FC = () => (
             
             {/* Ruta pagina de las clases para un tipo de tarea */}
             <Route exact path="/my_classes/:type_task" component={MyClasses}></Route>
-
+            <Route exact path="/pdf_page" component={PDFPage}></Route> 
             {/* Rutas Crear Tarea */}
             <Route path="/task/new/kitchen_order" component={NewKitchenOrder}/>
             <Route path="/task/new/material_request" component={NewMaterialTask}/>

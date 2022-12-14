@@ -2,7 +2,7 @@ import { IonLoading, IonGrid, IonLabel, IonChip, IonCard, IonCardHeader, IonCard
 import Header from '../components/Header';
 import './DishTypes.css';
 import './SuperviseKitchenOrder.css';
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 import { checkmarkOutline } from 'ionicons/icons';
 import { sendGetAllRequest } from '../ApiMethods';
 import TabSwitch from '../components/TabSwitch';
@@ -79,7 +79,7 @@ const SuperviseKitchenOrder: React.FC = () =>{
               Total Menús: {numMenus} 
         </IonChip>
       </IonGrid>
-      <StyledButton icon={checkmarkOutline} label='Correcto' onClick={createPDF}></StyledButton>
+      <StyledButton icon={checkmarkOutline} label='Correcto' href={"/pdf_page"}></StyledButton>
     </>,
     <>
       <IonGrid class='list-container-dishes'>
