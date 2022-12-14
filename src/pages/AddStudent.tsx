@@ -4,39 +4,26 @@ import Header from '../components/Header';
 import './Storage.css'
 import { addCircleOutline, lockClosedOutline, personCircleOutline, personOutline, saveOutline, settingsOutline } from 'ionicons/icons';
 import StyledButton from '../components/StyledButton';
+import StyledInput from '../components/StyledInput';
 
 const AddStudent: React.FC = () => {
     return (
         <IonPage>
             <Header title="Añadir alumno" back settings={false}/>
             <IonContent fullscreen>
-                <IonGrid class="width-90">
+            <IonGrid class="width-90-2">
                     <IonLabel>Introduce el nombre del alumno</IonLabel>
-                    <IonItem shape="round" fill="outline">
-                    <IonIcon slot="start" icon={personCircleOutline}/>
-                        <IonSelect interface="popover" placeholder="Alumno">
-                            <IonSelectOption>Manuel García</IonSelectOption>
-                            <IonSelectOption>Franciso Barrios</IonSelectOption>
-                            <IonSelectOption>Antonio Suárez</IonSelectOption>
-                        </IonSelect>
-                    </IonItem>
+                    <StyledInput label="Nombre del profesor" iconStart={personCircleOutline}/>
                 </IonGrid>
 
-                <IonGrid class="width-90">
-                    <IonLabel class="padding-top">Introduce un nombre de usuario</IonLabel>
-                    <IonItem shape="round" fill="outline">
-                    <IonIcon slot="start" icon={personOutline}/>
-                        <IonSelect interface="popover" placeholder="Alumno">
-                            <IonSelectOption>Manuel García</IonSelectOption>
-                            <IonSelectOption>Franciso Barrios</IonSelectOption>
-                            <IonSelectOption>Antonio Suárez</IonSelectOption>
-                        </IonSelect>
-                    </IonItem>
+                <IonGrid class="width-90-2">
+                    <IonLabel>introduce un nombre de usuario</IonLabel>
+                    <StyledInput label="Usuario" iconStart={personOutline}/>
                 </IonGrid>
 
-                <IonGrid class="width-90">
+                <IonGrid class="width-90-2">
                     <IonLabel>Añade una imagen o pictograma</IonLabel>
-                    <IonItem shape="round" fill="outline"><IonIcon slot="start" icon={addCircleOutline}/>Nuevo pictograma</IonItem>
+                    <StyledInput label="Nuevo pictograma" iconStart={lockClosedOutline}/>
                 </IonGrid>
 
                 <IonGrid class="width-100">
