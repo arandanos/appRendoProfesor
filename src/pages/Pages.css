@@ -68,3 +68,15 @@ ion-select {
 .no-padding-grid{
     --ion-grid-padding: 0px;
 }
+
+/** Clase para darle padding superior a elementos que están demasiados juntos */
+.margin-top{
+    padding-top: 10%;
+}
+
+/** Clase para los botones de guardar  */
+.button-save{
+    min-width: 40%;
+    max-width: 40%;
+    margin: auto auto auto 30%;
+}
