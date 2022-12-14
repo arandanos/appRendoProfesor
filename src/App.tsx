@@ -54,7 +54,6 @@ import AddStudent from './pages/AddStudent';
 
 import SuperviseKitchenOrder from './pages/SuperviseKitchenOrder';
 
-
 setupIonicReact();
 
 const App: React.FC = () => (
