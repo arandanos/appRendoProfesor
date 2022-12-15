@@ -1,8 +1,9 @@
-import { trashOutline } from 'ionicons/icons';
-import { IonItem, IonImg, IonLabel, IonIcon, IonButton, useIonAlert } from '@ionic/react'
+import { addCircleOutline, cafeOutline, trashOutline } from 'ionicons/icons';
+import { IonItem, IonImg, IonLabel, IonIcon, IonButton, useIonAlert, IonInput, IonList } from '@ionic/react'
 import { createOutline } from 'ionicons/icons';
 import './ListItem.css'
 import { getPictogram } from '../ApiMethods';
+import PopUp from '../components/PopUp';
 
 interface ListItemProps{
   text: string; 
@@ -22,10 +23,6 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
   if (props.href)
     href = props.href;
 
-  //Llama al edit<item> de la página padre
-  function editItem(){
-    props.handleEdit(props.id);
-  }
   //Llama al delete<item> de la página padre
   function deleteItem(){
     presentAlert({
@@ -61,7 +58,7 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
         <IonLabel class='ion-text-wrap'> {props.text}</IonLabel>
       </IonItem>
       <IonItem lines='none' slot='end' class='remove-padding fit-width'>
-        <IonButton class='icon-button' icon-only item-end fill='clear' onClick={editItem}>
+        <IonButton class='icon-button' icon-only item-end fill='clear'>
           <IonIcon icon={createOutline}></IonIcon>
         </IonButton>    
         <IonButton class='icon-button' icon-only item-end fill='clear' onClick={deleteItem}>
