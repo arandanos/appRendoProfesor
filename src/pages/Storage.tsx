@@ -2,10 +2,9 @@ import { IonContent, IonGrid, IonPage, IonList, IonItem, IonIcon, IonInput } fro
 import './Pages.css';
 import Header from '../components/Header';
 import './Storage.css'
-import '../ApiMethods'
 import React, { useEffect, useState } from 'react';
 import { addCircleOutline, cafeOutline } from 'ionicons/icons';
-import { sendGetAllRequest, sendPostRequest, sendDeleteIDRequest } from '../ApiMethods';
+import { sendGetAllRequest, sendPostRequest, sendDeleteIDRequest, sendPutRequest } from '../ApiMethods';
 import ListItem from '../components/ListItem';
 import SearchBar from '../components/SearchBar';
 import PopUp from '../components/PopUp';
@@ -75,6 +74,18 @@ const Storage: React.FC = () => {
         window.location.reload();
       };
 
+      function deleteMaterial(id: string){
+        sendDeleteIDRequest("material_type", id);
+        //Recarga la pagina
+        window.location.reload();
+      }
+
+      function editMaterial(id: string){
+        //sendPutRequest("material_type", id, );
+        //Recarga la pagina
+        window.location.reload();
+      }
+
     const contentMaterial = (
     <IonList class='width-90'>
       <IonItem class='item-list' fill="outline" shape="round" counter={true}>
@@ -86,7 +97,7 @@ const Storage: React.FC = () => {
         <IonInput type="text" placeholder='Pictograma' onIonChange={handlePictoInput}></IonInput>
       </IonItem>
     </IonList>
-  )
+    )
 
     return (
         <IonPage>
@@ -96,9 +107,9 @@ const Storage: React.FC = () => {
                 <IonGrid class="list-container">
                     <SearchBar elements={materials} updateResults={updateResults}></SearchBar>
                     {
-                        results.map((material:any) => {
+                        results.map((material : any) => {
                             return (
-                                <ListItem text={material['_name']['_text']} pictogram={material['_name']['_pictogram']} href={"/storage/"+ material['_id']}></ListItem>
+                                <ListItem key={material['_id']} text={material['_name']['_text']} pictogram={material['_name']['_pictogram']} href={"/storage/"+ material['_id']} id={material['_id']} handleEdit={editMaterial} handleDelete={deleteMaterial}></ListItem>
                             )
                         })
                     }
