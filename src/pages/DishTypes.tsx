@@ -71,7 +71,7 @@ const DishTypes: React.FC = () => {
   };
   /**
    * Funcion llamada desde el boton de papelera de cada item
-   */
+  */
   function deleteDish(id: string){
     sendDeleteIDRequest("dish", id);
     //Recarga la pagina

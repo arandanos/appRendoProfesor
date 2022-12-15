@@ -1,0 +1,14 @@
+.list-container-users{
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-bottom: 10px;
+    /* TODO Calcular la altura de forma dinamica con variables */
+    max-height: calc(100% - 210px);
+    min-height: calc(100% - 210px);
+}
+
+.item-list{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+

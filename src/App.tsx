@@ -21,6 +21,7 @@ import AdminSettings from './pages/AdminSettings';
 import Storage from './pages/Storage';
 import DishTypes from './pages/DishTypes';
 
+
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -42,6 +43,8 @@ import './theme/variables.css';
 import './App.css';
 import KitchenOrderView from './pages/KitchenOrderView';
 import StudentManagement from './pages/StudentManagement';
+import UsersManagement from './pages/UsersManagement';
+import NewAdmin from './pages/NewAdmin';
 import TeachersManagement from './pages/TeachersManagement';
 import ClassroomsManagement from './pages/ClassroomsManagement';
 import NewKitchenOrder from './pages/NewKitchenOrder';
@@ -83,9 +86,9 @@ const App: React.FC = () => (
 
           {/* RUTAS RESTO DE COMPONENTES */}
           <Route exact path="/admin_settings" component={AdminSettings}/>
-            <Route path="/dish_types" component={DishTypes}/>
-            <Route path="/students" component={StudentManagement}/>
-            <Route path="/teachers" component={TeachersManagement}/>
+            <Route path="/dish_types" component={DishTypes}/>            
+            <Route path="/users" component={UsersManagement}/>
+            <Route path="/newadmin" component={NewAdmin}/>           
             <Route path="/classrooms" component={ClassroomsManagement}/>
             <Route exact path="/storage" component={Storage}/>
             <Route path="/storage/:id_material" component={StorageAvailability}/>
