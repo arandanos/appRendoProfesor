@@ -80,12 +80,6 @@ const Storage: React.FC = () => {
         window.location.reload();
       }
 
-      function editMaterial(id: string){
-        //sendPutRequest("material_type", id, );
-        //Recarga la pagina
-        window.location.reload();
-      }
-
     const contentMaterial = (
     <IonList class='width-90'>
       <IonItem class='item-list' fill="outline" shape="round" counter={true}>
@@ -109,7 +103,7 @@ const Storage: React.FC = () => {
                     {
                         results.map((material : any) => {
                             return (
-                                <ListItem key={material['_id']} text={material['_name']['_text']} pictogram={material['_name']['_pictogram']} href={"/storage/"+ material['_id']} id={material['_id']} handleEdit={editMaterial} handleDelete={deleteMaterial}></ListItem>
+                                <ListItem key={material['_id']} text={material['_name']['_text']} pictogram={material['_name']['_pictogram']} href={"/storage/"+ material['_id']} id={material['_id']} handleEdit={null} handleDelete={deleteMaterial}></ListItem>
                             )
                         })
                     }

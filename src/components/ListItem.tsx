@@ -23,24 +23,6 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
   if (props.href)
     href = props.href;
 
-  //Llama al edit<item> de la página padre
-  function editItem(){
-    presentAlert({
-      header: "¿Desea modificar: "+ props.text +"?",
-      buttons: ['Cambiar'],
-      inputs: [
-        {
-          placeholder: 'Name',
-        },
-        {
-          placeholder: 'Color',
-          attributes: {
-            maxlength: 8,
-          },
-        },
-      ],
-    })
-  }
   //Llama al delete<item> de la página padre
   function deleteItem(){
     presentAlert({
@@ -76,7 +58,7 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
         <IonLabel class='ion-text-wrap'> {props.text}</IonLabel>
       </IonItem>
       <IonItem lines='none' slot='end' class='remove-padding fit-width'>
-        <IonButton class='icon-button' icon-only item-end fill='clear' onClick={editItem}>
+        <IonButton class='icon-button' icon-only item-end fill='clear'>
           <IonIcon icon={createOutline}></IonIcon>
         </IonButton>    
         <IonButton class='icon-button' icon-only item-end fill='clear' onClick={deleteItem}>
