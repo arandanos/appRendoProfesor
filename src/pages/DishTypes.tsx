@@ -1,4 +1,4 @@
-import { IonLoading, IonList, IonGrid, IonIcon, IonItem, IonInput} from '@ionic/react';
+import { IonLoading, IonList, IonGrid, IonIcon, IonItem, IonInput, IonPage} from '@ionic/react';
 import Header from '../components/Header';
 import './DishTypes.css';
 import { useState, useEffect } from "react";
@@ -105,7 +105,7 @@ const DishTypes: React.FC = () => {
 
   arrayElementos = [
     <>
-      <IonGrid class='list-container-dishes'>
+      <IonGrid class='list-container list-container-dishes'>
         { 
           dishes.map(menu => {
             if (menu['_type'] === "MENU") {
@@ -121,7 +121,7 @@ const DishTypes: React.FC = () => {
       <CreateDishPopUp label='Añadir Menú' title='Nuevo Menú' popUpContent={contentMenu} type='MENU' newDish={newDish}></CreateDishPopUp>
     </>,
     <>
-      <IonGrid class='list-container-dishes'>
+      <IonGrid class='list-container list-container-dishes'>
         {
           dishes.map(postre => {
             if (postre['_type'] === "POSTRE") {
@@ -155,11 +155,11 @@ const DishTypes: React.FC = () => {
   }
 
   return (
-    <>
+    <IonPage>
       <Header title="Tipos de platos" settings back={false} />
   
       <TabSwitch tabsNames={dishTypes} tabsComponents={arrayElementos}></TabSwitch>
-    </>
+    </IonPage>
   );
 };
 
