@@ -1,8 +1,9 @@
-import { trashOutline } from 'ionicons/icons';
-import { IonItem, IonImg, IonLabel, IonIcon, IonButton, useIonAlert } from '@ionic/react'
+import { addCircleOutline, cafeOutline, trashOutline } from 'ionicons/icons';
+import { IonItem, IonImg, IonLabel, IonIcon, IonButton, useIonAlert, IonInput, IonList } from '@ionic/react'
 import { createOutline } from 'ionicons/icons';
 import './ListItem.css'
 import { getPictogram } from '../ApiMethods';
+import PopUp from '../components/PopUp';
 
 interface ListItemProps{
   text: string; 
@@ -24,7 +25,21 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
 
   //Llama al edit<item> de la página padre
   function editItem(){
-    props.handleEdit(props.id);
+    presentAlert({
+      header: "¿Desea modificar: "+ props.text +"?",
+      buttons: ['Cambiar'],
+      inputs: [
+        {
+          placeholder: 'Name',
+        },
+        {
+          placeholder: 'Color',
+          attributes: {
+            maxlength: 8,
+          },
+        },
+      ],
+    })
   }
   //Llama al delete<item> de la página padre
   function deleteItem(){
