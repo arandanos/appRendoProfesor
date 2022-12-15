@@ -2,7 +2,7 @@ import { IonContent, IonGrid, IonPage, IonList, IonItem, IonIcon, IonInput, IonL
 import './Pages.css';
 import Header from '../components/Header';
 import './Storage.css'
-import { addCircleOutline, closeOutline, lockClosedOutline, personCircleOutline, personOutline, saveOutline } from 'ionicons/icons';
+import { addCircleOutline, cameraOutline, closeOutline, lockClosedOutline, personCircleOutline, personOutline, saveOutline } from 'ionicons/icons';
 import ToggleSwitch from '../components/ToggleSwitch';
 import StyledButton from '../components/StyledButton';
 import StyledInput from '../components/StyledInput';
@@ -26,36 +26,18 @@ const AddTeacher: React.FC = () => {
         <IonPage>
             <Header title="Añadir profesor" back settings={false}/>
             <IonContent fullscreen>
-                <IonGrid class="width-90-2">
-                    <IonLabel>Introduce el nombre del profesor</IonLabel>
-                    <StyledInput label="Nombre del profesor" iconStart={personCircleOutline}/>
-                </IonGrid>
-
-                <IonGrid class="width-90-2">
-                    <IonLabel>introduce un nombre de usuario</IonLabel>
-                    <StyledInput label="Usuario" iconStart={personOutline}/>
-                </IonGrid>
-
-                <IonGrid class="width-90-2">
-                    <IonLabel>Introduce contraseña</IonLabel>
-                    <StyledInput label="Contraseña" iconStart={lockClosedOutline}/>
-                </IonGrid>
-
-                <IonGrid class="width-90-2">
-                    <IonLabel>Vuelve a introducir la contraseña</IonLabel>
-                    <StyledInput label="Contraseña" iconStart={lockClosedOutline}/>
-                </IonGrid>
+                <IonGrid class="grid-with-button width-90">
+                    <StyledInput label="Foto del Profesor" iconStart={cameraOutline}/>
+                    <StyledInput label="Nombre del Profesor" iconStart={personCircleOutline}/>
+                    <StyledInput label="Nombre de Usuario" iconStart={personOutline} />
+                    <StyledInput label="Introduce la Contraseña" iconStart={lockClosedOutline} />
+                    <StyledInput label="Confirmar Contraseña" iconStart={lockClosedOutline} />
                     
-                <IonGrid class="width-90-2">
-                    <IonLabel>Añade una imagen o pictograma</IonLabel>
-                    <StyledInput label="Nuevo pictograma" iconStart={lockClosedOutline}/>
+                    <ToggleSwitch label='Permisos de administrador' id="admin_permissions" />
                 </IonGrid>
 
-                <ToggleSwitch label='Permisos de administrador' checked id="admin_permissions"/>
+                <StyledButton label="Crear Profesor" id="open-modal" icon={addCircleOutline} href="#"></StyledButton>
 
-                <IonGrid class="button-save">
-                    <StyledButton label="Guardar" id="open-modal" icon={addCircleOutline} href="#"></StyledButton>
-                </IonGrid>
             </IonContent>
         </IonPage>
     )

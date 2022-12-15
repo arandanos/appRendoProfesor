@@ -12,27 +12,13 @@ ion-select {
 
 .grid-with-button{
     /* TODO Calcular la altura de forma dinamica con variables */
-    height: calc(100% - 72px);
+    height: calc(100% - 74px);
 }
 
 .width-90 {
     min-width: 90%;
     max-width: 90%;
     margin: 5% auto;
-}
-
-/** Para la página addTeacher, que necesita menos margin top */
-.width-90-2 {
-    min-width: 90%;
-    max-width: 90%;
-    margin: 2% auto 0%;
-}
-
-/** Para la página addStudent, que necesita mas margin bottom y width al 100% */
-.width-100 {
-    min-width: 100%;
-    max-width: 100%;
-    margin: 5% auto 10%;
 }
 
 .center {
@@ -61,6 +47,7 @@ ion-select {
     min-width: 90%;
     max-width: 90%;
     margin: auto;
+    margin-bottom: 10px;
 }
 
 .botton-success{
@@ -84,12 +71,6 @@ ion-select {
 }
 
 /** Clase para darle padding superior a elementos que están demasiados juntos */
-.margin-top{
+/* .margin-top{
     padding-top: 10%;
-}
-
-/** Clase para los botones de guardar  */
-.button-save {
-    min-width: 80%;
-    max-width: 80%;
-}
+} */

@@ -2,7 +2,7 @@ import { IonContent, IonGrid, IonPage, IonList, IonItem, IonIcon, IonInput, IonL
 import './Pages.css';
 import Header from '../components/Header';
 import './Storage.css'
-import { addCircleOutline, lockClosedOutline, personCircleOutline, personOutline, saveOutline, settingsOutline } from 'ionicons/icons';
+import { addCircleOutline, cameraOutline, lockClosedOutline, personCircleOutline, personOutline, saveOutline, settingsOutline } from 'ionicons/icons';
 import StyledButton from '../components/StyledButton';
 import StyledInput from '../components/StyledInput';
 
@@ -11,32 +11,13 @@ const AddStudent: React.FC = () => {
         <IonPage>
             <Header title="Añadir alumno" back settings={false}/>
             <IonContent fullscreen>
-            <IonGrid class="width-90-2">
-                    <IonLabel>Introduce el nombre del alumno</IonLabel>
-                    <StyledInput label="Nombre del profesor" iconStart={personCircleOutline}/>
-                </IonGrid>
-
-                <IonGrid class="width-90-2">
-                    <IonLabel>introduce un nombre de usuario</IonLabel>
-                    <StyledInput label="Usuario" iconStart={personOutline}/>
-                </IonGrid>
-
-                <IonGrid class="width-90-2">
-                    <IonLabel>Añade una imagen o pictograma</IonLabel>
-                    <StyledInput label="Nuevo pictograma" iconStart={lockClosedOutline}/>
-                </IonGrid>
-
-                <IonGrid class="width-100">
+                <IonGrid class="grid-with-button width-90">
+                    <StyledInput label="Foto del Alumno" iconStart={cameraOutline} />
+                    <StyledInput label="Nombre del Alumno" iconStart={personCircleOutline} />
                     <StyledButton label="Configuración Accesibilidad" id="open-modal" icon={settingsOutline} href="#"></StyledButton>
-                </IonGrid>
-
-                <IonGrid class="width-100">
                     <StyledButton label="Modo de inicio de sesión" id="open-modal" icon={settingsOutline} href="#"></StyledButton>
                 </IonGrid>
-
-                <IonGrid class="button-save">
-                    <StyledButton label="Guardar" id="open-modal" icon={saveOutline} href="#"></StyledButton>
-                </IonGrid>
+                <StyledButton label="Guardar" id="open-modal" icon={saveOutline} href="#"></StyledButton>
             </IonContent>
         </IonPage>
     )
