@@ -12,7 +12,7 @@ ion-select {
 
 .grid-with-button{
     /* TODO Calcular la altura de forma dinamica con variables */
-    height: calc(100% - 74px);
+    height: calc(100% - 80px);
 }
 
 .width-90 {

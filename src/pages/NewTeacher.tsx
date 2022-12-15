@@ -7,21 +7,12 @@ import ToggleSwitch from '../components/ToggleSwitch';
 import StyledButton from '../components/StyledButton';
 import StyledInput from '../components/StyledInput';
 
-const AddTeacher: React.FC = () => {
+const NewTeacher: React.FC = () => {
 
     const clearSessions = () => {
         sessionStorage.removeItem("admin_permissions");
     }
-
-    const content = ( 
-        <IonList class='width-90' >
-          <IonItem fill="outline" shape="round">
-            <IonIcon slot="start" icon={saveOutline} />
-            <IonInput type="text" placeholder='Nombre de la Clase' ></IonInput>
-          </IonItem>
-        </IonList>
-      )
-
+ 
     return (
         <IonPage>
             <Header title="Añadir profesor" back settings={false}/>
@@ -43,4 +34,4 @@ const AddTeacher: React.FC = () => {
     )
 };
 
-export default AddTeacher;
+export default NewTeacher;
