@@ -108,13 +108,13 @@ const DishTypes: React.FC = () => {
       <IonGrid class='list-container-dishes'>
         { 
           dishes.map(menu => {
-            if (menu['_type'] === "MENU") {
+            // if (menu['_type'] === "MENU") {
               return (
                 <ListItem key={menu['_id']} href="dish_types" text={menu['_name']['_text']} pictogram={menu['_name']['_pictogram']} id={menu['_id']} handleEdit={null} handleDelete={deleteDish}></ListItem>
               )
-            } else {
-              return null
-            }
+            // } else {
+            //   return null
+            // }
           })
         }
       </IonGrid>
