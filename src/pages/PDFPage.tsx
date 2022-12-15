@@ -3,6 +3,7 @@ import { checkmarkOutline, save } from 'ionicons/icons';
 import StyledButton from '../components/StyledButton';
 import { PDFExport, savePDF } from '@progress/kendo-react-pdf';
 import { useRef } from 'react';
+import './PDFPage.css';
 
 const PDFPage: React.FC = () => {
 
@@ -14,6 +15,7 @@ const PDFPage: React.FC = () => {
   }; */
 
   const handleExportWithMethod = () => {
+    console.log(contentArea.current);
     if(contentArea.current)
       savePDF(contentArea.current, {paperSize: 'A4'});
   };
@@ -22,9 +24,8 @@ const PDFPage: React.FC = () => {
     <div className="app-content">
       <PDFExport ref={pdfExportComponent} paperSize='A4'>
         <div ref={contentArea}>
-          <h1>KendoReact PDF Processing</h1>
-          <p>This is an example of text that may be <span className="neat-style">styled</span>
-          </p>
+          <h1>Titulo</h1>
+          <p>Ejemplo de texto</p>
           <div className="button-area">
             <StyledButton icon={checkmarkOutline} label='Generar PDF' onClick={handleExportWithMethod}></StyledButton>
           </div>
