@@ -1,4 +1,4 @@
-import { IonLoading, IonGrid, IonLabel, IonChip, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle} from '@ionic/react';
+import { IonLoading, IonGrid, IonChip} from '@ionic/react';
 import Header from '../components/Header';
 import './DishTypes.css';
 import './SuperviseKitchenOrder.css';
@@ -9,12 +9,16 @@ import TabSwitch from '../components/TabSwitch';
 import ListItem from '../components/ListItem';
 import StyledButton from '../components/StyledButton';
 import { useParams } from 'react-router';
+import { PDFExport, savePDF } from '@progress/kendo-react-pdf';
+import { useRef } from 'react';
+import './PDFPage.css';
 
 const SuperviseKitchenOrder: React.FC = () =>{
 
   const [kitchenOrders, setKitchenOrders] = useState([]);
   const [showLoading, setShowLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
+  const contentArea = useRef(null);
   
   type params = {
     class_name: string;
@@ -22,8 +26,14 @@ const SuperviseKitchenOrder: React.FC = () =>{
   
   const {class_name} = useParams<params>();
 
-  function createPDF() {
-    
+  function handleExportPDF() {
+    console.log(contentArea.current);
+    if(contentArea.current)
+      savePDF(contentArea.current, {paperSize: 'A4'});
+    /* for(var i=0; i<dishTypes.length; i++){
+      {dishTypes[i]}
+      {arrayElementos[i]}
+    } */
   }
 
   useEffect(() => {
@@ -79,7 +89,7 @@ const SuperviseKitchenOrder: React.FC = () =>{
               Total Menús: {numMenus} 
         </IonChip>
       </IonGrid>
-      <StyledButton icon={checkmarkOutline} label='Correcto' href={"/pdf_page"}></StyledButton>
+      <StyledButton icon={checkmarkOutline} label='Correcto' onClick={handleExportPDF}></StyledButton>
     </>,
     <>
       <IonGrid class='list-container-dishes'>
@@ -103,12 +113,29 @@ const SuperviseKitchenOrder: React.FC = () =>{
     </>
   ]
 
-
+  /**
+   * Para generar el pdf, lo más facil y rapido es crearlo desde la misma pagina, creando
+   * un div bajo el contenido de la pagina, el cual no se ve, pero permite 
+   * asignar a la referencia contentArea sus valores, y utilizando los datos que tenemos en 
+   * esta pagina
+   */
   return(
     <>
       <Header title={"Comanda " + class_name} settings back={false}></Header>
 
       <TabSwitch tabsNames={dishTypes} tabsComponents={arrayElementos}></TabSwitch>
+
+      <div className="app-content">
+        <PDFExport paperSize='A4'>
+          <div ref={contentArea}>
+            <h1>Comanda {class_name}</h1>
+            <h2>{dishTypes[0]}</h2>
+            <p>Total Menus: {numMenus}</p>
+            <h2>{dishTypes[1]}</h2>
+            <p>Total Postres: {numPostres}</p>
+          </div>
+        </PDFExport>
+    </div>
     </>
   );
 };

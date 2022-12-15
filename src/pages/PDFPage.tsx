@@ -4,15 +4,16 @@ import StyledButton from '../components/StyledButton';
 import { PDFExport, savePDF } from '@progress/kendo-react-pdf';
 import { useRef } from 'react';
 import './PDFPage.css';
+import Header from '../components/Header';
 
-const PDFPage: React.FC = () => {
+interface PDFPageProps{
+  header: string;
+  body: string;
+}
 
-  const pdfExportComponent = useRef(null);
+const PDFPage: React.FC<PDFPageProps> = (props: PDFPageProps) => {
+
   const contentArea = useRef(null);
-
-  /* const handleExportWithComponent = () => {
-    pdfExportComponent.current?.save();
-  }; */
 
   const handleExportWithMethod = () => {
     console.log(contentArea.current);
@@ -22,7 +23,7 @@ const PDFPage: React.FC = () => {
 
   return(
     <div className="app-content">
-      <PDFExport ref={pdfExportComponent} paperSize='A4'>
+      <PDFExport paperSize='A4'>
         <div ref={contentArea}>
           <h1>Titulo</h1>
           <p>Ejemplo de texto</p>
