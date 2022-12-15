@@ -12,7 +12,7 @@ ion-select {
 
 .grid-with-button{
     /* TODO Calcular la altura de forma dinamica con variables */
-    height: calc(100% - 72px);
+    height: calc(100% - 80px);
 }
 
 .width-90 {
@@ -47,6 +47,7 @@ ion-select {
     min-width: 90%;
     max-width: 90%;
     margin: auto;
+    margin-bottom: 10px;
 }
 
 .botton-success{
@@ -68,3 +69,8 @@ ion-select {
 .no-padding-grid{
     --ion-grid-padding: 0px;
 }
+
+/** Clase para darle padding superior a elementos que están demasiados juntos */
+/* .margin-top{
+    padding-top: 10%;
+} */

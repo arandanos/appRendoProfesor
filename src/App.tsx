@@ -49,9 +49,10 @@ import NewMaterialTask from './pages/NewMaterialTask';
 import NewPrinterTask from './pages/NewPrinterTask';
 import NewLaminatorTask from './pages/NewLaminatorTask';
 import StorageAvailability from './pages/StorageAvailability';
+import NewTeacher from './pages/NewTeacher';
+import NewStudent from './pages/NewStudent';
 
 import SuperviseKitchenOrder from './pages/SuperviseKitchenOrder';
-
 
 setupIonicReact();
 
@@ -87,6 +88,8 @@ const App: React.FC = () => (
             <Route path="/students" component={StudentManagement}/>
             <Route path="/teachers" component={TeachersManagement}/>
             <Route path="/classrooms" component={ClassroomsManagement}/>
+            <Route path="/add_teacher" component={NewTeacher}/>
+            <Route path="/add_student" component={NewStudent}/>
             <Route exact path="/storage" component={Storage}/>
             <Route path="/storage/:id_material" component={StorageAvailability}/>
 
