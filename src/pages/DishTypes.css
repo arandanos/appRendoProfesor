@@ -1,0 +1,29 @@
+.btn-title{
+    display: flex;
+    margin: 0;
+}c
+
+.pictogram-header{
+    display: flex;
+    width: 10%;
+}
+
+.add-button{
+    display: flex;
+    align-self: flex-end;
+}
+
+.list-container-dishes{
+    /* TODO Calcular la altura de forma dinamica con variables */
+    max-height: calc(100% - 94px);
+    min-height: calc(100% - 94px);
+}
+
+.item-list{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.list-md{
+    background: none;
+}

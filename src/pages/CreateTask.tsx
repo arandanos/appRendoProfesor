@@ -1,31 +1,21 @@
 import { IonContent, IonPage, IonGrid, IonNav } from '@ionic/react';
 import Header from '../components/Header';
-import ButtonForward from '../components/ButtonForward';
 import './Pages.css';
-import KitchenOrderTask from './KitchenOrderTask';
-import LaminatorTask from './LaminatorTask';
-import MaterialTask from './MaterialTask';
-import PrinterTask from './PrinterTask';
+import StyledButton from '../components/StyledButton';
 
 const CreateTask: React.FC = () => {
   return (
-    <IonNav root={() => 
-      {
-        return(
-          <IonPage>
-            <Header title="Crear tarea" settings back={false}/>
-            <IonContent fullscreen>
-              <IonGrid>
-                  <ButtonForward class="ion-nav-link-four" label="Comanda de cocina" route={KitchenOrderTask}/>
-                  <ButtonForward class="ion-nav-link-four" label="Petición de material" route={MaterialTask}/>
-                  <ButtonForward class="ion-nav-link-four" label="Impresora" route={PrinterTask}/>
-                  <ButtonForward class="ion-nav-link-four" label="Plastificadora" route={LaminatorTask}/>
-                </IonGrid>
-            </IonContent>
-          </IonPage>
-        )
-      }
-    }></IonNav>
+    <IonPage>
+      <Header title="Crear tarea" settings back={false}/>
+      <IonContent fullscreen>
+        <IonGrid class='button-grid'>
+          <StyledButton label="Comanda de cocina" href="/task/new/kitchen_order"/>
+          <StyledButton label="Petición de material" href="/task/new/material_request"/>
+          <StyledButton label="Impresora" href="/task/new/printer_task"/>
+          <StyledButton label="Plastificadora" href="/task/new/laminator_task"/>
+        </IonGrid>
+      </IonContent>
+    </IonPage>
   );
 };
 
