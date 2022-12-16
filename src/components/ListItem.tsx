@@ -53,6 +53,36 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
     return <></>
   }
 
+  const editButton = () => {
+    if(props.handleEdit != undefined) {
+      return (
+        <IonButton class='icon-button' icon-only item-end fill='clear' onClick={editItem}>
+          <IonIcon icon={createOutline}></IonIcon>
+        </IonButton>
+      )
+    }
+    return <></>
+  }
+
+  const deleteButton = () => {
+    if(props.handleDelete != undefined) {
+      return (
+        <IonButton class='icon-button' icon-only item-end fill='clear' onClick={deleteItem}>
+          <IonIcon icon={trashOutline}></IonIcon>
+        </IonButton>
+      )
+    }
+  }
+
+  const handleButtons = () => {
+    return (
+      <IonItem lines='none' slot='end' class='remove-padding fit-width'>
+        {editButton()}
+        {deleteButton()}
+      </IonItem>
+    )
+  }
+
   return (     
     <IonItem key={props.id} class="remove-padding custom-padding" >
       <IonItem lines="none" class="remove-padding full-width" href={href}>
@@ -60,14 +90,7 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
         <IonImg class="pictogram-on-button" src={pictogram} />
         <IonLabel class='ion-text-wrap'> {props.text}</IonLabel>
       </IonItem>
-      <IonItem lines='none' slot='end' class='remove-padding fit-width'>
-        <IonButton class='icon-button' icon-only item-end fill='clear' onClick={editItem}>
-          <IonIcon icon={createOutline}></IonIcon>
-        </IonButton>    
-        <IonButton class='icon-button' icon-only item-end fill='clear' onClick={deleteItem}>
-          <IonIcon icon={trashOutline}></IonIcon>
-        </IonButton>
-      </IonItem>
+      {handleButtons()}
     </IonItem>
   )
 }

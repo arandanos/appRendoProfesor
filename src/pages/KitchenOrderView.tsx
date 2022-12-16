@@ -75,6 +75,7 @@ const KitchenOrderView: React.FC<KitchenOrderViewProps> = ({match}) => {
 							</IonFabButton>
 						</div> */}
 					</div>
+					{/*<StyledButton icon={checkmarkOutline} label='Correcto' onClick={handleExportPDF}></StyledButton> */}
 				</IonList>
 			</IonContent>
 		</IonPage>

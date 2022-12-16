@@ -9,9 +9,11 @@ import TabSwitch from '../components/TabSwitch';
 import ListItem from '../components/ListItem';
 import StyledButton from '../components/StyledButton';
 import { useParams } from 'react-router';
-import { PDFExport, savePDF } from '@progress/kendo-react-pdf';
+import { PDFExport, savePDF, GridPDFExport } from '@progress/kendo-react-pdf';
 import { useRef } from 'react';
 import './PDFPage.css';
+import { Grid, GridColumn as Column } from '@progress/kendo-react-grid';
+
 
 const SuperviseKitchenOrder: React.FC = () =>{
 
@@ -29,7 +31,7 @@ const SuperviseKitchenOrder: React.FC = () =>{
   function handleExportPDF() {
     console.log(contentArea.current);
     if(contentArea.current)
-      savePDF(contentArea.current, {paperSize: 'A4'});
+      savePDF(contentArea.current, {paperSize: 'A4', fileName: `Comanda ${class_name}`});
     /* for(var i=0; i<dishTypes.length; i++){
       {dishTypes[i]}
       {arrayElementos[i]}
@@ -68,6 +70,13 @@ const SuperviseKitchenOrder: React.FC = () =>{
   }
 
   dishTypes = ["Menús", "Postres"];
+
+  interface dataProps {
+    DishQuantity: number,
+    DishName: string
+  }
+
+  var data: Array<dataProps> = [];
   arrayElementos = [
     <>
       <IonGrid class='list-container-dishes'>
@@ -75,6 +84,7 @@ const SuperviseKitchenOrder: React.FC = () =>{
           kitchenOrders.map(menu => {
             if (menu['_dish']['_type'] === "MENU") {
               numMenus+=menu['_quantity'];
+              data.push({DishQuantity: menu['_quantity'], DishName: menu['_dish']['_name']['_text']});
               return (
                   <ListItem key={menu['_id']} quantity={menu['_quantity']} text={menu['_dish']['_name']['_text']} pictogram={menu['_dish']['_name']['_pictogram']} id={menu['_id']}></ListItem>
               )
@@ -114,6 +124,7 @@ const SuperviseKitchenOrder: React.FC = () =>{
   ]
 
   /**
+   * ? Como fufa
    * Para generar el pdf, lo más facil y rapido es crearlo desde la misma pagina, creando
    * un div bajo el contenido de la pagina, el cual no se ve, pero permite 
    * asignar a la referencia contentArea sus valores, y utilizando los datos que tenemos en 
@@ -130,6 +141,10 @@ const SuperviseKitchenOrder: React.FC = () =>{
           <div ref={contentArea}>
             <h1>Comanda {class_name}</h1>
             <h2>{dishTypes[0]}</h2>
+            <Grid data={data}>
+                <Column field='DishQuantity' title='Cantidad' width='40px'/>
+                <Column field='DishName' title='Nombre del Plato'/>
+            </Grid>
             <p>Total Menus: {numMenus}</p>
             <h2>{dishTypes[1]}</h2>
             <p>Total Postres: {numPostres}</p>
