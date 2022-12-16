@@ -73,23 +73,23 @@ const MaterialTaskView: React.FC<MaterialTaskViewProps> = ({match}) => {
                             <IonTextarea placeholder={placeholder()} autoGrow={true} onIonChange={handleFeedbackChange}></IonTextarea>
                             <IonIcon slot='end' icon={cameraOutline} />
                         </IonItem>
-                        {/* <IonButton class='sendFeedback-button' fill="outline" shape="round" onClick={handleFeedbackSend}>Enviar feedback</IonButton> */}
+
                         <StyledButton label='Enviar Feedback' onClick={handleFeedbackSend}></StyledButton>
-                        </IonList>  
+                    </IonList>  
       
-                        <div className='wrap-material-order-buttons'>
-                            {/* <div className='wrap-material-order-button'>
-                                <IonFabButton>
-                                    <IonIcon icon={chatbubbleOutline} />
-                                </IonFabButton>
-                            </div> */}
-                            {/* <div className='wrap-material-order-button'> */}
-                                <StyledButton label='Tarea Correcta' icon={checkmarkOutline}></StyledButton>
-                                {/* <IonFabButton>
-                                    <IonIcon icon={checkmarkOutline} />
-                                </IonFabButton> */}
-                            {/* </div> */}
-                        </div>
+                    <div className='wrap-material-order-buttons'>
+                        {/* <div className='wrap-material-order-button'>
+                            <IonFabButton>
+                                <IonIcon icon={chatbubbleOutline} />
+                            </IonFabButton>
+                        </div> */}
+                        {/* <div className='wrap-material-order-button'> */}
+                            <StyledButton label='Tarea Correcta' icon={checkmarkOutline}></StyledButton>
+                            {/* <IonFabButton>
+                                <IonIcon icon={checkmarkOutline} />
+                            </IonFabButton> */}
+                        {/* </div> */}
+                    </div>
                 </IonContent>
             </IonPage>
     );

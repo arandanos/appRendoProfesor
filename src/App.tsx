@@ -52,9 +52,10 @@ import NewMaterialTask from './pages/NewMaterialTask';
 import NewPrinterTask from './pages/NewPrinterTask';
 import NewLaminatorTask from './pages/NewLaminatorTask';
 import StorageAvailability from './pages/StorageAvailability';
+import NewTeacher from './pages/NewTeacher';
+import NewStudent from './pages/NewStudent';
 
 import SuperviseKitchenOrder from './pages/SuperviseKitchenOrder';
-
 
 setupIonicReact();
 
@@ -90,6 +91,8 @@ const App: React.FC = () => (
             <Route path="/users" component={UsersManagement}/>
             <Route path="/new/admin" component={NewAdmin}/>           
             <Route path="/classrooms" component={ClassroomsManagement}/>
+            <Route path="/new/teacher" component={NewTeacher}/>
+            <Route path="/new/student" component={NewStudent}/>
             <Route exact path="/storage" component={Storage}/>
             <Route path="/storage/:id_material" component={StorageAvailability}/>
 
@@ -104,9 +107,6 @@ const App: React.FC = () => (
             <Route path="/task/new/printer_task" component={NewPrinterTask}/>
             <Route path="/task/new/laminator_task" component={NewLaminatorTask}/>
             {/* <Route path="/task/new/steps_task" component={}/> */}
-
-            {/* PLATOS */}
-            {/* <Route exact path="/dish_types" component={DishTypes}/> */}
 
             {/* COMANDA CLASE */}
             <Route path={"/supervise_kitchen_order/:class_name"}>
