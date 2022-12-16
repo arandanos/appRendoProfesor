@@ -43,7 +43,7 @@ const UsersManagement: React.FC = () => {
         <IonSearchbar showClearButton="focus" placeholder="Buscar administrador..." ></IonSearchbar>
         <ListItem key="2" href="" text={dataAccessibleAdmin['text']} pictogram={dataAccessibleAdmin['pictogram']} id={dataAccessibleAdmin['id']} handleEdit={null} handleDelete={null}></ListItem>
       </IonGrid>
-      <StyledButton label='Añadir Nuevo Administrador' icon={addCircleOutline}  href="/newadmin"></StyledButton>     
+      <StyledButton label='Añadir Nuevo Administrador' icon={addCircleOutline}  href="/new/admin"></StyledButton>     
     </>,
 
     <>

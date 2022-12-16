@@ -88,7 +88,7 @@ const App: React.FC = () => (
           <Route exact path="/admin_settings" component={AdminSettings}/>
             <Route path="/dish_types" component={DishTypes}/>            
             <Route path="/users" component={UsersManagement}/>
-            <Route path="/newadmin" component={NewAdmin}/>           
+            <Route path="/new/admin" component={NewAdmin}/>           
             <Route path="/classrooms" component={ClassroomsManagement}/>
             <Route exact path="/storage" component={Storage}/>
             <Route path="/storage/:id_material" component={StorageAvailability}/>
