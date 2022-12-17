@@ -5,6 +5,7 @@ import {
     IonBackButton,
     IonFabButton,
     IonIcon,
+    IonRow,
   } from '@ionic/react';
 
   import { settingsOutline } from 'ionicons/icons';
@@ -13,8 +14,8 @@ import './Header.css'
 
 interface HeaderProps {
   title: string; 
-  back: boolean; 
-  settings: boolean;
+  back?: boolean; 
+  settings?: boolean;
 }
 
 const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
@@ -45,9 +46,13 @@ const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
     return (
       <IonHeader>
         <IonToolbar>
-          <BackButton/>
-          <IonTitle>{props.title}</IonTitle>
-          <SettingsButton/>
+          <BackButton />
+          <IonTitle class='ion-text-wrap'>
+            <IonRow class="ion-text-wrap">
+              {props.title}
+            </IonRow>
+          </IonTitle>
+          <SettingsButton />
         </IonToolbar>
       </IonHeader>
     );

@@ -53,6 +53,7 @@ import NewTeacher from './pages/NewTeacher';
 import NewStudent from './pages/NewStudent';
 
 import SuperviseKitchenOrder from './pages/SuperviseKitchenOrder';
+import ModalMaterialTask from './components/ModalMaterialTask';
 
 setupIonicReact();
 
