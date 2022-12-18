@@ -40,13 +40,7 @@ const MaterialInputs: React.FC<MaterialInputsProps> = (props: MaterialInputsProp
             <IonItem shape="round" fill="outline">
               <IonSelect onIonChange={(e) => props.handleMaterialSelect(e.detail.value, props.id)} interface="popover" placeholder="Material">
                 {props.materials!.map(material => (
-                  <IonSelectOption value={material['_id']
-                  /** 
-                   * TODO: revisar IDS para no ERORES AL SELECCIONAR
-                    idMaterial: material['_id'],
-                    idInput: props.id
-                   */
-                  } >
+                    <IonSelectOption value={"idInput_" + props.id + "id_material_" + material['_id']}>
                     { material['_name']['_text']}
                   </IonSelectOption>
                 ))}

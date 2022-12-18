@@ -16,7 +16,7 @@ const ModalMaterialTask: React.FC<ModalMaterialTaskProps> = (props: ModalMateria
     const modal = useRef<HTMLIonModalElement>(null);
     const input = useRef<HTMLIonInputElement>(null);
 
-    // TODO: Revisar IDS en Material Input, ya que errores cuando mismo material. Value = {idInput: , idMAterial: } ?
+    // TODO: Revisar IDS en Material Input, ya que errores cuando mismo material. Sugerencia -> Value = {idInput: , idMAterial: } ?
 
     function confirm() {
         modal.current?.dismiss(input.current?.value, 'confirm');
@@ -41,9 +41,9 @@ const ModalMaterialTask: React.FC<ModalMaterialTaskProps> = (props: ModalMateria
     // * ARRAY DE IDS MATERIAL INPUTS
     const materialInputDefault = {
         id: 0,
-        colorSelected: null,
+        colorSelected: "",
         quantityCounter: 0,
-        materialSelected: null,
+        materialSelected: "",
     }
     //* Array de Material Input, uno por cada material que se va a añadir a la petición
     const quantityOptionDefault = {
@@ -77,11 +77,16 @@ const ModalMaterialTask: React.FC<ModalMaterialTaskProps> = (props: ModalMateria
         console.log(idInput)
         if (materialInputs.length > 1) {
 
-            var toDelete = materialInputs[idInput]; //* Variable para almacenar la posicion del elemento a eliminar
+            var toDelete = materialInputs[idInput].id; //* Variable para almacenar la posicion del elemento a eliminar
+            
+            var newInputs = materialInputs.filter((input) => input.id != idInput);
+            setMaterialInputs(newInputs);
+            console.log(newInputs);
 
-            setMaterialInputs(materialInputs.filter((input) => input.id != idInput));
+            // TODO: ACTUALIZAR VALOR DE INPUTS DE FORMA DINAMICA
+
             // * Modificar el valor de id de los elementos siguientes al que se ha eliminado para que sigan siendo consecutivos.
-            for (let i = toDelete.id; i < materialInputs.length; i++) {
+            for (let i = toDelete; i < materialInputs.length; i++) {
                 materialInputs[i].id--;
             }
 
@@ -90,7 +95,12 @@ const ModalMaterialTask: React.FC<ModalMaterialTaskProps> = (props: ModalMateria
     }
 
     // * EVENTO SELECCIONAR MATERIAL
-    const handleMaterialSelect = (idMaterial: any, idInput: number) => {
+    const handleMaterialSelect = (idSelected: string, idInput: number) => {
+
+        
+        const idMaterial = idSelected.replace("idInput_" + idInput + "id_material_", "");
+        console.log(idMaterial);
+        console.log(idSelected);
 
         materialInputs[idInput].materialSelected = idMaterial;
         var selectedColors: any = [];
@@ -125,10 +135,10 @@ const ModalMaterialTask: React.FC<ModalMaterialTaskProps> = (props: ModalMateria
         materialInputs[idInput].colorSelected = idColor;
 
         //* ACTUALIZAR LA CANTIDAD MAXIMA
-        quantityOptions.map(quantityOpt => {
-            if (quantityOpt[idInput].idColor == idColor) {
+        quantityOptions[idInput].map(quantityOpt => {
+            if (quantityOpt.idColor == idColor) {
                 var newMaxQuantities = [...maxQuantities];
-                newMaxQuantities[idInput] = quantityOpt[idInput].quantity;
+                newMaxQuantities[idInput] = quantityOpt.quantity;
                 setMaxQuantities(newMaxQuantities);
             }
 
