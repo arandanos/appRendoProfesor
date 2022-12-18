@@ -40,7 +40,7 @@ const NewMaterialTask: React.FC = () => {
     // elem.material = JSON.parse(material);
     // elem.color = color;
     // elem.quantity = Number(quantity);
-    newMaterialList.push({material: material, color: color, quantity: quantity });
+    newMaterialList.push({material: JSON.parse(material), color: JSON.parse(color), quantity: quantity });
 
     setMaterialList(newMaterialList);
 
