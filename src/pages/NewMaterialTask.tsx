@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { IonPage, IonIcon, IonFabButton, IonContent, IonList, IonItem, IonLabel, IonSelect, IonSelectOption, IonGrid, IonRow, IonCol } from '@ionic/react';
 import Header from '../components/Header';
 import { add, checkmarkCircleOutline } from 'ionicons/icons';
@@ -9,13 +9,22 @@ import { sendGetAllRequest, sendGetByIDRequest } from "../ApiMethods";
 import StyledButton from "../components/StyledButton";
 import ModalMaterialTask from "../components/ModalMaterialTask";
 import MaterialInputs from "../components/MaterialInputs";
+import ListItem from "../components/ListItem";
+import render from "react-dom";
 
 const NewMaterialTask: React.FC = () => {
 
+  const list = useRef<HTMLIonListElement>(null);
   /*variables del nombre del alumno y el array con todos los materiales*/
   const [name, setName] = useState("");
 
   const [date, setDate] = useState("");
+  const defaultList = {
+    quantity: 0,
+    material: -1,
+    color: -1
+  }
+  const [materialList, setMaterialList] = useState<any>([]);
 
   // * EVENTO Seleccionar NOMBRE DE ALUMNO
   const handleNameChange = (name: string) => {
@@ -23,8 +32,21 @@ const NewMaterialTask: React.FC = () => {
   }
 
   //* EVENTO PULSAR DONE: Se dispara al pulsar el botón de hecho en el modal de materiales
-  const handleDoneClick = (materialInputs: []) => {
-    // TODO: post a la API de la nueva tarea
+  const handleDoneClick = ( material : any, color: any, quantity: any) => {
+    // TODO: añadir un material a la lista
+    var newMaterialList = materialList;
+
+    // var elem = defaultList;
+    // elem.material = JSON.parse(material);
+    // elem.color = color;
+    // elem.quantity = Number(quantity);
+    newMaterialList.push({material: material, color: color, quantity: quantity });
+
+    setMaterialList(newMaterialList);
+
+    console.log("NEW MATERIAL LIST")
+    console.log(newMaterialList);
+
   }
 
   return (
@@ -42,7 +64,19 @@ const NewMaterialTask: React.FC = () => {
             </IonSelect>
           </IonItem>
 
-          <StyledButton label="Añadir Materiales" id="open-modal"></StyledButton>
+          <IonList ref={list}>
+            {materialList.map((selected : any) => {
+              <IonItem>
+                 <IonLabel>{selected.quantity}</IonLabel>
+                 <IonLabel>{selected.material}</IonLabel>
+                 <IonLabel>{selected.color}</IonLabel>
+              </IonItem>
+            })}
+          </IonList>
+
+
+
+          <StyledButton label="Añadir Material" id="open-modal"></StyledButton>
           <ModalMaterialTask trigger="open-modal" handleDoneClick={handleDoneClick}></ModalMaterialTask>
           {/*-----------------Los toggles -----------------*/}
           <ToggleSwitch id='1' label='Feedback automático' checked={false} />
