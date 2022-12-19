@@ -7,7 +7,7 @@ import PopUp from '../components/PopUp';
 
 interface ListItemProps{
   text: string; 
-  pictogram: string;
+  pictogram?: string;
   href?: string;
   id?: string;
   handleEdit?: any;
@@ -41,7 +41,7 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
     })
   }
   
-  var pictogram = getPictogram(props.pictogram);
+ 
 
   const quantity = () => {
     if (props.quantity != undefined) {
@@ -54,7 +54,7 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
     <IonItem key={props.id} class="remove-padding custom-padding" >
       <IonItem lines="none" class="remove-padding full-width" href={href}>
         {quantity()}
-        <IonImg class="pictogram-on-button" src={pictogram} />
+        {props.pictogram? <IonImg class="pictogram-on-button" src={getPictogram(props.pictogram)} /> : null}
         <IonLabel class='ion-text-wrap'> {props.text}</IonLabel>
       </IonItem>
       <IonItem lines='none' slot='end' class='remove-padding fit-width'>

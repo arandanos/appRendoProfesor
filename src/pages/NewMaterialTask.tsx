@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { IonPage, IonIcon, IonFabButton, IonContent, IonList, IonItem, IonLabel, IonSelect, IonSelectOption, IonGrid, IonRow, IonCol } from '@ionic/react';
 import Header from '../components/Header';
-import { add, checkmarkCircleOutline } from 'ionicons/icons';
+import { add, checkmarkCircleOutline, refresh } from 'ionicons/icons';
 import ToggleSwitch from '../components/ToggleSwitch';
 import CalendarPicker from '../components/CalendarPicker';
 import { useState, useEffect } from "react";
@@ -19,11 +19,6 @@ const NewMaterialTask: React.FC = () => {
   const [name, setName] = useState("");
 
   const [date, setDate] = useState("");
-  const defaultList = {
-    quantity: 0,
-    material: -1,
-    color: -1
-  }
   const [materialList, setMaterialList] = useState<any>([]);
 
   // * EVENTO Seleccionar NOMBRE DE ALUMNO
@@ -34,19 +29,34 @@ const NewMaterialTask: React.FC = () => {
   //* EVENTO PULSAR DONE: Se dispara al pulsar el botón de hecho en el modal de materiales
   const handleDoneClick = ( material : any, color: any, quantity: any) => {
     // TODO: añadir un material a la lista
-    var newMaterialList = materialList;
 
-    // var elem = defaultList;
-    // elem.material = JSON.parse(material);
-    // elem.color = color;
-    // elem.quantity = Number(quantity);
-    newMaterialList.push({material: JSON.parse(material), color: JSON.parse(color), quantity: quantity });
+    var existe = materialList.filter((selected:any) => (selected.material['_id'] == JSON.parse(material)['_id']) && (selected.color['_id'] == JSON.parse(color)['_id']));
+
+    if (existe.length > 0){
+      var index = parseInt(existe[0].id)
+      var newList = [...materialList];
+      var newQuantity = (parseInt(quantity) + parseInt(newList[index].quantity));
+
+      newList[index].quantity = newQuantity.toString(); 
+      setMaterialList(newList);
+    } else {
+      var newItem = {id: materialList.length, quantity: quantity, material: JSON.parse(material), color: JSON.parse(color)};
+      setMaterialList([...materialList, newItem]);
+    }
+
+    console.log(materialList);
+
+  }
+
+  const handleDeleteClick = (id : string) => {
+    var toDelete = Number(id); //* Variable para almacenar la posicion del elemento a eliminar
+    var newMaterialList = materialList.filter((selected : any) => selected.id != id);
+
+    for (let i = toDelete; i < newMaterialList.length; i++) {
+        newMaterialList[i].id--;
+    }
 
     setMaterialList(newMaterialList);
-
-    console.log("NEW MATERIAL LIST")
-    console.log(newMaterialList);
-
   }
 
   return (
@@ -64,17 +74,13 @@ const NewMaterialTask: React.FC = () => {
             </IonSelect>
           </IonItem>
 
-          <IonList ref={list}>
+          <IonList ref={list}>      
             {materialList.map((selected : any) => {
-              <IonItem>
-                 <IonLabel>{selected.quantity}</IonLabel>
-                 <IonLabel>{selected.material}</IonLabel>
-                 <IonLabel>{selected.color}</IonLabel>
-              </IonItem>
+              return(
+                <ListItem id={selected.id} quantity={selected.quantity} text={selected.material['_name']['_text'] + " " + selected.color['_text']} handleDelete={handleDeleteClick}></ListItem>
+              )
             })}
           </IonList>
-
-
 
           <StyledButton label="Añadir Material" id="open-modal"></StyledButton>
           <ModalMaterialTask trigger="open-modal" handleDoneClick={handleDoneClick}></ModalMaterialTask>
