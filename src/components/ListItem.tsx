@@ -1,9 +1,8 @@
-import { addCircleOutline, cafeOutline, trashOutline } from 'ionicons/icons';
-import { IonItem, IonImg, IonLabel, IonIcon, IonButton, useIonAlert, IonInput, IonList } from '@ionic/react'
+import { trashOutline } from 'ionicons/icons';
+import { IonItem, IonImg, IonLabel, IonIcon, IonButton, useIonAlert } from '@ionic/react'
 import { createOutline } from 'ionicons/icons';
 import './ListItem.css'
 import { getPictogram } from '../ApiMethods';
-import PopUp from '../components/PopUp';
 
 interface ListItemProps{
   text: string; 
@@ -23,6 +22,10 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
   if (props.href)
     href = props.href;
 
+  //Llama al edit<item> de la página padre
+  function editItem(){
+    props.handleEdit(props.id);
+  }
   //Llama al delete<item> de la página padre
   function deleteItem(){
     presentAlert({
@@ -50,21 +53,44 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
     return <></>
   }
 
-  return (     
-    <IonItem key={props.id} class="remove-padding custom-padding" >
-      <IonItem lines="none" class="remove-padding full-width" href={href}>
-        {quantity()}
-        <IonImg class="pictogram-on-button" src={pictogram} />
-        <IonLabel class='ion-text-wrap'> {props.text}</IonLabel>
-      </IonItem>
-      <IonItem lines='none' slot='end' class='remove-padding fit-width'>
-        <IonButton class='icon-button' icon-only item-end fill='clear'>
+  const editButton = () => {
+    if(props.handleEdit != undefined) {
+      return (
+        <IonButton class='icon-button' icon-only item-end fill='clear' onClick={editItem}>
           <IonIcon icon={createOutline}></IonIcon>
-        </IonButton>    
+        </IonButton>
+      )
+    }
+    return <></>
+  }
+
+  const deleteButton = () => {
+    if(props.handleDelete != undefined) {
+      return (
         <IonButton class='icon-button' icon-only item-end fill='clear' onClick={deleteItem}>
           <IonIcon icon={trashOutline}></IonIcon>
         </IonButton>
+      )
+    }
+  }
+
+  const handleButtons = () => {
+    return (
+      <IonItem lines='none' slot='end' class='remove-padding fit-width'>
+        {editButton()}
+        {deleteButton()}
       </IonItem>
+    )
+  }
+
+  return (     
+    <IonItem key={props.id} class="remove-padding custom-padding" >
+      <IonItem lines="none" class="remove-padding full-width" href={href}>
+        <IonImg class="pictogram-on-button" src={pictogram} />
+        <IonLabel class='ion-text-wrap'> {props.text}</IonLabel>
+        <IonLabel class='quantity'>{quantity()}</IonLabel>
+      </IonItem>
+      {handleButtons()}
     </IonItem>
   )
 }

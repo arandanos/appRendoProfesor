@@ -7,7 +7,7 @@ import '../ApiMethods'
 
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { sendGetAllRequest, sendGetByIDRequest } from '../ApiMethods';
+import { sendGetAllRequest, sendDeleteIDRequest, sendPutRequest, sendGetByIDRequest } from '../ApiMethods';
 import ListItem from '../components/ListItem';
 
 const StorageAvailability: React.FC = () => {
@@ -41,6 +41,18 @@ const StorageAvailability: React.FC = () => {
         );
     } 
 
+    function handleDeleteClick(id: string){
+        sendDeleteIDRequest("material", id);
+        //Recarga la pagina
+        window.location.reload();
+    }
+
+    function handleEditClick(id: string){
+        //sendPutRequest("material", id);
+        //Recarga la pagina
+        window.location.reload();
+    }
+
     var arrayElementos: Array<JSX.Element> = [
         <IonGrid class="list-container-materials">
             {colors.map(material => {
@@ -48,7 +60,8 @@ const StorageAvailability: React.FC = () => {
                     <ListItem quantity={material['_quantity']}
                         text={material['_color']['_text']}
                         pictogram={material['_color']['_pictogram']}
-                        id={material['_id']}
+                        id={material['_id']} 
+                        handleDelete={handleDeleteClick} handleEdit={handleEditClick}
                     ></ListItem>
                 )
             })}
