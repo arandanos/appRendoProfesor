@@ -2,14 +2,15 @@ import { IonContent, IonItem, IonPage, IonList, IonLabel, IonInput, IonIcon, Ion
 import './Pages.css';
 import Header from '../components/Header';
 import CalendarPicker from '../components/CalendarPicker';
-import { cameraOutline, chatbubbleOutline, checkmarkOutline, clipboardOutline, createOutline, personOutline } from 'ionicons/icons';
+import { cameraOutline, chatbubbleOutline, checkmarkOutline, clipboardOutline, createOutline, personOutline, printOutline } from 'ionicons/icons';
 import './KitchenOrderView.css'
-
-import { useEffect, useState } from 'react';
-import { RouteComponentProps } from 'react-router';
+import './PDFPage.css'
+import { useEffect, useRef, useState } from 'react';
+import { RouteComponentProps, useParams } from 'react-router';
 import { sendGetByIDRequest } from '../ApiMethods';
 import StyledButton from '../components/StyledButton';
 import StyledInput from '../components/StyledInput';
+import { PDFExport, savePDF } from '@progress/kendo-react-pdf';
 
 interface KitchenOrderViewProps extends RouteComponentProps<{
 	id_task: string;
@@ -26,6 +27,7 @@ const KitchenOrderView: React.FC<KitchenOrderViewProps> = ({match}) => {
 			setIsLoading(false);
 		})
 	}, []);
+	
 
 
 	if(isLoading){
@@ -68,6 +70,7 @@ const KitchenOrderView: React.FC<KitchenOrderViewProps> = ({match}) => {
 								<IonIcon icon={chatbubbleOutline} />
 							</IonFabButton>
 						</div> */}
+						{/* Este boton genera el pdf de todas las comandas de la tarea*/}
 						<StyledButton label='Tarea Correcta' icon={checkmarkOutline}></StyledButton>
 						{/* <div className='wrap-kitchen-order-button'>
 							<IonFabButton>
@@ -75,7 +78,9 @@ const KitchenOrderView: React.FC<KitchenOrderViewProps> = ({match}) => {
 							</IonFabButton>
 						</div> */}
 					</div>
-					{/*<StyledButton icon={checkmarkOutline} label='Correcto' onClick={handleExportPDF}></StyledButton> */}
+
+					<StyledButton label='Generar PDF' icon={printOutline} href={"/pdf_page/"+match.params.id_task}></StyledButton>
+
 				</IonList>
 			</IonContent>
 		</IonPage>

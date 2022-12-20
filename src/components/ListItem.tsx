@@ -44,7 +44,7 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
     })
   }
   
-  var pictogram = getPictogram(props.pictogram);
+  //var pictogram = getPictogram(props.pictogram);
 
   const quantity = () => {
     if (props.quantity != undefined) {
@@ -87,7 +87,6 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
     <IonItem key={props.id} class="remove-padding custom-padding" >
       <IonItem lines="none" class="remove-padding full-width" href={href}>
         {quantity()}
-        <IonImg class="pictogram-on-button" src={pictogram} />
         <IonLabel class='ion-text-wrap'> {props.text}</IonLabel>
       </IonItem>
       {handleButtons()}

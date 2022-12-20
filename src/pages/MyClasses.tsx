@@ -55,7 +55,6 @@ const MyClasses: React.FC<KitchenOrderViewProps> = (props : KitchenOrderViewProp
       <IonContent fullscreen>
         <IonGrid class='list-container'>
           {classes.map((classroom : any) => {
-            console.log("ILLO "+type_task);
             if (type_task != undefined)
               return (
                 /** Inicialmente solo supervisa la comanda de cocina. Si queremos que supervise 
@@ -64,11 +63,11 @@ const MyClasses: React.FC<KitchenOrderViewProps> = (props : KitchenOrderViewProp
                  * para que sepa que tipo de tarea quiere ver de la clase
                  * <ListItem href={type+classroom['_name']['_text']} text={classroom['_name']['_text']} pictogram={classroom['_name']['_pictogram']}>
                  */
-                <ListItem href={type_task + "/" + classroom['_name']['_text']} text={classroom['_name']['_text']} pictogram={classroom['_name']['_pictogram']} />
+                <ListItem href={type_task + "/" + classroom['_name']} text={classroom['_name']} pictogram={classroom['_name']['_pictogram']} />
               );
             else {
               return(
-                <ListItem text={classroom['_name']['_text']} pictogram={classroom['_name']['_pictogram']} />
+                <ListItem text={classroom['_name']} pictogram={classroom['_name']['_pictogram']} />
               );
             }
             })}

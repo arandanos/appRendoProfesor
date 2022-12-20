@@ -65,7 +65,7 @@ const SuperviseKitchenOrder: React.FC = () =>{
   var numPostres: number = 0;
 
   function findKitchenOrders(orders: []) {
-    let classOrders = orders.filter(order => order['_classroom']['_name']['_text'] === class_name);
+    let classOrders = orders.filter(order => order['_classroom']['_name'] === class_name);
     return classOrders;
   }
 
@@ -82,7 +82,7 @@ const SuperviseKitchenOrder: React.FC = () =>{
       <IonGrid class='list-container-dishes'>
         { 
           kitchenOrders.map(menu => {
-            if (menu['_dish']['_type'] === "MENU") {
+            if (menu['_dish']['_type'] === "1") {
               numMenus+=menu['_quantity'];
               data.push({DishQuantity: menu['_quantity'], DishName: menu['_dish']['_name']['_text']});
               return (
@@ -105,7 +105,7 @@ const SuperviseKitchenOrder: React.FC = () =>{
       <IonGrid class='list-container-dishes'>
         {
           kitchenOrders.map(postre => {
-            if (postre['_dish']['_type'] === "POSTRE") {
+            if (postre['_dish']['_type'] === "2") {
               numPostres+=postre['_quantity'];
               return (
                 <ListItem key={postre['_id']} quantity={postre['_quantity']} text={postre['_dish']['_name']['_text']} pictogram={postre['_dish']['_name']['_pictogram']} id={postre['_id']}></ListItem>
@@ -124,7 +124,7 @@ const SuperviseKitchenOrder: React.FC = () =>{
   ]
 
   /**
-   * ? Como fufa
+   * ? Como funciona
    * Para generar el pdf, lo más facil y rapido es crearlo desde la misma pagina, creando
    * un div bajo el contenido de la pagina, el cual no se ve, pero permite 
    * asignar a la referencia contentArea sus valores, y utilizando los datos que tenemos en 
@@ -142,8 +142,8 @@ const SuperviseKitchenOrder: React.FC = () =>{
             <h1>Comanda {class_name}</h1>
             <h2>{dishTypes[0]}</h2>
             <Grid data={data}>
-                <Column field='DishQuantity' title='Cantidad' width='40px'/>
-                <Column field='DishName' title='Nombre del Plato'/>
+                <Column field='DishQuantity' title='Cantidad' width='80px'/>
+                <Column field='DishName' title='Nombre del Plato' width='200px'/>
             </Grid>
             <p>Total Menus: {numMenus}</p>
             <h2>{dishTypes[1]}</h2>
