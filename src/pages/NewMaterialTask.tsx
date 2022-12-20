@@ -1,16 +1,14 @@
 import React, { useRef } from "react";
-import { IonPage, IonIcon, IonFabButton, IonContent, IonList, IonItem, IonLabel, IonSelect, IonSelectOption, IonGrid, IonRow, IonCol } from '@ionic/react';
+import { IonPage, IonContent, IonList, IonItem, IonLabel, IonSelect, IonSelectOption, IonGrid, useIonToast } from '@ionic/react';
 import Header from '../components/Header';
-import { add, checkmarkCircleOutline, refresh } from 'ionicons/icons';
+import { checkmarkCircleOutline, closeCircleOutline, refresh } from 'ionicons/icons';
 import ToggleSwitch from '../components/ToggleSwitch';
 import CalendarPicker from '../components/CalendarPicker';
-import { useState, useEffect } from "react";
-import { sendGetAllRequest, sendGetByIDRequest } from "../ApiMethods";
+import { useState } from "react";
 import StyledButton from "../components/StyledButton";
 import ModalMaterialTask from "../components/ModalMaterialTask";
-import MaterialInputs from "../components/MaterialInputs";
 import ListItem from "../components/ListItem";
-import render from "react-dom";
+import './NewMaterialTask.css'
 
 const NewMaterialTask: React.FC = () => {
 
@@ -21,24 +19,52 @@ const NewMaterialTask: React.FC = () => {
   const [date, setDate] = useState("");
   const [materialList, setMaterialList] = useState<any>([]);
 
+  // * Hook para mostrar información al añadir en la lista.
+  const [present] = useIonToast();
+
+  const presentToast = (message: string, color: string) => {
+    var icon = checkmarkCircleOutline;
+    if (color == 'danger'){
+      icon = closeCircleOutline;
+    }  
+    present({
+      message: message,
+      duration: 2000,
+      position: 'bottom',
+      icon: icon,
+      animated: true,
+      color: color,
+      cssClass: "rounded-edges"
+    });
+  }
+
   // * EVENTO Seleccionar NOMBRE DE ALUMNO
   const handleNameChange = (name: string) => {
     setName(name)
   }
 
-  //* EVENTO PULSAR DONE: Se dispara al pulsar el botón de hecho en el modal de materiales
-  const handleDoneClick = ( material : any, color: any, quantity: any) => {
-    // TODO: añadir un material a la lista
+  //* EVENTO AÑADIR MATERIAL: Se dispara al pulsar el botón de hecho en el modal de materiales
+  const handleAddClick = ( material : any, color: any, quantity: any) => {
+    var existe = materialList.filter((selected:any) => (selected.material['_id'] === JSON.parse(material)['_id']) && (selected.color['_id'] === JSON.parse(color)['_id']));
 
-    var existe = materialList.filter((selected:any) => (selected.material['_id'] == JSON.parse(material)['_id']) && (selected.color['_id'] == JSON.parse(color)['_id']));
-
+    // · Compruebo si existe ya en la lista el material seleccionado.
     if (existe.length > 0){
       var index = parseInt(existe[0].id)
-      var newList = [...materialList];
-      var newQuantity = (parseInt(quantity) + parseInt(newList[index].quantity));
-
-      newList[index].quantity = newQuantity.toString(); 
-      setMaterialList(newList);
+     
+      var newQuantity = (parseInt(quantity) + parseInt(materialList[index].quantity));
+      var storageQuantity = parseInt(existe[0].color['_quantity']) - parseInt(materialList[index].quantity);
+    
+      // · Si la nueva cantidad supera la disponibilidad del almacén, no se añade y muestra un mensaje de error.
+      if(newQuantity > storageQuantity)
+        presentToast("Solo quedan " + storageQuantity + " de tipo " + existe[0].material['_name']['_text'] + ' ' + existe[0].color['_color']['_text'] + " disponibles en el almacén.", 'danger')
+      else{
+        // · Si no la supera, se suma la cantidad a la del elemento que había ya en la lista.
+        var newList = [...materialList];
+        newList[index].quantity = newQuantity.toString(); 
+        setMaterialList(newList);
+        presentToast("Se ha sumado "+ quantity + " a " + existe[0].material['_name']['_text'] + ' ' + existe[0].color['_color']['_text'], 'success')
+      }
+    // · Si no existe en la lista, se añade directamente.
     } else {
       var newItem = {id: materialList.length, quantity: quantity, material: JSON.parse(material), color: JSON.parse(color)};
       setMaterialList([...materialList, newItem]);
@@ -48,15 +74,26 @@ const NewMaterialTask: React.FC = () => {
 
   }
 
+  // * EVENTO ELIMINAR INPUT: Se dispara al darle al botón de basura
   const handleDeleteClick = (id : string) => {
-    var toDelete = Number(id); //* Variable para almacenar la posicion del elemento a eliminar
-    var newMaterialList = materialList.filter((selected : any) => selected.id != id);
+    // · Almaceno la posicion del elemento a eliminar
+    var toDelete = Number(id); 
 
+    // · Elimino el elemtento de la lista quedandome sólo con aquellos cuyo id no coincide con el que se quiere eliminar.
+    var newMaterialList = materialList.filter((selected : any) => selected.id !== id);
+
+    // · Actualizo los IDs de los elementos que quedan para que sean contiguos en todo momento.
     for (let i = toDelete; i < newMaterialList.length; i++) {
         newMaterialList[i].id--;
     }
 
+    // · Se guarda la lista de materiales tras eliminar y actualizar los IDs
     setMaterialList(newMaterialList);
+  }
+
+
+  const handleCreateClick = () => {
+    // TODO: POST Crear Petición.
   }
 
   return (
@@ -77,18 +114,18 @@ const NewMaterialTask: React.FC = () => {
           <IonList ref={list}>      
             {materialList.map((selected : any) => {
               return(
-                <ListItem id={selected.id} quantity={selected.quantity} text={selected.material['_name']['_text'] + " " + selected.color['_text']} handleDelete={handleDeleteClick}></ListItem>
+                <ListItem id={selected.id} quantity={selected.quantity} text={selected.material['_name']['_text'] + " " + selected.color['_color']['_text']} handleDelete={handleDeleteClick}></ListItem>
               )
             })}
           </IonList>
 
           <StyledButton label="Añadir Material" id="open-modal"></StyledButton>
-          <ModalMaterialTask trigger="open-modal" handleDoneClick={handleDoneClick}></ModalMaterialTask>
+          <ModalMaterialTask trigger="open-modal" handleDoneClick={handleAddClick}></ModalMaterialTask>
           {/*-----------------Los toggles -----------------*/}
-          <ToggleSwitch id='1' label='Feedback automático' checked={false} />
-          <ToggleSwitch id='2' label='Comentarios' checked />
+          <ToggleSwitch label='Feedback automático' checked id="auto_feedback" />
+          <ToggleSwitch label='Comentarios' checked id="allow_comments" />
         </IonGrid>
-        <StyledButton label="Crear petición" icon={checkmarkCircleOutline} id="confirm-material-task"/>
+        <StyledButton label="Crear petición" icon={checkmarkCircleOutline} id="confirm-material-task" onClick={handleCreateClick}/>
       </IonContent>
     </IonPage>
   );

@@ -70,7 +70,13 @@ ion-select {
     --ion-grid-padding: 0px;
 }
 
-/** Clase para darle padding superior a elementos que están demasiados juntos */
-/* .margin-top{
-    padding-top: 10%;
-} */
+/** Clase para eliminar la animación don click */
+.item-remove-animate {
+    --ripple-color: transparent;
+    --background-activated: transparent;
+    --background-activated-opacity:transparent;
+    --background-focused: transparent;
+    --background-focused-opacity:transparent;
+    --background-hover: transparent;
+    --background-hover-opacity  :transparent;
+}

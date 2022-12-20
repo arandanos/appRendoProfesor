@@ -49,7 +49,7 @@ const MaterialInputs: React.FC<MaterialInputsProps> = (props: MaterialInputsProp
               <IonSelect className="Color" onIonChange={(e) => props.handleColorSelect(e.detail.value)} interface="popover" placeholder="Color">
                 {/* TODO: Comprobar si se ha introducido o no */}
                 {props.colors!.map(color => (
-                  <IonSelectOption value={color}>{color['_text']}</IonSelectOption>
+                  <IonSelectOption value={color}>{color['_color']['_text']}</IonSelectOption>
                 ))}
               </IonSelect>
             </IonItem>

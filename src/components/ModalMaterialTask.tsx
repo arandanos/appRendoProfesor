@@ -76,29 +76,6 @@ const ModalMaterialTask: React.FC<ModalMaterialTaskProps> = (props: ModalMateria
         // setMaxQuantities([...maxQuantities, 0]);
     // }
 
-    // * EVENTO ELIMINAR INPUT: Se dispara al darle al botón de basura
-    // const handleDeleteClick = (idInput: number, selectRef: HTMLIonSelectElement) => {
-    //     selectRef.value = null;
-    //     if (materialInputs.length > 1) {
-    //         console.log(selectRef)
-    //         var toDelete = materialInputs[idInput].id; //* Variable para almacenar la posicion del elemento a eliminar
-         
-           
-    //         var newInputs = materialInputs.filter((input) => input.id != idInput);
-    //         setMaterialInputs(newInputs);
-    //         console.log(newInputs);
-
-    //         // TODO: ACTUALIZAR VALOR DE INPUTS DE FORMA DINAMICA? no sé como 
-
-    //         // * Modificar el valor de id de los elementos siguientes al que se ha eliminado para que sigan siendo consecutivos.
-    //         for (let i = toDelete; i < materialInputs.length; i++) {
-    //             materialInputs[i].id--;
-    //         }
-
-    //     }
-    //     // TODO: si solo hay uno clear inputs al darle al botón
-    // }
-
     // * EVENTO SELECCIONAR MATERIAL
     const handleMaterialSelect = (materialSelected: any, id: string) => {
 
@@ -111,10 +88,10 @@ const ModalMaterialTask: React.FC<ModalMaterialTaskProps> = (props: ModalMateria
         var selectedColors: any = [];
         var selectedQuantities: any = [];
 
-        //* SE OBTIENEN DE LA API LOS COLORES DEL MATERIAL SELECCIONADO
+        //* SE OBTIENEN DE LA API LOS COLORES Y LA CANTIDAD DEL MATERIAL SELECCIONADO
         sendGetByIDRequest("material/type", materialSelected['_id']).then(data => {
             data.map((material: any) => {
-                selectedColors.push(material['_color']);
+                selectedColors.push(material);
                 selectedQuantities.push({
                     idColor: material['_color']['_id'],
                     quantity: material['_quantity']
@@ -142,7 +119,7 @@ const ModalMaterialTask: React.FC<ModalMaterialTaskProps> = (props: ModalMateria
 
         //* ACTUALIZAR LA CANTIDAD MAXIMA
         quantityOptions.map(quantityOpt => {
-            if (quantityOpt.idColor == colorSelected['_id']) {
+            if (quantityOpt.idColor == colorSelected['_color']['_id']) {
                 setMaxQuantity(quantityOpt.quantity);
             }
         })
@@ -164,7 +141,12 @@ const ModalMaterialTask: React.FC<ModalMaterialTaskProps> = (props: ModalMateria
                 {/*Para hacer el tema de la cantidad, material ..etc he hecho un grid en donde cada fila sea pues los 3 inputs, y dentro de cada fila 2 filas para ir poniendo las cosas, en los select he hecho que en cuanto se haga un cambio
             se cambien automaticamente en el array con todas las cosas, para la visualización hago que se añada una fila por cada elemento del array, con el .map*/}
                 <IonGrid class="grid-with-button width-90 scroll">
-                        <MaterialInputs materials={materials} colors={colorOptions} maxQuantity={maxQuantity} handleCounterChange={handleCounterChange} handleMaterialSelect={handleMaterialSelect} handleColorSelect={handleColorSelect}></MaterialInputs>
+                        <MaterialInputs materials={materials} 
+                                        colors={colorOptions} 
+                                        maxQuantity={maxQuantity} 
+                                        handleCounterChange={handleCounterChange} 
+                                        handleMaterialSelect={handleMaterialSelect} 
+                                        handleColorSelect={handleColorSelect}/>
                 
                     {/* <IonRow class="center-content">
                         <IonFabButton class="center" color="success" size='small' onClick={handleAddClick}>

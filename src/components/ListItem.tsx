@@ -19,10 +19,6 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
     
   const [presentAlert] = useIonAlert();
 
-  var href = "#"
-  if (props.href)
-    href = props.href;
-
   //Llama al delete<item> de la página padre
   function deleteItem(){
     presentAlert({
@@ -40,20 +36,11 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
       ],
     })
   }
-  
- 
-
-  const quantity = () => {
-    if (props.quantity != undefined) {
-      return <IonLabel color="primary" class='quantity fit-width'>{props.quantity}</IonLabel>
-    }
-    return <></>
-  }
 
   return (     
     <IonItem key={props.id} class="remove-padding custom-padding" >
-      <IonItem lines="none" class="remove-padding full-width" href={href}>
-        {quantity()}
+      <IonItem lines="none" class="remove-padding full-width" href={props.href}>
+        {props.quantity? <IonLabel color="primary" class='quantity fit-width'>{props.quantity}</IonLabel> : null}
         {props.pictogram? <IonImg class="pictogram-on-button" src={getPictogram(props.pictogram)} /> : null}
         <IonLabel class='ion-text-wrap'> {props.text}</IonLabel>
       </IonItem>
