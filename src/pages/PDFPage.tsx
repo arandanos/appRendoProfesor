@@ -51,7 +51,7 @@ const PDFPage: React.FC<PDFPageProps> = ({match}) => {
       console.log("Nombre tarea: " + taskName);
       //Establezco el tipo de la misma
       setTaskType(data['_type']);
-      console.log("Tipo de tarea: " + taskType);
+      console.log("Tipo de tarea: " + data['_type']);
     })
     //Establezco las clases
     sendGetAllRequest("classroom").then(data => {
@@ -59,14 +59,12 @@ const PDFPage: React.FC<PDFPageProps> = ({match}) => {
       //Cuando se establezcan las clases, hago set de las tareas
     })
     sendGetAllRequest("kitchen_order_detail").then(data => {
-      setKitchenOrders(findKitchenOrders(data));
-      console.log("PORFAVOR: " + kitchenOrders.length);
+      setKitchenOrders(data);
       //Cuando kitchenOrders tenga un valor, hace el setContent
-      setContent();
-      setIsLoading(false);
+      setIsLoading(false)
       setShowLoading(false)
     })
-  }, [])
+  }, [setContent()])
 
   if(isLoading){
     return(
@@ -100,7 +98,7 @@ const PDFPage: React.FC<PDFPageProps> = ({match}) => {
         content.push({
           quantity: order['_quantity'],
           name: order['_dish']['_name']['_text'],
-          type: order['_type'],
+          type: order['_dish']['_type'],
           classroom: order['_classroom']['_name']
         });
       })
