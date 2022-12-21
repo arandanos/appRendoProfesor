@@ -1,7 +1,7 @@
-import { IonContent, IonPage, IonGrid, IonNav, IonSearchbar } from '@ionic/react';
+import { IonContent, IonPage, IonGrid, IonNav, IonSearchbar, IonInput, IonItem, InputChangeEventDetail, IonList, IonImg, IonPopover } from '@ionic/react';
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
-import {sendGetAllRequest} from '../ApiMethods'
+import {sendDeleteIDRequest, sendGetAllRequest, sendGetARASAACRequest} from '../ApiMethods'
 import { useEffect, useState } from 'react';
 import ListItem from '../components/ListItem';
 import './Pages.css'
@@ -23,9 +23,15 @@ const Tasks: React.FC = () => {
     })    
   }, []) 
 
+ 
   const popUpContent = ( 
-    <></>
+    <>
+    </>
   )
+
+  const handleDoneClick = () => {
+   
+  }
 
    //** Funcion para el buscador */
    const updateResults = (results:any)=>{
@@ -43,6 +49,11 @@ const Tasks: React.FC = () => {
       href = "/material_task_view/" + task["_id"]
     }
     return href
+  }
+
+  const handleDeleteClick = (id: string) => {
+    sendDeleteIDRequest('task', id);
+    window.location.reload();
   }
   
 
@@ -63,15 +74,13 @@ const Tasks: React.FC = () => {
             <SearchBar elements={tasks} updateResults={updateResults}></SearchBar>
               {results.map((task:any) => {
                     return (
-                        <ListItem text={task['_name']['_text']} pictogram={task['_name']['_pictogram']} href={generateHref(task)}/>
+                        <ListItem id={task['_id']} text={task['_name']['_text']} pictogram={task['_name']['_pictogram']} href={generateHref(task)} handleDelete={handleDeleteClick}/>
                     );
                 })}
-                {/*   <ListItem text={task['_name']['_text']} pictogram={task['_name']['_pictogram']} href={"/tasks/material_task_view/" + task['_id']}/>*/}
 
             </IonGrid>
 
             <StyledButton label='Añadir Tarea' icon={addCircleOutline} href="/create_task"></StyledButton>
-            {/* <PopUp label='Añadir Tarea' title='Nueva Tarea' popUpContent={popUpContent}></PopUp> */}
         </IonContent>
       </IonPage>  
   );

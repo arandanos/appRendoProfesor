@@ -12,6 +12,16 @@ export const sendGetAllRequest = ( url : string) => {
     })
 };
 
+export const sendGetARASAACRequest = (searchText : string) => {
+    return axios({
+        url: "https://api.arasaac.org/api/pictograms/es/search/" + searchText ,
+        method: 'get'
+    }).then(response => {       
+        console.log(response.data)
+        return response.data;
+    })
+};
+
 export const sendGetByIDRequest = ( url : string, id : string) => {
     return axios({
         url: API_URL + url + "/" + id,
