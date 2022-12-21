@@ -55,7 +55,7 @@ interface CalendarPickerProps{
          // * Inicializamos la fecha a la fecha de hoy
         const today = new Date().toISOString();       
         sessionStorage.setItem("fecha", today?.split("T")[0]);
-        return <IonDatetime id="datetime" presentation="date" locale="es-ES" cancelText='Cancelar' doneText='Confirmar' ref={datetime} showDefaultButtons onIonChange={handleDateChange}/>
+        return <IonDatetime id="datetime" presentation="date" locale="es-ES" cancelText='Cancelar' doneText='Confirmar' ref={datetime} onIonChange={handleDateChange}/>
       }
     }
 
@@ -65,10 +65,13 @@ interface CalendarPickerProps{
           <IonItem shape="round"  class="item-remove-animate" lines='none'>
             <IonIcon slot="start" icon={calendarOutline} />
             
-            <IonDatetimeButton datetime="datetime" disabled={props.disabled} ></IonDatetimeButton>
-        
-            <IonModal keepContentsMounted={true}>
-                <DateTime/>
+            <IonDatetimeButton datetime="datetime" disabled={props.disabled}></IonDatetimeButton>
+
+            <IonModal keepContentsMounted>
+                {props.value? 
+                  <IonDatetime id="datetime" presentation="date" locale="es-ES" ref={datetime} value={props.value} cancelText='Cancelar' doneText='Confirmar' showDefaultButtons onIonChange={handleDateChange}/> 
+                  : 
+                  <IonDatetime id="datetime" presentation="date" locale="es-ES" ref={datetime} cancelText='Cancelar' doneText='Confirmar' showDefaultButtons onIonChange={handleDateChange}/>}
             </IonModal>
             <EditIcon/>
           </IonItem>
