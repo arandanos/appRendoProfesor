@@ -61,7 +61,8 @@ const StorageAvailability: React.FC = () => {
             <IonContent fullscreen>
                 {arrayElementos}
             </IonContent>
-        </IonPage>);
-    };
+        </IonPage>
+    );
+};
 
 export default StorageAvailability;
