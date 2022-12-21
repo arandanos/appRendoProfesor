@@ -11,7 +11,7 @@ const AdminSettings: React.FC = () => {
           <IonGrid class='button-grid'>
             <StyledButton label="Tipos de menús y postres" href="/dish_types"/>
             <StyledButton label="Gestión de Usuarios" href="#"/>
-            <StyledButton label="Gestión de Pictogramas" href="#"/>
+            <StyledButton label="Gestión de Pictogramas" href="/pictograms"/>
             <StyledButton label="Gestión de Colores" href="#"/>
             <StyledButton label="Gestión de clases" href="/classrooms"/>
             <StyledButton label="Materiales del almacén" href="/storage"/>

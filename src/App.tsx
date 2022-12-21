@@ -54,6 +54,7 @@ import NewStudent from './pages/NewStudent';
 
 import SuperviseKitchenOrder from './pages/SuperviseKitchenOrder';
 import ModalMaterialTask from './components/ModalMaterialTask';
+import PictogramManagement from './pages/PictogramsManagement';
 
 setupIonicReact();
 
@@ -89,6 +90,7 @@ const App: React.FC = () => (
             <Route path="/students" component={StudentManagement}/>
             <Route path="/teachers" component={TeachersManagement}/>
             <Route path="/classrooms" component={ClassroomsManagement}/>
+            <Route path="/pictograms" component={PictogramManagement}/>
             <Route path="/new/teacher" component={NewTeacher}/>
             <Route path="/new/student" component={NewStudent}/>
             <Route exact path="/storage" component={Storage}/>

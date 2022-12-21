@@ -122,10 +122,9 @@ const ModalMaterialTask: React.FC<ModalMaterialTaskProps> = (props: ModalMateria
 
     return (
         <IonModal ref={modal} trigger={props.trigger} onWillDismiss={(ev) => onWillDismiss(ev)}>
-            <Header title="Añadir Materiales" back></Header>
+            <Header title="Añadir Materiales"></Header>
             <IonContent className="ion-padding">
-                {/*Para hacer el tema de la cantidad, material ..etc he hecho un grid en donde cada fila sea pues los 3 inputs, y dentro de cada fila 2 filas para ir poniendo las cosas, en los select he hecho que en cuanto se haga un cambio
-            se cambien automaticamente en el array con todas las cosas, para la visualización hago que se añada una fila por cada elemento del array, con el .map*/}
+                
                 <IonGrid class="grid-with-button width-90 scroll">
                         <MaterialInputs materials={materials} 
                                         colors={colorOptions} 
