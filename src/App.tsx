@@ -51,6 +51,7 @@ import NewLaminatorTask from './pages/NewLaminatorTask';
 import StorageAvailability from './pages/StorageAvailability';
 import NewTeacher from './pages/NewTeacher';
 import NewStudent from './pages/NewStudent';
+import Login from './pages/Login';
 
 import SuperviseKitchenOrder from './pages/SuperviseKitchenOrder';
 
@@ -87,6 +88,7 @@ const App: React.FC = () => (
             <Route path="/dish_types" component={DishTypes}/>
             <Route path="/students" component={StudentManagement}/>
             <Route path="/teachers" component={TeachersManagement}/>
+            <Route path="/login" component={Login}/>
             <Route path="/classrooms" component={ClassroomsManagement}/>
             <Route path="/new/teacher" component={NewTeacher}/>
             <Route path="/new/student" component={NewStudent}/>
@@ -111,7 +113,7 @@ const App: React.FC = () => (
             </Route>
 
           <Route exact path="/">
-            <Redirect to="/home" />
+            <Redirect to="/login" />
           </Route>
 
 

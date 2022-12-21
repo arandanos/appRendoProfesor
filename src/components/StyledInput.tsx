@@ -8,6 +8,7 @@ interface inputProps{
     iconStart?: string;
     iconEnd?: string;
     placeholder?: string;
+    
 }
 
 const StyledInput: React.FC<inputProps> = (props: inputProps) => {
