@@ -122,18 +122,18 @@ const App: React.FC = () => (
 
         {/* TABS */}
         <IonTabBar slot="bottom">
-          <IonTabButton tab="Home" href="/home">
+          {/* <IonTabButton tab="Home" href="/home">
             <IonIcon icon={homeOutline} />
             <IonLabel class='hide'>Home</IonLabel>
-          </IonTabButton>
+          </IonTabButton> */}
           <IonTabButton tab="Tasks" href="/tasks">
             <IonIcon icon={clipboardOutline} />
             <IonLabel class='hide'>Tareas</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="CreateTask" href="/create_task">
+          {/* <IonTabButton tab="CreateTask" href="/create_task">
             <IonIcon icon={addCircleOutline} />
             <IonLabel class='hide'>Tarea</IonLabel>
-          </IonTabButton>
+          </IonTabButton> */}
           <IonTabButton tab="MyClasses" href="/my_classes">
             <IonIcon icon={briefcaseOutline} />
             <IonLabel class='hide'>Clases</IonLabel>
