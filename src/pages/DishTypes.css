@@ -14,12 +14,9 @@
 }
 
 .list-container-dishes{
-    overflow-y: auto;
-    overflow-x: hidden;
-    margin-bottom: 10px;
     /* TODO Calcular la altura de forma dinamica con variables */
-    max-height: calc(100% - 210px);
-    min-height: calc(100% - 210px);
+    max-height: calc(100% - 94px);
+    min-height: calc(100% - 94px);
 }
 
 .item-list{

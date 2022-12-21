@@ -87,6 +87,12 @@ const Storage: React.FC = () => {
     </IonList>
     )
 
+    function handleDeleteClick(id: string){
+      sendDeleteIDRequest("material_type", id);
+      //Recarga la pagina
+      window.location.reload();
+    }
+
     return (
         <IonPage>
             <Header title="Almacén" back settings={false}/>
@@ -95,11 +101,11 @@ const Storage: React.FC = () => {
                 <IonGrid class="list-container">
                     <SearchBar elements={materials} updateResults={updateResults}></SearchBar>
                     {
-                        results.map((material : any) => {
-                            return (
-                                <ListItem key={material['_id']} text={material['_name']['_text']} pictogram={material['_name']['_pictogram']}href={"/storage/"+ material['_id']} id={material['_id']}></ListItem>
-                            )
-                        })
+                      results.map((material : any) => {
+                        return (
+                          <ListItem key={material['_id']} text={material['_name']['_text']} pictogram={material['_name']['_pictogram']} href={"/storage/"+ material['_id']} id={material['_id']} handleDelete={handleDeleteClick}></ListItem>
+                        )
+                      })
                     }
                 </IonGrid>
                 <PopUp label='Añadir Material' title='Nuevo Material' popUpContent={contentMaterial}></PopUp>

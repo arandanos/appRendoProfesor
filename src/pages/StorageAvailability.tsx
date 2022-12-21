@@ -58,10 +58,9 @@ const StorageAvailability: React.FC = () => {
             {colors.map(material => {
                 return (
                     <ListItem quantity={material['_quantity']}
-                        text={material['_color']['_text']}
-                        pictogram={material['_color']['_pictogram']}
-                        id={material['_id']} 
-                        handleDelete={handleDeleteClick} handleEdit={handleEditClick}
+                        text={material['_color']['_name']['_text']}
+                        pictogram={material['_color']['_name']['_pictogram']}
+                        id={material['_id']}
                     ></ListItem>
                 )
             })}

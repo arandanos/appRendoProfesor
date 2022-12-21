@@ -10,9 +10,17 @@ ion-select {
     border-radius: 20px;
 }
 
+/* ion-list {
+    height: 60%;
+}
+
+ion-label {
+    border-bottom: 0px;
+} */
+
 .grid-with-button{
     /* TODO Calcular la altura de forma dinamica con variables */
-    height: calc(100% - 72px);
+    height: calc(100% - 80px);
 }
 
 .width-90 {
@@ -47,6 +55,7 @@ ion-select {
     min-width: 90%;
     max-width: 90%;
     margin: auto;
+    margin-bottom: 10px;
 }
 
 .botton-success{
@@ -67,4 +76,15 @@ ion-select {
 /** Clase para quitarle el padding a los grids */
 .no-padding-grid{
     --ion-grid-padding: 0px;
+}
+
+/** Clase para eliminar la animación don click */
+.item-remove-animate {
+    --ripple-color: transparent;
+    --background-activated: transparent;
+    --background-activated-opacity:transparent;
+    --background-focused: transparent;
+    --background-focused-opacity:transparent;
+    --background-hover: transparent;
+    --background-hover-opacity  :transparent;
 }

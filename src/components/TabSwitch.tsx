@@ -38,20 +38,18 @@ const TabSwitch: React.FC<TabSwitchProps> = (props: TabSwitchProps) => {
     ></CreateAnimation>
 
     return(
-        <>
-            <IonContent fullscreen>
-                <IonSegment value={props.tabsNames[tabActive]}>
-                    {props.tabsNames.map(tab => {
-                        return(
-                            <IonSegmentButton value={tab} onClick={handleClick} id={String(props.tabsNames.indexOf(tab))} key={String(props.tabsNames.indexOf(tab))}>
-                                <IonLabel class="btn-title">{tab}</IonLabel>
-                            </IonSegmentButton>
-                        );
-                    })}                  
-                </IonSegment>
-                <IonLabel>{props.tabsComponents.at(tabActive)}</IonLabel>
-            </IonContent>
-        </>
+        <IonContent fullscreen>
+            <IonSegment value={props.tabsNames[tabActive]}>
+                {props.tabsNames.map(tab => {
+                    return(
+                        <IonSegmentButton value={tab} onClick={handleClick} id={String(props.tabsNames.indexOf(tab))} key={String(props.tabsNames.indexOf(tab))}>
+                            <IonLabel class="btn-title">{tab}</IonLabel>
+                        </IonSegmentButton>
+                    );
+                })}                  
+            </IonSegment>
+            {props.tabsComponents.at(tabActive)}
+        </IonContent>
     );
 };
 

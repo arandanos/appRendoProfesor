@@ -8,14 +8,14 @@ import {
 
   interface ToggleSwitchProps {
     label: string;
-    checked: boolean ;
+    checked?: boolean ;
     id: string; // Necesario para poder obtener el valor 
   }
   
   const ToggleSwitch: React.FC<ToggleSwitchProps> = (props: ToggleSwitchProps) => {
   
     // Obtenemos valor inicial
-    var checked = props.checked;
+    var checked = props.checked? props.checked : false;
     
     // Función para convertir los boolean de Ionic en Boolean de Django para post en la api.
     const boolToString = (checked: boolean) => {
