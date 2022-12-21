@@ -85,7 +85,7 @@ const Storage: React.FC = () => {
       <IonImg class='pictogram-on-button' src={pictoInput}></IonImg>
       <StyledButton id="open-pictogram-modal" icon={addCircleOutline} label="Añadir Pictograma"></StyledButton>
       <ModalSearchPictogram trigger='open-pictogram-modal' handlePictogramClick={handlePictogramClick}/>
-      <StyledInput iconStart={cafeOutline} label="Nombre del Material" onIonChange={handleNameChange} counter maxlength={20}></StyledInput>
+      <StyledInput iconStart={cafeOutline} label="Nombre del Material" onIonChange={handleNameChange} maxlength={20}></StyledInput>
       <StyledInput iconStart={earOutline} label="Texto alternativo" onIonChange={handleAltChange}></StyledInput>
     </IonList>
     )
