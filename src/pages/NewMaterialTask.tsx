@@ -11,12 +11,14 @@ import ListItem from "../components/ListItem";
 import './NewMaterialTask.css'
 import { sendPostRequest } from "../ApiMethods";
 import StyledInput from "../components/StyledInput";
+import { useHistory } from "react-router";
 
 const NewMaterialTask: React.FC = () => {
 
   const list = useRef<HTMLIonListElement>(null);
   /*variables del nombre del alumno y el array con todos los materiales*/
   const [name, setName] = useState("");
+  const history = useHistory();
 
   const [date, setDate] = useState("");
   const [materialList, setMaterialList] = useState<any>([]);
@@ -64,13 +66,13 @@ const NewMaterialTask: React.FC = () => {
     
       // · Si la nueva cantidad supera la disponibilidad del almacén, no se añade y muestra un mensaje de error.
       if(newQuantity > storageQuantity)
-        presentToast("Solo quedan " + storageQuantity + " de tipo " + existe[0].material['_name']['_text'] + ' ' + existe[0].color['_color']['_text'] + " disponibles en el almacén.", 'danger')
+        presentToast("Solo quedan " + storageQuantity + " de tipo " + existe[0].material['_name']['_text'] + ' ' + existe[0].color['_color']['_name']['_text'] + " disponibles en el almacén.", 'danger')
       else{
         // · Si no la supera, se suma la cantidad a la del elemento que había ya en la lista.
         var newList = [...materialList];
         newList[index].quantity = newQuantity.toString(); 
         setMaterialList(newList);
-        presentToast("Se ha sumado "+ quantity + " a " + existe[0].material['_name']['_text'] + ' ' + existe[0].color['_color']['_text'], 'success')
+        presentToast("Se ha sumado "+ quantity + " a " + existe[0].material['_name']['_text'] + ' ' + existe[0].color['_color']['_name']['_text'], 'success')
       }
     // · Si no existe en la lista, se añade directamente.
     } else {
@@ -106,15 +108,17 @@ const NewMaterialTask: React.FC = () => {
     //* Creo una Tarea de Tipo Material
     sendPostRequest( "task", {
       '_due_date': sessionStorage.getItem("fecha"),
-      '_name': '8',
+      '_name': '9',
       '_type': "MATERIAL",
-      '_auto_feedback': sessionStorage.getItem("auto_feedback")
+      '_auto_feedback': sessionStorage.getItem("auto_feedback"),
+      '_student': '1',
+      '_teacher': '1'
     }).then(response => {
       //* Utilizo el id de la tarea creada para añadir una Material Task
       sendPostRequest( "material_task", {
         "_task" : response['_id'],
         // ! Faltaria hacer un input para seleccionar la clase, por ahora pongo una por defecto
-        "_classroom" : '8'
+        "_classroom" : '1'
       }).then( response => {
         clearSessions();
         //* Una vez creada la tarea, creo los material task detail asociados: uno por cada material almacenado en la lista
@@ -123,6 +127,10 @@ const NewMaterialTask: React.FC = () => {
             "_quantity": selectedMaterial.quantity,
             "_material": selectedMaterial.color['_id'],
             "_material_task": response['_id']
+          }).then(() => {
+            if(selectedMaterial === materialList.at(materialList.length -1)){
+              history.push("/tasks");
+            }
           })
         })
       })
@@ -147,7 +155,7 @@ const NewMaterialTask: React.FC = () => {
           <IonList ref={list}>      
             {materialList.map((selected : any) => {
               return(
-                <ListItem id={selected.id} quantity={selected.quantity} text={selected.material['_name']['_text'] + " " + selected.color['_color']['_text']} handleDelete={handleDeleteClick}></ListItem>
+                <ListItem id={selected.id} quantity={selected.quantity} text={selected.material['_name']['_text'] + " " + selected.color['_color']['_name']['_text']} handleDelete={handleDeleteClick}></ListItem>
               )
             })}
           </IonList>

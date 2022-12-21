@@ -8,7 +8,8 @@ import {
     IonRow,
   } from '@ionic/react';
 
-  import { settingsOutline } from 'ionicons/icons';
+  import { arrowBackOutline, settingsOutline } from 'ionicons/icons';
+import { useHistory } from 'react-router';
 
 import './Header.css'
 
@@ -19,11 +20,13 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
+  const history = useHistory();
+
     var BackButton = () => {
       if(props.back){
         return (
-          <IonFabButton slot="start" size="small" >
-            <IonBackButton defaultHref="/"/>
+          <IonFabButton slot="start" size="small" onClick={() => { history.goBack(); }} >
+            <IonIcon icon={arrowBackOutline}/>
           </IonFabButton>
         )
       }

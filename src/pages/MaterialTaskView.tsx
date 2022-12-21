@@ -64,7 +64,7 @@ const MaterialTaskView: React.FC<MaterialTaskViewProps> = ({match}) => {
                         {/** REALMENTE NO ES NECESARIO MOSTRAR EL TIPO DE TAREA, YA QUE EL NOMBRE LO INDICA */}
                         {/* <StyledInput label='Tipo' disabled iconStart={gridOutline} iconEnd={createOutline} value = {materialTask['_type']}></StyledInput> */}
 
-                        <StyledInput disabled label='Alumno Asignado' iconStart={personOutline} iconEnd={createOutline} value="Nombre Alumno"></StyledInput>
+                        <StyledInput disabled label='Alumno Asignado' iconStart={personOutline} iconEnd={createOutline} value={materialTask['_student']['_name']['_text']}></StyledInput>
 
                         <CalendarPicker label='Fecha límite de realización' disabled editButton value={materialTask['_due_date']}/>
                         

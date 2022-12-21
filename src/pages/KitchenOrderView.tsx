@@ -44,11 +44,11 @@ const KitchenOrderView: React.FC<KitchenOrderViewProps> = ({match}) => {
 
 	return (
 		<IonPage>
-			<Header title="Comanda" settings back={false} />
+			<Header title="Comanda" settings back />
 			<IonContent fullscreen>
 				<IonList class="width-90">
 
-					<StyledInput label='Alumno Asignado' iconStart={personOutline} iconEnd={createOutline} disabled value='Nombre Alumno'></StyledInput>
+					<StyledInput label='Alumno Asignado' iconStart={personOutline} iconEnd={createOutline} disabled value={data!['_student']['_name']['_text']}></StyledInput>
 
 					<CalendarPicker label='Fecha límite de realización' disabled editButton value={data!['_due_date']}/>
 

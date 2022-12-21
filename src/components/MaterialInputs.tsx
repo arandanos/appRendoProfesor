@@ -1,10 +1,6 @@
 import React, { useRef } from "react";
-import { IonInput, IonIcon, IonFabButton, IonItem, IonSelect, IonSelectOption, IonGrid, IonRow, IonCol } from '@ionic/react';
-import { magnet, trash } from 'ionicons/icons';
-import './MaterialRow.css'
-import ListItem from "./ListItem";
-import StyledButton from "./StyledButton";
-import StyledInput from "./StyledInput";
+import { IonInput, IonItem, IonSelect, IonSelectOption, IonGrid, IonRow, IonCol } from '@ionic/react';
+import './MaterialInput.css'
 
 
 interface MaterialInputsProps{
@@ -49,7 +45,7 @@ const MaterialInputs: React.FC<MaterialInputsProps> = (props: MaterialInputsProp
               <IonSelect className="Color" onIonChange={(e) => props.handleColorSelect(e.detail.value)} interface="popover" placeholder="Color">
                 {/* TODO: Comprobar si se ha introducido o no */}
                 {props.colors!.map(color => (
-                  <IonSelectOption value={color}>{color['_color']['_text']}</IonSelectOption>
+                  <IonSelectOption value={color}>{color['_color']['_name']['_text']}</IonSelectOption>
                 ))}
               </IonSelect>
             </IonItem>

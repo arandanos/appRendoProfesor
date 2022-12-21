@@ -7,11 +7,14 @@ import StyledButton from '../components/StyledButton';
 import { checkmarkCircleOutline } from 'ionicons/icons';
 import { sendPostRequest, sendGetAllRequest } from '../ApiMethods';
 import StyledTextArea from '../components/StyledTextArea';
+import { Redirect, useHistory } from 'react-router';
+import { render } from '@testing-library/react';
 
 const NewKitchenOrder: React.FC = () => {
 
   var classrooms: [];
   var dishes: [];
+  const history = useHistory();
 
   const clearSessions = () => {
     sessionStorage.removeItem("fecha");
@@ -34,9 +37,11 @@ const NewKitchenOrder: React.FC = () => {
     // * Crear una Tarea de Tipo Comanda
     sendPostRequest( "task",  {
       '_due_date': sessionStorage.getItem("fecha"),
-      '_name': '7',
+      '_name': '8',
       '_type': "COMANDA",
-      '_auto_feedback': sessionStorage.getItem("auto_feedback")
+      '_auto_feedback': sessionStorage.getItem("auto_feedback"),
+      '_student': '1',
+      '_teacher': '1'
     }).then(response => {
         // * Utilizar el id de la tarea creada para añadir una Kitchen Order
         sendPostRequest( "kitchen_order", {
@@ -52,6 +57,10 @@ const NewKitchenOrder: React.FC = () => {
                 "_classroom" : classroom['_id'],
                 "_dish" : dish['_id'],
                 "_kitchen_order" : response['_id']
+              }).then(() => {
+                if(classroom === classrooms.at(classrooms.length -1)){
+                  history.push("/tasks")
+                }
               })
             })
           })
