@@ -1,5 +1,5 @@
 /** Para que cuando el input está disabled, el label se siga viendo y no se superponga con el outline del item */
-ion-label.fix-disabled {
+.fix-disabled {
     opacity: 1 !important;
 }
 

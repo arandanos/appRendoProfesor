@@ -46,17 +46,14 @@ interface CalendarPickerProps{
       sessionStorage.setItem("fecha", e.target.value!.toString()?.split("T")[0])
     }
 
-    var DateTime = () => {
-      if(props.value){
-        // * Inicializamos la fecha a la pasada compo parametro
-        sessionStorage.setItem("fecha", props.value)
-        return <IonDatetime id="datetime" presentation="date" locale="es-ES" value={props.value} ref={datetime} showDefaultButtons onIonChange={handleDateChange}/>
-      } else {
-         // * Inicializamos la fecha a la fecha de hoy
-        const today = new Date().toISOString();       
-        sessionStorage.setItem("fecha", today?.split("T")[0]);
-        return <IonDatetime id="datetime" presentation="date" locale="es-ES" cancelText='Cancelar' doneText='Confirmar' ref={datetime} showDefaultButtons onIonChange={handleDateChange}/>
-      }
+
+    if(props.value){
+      // * Inicializamos la fecha a la pasada compo parametro
+      sessionStorage.setItem("fecha", props.value)
+    } else {
+        // * Inicializamos la fecha a la fecha de hoy
+      const today = new Date().toISOString();       
+      sessionStorage.setItem("fecha", today?.split("T")[0]);
     }
 
     return (
@@ -65,10 +62,13 @@ interface CalendarPickerProps{
           <IonItem shape="round"  class="item-remove-animate" lines='none'>
             <IonIcon slot="start" icon={calendarOutline} />
             
-            <IonDatetimeButton datetime="datetime" disabled={props.disabled} ></IonDatetimeButton>
-        
-            <IonModal keepContentsMounted={true}>
-                <DateTime/>
+            <IonDatetimeButton datetime="datetime" disabled={props.disabled}></IonDatetimeButton>
+
+            <IonModal keepContentsMounted>
+                {props.value? 
+                  <IonDatetime id="datetime" presentation="date" locale="es-ES" ref={datetime} value={props.value} cancelText='Cancelar' doneText='Confirmar' showDefaultButtons onIonChange={handleDateChange}/> 
+                  : 
+                  <IonDatetime id="datetime" presentation="date" locale="es-ES" ref={datetime} cancelText='Cancelar' doneText='Confirmar' showDefaultButtons onIonChange={handleDateChange}/>}
             </IonModal>
             <EditIcon/>
           </IonItem>

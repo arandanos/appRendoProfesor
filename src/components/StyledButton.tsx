@@ -6,11 +6,12 @@ interface buttonProps{
   id?: string;
   onClick?: any;
   href?: any;
+  color?: any;
 }
 
 const StyledButton: React.FC<buttonProps> = (props: buttonProps) => {
     return (       
-      <IonButton id={props.id} fill="outline" shape="round" expand="block" onClick={props.onClick} class="fullscreen-btn" href={props.href}>
+      <IonButton color={props.color} id={props.id} fill="outline" shape="round" expand="block" onClick={props.onClick} class="fullscreen-btn" href={props.href}>
           { props.icon? <IonIcon slot="start" icon={props.icon}></IonIcon> : null }
           {props.label}              
       </IonButton>

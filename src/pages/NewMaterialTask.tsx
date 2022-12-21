@@ -1,173 +1,140 @@
-import React from "react";
-import { IonPage, IonIcon, IonFabButton, IonContent, IonList, IonItem, IonLabel, IonSelect, IonSelectOption, IonGrid, IonRow, IonCol } from '@ionic/react';
+import React, { useRef } from "react";
+import { IonPage, IonContent, IonList, IonItem, IonLabel, IonSelect, IonSelectOption, IonGrid, useIonToast, IonCol, IonRow } from '@ionic/react';
 import Header from '../components/Header';
-import { add, checkmarkCircleOutline } from 'ionicons/icons';
+import { checkmarkCircleOutline, closeCircleOutline, refresh } from 'ionicons/icons';
 import ToggleSwitch from '../components/ToggleSwitch';
 import CalendarPicker from '../components/CalendarPicker';
-import { useState, useEffect } from "react";
-import MaterialRow from "../components/MaterialRow";
-import { sendGetAllRequest, sendPostRequest } from "../ApiMethods";
+import { useState } from "react";
 import StyledButton from "../components/StyledButton";
+import ModalMaterialTask from "../components/ModalMaterialTask";
+import ListItem from "../components/ListItem";
+import './NewMaterialTask.css'
+import { sendPostRequest } from "../ApiMethods";
+import StyledInput from "../components/StyledInput";
+import { useHistory } from "react-router";
 
 const NewMaterialTask: React.FC = () => {
-  /*Obtener toda la tabla de materiales*/
-  const [materials, setMaterials] = useState([]);
-  const url = "material"
 
-  useEffect(() => {
-    sendGetAllRequest(url).then(data => {
-      setMaterials(data)
-    })
-  }, [])
+  const list = useRef<HTMLIonListElement>(null);
+  /*variables del nombre del alumno y el array con todos los materiales*/
+  const [name, setName] = useState("");
+  const history = useHistory();
 
-  /*Variable para los materiales en si*/
-  const [material, setMaterial] = useState([]);
+  const [date, setDate] = useState("");
+  const [materialList, setMaterialList] = useState<any>([]);
 
-  const AddMaterial = () => {
-    materials.map(mat => {
-      if (!material.includes(mat["_type"]["_item"]["_text"])) {
-        material.push(mat["_type"]["_item"]["_text"])
-      }
+  const clearSessions = () => {
+    sessionStorage.removeItem("fecha");
+    sessionStorage.removeItem("auto_feedback");
+    sessionStorage.removeItem("allow_comments");
+  }
+
+  // * Hook para mostrar información al añadir en la lista.
+  const [present] = useIonToast();
+
+  const presentToast = (message: string, color: string) => {
+    var icon = checkmarkCircleOutline;
+    if (color == 'danger'){
+      icon = closeCircleOutline;
+    }  
+    present({
+      message: message,
+      duration: 2000,
+      position: 'bottom',
+      icon: icon,
+      animated: true,
+      color: color,
+      cssClass: "rounded-edges"
     });
   }
 
-  AddMaterial()
-
-  /*Fila por defecto pal grid*/
-  const Primero = {
-    id: 0,
-    count: 0,
-    material: '',
-    color: '',
-    id_material: '',
-    max_quantity: ''
-  }
-
-  /*variables del nombre del alumno y el array con todos los materiales*/
-  const [name, setName] = useState("");
-  const [rows, setRows] = useState([Primero]);
-  const [date, setDate] = useState("");
-
-  /*-----------------Cambiar nombre alumno-----------------*/
+  // * EVENTO Seleccionar NOMBRE DE ALUMNO
   const handleNameChange = (name: string) => {
     setName(name)
   }
 
-  /*Añadir una nueva fila al grid, lo voy haciendo con ids, y para que no se repita ningun id para el tema de eliminar y demás hago ahi un poco de tratamiento refachero*/
-  const addMaterialTaskRow = () => {
-    var contador = 0;
-    var encontrado = false;
-    var numbers = [];
+  //* EVENTO AÑADIR MATERIAL: Se dispara al pulsar el botón de hecho en el modal de materiales
+  const handleAddClick = ( material : any, color: any, quantity: any) => {
+    var existe = materialList.filter((selected:any) => (selected.material['_id'] === JSON.parse(material)['_id']) && (selected.color['_id'] === JSON.parse(color)['_id']));
 
-    //veo todos los ids que estan en uso
-    for (let i = 0; i < rows.length; i++) {
-      numbers.push(rows[i].id)
-    }
-
-    /*encuentro el primero que no este en uso y es el que pillo para hacer la nueva fila*/
-    while (!encontrado) {
-
-      var aux = numbers.indexOf(contador);
-      if (aux == -1) {
-        encontrado = true
+    // · Compruebo si existe ya en la lista el material seleccionado.
+    if (existe.length > 0){
+      var index = parseInt(existe[0].id)
+     
+      var newQuantity = (parseInt(quantity) + parseInt(materialList[index].quantity));
+      var storageQuantity = parseInt(existe[0].color['_quantity']) - parseInt(materialList[index].quantity);
+    
+      // · Si la nueva cantidad supera la disponibilidad del almacén, no se añade y muestra un mensaje de error.
+      if(newQuantity > storageQuantity)
+        presentToast("Solo quedan " + storageQuantity + " de tipo " + existe[0].material['_name']['_text'] + ' ' + existe[0].color['_color']['_name']['_text'] + " disponibles en el almacén.", 'danger')
+      else{
+        // · Si no la supera, se suma la cantidad a la del elemento que había ya en la lista.
+        var newList = [...materialList];
+        newList[index].quantity = newQuantity.toString(); 
+        setMaterialList(newList);
+        presentToast("Se ha sumado "+ quantity + " a " + existe[0].material['_name']['_text'] + ' ' + existe[0].color['_color']['_name']['_text'], 'success')
       }
-
-      if (!encontrado) {
-        contador++;
-      }
-
+    // · Si no existe en la lista, se añade directamente.
+    } else {
+      var newItem = {id: materialList.length, quantity: quantity, material: JSON.parse(material), color: JSON.parse(color)};
+      setMaterialList([...materialList, newItem]);
     }
 
-    const new_id = contador;
+    console.log(materialList);
 
-    const newRow = {
-      id: new_id,
-      count: 0,
-      material: '',
-      color: '',
-      id_material: '',
-      max_quantity: ''
+  }
+
+  // * EVENTO ELIMINAR INPUT: Se dispara al darle al botón de basura
+  const handleDeleteClick = (id : string) => {
+    // · Almaceno la posicion del elemento a eliminar
+    var toDelete = Number(id); 
+
+    // · Elimino el elemtento de la lista quedandome sólo con aquellos cuyo id no coincide con el que se quiere eliminar.
+    var newMaterialList = materialList.filter((selected : any) => selected.id !== id);
+
+    // · Actualizo los IDs de los elementos que quedan para que sean contiguos en todo momento.
+    for (let i = toDelete; i < newMaterialList.length; i++) {
+        newMaterialList[i].id--;
     }
 
-    setRows([...rows, newRow])
-    setQuantity([])
-    SetColor([])
+    // · Se guarda la lista de materiales tras eliminar y actualizar los IDs
+    setMaterialList(newMaterialList);
   }
 
-  /*-----------------Eliminar una fila del grid mediante id-----------------*/
-  const DeleteMaterialTaskRow = (id: number) => {
-    if (rows.length != 1 && rows.length != 0) {
-      const newRow = rows.filter((row) => row.id !== id);
-      setRows(newRow);
-    }
-    else {
-      setRows([]);
 
-      setTimeout(() => {
-        const newRow = {
-          id: 0,
-          count: 0,
-          material: '',
-          color: '',
-          id_material: '',
-          max_quantity: ''
-        }
-        setRows([newRow])
-      }, 0, 1);
-
-      setQuantity([])
-      SetColor([])
-
-    }
-  }
-
-  /*-----------------Cambiar el tipo de material-----------------*/
-  const [colors, SetColor] = useState(['']);
-  const ChangingMaterial = (value: string, id: number) => {
-    rows[id].material = value;
-    var aux = ['-- Elige un color --']
-
-    materials.map(mat => {
-      if (mat["_type"]["_item"]["_text"] == value)
-        if (!aux.includes(mat["_color"]["_text"])) {
-          aux.push(mat["_color"]["_text"])
-        }
-
-    });
-
-    SetColor(aux)
-
-  }
-
-  /*-----------------Cambiar el color y asignar valores para API-----------------*/
-  const [quantity, setQuantity] = useState(['']);
-  const ChangingColor = (value: string, id: number) => {
-    rows[id].color = value;
-
-    materials.map(mat => {
-      if (mat["_type"]["_item"]["_text"] == rows[id].material && mat["_color"]["_text"] == rows[id].color) {
-        rows[id].id_material = mat['_id']
-        rows[id].max_quantity = mat['_quantity']
-        console.log("La cantidad maxima es: " + mat['_quantity'])
-      }
-
-    });
-
-  }
-
-  /*-----------------Cambiar la cantidad-----------------*/
-  const ChangingCount = (value: number, id: number) => {
-    rows[id].count = value;
-  }
-
-  //Enviar POST  a la API//
-  const senPost = () => {
-    //crear Task
-
-    //crear MaterialTask
-
-    // crear MaerialTaskDetail
-
+  const handleCreateClick = () => {
+    // TODO: POST Crear Petición.
+    
+    //* Creo una Tarea de Tipo Material
+    sendPostRequest( "task", {
+      '_due_date': sessionStorage.getItem("fecha"),
+      '_name': '9',
+      '_type': "MATERIAL",
+      '_auto_feedback': sessionStorage.getItem("auto_feedback"),
+      '_student': '1',
+      '_teacher': '1'
+    }).then(response => {
+      //* Utilizo el id de la tarea creada para añadir una Material Task
+      sendPostRequest( "material_task", {
+        "_task" : response['_id'],
+        // ! Faltaria hacer un input para seleccionar la clase, por ahora pongo una por defecto
+        "_classroom" : '1'
+      }).then( response => {
+        clearSessions();
+        //* Una vez creada la tarea, creo los material task detail asociados: uno por cada material almacenado en la lista
+        materialList.map( (selectedMaterial: any) => {
+          sendPostRequest("material_task_detail", {
+            "_quantity": selectedMaterial.quantity,
+            "_material": selectedMaterial.color['_id'],
+            "_material_task": response['_id']
+          }).then(() => {
+            if(selectedMaterial === materialList.at(materialList.length -1)){
+              history.push("/tasks");
+            }
+          })
+        })
+      })
+    })
   }
 
   return (
@@ -185,24 +152,21 @@ const NewMaterialTask: React.FC = () => {
             </IonSelect>
           </IonItem>
 
-          {/*Para hacer el tema de la cantidad, material ..etc he hecho un grid en donde cada fila sea pues los 3 inputs, y dentro de cada fila 2 filas para ir poniendo las cosas, en los select he hecho que en cuanto se haga un cambio
-            se cambien automaticamente en el array con todas las cosas, para la visualización hago que se añada una fila por cada elemento del array, con el .map*/}
-          <IonGrid>
-            {rows.map(row => (
-              <MaterialRow row={row} quantity={quantity} material={material} colors={colors} ChangingCount={ChangingCount} DeleteMaterialTaskRow={DeleteMaterialTaskRow} ChangingMaterial={ChangingMaterial} ChangingColor={ChangingColor} />
-            ))}
-            {/*-----------------Boton Success-----------------*/}
-            <IonRow class="center-content">
-                <IonFabButton class="center" color="success" size='small' onClick={addMaterialTaskRow}>
-                  <IonIcon icon={add}></IonIcon>
-                </IonFabButton>
-            </IonRow>
-          </IonGrid>
+          <IonList ref={list}>      
+            {materialList.map((selected : any) => {
+              return(
+                <ListItem id={selected.id} quantity={selected.quantity} text={selected.material['_name']['_text'] + " " + selected.color['_color']['_name']['_text']} handleDelete={handleDeleteClick}></ListItem>
+              )
+            })}
+          </IonList>
+
+          <StyledButton label="Añadir Material" id="open-modal"></StyledButton>
+          <ModalMaterialTask trigger="open-modal" handleDoneClick={handleAddClick}></ModalMaterialTask>
           {/*-----------------Los toggles -----------------*/}
-          <ToggleSwitch id='1' label='Feedback automático' checked={false} />
-          <ToggleSwitch id='2' label='Comentarios' checked />
+          <ToggleSwitch label='Feedback automático' checked id="auto_feedback" />
+          <ToggleSwitch label='Comentarios' checked id="allow_comments" />
         </IonGrid>
-        <StyledButton label="Crear petición" icon={checkmarkCircleOutline} id="confirm-material-task"/>
+        <StyledButton label="Crear petición" icon={checkmarkCircleOutline} id="confirm-material-task" onClick={handleCreateClick}/>
       </IonContent>
     </IonPage>
   );

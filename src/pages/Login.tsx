@@ -39,7 +39,7 @@ const Login: React.FC = () => {
                 <IonCol>
                     <IonLabel class="label">Contraseña</IonLabel>
                     <IonItem>                                                       
-                        <StyledInput password placeholder="Contraseña" iconStart={lockClosedOutline}></StyledInput>                                                    
+                        <StyledInput  placeholder="Contraseña" iconStart={lockClosedOutline}></StyledInput>                                                    
                     </IonItem>                            
                 </IonCol>
             </IonRow>

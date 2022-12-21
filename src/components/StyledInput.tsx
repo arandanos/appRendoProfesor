@@ -8,17 +8,22 @@ interface inputProps{
     iconStart?: string;
     iconEnd?: string;
     placeholder?: string;
-    password?: boolean
-    
+    type?: any;
+    onIonChange?: any;
+    counter?: boolean;
+    maxlength?: number;
 }
 
 
 
 const StyledInput: React.FC<inputProps> = (props: inputProps) => {
-    return <IonItem class="custom-input" shape='round' fill='outline'>
+    return <IonItem class="custom-input" shape='round' fill='outline' counter={props.counter}>
         <IonLabel class="fix-disabled" position="floating">{props.label}</IonLabel>
-        {props.iconStart? <IonIcon slot='start' icon={props.iconStart} /> : ""}        
-        {props.password? <IonInput type="password" class="fix-alignment" disabled={props.disabled} value={props.value} placeholder={props.placeholder}/> : <IonInput class="fix-alignment" disabled={props.disabled} value={props.value} placeholder={props.placeholder}/>}
+        {props.iconStart? <IonIcon slot='start' icon={props.iconStart} /> : ""}
+        <IonInput type={props.type? props.type : "text"} class="fix-alignment" 
+                  disabled={props.disabled} value={props.value} 
+                  placeholder={props.placeholder}
+                  onIonChange={(e) =>  props.onIonChange(e.target.value) } maxlength={props.maxlength}/>
         {props.iconEnd? <IonIcon slot='end' icon={props.iconEnd} /> : ""}
     </IonItem>
 }

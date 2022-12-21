@@ -1,12 +1,15 @@
-import { IonLoading, IonList, IonGrid, IonIcon, IonItem, IonInput, IonPage} from '@ionic/react';
+import { IonLoading, IonList, IonGrid, IonPage, IonImg} from '@ionic/react';
 import Header from '../components/Header';
 import './DishTypes.css';
 import { useState, useEffect } from "react";
-import { addCircleOutline, cafeOutline, checkmark } from 'ionicons/icons';
+import { addCircleOutline, cafeOutline, earOutline } from 'ionicons/icons';
 import { sendGetAllRequest, sendPostRequest, sendDeleteIDRequest } from '../ApiMethods';
 import TabSwitch from '../components/TabSwitch';
 import CreateDishPopUp from '../components/CreateDishPopUp';
 import ListItem from '../components/ListItem';
+import StyledInput from '../components/StyledInput';
+import StyledButton from '../components/StyledButton';
+import ModalSearchPictogram from '../components/ModalSearchPictogram';
 
 
 const DishTypes: React.FC = () => {
@@ -14,8 +17,10 @@ const DishTypes: React.FC = () => {
   /** Para los datos de menus y postres */
   const [dishes, setDishes] = useState([]);
   const [showLoading, setShowLoading] = useState(true);
-  const [nameInput, setNameInput] = useState("Nuevo");
-  const [pictoInput, setPictoInput] = useState("https://api.arasaac.org/api/pictograms/29839?resolution=500&download=false");
+
+  var alt = "";
+  var name = "";
+  const [pictoInput, setPictoInput] = useState("");
 
 
   /** useEffect Hook para usar el get con Axios y obtener los datos de la url asignada antes*/ 
@@ -28,46 +33,38 @@ const DishTypes: React.FC = () => {
   }, [])
 
   /** Declaro los arrays, de los nombres de los tabs y de elementos */
-  var dishTypes: Array<string> = [];
-  var arrayElementos: Array<JSX.Element> = [];
-  /* var dataAccessible = {id: 15, text:  "Menu nuevo", 
-  pictogram: "https://api.arasaac.org/api/pictograms/25111?resolution=500&download=false" };
-  */
+  var tabNames: Array<string> = [];
+  var tabComponents: Array<JSX.Element> = [];
 
-  dishTypes = ["Menús", "Postres"];
+  tabNames = ["Menús", "Postres"];
 
-  const handleNameInput = (e: any) => {
-    sessionStorage.setItem("name", e.target.value)
-    setNameInput(e.target.value)
-  };
-  const handlePictoInput = (e: any) => {
-    sessionStorage.setItem("pictogram", e.target.value)
-    setPictoInput(e.target.value)
-  };
   /**
    * Funcion llamada desde el popup que hace post del plato con los inputs introducidos
    */
   function newDish(type: string) {
-    console.log("Nuevo "+ type +" creado: " + nameInput);
+    console.log("Nuevo "+ type +" creado: " + name);
     console.log("Pictograma: " + pictoInput);
+    console.log("Texto Alternativo: " + alt);
     
     //POST
     sendPostRequest("accessible_element", {
-      "_text": nameInput,
-      "_pictogram": pictoInput
+      '_text': name,
+      '_pictogram': pictoInput,
+      '_alt': alt
     }).then(response => {
       sendPostRequest("dish", {
-        "_name": response["_id"],
-        "_type": type
+        '_name': response["_id"],
+        '_type': type
+      }).then(response => {
+        setPictoInput("");
+        name= "";
+        alt="";
+
+        //Recarga la pagina
+        window.location.reload();
       })
     }).catch(error => console.log(error));
 
-    setNameInput("");
-    setPictoInput("");
-    sessionStorage.setItem("name", "");
-    sessionStorage.setItem("pictogram", "");
-    //Recarga la pagina
-    window.location.reload();
   };
   /**
    * Funcion llamada desde el boton de papelera de cada item
@@ -78,43 +75,49 @@ const DishTypes: React.FC = () => {
     window.location.reload();
   }
 
+  function handlePictogramClick( value : any) {
+    setPictoInput(value);
+  }
+
+  function handleNameChange (value : any) {
+    name = value;
+  }
+
+  function handleAltChange (value : any) {
+    alt = value;
+  }
+
   const contentMenu = (
     <IonList class='width-90'>
-      <IonItem class='item-list' fill="outline" shape="round" counter={true}>
-        <IonIcon slot="start" icon={cafeOutline} />
-        <IonInput type="text" placeholder='Nombre del Menú' maxlength={20} onIonChange={handleNameInput}></IonInput>
-      </IonItem>
-      <IonItem fill="outline" shape="round">
-        <IonIcon slot="start" icon={addCircleOutline} />
-        <IonInput type="text" placeholder='Pictograma' onIonChange={handlePictoInput}></IonInput>
-      </IonItem>
+      <IonImg class='pictogram-on-button' src={pictoInput}></IonImg>
+      <StyledButton id="open-pictogram-modal" icon={addCircleOutline} label="Añadir Pictograma"></StyledButton>     
+      <ModalSearchPictogram trigger='open-pictogram-modal' handlePictogramClick={handlePictogramClick}/>
+      <StyledInput iconStart={cafeOutline} label="Nombre del Menú" onIonChange={handleNameChange} counter maxlength={20}></StyledInput>
+      <StyledInput iconStart={earOutline} label="Texto alternativo" onIonChange={handleAltChange}></StyledInput>
     </IonList>
   )
   const contentDesert = (
     <IonList class='width-90'>
-      <IonItem class='item-list' fill="outline" shape="round" counter={true}>
-        <IonIcon slot="start" icon={cafeOutline} />
-        <IonInput type="text" placeholder='Nombre del Postre' maxlength={20} onIonChange={handleNameInput}></IonInput>
-      </IonItem>
-      <IonItem fill="outline" shape="round">
-        <IonIcon slot="start" icon={addCircleOutline} />
-        <IonInput type="text" placeholder='Pictograma' onIonChange={handlePictoInput}></IonInput>
-      </IonItem>
+      <IonImg class='pictogram-on-button' src={pictoInput}></IonImg>
+      <StyledButton id="open-pictogram-modal" icon={addCircleOutline} label="Añadir Pictograma"></StyledButton>
+      <ModalSearchPictogram trigger='open-pictogram-modal' handlePictogramClick={handlePictogramClick}/>
+      <StyledInput iconStart={cafeOutline} label="Nombre del Postre" onIonChange={handleNameChange} counter maxlength={20}></StyledInput>
+      <StyledInput iconStart={earOutline} label="Texto alternativo" onIonChange={handleAltChange}></StyledInput>
     </IonList>
   )
 
-  arrayElementos = [
+  tabComponents = [
     <>
       <IonGrid class='list-container list-container-dishes'>
         { 
           dishes.map(menu => {
-            // if (menu['_type'] === "MENU") {
+            if (menu['_type'] === "MENU") {
               return (
                 <ListItem key={menu['_id']} href="dish_types" text={menu['_name']['_text']} pictogram={menu['_name']['_pictogram']} id={menu['_id']} handleEdit={null} handleDelete={deleteDish}></ListItem>
               )
-            // } else {
-            //   return null
-            // }
+            } else {
+              return null
+            }
           })
         }
       </IonGrid>
@@ -156,9 +159,9 @@ const DishTypes: React.FC = () => {
 
   return (
     <IonPage>
-      <Header title="Tipos de platos" settings back={false} />
+      <Header title="Tipos de platos" settings />
   
-      <TabSwitch tabsNames={dishTypes} tabsComponents={arrayElementos}></TabSwitch>
+      <TabSwitch tabsNames={tabNames} tabsComponents={tabComponents}></TabSwitch>
     </IonPage>
   );
 };
