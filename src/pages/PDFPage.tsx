@@ -1,17 +1,15 @@
 import '@progress/kendo-react-pdf';
-import { checkmarkOutline, cloudDownloadOutline, save } from 'ionicons/icons';
+import { cloudDownloadOutline } from 'ionicons/icons';
 import StyledButton from '../components/StyledButton';
 import { PDFExport, savePDF } from '@progress/kendo-react-pdf';
 import { useEffect, useRef, useState } from 'react';
 import './PDFPage.css';
 import Header from '../components/Header';
-import { RouteComponentProps, useParams } from 'react-router';
+import { RouteComponentProps } from 'react-router';
 import { sendGetAllRequest, sendGetByIDRequest } from '../ApiMethods';
 import { Grid, GridColumn as Column } from '@progress/kendo-react-grid';
-import { IonChip, IonGrid, IonLoading } from '@ionic/react';
-import { type } from 'os';
-import TabSwitch from '../components/TabSwitch';
-import ListItem from '../components/ListItem';
+import { IonLoading } from '@ionic/react';
+
 
 interface PDFPageProps extends RouteComponentProps<{
   id_task: string;

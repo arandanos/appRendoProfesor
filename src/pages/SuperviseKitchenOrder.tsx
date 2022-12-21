@@ -9,7 +9,7 @@ import TabSwitch from '../components/TabSwitch';
 import ListItem from '../components/ListItem';
 import StyledButton from '../components/StyledButton';
 import { useParams } from 'react-router';
-import { PDFExport, savePDF, GridPDFExport } from '@progress/kendo-react-pdf';
+import { PDFExport, savePDF } from '@progress/kendo-react-pdf';
 import { useRef } from 'react';
 import './PDFPage.css';
 import { Grid, GridColumn as Column } from '@progress/kendo-react-grid';
