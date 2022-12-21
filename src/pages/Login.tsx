@@ -7,6 +7,12 @@ import ButtonLogin from '../components/ButtonLogin';
 import { personOutline } from 'ionicons/icons';
 
 const Login: React.FC = () => {
+
+    const getPassword = () =>{
+
+    }
+
+
   return (
     <IonPage>
       <Header title="AppRendo" settings={false} back={false}/>
@@ -33,7 +39,7 @@ const Login: React.FC = () => {
                 <IonCol>
                     <IonLabel class="label">Contraseña</IonLabel>
                     <IonItem>                                                       
-                        <StyledInput placeholder="Contraseña" iconStart={lockClosedOutline}></StyledInput>                                                    
+                        <StyledInput password placeholder="Contraseña" iconStart={lockClosedOutline}></StyledInput>                                                    
                     </IonItem>                            
                 </IonCol>
             </IonRow>
@@ -42,7 +48,7 @@ const Login: React.FC = () => {
 
         <IonRow class="row">
             <IonCol>
-                <ButtonLogin></ButtonLogin>
+                <ButtonLogin href="/home"></ButtonLogin>
             </IonCol>                    
         </IonRow>
     

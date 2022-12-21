@@ -3,7 +3,7 @@ import { MouseEventHandler } from 'react';
 import './ButtonLogin.css';
 
 interface ButtonProps { 
-  href?: MouseEventHandler;
+  href?: string;
   id?: string;
   
 }
@@ -11,7 +11,7 @@ interface ButtonProps {
 const ButtonLogin: React.FC<ButtonProps> = (props: ButtonProps) => {
 
   return (
-    <IonButton color="secondary" class="buttonLogin" onClick={props.href} id={props.id} >
+    <IonButton color="secondary" class="buttonLogin" href={props.href} id={props.id} >
       <IonText class='large-text ion-text-wrap'>Iniciar Sesión</IonText>
     </IonButton>
   );
