@@ -9,7 +9,6 @@ const NewPrinterTask: React.FC = () => {
       <Header title="Impresora" back settings={false}/>
       <IonContent fullscreen>
         <PrinterLaminator printer={true}></PrinterLaminator>
-        
       </IonContent>
     </IonPage>
   );
