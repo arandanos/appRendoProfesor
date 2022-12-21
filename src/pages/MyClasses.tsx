@@ -24,8 +24,6 @@ const MyClasses: React.FC<KitchenOrderViewProps> = (props : KitchenOrderViewProp
     } 
     sendGetAllRequest("classroom").then(data => {
       setClasses(data)
-      console.log("ASAJSJ")
-      console.log(data)
     })
     
  
