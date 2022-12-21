@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { IonPage, IonContent, IonList, IonItem, IonLabel, IonSelect, IonSelectOption, IonGrid, useIonToast } from '@ionic/react';
+import { IonPage, IonContent, IonList, IonItem, IonLabel, IonSelect, IonSelectOption, IonGrid, useIonToast, IonCol, IonRow } from '@ionic/react';
 import Header from '../components/Header';
 import { checkmarkCircleOutline, closeCircleOutline, refresh } from 'ionicons/icons';
 import ToggleSwitch from '../components/ToggleSwitch';
@@ -9,6 +9,8 @@ import StyledButton from "../components/StyledButton";
 import ModalMaterialTask from "../components/ModalMaterialTask";
 import ListItem from "../components/ListItem";
 import './NewMaterialTask.css'
+import { sendPostRequest } from "../ApiMethods";
+import StyledInput from "../components/StyledInput";
 
 const NewMaterialTask: React.FC = () => {
 
@@ -18,6 +20,12 @@ const NewMaterialTask: React.FC = () => {
 
   const [date, setDate] = useState("");
   const [materialList, setMaterialList] = useState<any>([]);
+
+  const clearSessions = () => {
+    sessionStorage.removeItem("fecha");
+    sessionStorage.removeItem("auto_feedback");
+    sessionStorage.removeItem("allow_comments");
+  }
 
   // * Hook para mostrar información al añadir en la lista.
   const [present] = useIonToast();
@@ -94,6 +102,31 @@ const NewMaterialTask: React.FC = () => {
 
   const handleCreateClick = () => {
     // TODO: POST Crear Petición.
+    
+    //* Creo una Tarea de Tipo Material
+    sendPostRequest( "task", {
+      '_due_date': sessionStorage.getItem("fecha"),
+      '_name': '8',
+      '_type': "MATERIAL",
+      '_auto_feedback': sessionStorage.getItem("auto_feedback")
+    }).then(response => {
+      //* Utilizo el id de la tarea creada para añadir una Material Task
+      sendPostRequest( "material_task", {
+        "_task" : response['_id'],
+        // ! Faltaria hacer un input para seleccionar la clase, por ahora pongo una por defecto
+        "_classroom" : '8'
+      }).then( response => {
+        clearSessions();
+        //* Una vez creada la tarea, creo los material task detail asociados: uno por cada material almacenado en la lista
+        materialList.map( (selectedMaterial: any) => {
+          sendPostRequest("material_task_detail", {
+            "_quantity": selectedMaterial.quantity,
+            "_material": selectedMaterial.color['_id'],
+            "_material_task": response['_id']
+          })
+        })
+      })
+    })
   }
 
   return (
