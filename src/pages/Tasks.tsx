@@ -1,23 +1,13 @@
 import { IonContent, IonPage, IonGrid, IonNav, IonSearchbar, IonInput, IonItem, InputChangeEventDetail, IonList, IonImg, IonPopover } from '@ionic/react';
 import Header from '../components/Header';
-<<<<<<< HEAD
-import {sendGetAllRequest, sendGetARASAACRequest} from '../ApiMethods'
-import { ChangeEventHandler, useEffect, useState } from 'react';
-import ListItem from '../components/ListItem';
-import './Pages.css'
-import PopUp from '../components/PopUp';
-import axios from 'axios';
-import { returnUpBack } from 'ionicons/icons';
-=======
 import SearchBar from '../components/SearchBar';
-import {sendGetAllRequest} from '../ApiMethods'
+import {sendGetAllRequest, sendGetARASAACRequest} from '../ApiMethods'
 import { useEffect, useState } from 'react';
 import ListItem from '../components/ListItem';
 import './Pages.css'
 import PopUp from '../components/PopUp';
 import StyledButton from '../components/StyledButton';
 import { addCircleOutline } from 'ionicons/icons';
->>>>>>> develop
 
 const Tasks: React.FC = () => {
 
@@ -106,12 +96,8 @@ const Tasks: React.FC = () => {
 
             </IonGrid>
 
-<<<<<<< HEAD
-            <PopUp label='Añadir Tarea' title='Nueva Tarea' popUpContent={popUpContent} doneAction={handleDoneClick} hasSearchBar></PopUp>
-=======
-            <StyledButton label='Añadir Tarea' icon={addCircleOutline} href="/create_task"></StyledButton>
-         {/* <PopUp label='Añadir Tarea' title='Nueva Tarea' popUpContent={popUpContent}></PopUp> */}
->>>>>>> develop
+            {/* <StyledButton label='Añadir Tarea' icon={addCircleOutline} href="/create_task"></StyledButton> */}
+         <PopUp label='Añadir Tarea' title='Nueva Tarea' popUpContent={popUpContent}></PopUp>
         </IonContent>
       </IonPage>  
   );

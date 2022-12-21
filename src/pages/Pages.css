@@ -10,17 +10,14 @@ ion-select {
     border-radius: 20px;
 }
 
-<<<<<<< HEAD
-ion-list {
+/* ion-list {
     height: 60%;
 }
 
 ion-label {
     border-bottom: 0px;
-}
+} */
 
-=======
->>>>>>> develop
 .grid-with-button{
     /* TODO Calcular la altura de forma dinamica con variables */
     height: calc(100% - 80px);
