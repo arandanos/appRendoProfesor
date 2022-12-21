@@ -29,15 +29,6 @@ const PDFPage: React.FC<PDFPageProps> = ({match}) => {
   const [isLoading, setIsLoading] = useState(true);
   const contentArea = useRef(null);
 
-  function findKitchenOrders(orders: []) {
-    var classOrdersArray: any;
-    classes.map(classroom => {
-      let classOrders = orders.filter(order => order['_classroom']['_name'] === classroom['_name']);
-      classOrdersArray.push(classOrders);
-    })
-    return classOrdersArray;
-  }
-
   let taskName = "";
   var content: Array<contentProps> = [];
 
@@ -105,9 +96,9 @@ const PDFPage: React.FC<PDFPageProps> = ({match}) => {
     } else {
       content.push({
         quantity: 0,
-        name: "AYUDA",
-        type: "PORFAVOR",
-        classroom: "ME QUIERO IR"
+        name: "",
+        type: "",
+        classroom: ""
       });
     }
     console.log("Content: " + content.at(0)?.name);
