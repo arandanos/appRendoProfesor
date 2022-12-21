@@ -19,7 +19,7 @@ const DishTypes: React.FC = () => {
   const [showLoading, setShowLoading] = useState(true);
 
   var alt = "";
-  var name = ""
+  var name = "";
   const [pictoInput, setPictoInput] = useState("");
 
 
@@ -65,7 +65,6 @@ const DishTypes: React.FC = () => {
       })
     }).catch(error => console.log(error));
 
-   
   };
   /**
    * Funcion llamada desde el boton de papelera de cada item
@@ -90,19 +89,19 @@ const DishTypes: React.FC = () => {
 
   const contentMenu = (
     <IonList class='width-90'>
-      <StyledInput iconStart={cafeOutline} label="Nombre del Menú" onIonChange={handleNameChange} counter maxlength={20}></StyledInput>
       <IonImg class='pictogram-on-button' src={pictoInput}></IonImg>
       <StyledButton id="open-pictogram-modal" icon={addCircleOutline} label="Añadir Pictograma"></StyledButton>     
       <ModalSearchPictogram trigger='open-pictogram-modal' handlePictogramClick={handlePictogramClick}/>
+      <StyledInput iconStart={cafeOutline} label="Nombre del Menú" onIonChange={handleNameChange} counter maxlength={20}></StyledInput>
       <StyledInput iconStart={earOutline} label="Texto alternativo" onIonChange={handleAltChange}></StyledInput>
     </IonList>
   )
   const contentDesert = (
     <IonList class='width-90'>
-      <StyledInput iconStart={cafeOutline} label="Nombre del Postre" onIonChange={handleNameChange} counter maxlength={20}></StyledInput>
       <IonImg class='pictogram-on-button' src={pictoInput}></IonImg>
       <StyledButton id="open-pictogram-modal" icon={addCircleOutline} label="Añadir Pictograma"></StyledButton>
       <ModalSearchPictogram trigger='open-pictogram-modal' handlePictogramClick={handlePictogramClick}/>
+      <StyledInput iconStart={cafeOutline} label="Nombre del Postre" onIonChange={handleNameChange} counter maxlength={20}></StyledInput>
       <StyledInput iconStart={earOutline} label="Texto alternativo" onIonChange={handleAltChange}></StyledInput>
     </IonList>
   )
