@@ -1,4 +1,4 @@
-import { IonLoading, IonList, IonGrid, IonIcon, IonItem, IonInput} from '@ionic/react';
+import { IonLoading, IonList, IonGrid, IonIcon, IonItem, IonInput, IonPage} from '@ionic/react';
 import Header from '../components/Header';
 import './DishTypes.css';
 import { useState, useEffect } from "react";
@@ -18,7 +18,7 @@ const DishTypes: React.FC = () => {
   const [pictoInput, setPictoInput] = useState("https://api.arasaac.org/api/pictograms/29839?resolution=500&download=false");
 
 
-  {/** useEffect Hook para usar el get con Axios y obtener los datos de la url asignada antes*/ }
+  /** useEffect Hook para usar el get con Axios y obtener los datos de la url asignada antes*/ 
   useEffect(() => {
     sendGetAllRequest("dish").then(data => {
       setDishes(data)
@@ -54,15 +54,13 @@ const DishTypes: React.FC = () => {
     //POST
     sendPostRequest("accessible_element", {
       "_text": nameInput,
-      "_pictogram": pictoInput,
+      "_pictogram": pictoInput
     }).then(response => {
       sendPostRequest("dish", {
         "_name": response["_id"],
-        "_type": type,
-      }).then(response_1=> {
-        console.log(response_1);
+        "_type": type
       })
-    })
+    }).catch(error => console.log(error));
 
     setNameInput("");
     setPictoInput("");
@@ -107,28 +105,28 @@ const DishTypes: React.FC = () => {
 
   arrayElementos = [
     <>
-      <IonGrid class='list-container-dishes'>
+      <IonGrid class='list-container list-container-dishes'>
         { 
           dishes.map(menu => {
-            if (menu['_type'] === "MENU") {
+            // if (menu['_type'] === "MENU") {
               return (
-                <ListItem key={menu['_id']} href="dish_types" text={menu['_name']['_text']} pictogram={menu['_name']['_pictogram']} id={menu['_id']} editItem={null} deleteItem={deleteDish}></ListItem>
+                <ListItem key={menu['_id']} href="dish_types" text={menu['_name']['_text']} pictogram={menu['_name']['_pictogram']} id={menu['_id']} handleEdit={null} handleDelete={deleteDish}></ListItem>
               )
-            } else {
-              return null
-            }
+            // } else {
+            //   return null
+            // }
           })
         }
       </IonGrid>
       <CreateDishPopUp label='Añadir Menú' title='Nuevo Menú' popUpContent={contentMenu} type='MENU' newDish={newDish}></CreateDishPopUp>
     </>,
     <>
-      <IonGrid class='list-container-dishes'>
+      <IonGrid class='list-container list-container-dishes'>
         {
           dishes.map(postre => {
             if (postre['_type'] === "POSTRE") {
               return (
-                <ListItem key={postre['_id']} href="dish_types" text={postre['_name']['_text']} pictogram={postre['_name']['_pictogram']} id={postre['_id']} editItem={null} deleteItem={deleteDish}></ListItem>
+                <ListItem key={postre['_id']} href="dish_types" text={postre['_name']['_text']} pictogram={postre['_name']['_pictogram']} id={postre['_id']} handleEdit={null} handleDelete={deleteDish}></ListItem>
               )
             } else {
               return null
@@ -156,16 +154,12 @@ const DishTypes: React.FC = () => {
     );
   }
 
-  /* setTimeout(() => {
-    setShowLoading(false);
-  }, 2000); */
-
   return (
-    <>
+    <IonPage>
       <Header title="Tipos de platos" settings back={false} />
   
       <TabSwitch tabsNames={dishTypes} tabsComponents={arrayElementos}></TabSwitch>
-    </>
+    </IonPage>
   );
 };
 

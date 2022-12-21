@@ -58,7 +58,7 @@ const CreateDishPopUp: React.FC<PopUpProps> = (props: PopUpProps) => {
                     {props.popUpContent}
 
                     <IonFab vertical="bottom" horizontal='center'>
-                        <IonFabButton color="success" onClick={() => {newDish()}}>
+                        <IonFabButton color="success" onClick={newDish}>
                             <IonIcon icon={checkmark}></IonIcon>
                         </IonFabButton>
                     </IonFab>

@@ -1,0 +1,29 @@
+.list-container-materials{
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-bottom: 10px;
+    /* TODO Calcular la altura de forma dinamica con variables */
+    max-height: calc(100% - 184px);
+    min-height: calc(100% - 184px);
+}
+
+ion-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-button{
+    display: flex;
+    align-self: flex-end;
+}
+
+.item-list{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.pictogram-header{
+    display: flex;
+    width: 10%;
+}

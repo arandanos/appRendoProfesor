@@ -2,7 +2,7 @@ import { IonContent, IonPage } from '@ionic/react';
 import Header from '../components/Header';
 import './Pages.css'
 
-const LaminatorTask: React.FC = () => {
+const NewLaminatorTask: React.FC = () => {
   return (
     <IonPage>
       <Header title="Plastificadora" back settings={false}/>
@@ -12,4 +12,4 @@ const LaminatorTask: React.FC = () => {
   );
 };
 
-export default LaminatorTask;
+export default NewLaminatorTask;

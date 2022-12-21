@@ -1,13 +1,7 @@
 .btn-title{
     display: flex;
     margin: 0;
-}
-
-ion-content{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+}c
 
 .pictogram-header{
     display: flex;
@@ -20,11 +14,9 @@ ion-content{
 }
 
 .list-container-dishes{
-    overflow-y: auto;
-    overflow-x: hidden;
-    margin-bottom: 10px;
-    max-height: calc(100% - 184px);
-    min-height: calc(100% - 184px);
+    /* TODO Calcular la altura de forma dinamica con variables */
+    max-height: calc(100% - 94px);
+    min-height: calc(100% - 94px);
 }
 
 .item-list{

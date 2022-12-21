@@ -14,9 +14,11 @@ import { homeOutline, clipboardOutline, addCircleOutline, briefcaseOutline, pers
 import Home from './pages/Home';
 import Tasks from './pages/Tasks';
 import CreateTask from './pages/CreateTask';
+import MaterialTaskView from './pages/MaterialTaskView';
 import MyClasses from './pages/MyClasses';
 import Profile from './pages/Profile';
 import AdminSettings from './pages/AdminSettings';
+import Storage from './pages/Storage';
 import DishTypes from './pages/DishTypes';
 
 /* Core CSS required for Ionic components to work properly */
@@ -39,16 +41,19 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import './App.css';
 import KitchenOrderView from './pages/KitchenOrderView';
-import MenusDesserts from './pages/MenusDesserts';
 import StudentManagement from './pages/StudentManagement';
 import TeachersManagement from './pages/TeachersManagement';
 import ClassroomsManagement from './pages/ClassroomsManagement';
-import Materials from './pages/Materials';
-import KitchenOrderTask from './pages/KitchenOrderTask';
-import MaterialTask from './pages/MaterialTask';
-import PrinterTask from './pages/PrinterTask';
-import LaminatorTask from './pages/LaminatorTask';
+import NewKitchenOrder from './pages/NewKitchenOrder';
+import NewMaterialTask from './pages/NewMaterialTask';
+import NewPrinterTask from './pages/NewPrinterTask';
+import NewLaminatorTask from './pages/NewLaminatorTask';
+import StorageAvailability from './pages/StorageAvailability';
+import NewTeacher from './pages/NewTeacher';
+import NewStudent from './pages/NewStudent';
 
+import SuperviseKitchenOrder from './pages/SuperviseKitchenOrder';
+import ModalMaterialTask from './components/ModalMaterialTask';
 
 setupIonicReact();
 
@@ -61,6 +66,9 @@ const App: React.FC = () => (
           {/* RUTAS PARA LAS TABS */}
           <Route exact path="/home">
             <Home />
+          </Route>
+          <Route exact path="/material">
+            <NewMaterialTask />
           </Route>
           <Route exact path="/tasks">
             <Tasks />
@@ -77,28 +85,36 @@ const App: React.FC = () => (
 
           {/* RUTAS RESTO DE COMPONENTES */}
           <Route exact path="/admin_settings" component={AdminSettings}/>
-            <Route path="/dish_types" component={MenusDesserts}/>
+            <Route path="/dish_types" component={DishTypes}/>
             <Route path="/students" component={StudentManagement}/>
             <Route path="/teachers" component={TeachersManagement}/>
             <Route path="/classrooms" component={ClassroomsManagement}/>
-            <Route path="/storage" component={Materials}/>
+            <Route path="/new/teacher" component={NewTeacher}/>
+            <Route path="/new/student" component={NewStudent}/>
+            <Route exact path="/storage" component={Storage}/>
+            <Route path="/storage/:id_material" component={StorageAvailability}/>
 
             {/* TAREAS */}
-            <Route exact path="/kitchen_order" component={KitchenOrderView}/>
+            <Route path="/kitchen_order/:id_task" component={KitchenOrderView}/>
+            {/* <Route exact path="/my_classes/:id_task" component={MyClasses}/> */}
+            <Route exact path="/material_task_view/:id_task" component={MaterialTaskView}></Route>
 
             {/* Rutas Crear Tarea */}
-            <Route path="/task/new/kitchen_order" component={KitchenOrderTask}/>
-            <Route path="/task/new/material_request" component={MaterialTask}/>
-            <Route path="/task/new/printer_task" component={PrinterTask}/>
-            <Route path="/task/new/laminator_task" component={LaminatorTask}/>
+            <Route path="/task/new/kitchen_order" component={NewKitchenOrder}/>
+            <Route path="/task/new/material_request" component={NewMaterialTask}/>
+            <Route path="/task/new/printer_task" component={NewPrinterTask}/>
+            <Route path="/task/new/laminator_task" component={NewLaminatorTask}/>
             {/* <Route path="/task/new/steps_task" component={}/> */}
 
-            {/* PLATOS */}
-            <Route exact path="/dish_types" component={DishTypes}/>
+            {/* COMANDA CLASE */}
+            <Route path={"/supervise_kitchen_order/:class_name"}>
+              <SuperviseKitchenOrder/>
+            </Route>
 
           <Route exact path="/">
             <Redirect to="/home" />
           </Route>
+
 
         </IonRouterOutlet>
 

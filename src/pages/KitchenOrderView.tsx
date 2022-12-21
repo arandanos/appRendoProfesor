@@ -1,31 +1,38 @@
-import { IonContent, IonItem, IonPage, IonList, IonLabel, IonInput, IonIcon, IonTextarea, IonFabButton } from '@ionic/react';
+import { IonContent, IonItem, IonPage, IonList, IonLabel, IonInput, IonIcon, IonTextarea, IonFabButton, IonGrid } from '@ionic/react';
 import './Pages.css';
 import Header from '../components/Header';
 import CalendarPicker from '../components/CalendarPicker';
 import { cameraOutline, chatbubbleOutline, checkmarkOutline, clipboardOutline, createOutline, personOutline } from 'ionicons/icons';
 import './KitchenOrderView.css'
 
-import React from 'react';
-import axios from "axios";
-const baseURL = "http://localhost:8000/api/task/2";
+import { useEffect, useState } from 'react';
+import { RouteComponentProps } from 'react-router';
+import { sendGetByIDRequest } from '../ApiMethods';
+import StyledButton from '../components/StyledButton';
+import StyledInput from '../components/StyledInput';
 
-const KitchenOrderView: React.FC = () => {
+interface KitchenOrderViewProps extends RouteComponentProps<{
+	id_task: string;
+}> {}
 
-	const [data, setData] = React.useState();
-	const [isLoading, setIsLoading] = React.useState(true);
+const KitchenOrderView: React.FC<KitchenOrderViewProps> = ({match}) => {
 
-	React.useEffect(() => {
-		axios.get(baseURL).then((response) => {
-			setData(response.data);
+	const [data, setData] = useState();
+	const [isLoading, setIsLoading] = useState(true);
+
+	useEffect(() => {
+		sendGetByIDRequest("task", match.params.id_task).then( data => {
+			setData(data);
 			setIsLoading(false);
-		});
+		})
 	}, []);
 
 
 	if(isLoading){
+		// * AQUI IRA EL SPLASH DE CARGA
 		return (
 			<div>
-				<h1>Loading...</h1>
+				<h1>Cargando...</h1>
 			</div>
 		);
 	}
@@ -37,40 +44,36 @@ const KitchenOrderView: React.FC = () => {
 
 	return (
 		<IonPage>
-			<Header title="Comanda" settings back={false} />
+			<Header title="Comanda" settings back />
 			<IonContent fullscreen>
 				<IonList class="width-90">
-					<IonLabel>Alumno asignado</IonLabel>
-					<IonItem shape='round' fill='outline'>
-						<IonIcon slot='start' icon={personOutline} />
-						<IonInput value="Nombre alumno" disabled />
-						<IonIcon slot='end' icon={createOutline} />
-					</IonItem>
 
-					<CalendarPicker label='Fecha límite de realización' disabled editButton value="2030-12-08"/>
+					<StyledInput label='Alumno Asignado' iconStart={personOutline} iconEnd={createOutline} disabled value={data!['_student']['_name']['_text']}></StyledInput>
 
-					<IonLabel>Estado</IonLabel>
-					<IonItem shape='round' fill='outline'>
-						<IonIcon slot='start' icon={clipboardOutline} />
-						<IonInput value={estado} disabled />
-					</IonItem>
+					<CalendarPicker label='Fecha límite de realización' disabled editButton value={data!['_due_date']}/>
+
+					<StyledInput label='Estado' iconStart={clipboardOutline} disabled value={estado}></StyledInput>
+
+					<StyledButton label='Ir a Supervisar Comanda'></StyledButton>
 
 					<IonLabel>Dar feedback</IonLabel>
 					<IonItem shape='round' fill='outline'>
 						<IonTextarea placeholder='Escribir feedback...'></IonTextarea>
 						<IonIcon slot='end' icon={cameraOutline} />
 					</IonItem>
+
 					<div className='wrap-kitchen-order-buttons'>
-						<div className='wrap-kitchen-order-button'>
+						{/* <div className='wrap-kitchen-order-button'>
 							<IonFabButton>
 								<IonIcon icon={chatbubbleOutline} />
 							</IonFabButton>
-						</div>
-						<div className='wrap-kitchen-order-button'>
+						</div> */}
+						<StyledButton label='Tarea Correcta' icon={checkmarkOutline}></StyledButton>
+						{/* <div className='wrap-kitchen-order-button'>
 							<IonFabButton>
 								<IonIcon icon={checkmarkOutline} />
 							</IonFabButton>
-						</div>
+						</div> */}
 					</div>
 				</IonList>
 			</IonContent>

@@ -10,6 +10,7 @@ ion-select {
     border-radius: 20px;
 }
 
+<<<<<<< HEAD
 ion-list {
     height: 60%;
 }
@@ -18,8 +19,11 @@ ion-label {
     border-bottom: 0px;
 }
 
+=======
+>>>>>>> develop
 .grid-with-button{
-    height: calc(100% - 72px);
+    /* TODO Calcular la altura de forma dinamica con variables */
+    height: calc(100% - 80px);
 }
 
 .width-90 {
@@ -28,11 +32,22 @@ ion-label {
     margin: 5% auto;
 }
 
+.center {
+    margin: auto;
+}
+
+.center-content {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
 /** CLASE PARA GRIDS QUE CONTIENEN UNA LISTA DE ITEMS */
 .list-container {
     overflow-y: auto;
     overflow-x: hidden;
     margin-bottom: 10px;
+    /* TODO Calcular la altura de forma dinamica con variables */
     max-height: calc(100% - 56px);
     min-height: calc(100% - 56px);
 }
@@ -43,8 +58,36 @@ ion-label {
     min-width: 90%;
     max-width: 90%;
     margin: auto;
+    margin-bottom: 10px;
 }
 
-.scroll{
+.botton-success{
+    margin: auto;
+}
+
+/** CLASE PARA SCROLL SIN MOSTRAR LA BARRA */
+.scroll {
     overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none; 
+}
+
+.scroll::-webkit-scrollbar {
+    display: none;
+}
+
+/** Clase para quitarle el padding a los grids */
+.no-padding-grid{
+    --ion-grid-padding: 0px;
+}
+
+/** Clase para eliminar la animación don click */
+.item-remove-animate {
+    --ripple-color: transparent;
+    --background-activated: transparent;
+    --background-activated-opacity:transparent;
+    --background-focused: transparent;
+    --background-focused-opacity:transparent;
+    --background-hover: transparent;
+    --background-hover-opacity  :transparent;
 }

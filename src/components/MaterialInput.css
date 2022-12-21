@@ -1,0 +1,9 @@
+ion-item::part(native){
+    --inner-padding-start: 5px;
+}
+
+.material-row{
+    background-color: var(--ion-color-secondary);
+    margin-bottom: 2%;
+    border-radius: 10px;
+}

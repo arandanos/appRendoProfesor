@@ -14,13 +14,13 @@ interface TabSwitchProps{
     tabsComponents: Array<JSX.Element>
 };
 
-const TabSwitch: React.FC<TabSwitchProps> = (tabsProps: TabSwitchProps) => {
+const TabSwitch: React.FC<TabSwitchProps> = (props: TabSwitchProps) => {
     const [tabActive, setTabActive] = useState<number>(0);
     const [content, setContent] = useState<JSX.Element>();
 
     useEffect(() => {
         {/** Aqui cambio el componente */}
-        setContent(tabsProps.tabsComponents.at(tabActive));
+        setContent(props.tabsComponents.at(tabActive));
     }, [tabActive]);
 
     const handleClick = (e: any) => {
@@ -38,20 +38,18 @@ const TabSwitch: React.FC<TabSwitchProps> = (tabsProps: TabSwitchProps) => {
     ></CreateAnimation>
 
     return(
-        <>
-            <IonContent fullscreen>
-                <IonSegment>
-                    {tabsProps.tabsNames.map(tab => {
-                        return(
-                            <IonSegmentButton value={tab}  onClick={handleClick} id={String(tabsProps.tabsNames.indexOf(tab))} key={String(tabsProps.tabsNames.indexOf(tab))}>
-                                <IonLabel class="btn-title">{tab}</IonLabel>
-                            </IonSegmentButton>
-                        );
-                    })}                  
-                </IonSegment>
-                <IonLabel>{tabsProps.tabsComponents.at(tabActive)}</IonLabel>
-            </IonContent>
-        </>
+        <IonContent fullscreen>
+            <IonSegment value={props.tabsNames[tabActive]}>
+                {props.tabsNames.map(tab => {
+                    return(
+                        <IonSegmentButton value={tab} onClick={handleClick} id={String(props.tabsNames.indexOf(tab))} key={String(props.tabsNames.indexOf(tab))}>
+                            <IonLabel class="btn-title">{tab}</IonLabel>
+                        </IonSegmentButton>
+                    );
+                })}                  
+            </IonSegment>
+            {props.tabsComponents.at(tabActive)}
+        </IonContent>
     );
 };
 
