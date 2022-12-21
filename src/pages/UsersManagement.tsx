@@ -35,7 +35,7 @@ const UsersManagement: React.FC = () => {
         <IonSearchbar showClearButton="focus" placeholder="Buscar alumno..." ></IonSearchbar> 
         <ListItem key="1" href="" text={dataAccessibleAlumno['text']} pictogram={dataAccessibleAlumno['pictogram']} id={dataAccessibleAlumno['id']} handleEdit={null} handleDelete={null}></ListItem>
       </IonGrid>
-      <StyledButton label='Añadir Nuevo Alumno' icon={addCircleOutline} id="open_modal"></StyledButton>     
+      <StyledButton href="/new/student" label='Añadir Nuevo Alumno' icon={addCircleOutline} id="open_modal"></StyledButton>     
     </>,
 
     <>
@@ -51,7 +51,7 @@ const UsersManagement: React.FC = () => {
         <IonSearchbar showClearButton="focus" placeholder="Buscar profesor..." ></IonSearchbar> 
         <ListItem key="3" href="" text={dataAccessibleProfesor['text']} pictogram={dataAccessibleProfesor['pictogram']} id={dataAccessibleProfesor['id']} handleEdit={null} handleDelete={null}></ListItem>
       </IonGrid>
-      <StyledButton label='Añadir Nuevo Profesor' icon={addCircleOutline}></StyledButton>     
+      <StyledButton href="/new/teacher" label='Añadir Nuevo Profesor' icon={addCircleOutline}></StyledButton>     
     </>
   ]
 

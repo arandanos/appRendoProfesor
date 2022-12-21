@@ -10,7 +10,7 @@ const AdminSettings: React.FC = () => {
         <IonContent fullscreen>
           <IonGrid class='button-grid'>
             <StyledButton label="Tipos de menús y postres" href="/dish_types"/>
-            <StyledButton label="Gestión de Usuarios" href="#"/>
+            <StyledButton label="Gestión de Usuarios" href="/users"/>
             <StyledButton label="Gestión de Pictogramas" href="#"/>
             <StyledButton label="Gestión de Colores" href="#"/>
             <StyledButton label="Gestión de clases" href="/classrooms"/>
