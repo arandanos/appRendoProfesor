@@ -1,6 +1,6 @@
 import { IonCol, IonContent, IonFabButton, IonGrid, IonIcon, IonLabel, IonModal, IonRow } from "@ionic/react";
 import { OverlayEventDetail } from "@ionic/react/dist/types/components/react-component-lib/interfaces";
-import { add, checkmarkCircleOutline } from "ionicons/icons";
+import { add, checkmarkCircleOutline, closeCircleOutline } from "ionicons/icons";
 import { useEffect, useRef, useState } from "react";
 import { sendGetAllRequest, sendGetByIDRequest } from "../ApiMethods";
 import Header from "./Header";
@@ -16,8 +16,6 @@ interface ModalMaterialTaskProps {
 const ModalMaterialTask: React.FC<ModalMaterialTaskProps> = (props: ModalMaterialTaskProps) => {
     const modal = useRef<HTMLIonModalElement>(null);
     const input = useRef<HTMLIonInputElement>(null);
-
-    // TODO: Revisar IDS en Material Input, ya que errores cuando mismo material. Sugerencia -> Value = {idInput: , idMAterial: } ?
 
     // * MATERIALES OBTENIDOS DE LA API
     const [materials, setMaterials] = useState([]);
@@ -63,18 +61,6 @@ const ModalMaterialTask: React.FC<ModalMaterialTaskProps> = (props: ModalMateria
             setQuantityOptions([quantityOptionDefault]);
         }
     }
-
-    // * EVENTO AÑADIR NUEVA FILA: Se dispara al darle al botón de +
-    // const handleAddClick = () => {
-    //     // * Asigna el siguiente id disponible
-    //     const newMaterialInput = materialInputDefault;
-    //     newMaterialInput.id = materialInputs.length;
-
-    //     setMaterialInputs([...materialInputs, newMaterialInput])
-    //     setColorOptions([...colorOptions, []]);
-    //     setQuantityOptions([...quantityOptions, [quantityOptionDefault]]);
-        // setMaxQuantities([...maxQuantities, 0]);
-    // }
 
     // * EVENTO SELECCIONAR MATERIAL
     const handleMaterialSelect = (materialSelected: any, id: string) => {
@@ -147,16 +133,10 @@ const ModalMaterialTask: React.FC<ModalMaterialTaskProps> = (props: ModalMateria
                                         handleCounterChange={handleCounterChange} 
                                         handleMaterialSelect={handleMaterialSelect} 
                                         handleColorSelect={handleColorSelect}/>
-                
-                    {/* <IonRow class="center-content">
-                        <IonFabButton class="center" color="success" size='small' onClick={handleAddClick}>
-                            <IonIcon icon={add}></IonIcon>
-                        </IonFabButton>
-                    </IonRow> */}
                 </IonGrid>
                 <IonRow>
                     <IonCol size="6">
-                        <StyledButton color="danger" icon={checkmarkCircleOutline} label="Cancelar" onClick={() => {
+                        <StyledButton color="danger" icon={closeCircleOutline} label="Cancelar" onClick={() => {
                             confirm();
                         }} />
                     </IonCol>

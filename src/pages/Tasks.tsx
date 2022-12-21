@@ -23,31 +23,11 @@ const Tasks: React.FC = () => {
     })    
   }, []) 
 
-  const [data, setData] = useState([]);
-  // let [results, setResults] = useState([...data]);
-
-  const handleChange = (ev: Event) => {
-    let query = "";
-    const target = ev.target as HTMLIonSearchbarElement;
-    if (target) query = target.value!.toLowerCase();
-
-    sendGetARASAACRequest(query).then( (resp) => {
-      setData(resp);
-    })
-  }
-
+ 
   const popUpContent = ( 
     <>
-     <IonSearchbar onIonChange={(ev) => handleChange(ev)}></IonSearchbar>
-      <IonList class="scroll">
-      { data.map(pic => (
-        <ListItem text={pic['keywords'][0]['keyword']} pictogram={'https://api.arasaac.org/api/pictograms/' + pic["_id"] + '?resolution=500&download=false'}/>
-        // <IonItem><IonImg class="pictogram-on-button" slot="start" src={'https://api.arasaac.org/api/pictograms/' + pic["_id"] + '?resolution=500&download=false'}></IonImg></IonItem>
-      ))}
-    </IonList>
     </>
   )
-
 
   const handleDoneClick = () => {
    
@@ -96,8 +76,7 @@ const Tasks: React.FC = () => {
 
             </IonGrid>
 
-            {/* <StyledButton label='Añadir Tarea' icon={addCircleOutline} href="/create_task"></StyledButton> */}
-         <PopUp label='Añadir Tarea' title='Nueva Tarea' popUpContent={popUpContent}></PopUp>
+            <StyledButton label='Añadir Tarea' icon={addCircleOutline} href="/create_task"></StyledButton>
         </IonContent>
       </IonPage>  
   );
