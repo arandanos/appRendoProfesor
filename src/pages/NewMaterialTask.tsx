@@ -143,7 +143,6 @@ const NewMaterialTask: React.FC = () => {
       <IonContent fullscreen >
         <IonGrid class="grid-with-button width-90 scroll">
           <CalendarPicker label='Selecciona fecha de la tarea' disabled={false} editButton={false} value='' />
-          <IonLabel>Encargado de la tarea</IonLabel>
           <IonItem shape="round" fill="outline">
             <IonSelect onIonChange={(e) => handleNameChange(e.detail.value)} interface="popover" placeholder="Alumno">
               <IonSelectOption value="Manuel García">Manuel García</IonSelectOption>
@@ -163,7 +162,7 @@ const NewMaterialTask: React.FC = () => {
           <StyledButton label="Añadir Material" id="open-modal"></StyledButton>
           <ModalMaterialTask trigger="open-modal" handleDoneClick={handleAddClick}></ModalMaterialTask>
           {/*-----------------Los toggles -----------------*/}
-          <ToggleSwitch label='Feedback automático' checked id="auto_feedback" />
+          <ToggleSwitch label='Auto feedback' checked id="auto_feedback" />
           <ToggleSwitch label='Comentarios' checked id="allow_comments" />
         </IonGrid>
         <StyledButton label="Crear petición" icon={checkmarkCircleOutline} id="confirm-material-task" onClick={handleCreateClick}/>

@@ -75,8 +75,7 @@ const NewKitchenOrder: React.FC = () => {
       <IonContent fullscreen>
           <IonGrid class="width-90 grid-with-button">
             <CalendarPicker label='Seleccionar fecha límite'/>
-
-            <IonLabel>Encargado de la tarea</IonLabel>
+            
             <IonItem shape="round" fill="outline">
               <IonSelect interface="popover" placeholder="Alumno">
                 <IonSelectOption>Manuel García</IonSelectOption>
@@ -86,7 +85,7 @@ const NewKitchenOrder: React.FC = () => {
             </IonItem>
 
             <ToggleSwitch label='Cálculo automático de número menús' checked={false} id="auto_calc_menu"/>
-            <ToggleSwitch label='Feedback automático' checked={false} id="auto_feedback"/>
+            <ToggleSwitch label='Auto feedback' checked={false} id="auto_feedback"/>
             <ToggleSwitch label='Comentarios' checked id="allow_comments"/>
           </IonGrid>
           <StyledButton label="Crear Comanda" icon={checkmarkCircleOutline} id="confirm-order" onClick={handleButtonClick}/>

@@ -6,6 +6,10 @@
     align-content: space-evenly;
 }
 
+ion-item{
+    margin-bottom: 10px;
+}
+
 ion-select {
     border-radius: 20px;
 }
