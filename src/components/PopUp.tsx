@@ -1,8 +1,9 @@
-import { IonContent, IonButton, IonIcon, IonFabButton, IonButtons, IonModal, IonTitle, IonToolbar, IonFab } from '@ionic/react';
+import { IonContent, IonButton, IonIcon, IonFabButton, IonButtons, IonModal, IonTitle, IonToolbar, IonFab, IonGrid, IonRow, IonCol } from '@ionic/react';
 import { useRef } from 'react';
 import './PopUp.css'
 import { checkmark, closeOutline, addCircleOutline } from 'ionicons/icons';
 import StyledButton from './StyledButton';
+import '../pages/Pages.css'
 
 interface PopUpProps {
     label: string;
@@ -30,7 +31,6 @@ const PopUp: React.FC<PopUpProps> = (props: PopUpProps) => {
 
             <IonModal class={cssClass()} ref={modal} trigger="open-modal">
                 <IonContent scrollY={false}>
-
                     <IonToolbar>
                         <IonTitle>{props.title}</IonTitle>
                         <IonButtons slot="end">

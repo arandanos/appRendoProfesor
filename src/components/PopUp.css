@@ -19,3 +19,7 @@
     --background: var(--ion-color-primary);
     --color: white;
 }
+
+ion-modal ion-list{
+    margin: auto auto;
+}

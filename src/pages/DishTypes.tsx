@@ -90,7 +90,7 @@ const DishTypes: React.FC = () => {
       <IonImg class='pictogram-on-button' src={pictoInput}></IonImg>
       <StyledButton id="open-pictogram-modal" icon={addCircleOutline} label="Añadir Pictograma"></StyledButton>     
       <ModalSearchPictogram trigger='open-pictogram-modal' handlePictogramClick={handlePictogramClick}/>
-      <StyledInput iconStart={cafeOutline} label="Nombre del Menú" onIonChange={handleNameChange} counter maxlength={20}></StyledInput>
+      <StyledInput iconStart={cafeOutline} label="Nombre del Menú" onIonChange={handleNameChange} maxlength={20}></StyledInput>
       <StyledInput iconStart={earOutline} label="Texto alternativo" onIonChange={handleAltChange}></StyledInput>
     </IonList>
   )
@@ -99,7 +99,7 @@ const DishTypes: React.FC = () => {
       <IonImg class='pictogram-on-button' src={pictoInput}></IonImg>
       <StyledButton id="open-pictogram-modal" icon={addCircleOutline} label="Añadir Pictograma"></StyledButton>
       <ModalSearchPictogram trigger='open-pictogram-modal' handlePictogramClick={handlePictogramClick}/>
-      <StyledInput iconStart={cafeOutline} label="Nombre del Postre" onIonChange={handleNameChange} counter maxlength={20}></StyledInput>
+      <StyledInput iconStart={cafeOutline} label="Nombre del Postre" onIonChange={handleNameChange} maxlength={20}></StyledInput>
       <StyledInput iconStart={earOutline} label="Texto alternativo" onIonChange={handleAltChange}></StyledInput>
     </IonList>
   )
