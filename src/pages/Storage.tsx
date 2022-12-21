@@ -1,13 +1,16 @@
-import { IonContent, IonGrid, IonPage, IonList, IonItem, IonIcon, IonInput } from '@ionic/react';
+import { IonContent, IonGrid, IonPage, IonList, IonItem, IonIcon, IonInput, IonImg } from '@ionic/react';
 import './Pages.css';
 import Header from '../components/Header';
 import './Storage.css'
 import React, { useEffect, useState } from 'react';
-import { addCircleOutline, cafeOutline } from 'ionicons/icons';
+import { addCircleOutline, cafeOutline, earOutline } from 'ionicons/icons';
 import { sendGetAllRequest, sendPostRequest, sendDeleteIDRequest, sendPutRequest } from '../ApiMethods';
 import ListItem from '../components/ListItem';
 import SearchBar from '../components/SearchBar';
 import PopUp from '../components/PopUp';
+import ModalSearchPictogram from '../components/ModalSearchPictogram';
+import StyledButton from '../components/StyledButton';
+import StyledInput from '../components/StyledInput';
 
 
 const Storage: React.FC = () => {
@@ -15,8 +18,10 @@ const Storage: React.FC = () => {
     /*para los datos de materiales*/
     const [materials, setMaterials] = useState([]);
     const [ isLoading, setIsLoading ] = useState(true);
-    const [nameInput, setNameInput] = useState("Nuevo");
-    const [pictoInput, setPictoInput] = useState("https://api.arasaac.org/api/pictograms/29839?resolution=500&download=false");
+    // const [nameInput, setNameInput] = useState("Nuevo");
+    var name = "";
+    var alt = "";
+    const [pictoInput, setPictoInput] = useState("");
 
     const [ results, setResults ] = useState<any>([]);
   
@@ -42,48 +47,46 @@ const Storage: React.FC = () => {
         );
     } 
 
-    const handleNameInput = (e: any) => {
-        sessionStorage.setItem("name", e.target.value)
-        setNameInput(e.target.value)
-      };
-      const handlePictogramInput = (e: any) => {
-        sessionStorage.setItem("pictogram", e.target.value)
-        setPictoInput(e.target.value)
-    };
-
     function newMaterial(type: string) {
-        console.log("Nuevo "+ type +" creado: " + nameInput);
+        console.log("Nuevo "+ type +" creado: " + name);
         console.log("Pictograma: " + pictoInput);
         
         //POST
         sendPostRequest("accessible_element", {
-          "_text": nameInput,
-          "_pictogram": pictoInput
+          '_text': name,
+          '_pictogram': pictoInput,
+          '_alt': alt
         }).then(response => {
-          sendPostRequest("dish", {
-            "_name": response["_id"],
-            "_type": type
+          sendPostRequest("material_type", {
+            '_name': response["_id"]
+          }).then(() => {
+            name = ""
+            setPictoInput("");
+            //Recarga la pagina
+            window.location.reload();
           })
-        }).catch(error => console.log(error));
-    
-        setNameInput("");
-        setPictoInput("");
-        sessionStorage.setItem("name", "");
-        sessionStorage.setItem("pictogram", "");
-        //Recarga la pagina
-        window.location.reload();
+        }).catch(error => console.log(error)); 
       };
+
+      function handlePictogramClick( value : any) {
+        setPictoInput(value);
+      }
+
+      function handleNameChange (value : any) {
+        name = value
+      }
+    
+      function handleAltChange (value : any) {
+        alt = value;
+      }
 
     const contentMaterial = (
     <IonList class='width-90'>
-      <IonItem class='item-list' fill="outline" shape="round" counter={true}>
-        <IonIcon slot="start" icon={cafeOutline} />
-        <IonInput type="text" placeholder='Nombre del Material' maxlength={20} onIonChange={handleNameInput}></IonInput>
-      </IonItem>
-      <IonItem fill="outline" shape="round">
-        <IonIcon slot="start" icon={addCircleOutline} />
-        <IonInput type="text" placeholder='Pictograma' onIonChange={handlePictogramInput}></IonInput>
-      </IonItem>
+      <IonImg class='pictogram-on-button' src={pictoInput}></IonImg>
+      <StyledButton id="open-pictogram-modal" icon={addCircleOutline} label="Añadir Pictograma"></StyledButton>
+      <ModalSearchPictogram trigger='open-pictogram-modal' handlePictogramClick={handlePictogramClick}/>
+      <StyledInput iconStart={cafeOutline} label="Nombre del Material" onIonChange={handleNameChange} counter maxlength={20}></StyledInput>
+      <StyledInput iconStart={earOutline} label="Texto alternativo" onIonChange={handleAltChange}></StyledInput>
     </IonList>
     )
 
@@ -108,7 +111,7 @@ const Storage: React.FC = () => {
                       })
                     }
                 </IonGrid>
-                <PopUp label='Añadir Material' title='Nuevo Material' popUpContent={contentMaterial}></PopUp>
+                <PopUp label='Añadir Material' title='Nuevo Material' popUpContent={contentMaterial} doneAction={newMaterial}></PopUp>
             </IonContent>
         </IonPage>
     );

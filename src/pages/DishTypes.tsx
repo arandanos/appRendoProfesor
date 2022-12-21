@@ -16,7 +16,6 @@ const DishTypes: React.FC = () => {
 
   /** Para los datos de menus y postres */
   const [dishes, setDishes] = useState([]);
-  const [showLoading, setShowLoading] = useState(true);
 
   var alt = "";
   var name = "";
@@ -28,7 +27,6 @@ const DishTypes: React.FC = () => {
     sendGetAllRequest("dish").then(data => {
       setDishes(data)
       setIsLoading(false)
-      setShowLoading(false)
     })
   }, [])
 
@@ -144,18 +142,14 @@ const DishTypes: React.FC = () => {
   //Pantalla de carga:
   const [isLoading, setIsLoading] = useState(true);
 
-  if(isLoading){
+  if(isLoading) {
+    // * AQUI IRA EL SPLASH DE CARGA
     return(
-      <div className='App'>
-        <IonLoading 
-          isOpen={showLoading} 
-          onDidPresent={() => setShowLoading(true)}
-          message={'Cargando...'}
-          duration={1000}
-        />
-      </div>
+      <IonPage>
+        <h1>Cargando...</h1>
+      </IonPage>
     );
-  }
+} 
 
   return (
     <IonPage>
