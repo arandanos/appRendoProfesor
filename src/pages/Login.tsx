@@ -5,12 +5,25 @@ import { lockClosedOutline } from 'ionicons/icons';
 import StyledInput from '../components/StyledInput';
 import ButtonLogin from '../components/ButtonLogin';
 import { personOutline } from 'ionicons/icons';
+import { useState } from "react";
 
 const Login: React.FC = () => {
 
-    const getPassword = () =>{
+    const [password, setPassword] = useState("")
+    const [user, setUser] = useState("")
 
+    const getPassword = (e: any) =>{
+        
     }
+
+    const getUser = (e: any) =>{
+       
+    }
+
+    const onHandleCheckParameters = () =>{
+        
+    }
+    
 
 
   return (
@@ -30,7 +43,7 @@ const Login: React.FC = () => {
                 <IonCol>
                     <IonLabel class="label">Nombre de usuario</IonLabel>
                     <IonItem>                                                   
-                        <StyledInput placeholder="Nombre de usuario" iconStart={personOutline}></StyledInput>                                                    
+                        <StyledInput onIonChange={getUser} placeholder="Nombre de usuario" iconStart={personOutline}></StyledInput>                                                    
                     </IonItem>                            
                 </IonCol>
             </IonRow>
@@ -39,7 +52,7 @@ const Login: React.FC = () => {
                 <IonCol>
                     <IonLabel class="label">Contraseña</IonLabel>
                     <IonItem>                                                       
-                        <StyledInput  placeholder="Contraseña" iconStart={lockClosedOutline}></StyledInput>                                                    
+                        <StyledInput onIonChange={getPassword} type="password" placeholder="Contraseña" iconStart={lockClosedOutline}></StyledInput>                                                    
                     </IonItem>                            
                 </IonCol>
             </IonRow>
@@ -48,7 +61,7 @@ const Login: React.FC = () => {
 
         <IonRow class="row">
             <IonCol>
-                <ButtonLogin href="/home"></ButtonLogin>
+                <ButtonLogin onClick={onHandleCheckParameters}></ButtonLogin>
             </IonCol>                    
         </IonRow>
     

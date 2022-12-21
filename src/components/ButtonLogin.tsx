@@ -3,15 +3,16 @@ import { MouseEventHandler } from 'react';
 import './ButtonLogin.css';
 
 interface ButtonProps { 
-  href?: string;
+  href?: any;
   id?: string;
+  onClick?: any
   
 }
 
 const ButtonLogin: React.FC<ButtonProps> = (props: ButtonProps) => {
 
   return (
-    <IonButton color="secondary" class="buttonLogin" href={props.href} id={props.id} >
+    <IonButton onClick={props.onClick? props.onClick : null} color="secondary" class="buttonLogin" href={props.href? props.href : null} id={props.id} >
       <IonText class='large-text ion-text-wrap'>Iniciar Sesión</IonText>
     </IonButton>
   );
