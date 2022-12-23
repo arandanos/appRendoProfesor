@@ -17,17 +17,17 @@ interface PDFPageProps extends RouteComponentProps<{
 
 const PDFPage: React.FC<PDFPageProps> = ({match}) => {
 
-
   const [data, setData] = useState([]);
   const [taskType, setTaskType] = useState();
   const [task_name, setTaskName] = useState();
+  const [task_date, setTaskDate] = useState();
+  const [student_name, setStudentName] = useState();
   const [classes, setTaskClasses] = useState([]);
   const [kitchenOrders, setKitchenOrders] = useState([]);
   const [showLoading, setShowLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const contentArea = useRef(null);
 
-  let taskName = "";
   var content: Array<contentProps> = [];
 
   useEffect(() => {
@@ -35,9 +35,9 @@ const PDFPage: React.FC<PDFPageProps> = ({match}) => {
     sendGetByIDRequest("task", match.params.id_task).then(data => {
       //Busco la tarea por su id
       setData(data);
-      if(data) taskName = data['_name']['_text'];
+      setTaskDate(data['_due_date']);
       setTaskName(data['_name']['_text']);
-      console.log("Nombre tarea: " + taskName);
+      setStudentName(data['_student']['_name']['_text']);
       //Establezco el tipo de la misma
       setTaskType(data['_type']);
       console.log("Tipo de tarea: " + data['_type']);
@@ -71,7 +71,7 @@ const PDFPage: React.FC<PDFPageProps> = ({match}) => {
   const handleExportPDF = () => {
     console.log(contentArea.current);
     if(contentArea.current)
-      savePDF(contentArea.current, {paperSize: 'A4', fileName: `Resumen ${task_name}`});
+      savePDF(contentArea.current, {paperSize: 'A4', fileName: `Resumen Comanda ${task_date}`});
   };
 
   interface contentProps{
@@ -108,9 +108,10 @@ const PDFPage: React.FC<PDFPageProps> = ({match}) => {
       <div className="app-content">
         <PDFExport paperSize='A4'>
           <div ref={contentArea}>
-            <h1>Resumen {task_name}</h1>
-            <Grid data={content}>
-              <Column field='quantity' title='Clase' width='50px' />
+            <h1>Resumen Comanda {task_date}</h1>
+            <h2>Alumno: {student_name}</h2>
+            <Grid data={content} className='grid-pdf'>
+              <Column field='quantity' title='Cantidad' width='70px' />
               <Column field='name' title='Nombre del Plato' width='200px' />
               <Column field='classroom' title='Clase' width='80px' />
               <Column field='type' title='Tipo' width='40px'/>
