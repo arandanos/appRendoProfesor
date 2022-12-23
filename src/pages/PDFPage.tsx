@@ -119,7 +119,7 @@ const PDFPage: React.FC<PDFPageProps> = ({match}) => {
               <Column field='classroom' title='Clase' width='80px' />
               <Column field='type' title='Tipo' width='40px'/>
             </Grid>
-            <h6>Total platos: {total_dishes}</h6>
+            <h6>Total platos: {totalDishes}</h6>
           </div>
         </PDFExport>
       
