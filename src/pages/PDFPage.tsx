@@ -26,6 +26,7 @@ const PDFPage: React.FC<PDFPageProps> = ({match}) => {
   const [kitchenOrders, setKitchenOrders] = useState([]);
   const [showLoading, setShowLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
+  const [total_dishes, setTotalDishes] = useState(0);
   const contentArea = useRef(null);
 
   var content: Array<contentProps> = [];
@@ -49,6 +50,7 @@ const PDFPage: React.FC<PDFPageProps> = ({match}) => {
     })
     sendGetAllRequest("kitchen_order_detail").then(data => {
       setKitchenOrders(data);
+      setTotalDishes(data["_quantity"]);
       //Cuando kitchenOrders tenga un valor, hace el setContent
       setIsLoading(false)
       setShowLoading(false)
@@ -81,9 +83,12 @@ const PDFPage: React.FC<PDFPageProps> = ({match}) => {
     classroom: string
   }
 
+  var totalDishes: any = 0;
   function setContent(){
     if (kitchenOrders) {
       kitchenOrders.map(order => {
+        totalDishes += order['_quantity'];
+        console.log(order['_quantity'] + " Total: " + totalDishes);
         content.push({
           quantity: order['_quantity'],
           name: order['_dish']['_name']['_text'],
@@ -99,7 +104,6 @@ const PDFPage: React.FC<PDFPageProps> = ({match}) => {
         classroom: ""
       });
     }
-    console.log("Content: " + content.at(0)?.name);
   }
 
   return (
@@ -109,13 +113,13 @@ const PDFPage: React.FC<PDFPageProps> = ({match}) => {
         <PDFExport paperSize='A4'>
           <div ref={contentArea}>
             <h1>Resumen Comanda {task_date}</h1>
-            <h2>Alumno: {student_name}</h2>
             <Grid data={content} className='grid-pdf'>
               <Column field='quantity' title='Cantidad' width='70px' />
               <Column field='name' title='Nombre del Plato' width='200px' />
               <Column field='classroom' title='Clase' width='80px' />
               <Column field='type' title='Tipo' width='40px'/>
             </Grid>
+            <h6>Total platos: {total_dishes}</h6>
           </div>
         </PDFExport>
       
